@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\URL;
 use Laravel\Passport\HasApiTokens;
 
 class User extends \TCG\Voyager\Models\User
@@ -37,4 +38,21 @@ class User extends \TCG\Voyager\Models\User
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function wishlist()
+    {
+        return $this->belongsToMany('App\Product', 'user_wishlists' ,'user_id', 'product_id');
+    }
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'user_id', 'id')->with('product');
+    }
+    public function cart()
+    {
+        return $this->belongsToMany('App\Product', 'user_carts', 'user_id', 'product_id');
+    }
+    public function getPicAttribute()
+    {
+        return isset($this->attributes['pic']) && $this->attributes['pic'] != "" ? URL::to('storage') . '/' . $this->attributes['pic']  : null;
+    }
 }

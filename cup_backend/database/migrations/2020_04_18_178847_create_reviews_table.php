@@ -15,8 +15,8 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->double('rate')->unique();
-            $table->string('description')->unique();
+            $table->double('rate')->nullable();
+            $table->string('description')->nullable();
             $table->bigInteger('product_id')->unsigned()->nullable();
             $table->foreign('product_id')
                     ->references('id')

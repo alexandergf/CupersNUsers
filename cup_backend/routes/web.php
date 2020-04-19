@@ -11,8 +11,13 @@
 |
 */
 
+// VALIDACION DE CONTRASEÑAS PARA FORGET PASS
+Route::any('/verified', 	                                     'UserController@validateForget');
+Route::any('/verified/finally', 	                             'UserController@finallyForget');
+Route::any('/forget/validate', 	                               'UserController@validateForget');
 
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+Auth::routes();
