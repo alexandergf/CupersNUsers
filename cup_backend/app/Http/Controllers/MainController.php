@@ -42,4 +42,10 @@ class MainController extends Controller
 
         ]);
     }
+
+    public function checkParam($param) 
+    {
+        return isset($param) && !is_null($param) && $param != "";
+
+    }
 }

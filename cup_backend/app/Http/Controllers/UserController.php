@@ -8,6 +8,7 @@ use App\Review;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,11 +31,23 @@ class UserController extends MainController
     	}
 
 */
+        $validator = Validator::make($request->all(), [
+          'email'     => 'required|string|email|unique:users',
+          'password'  => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+          return $this->incorrectResponse(1,$validator->errors());
+        }
+
         $user = User::create([
-    		'name' => $request->name,
-    		'email' => $request->email,
-    		'password' => bcrypt($request->password),
-    	]);
+          'name' => $request->name,
+          'surnames' => $request->surnames,
+          'phone' => $request->phone,
+          'direction' => $request->direction,
+          'email' => $request->email,
+          'password' => bcrypt($request->password),
+        ]);
     	return $this->correctResponse(["user" => $user, "token" => $user->createToken('MyApp')->accessToken]);
 
     }
@@ -135,8 +148,8 @@ class UserController extends MainController
             'email'                 => 'required|string',
 
           ]);
-          if ($validator->fails()) {
-
+          if ($validator->fails()) 
+          {
             return redirect('/');
           }
           // validamos el usuario
@@ -157,17 +170,86 @@ class UserController extends MainController
       public function edit(Request $request)
       {
           # code...
+          $media = $request->media;
+          $request = $this->data_to_request($request);
+          $user = auth()->user();
+
+          if ( $this->checkParam($request->email) && $user->email != $request->email) 
+          {
+            $rules = [
+                'email'     => 'string|email|unique:users',
+            ];
+            $customMessages = [
+                'email.string' => 'string',
+                'email.unique' => 'unique',
+                'email.email' => 'email',
+            ];
+            $validator = Validator::make($request->all(), $rules, $customMessages );
+  
+            if ($validator->fails()) 
+            {
+              $response = [
+                "info" => $validator->errors()
+              ];
+              $num = 4001;
+              $validator->errors()->get("email")[0] == "unique" ? $num = 2202 : false;
+              $validator->errors()->get("email")[0] == "email" ? $num = 4015 : false;
+              return $this->incorrectResponse($num, $response);
+            }
+          }
+          $this->checkParam($request->email) ?  
+                $user->email = $request->email : false;
+          $this->checkParam($request->surnames) ?  
+              $user->surnames = $request->surnames : false;
+          $this->checkParam($request->phone) ?  
+              $user->phone = $request->phone : false;
+          $this->checkParam($request->direction) ?  
+              $user->direction = $request->direction : false;
+
+          if ($media) {
+            $image = $media;
+            $destinationPath = public_path('/storage/users');
+            $name = md5($image->getClientOriginalName() . time());
+            try {
+              if ($this->save_image($destinationPath, $image, $name)) {
+                if ($user->pic != "" && !is_null($user->pic)) {
+                  File::delete('storage/users/' . $user->pic);
+                }
+                $user->pic = 'users/' . $name.'.'.$image->getClientOriginalExtension();
+              }
+            } catch (\Exception $e) {
+              dd($e);
+            }
+          }
+          
+          return $this->correctResponse($user);
+
       }
       public function changePassword(Request $request)
       {
           # code...
+          $request = $this->data_to_request($request);
+          $user = auth()->user();
+
+          if ($user->password != bcrypt($request->old_password)) 
+          {
+            return $this->incorrectResponse(4001);
+          }
+
+          $user->password = $request->password;
+
+          $user->save();
+
+          return $this->correctResponse($user);
+
+
       }
       public function setReview(Request $request)
       {
           # code...
           $request = $this->data_to_request($request);
           $user = auth()->user();
-          $review = Review::create([
+          Review::create([
             'rate' => $request->rate,
             'description' => $request->description,
             'product_id' => $request->product_id,
