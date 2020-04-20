@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Row from 'react-bootstrap/Row';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 export default class descripcionProducto extends Component {
     render() {
         return (
-            <div className="descripcion">
-                <ul>
+            <Row>
+                <ListGroup>
                     <li>Lorem Ipsum.</li>
                     <li>Lorem Ipsum.</li>
                     <li>Lorem Ipsum.</li>
@@ -12,8 +14,8 @@ export default class descripcionProducto extends Component {
                     <li>Lorem Ipsum.</li>
                     <li>Lorem Ipsum.</li>
                     <li>Lorem Ipsum.</li>
-                </ul>
-            </div>
+                </ListGroup>
+            </Row>
         )
     }
 }

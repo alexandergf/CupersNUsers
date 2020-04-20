@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import Color from './color';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default class colors extends Component {
     render() {
         return (
-            <div className="colors">
-                <span>Colors: </span>
-                <Color color="red" />
-                <Color color="blue" />
-                <Color color="yellow" />
-                <Color color="green" />
-                <Color color="white" />
-            </div>
+            <Row>
+                <Col><span>Colors: </span></Col>
+                <Col><Color color="red" /></Col>
+                <Col><Color color="blue" /></Col>
+                <Col><Color color="yellow" /></Col>
+                <Col><Color color="green" /></Col>
+                <Col><Color color="white" /></Col>
+            </Row>
         )
     }
 }
