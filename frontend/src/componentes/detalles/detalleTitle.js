@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import CorazonImg from '../../assets/images/heart.png';
 import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import { FaHeart } from 'react-icons/fa';
 
 export default class detalleTitle extends Component {
     render() {
         return (
-            <div className="title">
-                <Col md="auto"><h3>{this.props.name}</h3></Col><Col md="auto"><button className="heartToBasket"><Image src={CorazonImg} alt="Corazon" thumbnail/></button></Col>
-            </div>
+            <Row className="title-detail">
+                <Col md={6} className="title-title"><h3>{this.props.name}</h3></Col><Col md={{ span: 2, offset: 4 }} className="heartToBasket"><Button className="btn" variant="secondary"><FaHeart /></Button></Col>
+            </Row>
         )
     }
 }

@@ -26,10 +26,11 @@ export default class contador extends Component {
 
     render() {
         return (
-            <Row>
-                <Col sm>Cant: </Col>
-                <Col sm>
-                    <InputGroup className="mb-3">
+            <Row className="cash-line">
+                <Col sm={2} className="cash">7'18 €</Col>
+                <Col sm={{span: 4, offset: 2}} className="cont-btns">
+                    <span className="cant">Cant:</span>
+                    <InputGroup className="mb-3" size="sm">
                         <InputGroup.Prepend>
                             <Button variant="outline-secondary" onClick={this.restar}>-</Button>
                         </InputGroup.Prepend>
@@ -39,7 +40,6 @@ export default class contador extends Component {
                         </InputGroup.Append>
                     </InputGroup>
                 </Col>
-                
             </Row>
         )
     }

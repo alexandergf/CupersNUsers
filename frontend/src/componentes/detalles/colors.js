@@ -6,13 +6,15 @@ import Col from 'react-bootstrap/Col';
 export default class colors extends Component {
     render() {
         return (
-            <Row>
-                <Col><span>Colors: </span></Col>
-                <Col><Color color="red" /></Col>
-                <Col><Color color="blue" /></Col>
-                <Col><Color color="yellow" /></Col>
-                <Col><Color color="green" /></Col>
-                <Col><Color color="white" /></Col>
+            <Row className="colors">
+                <Col className="color-item">
+                    <span>Colors: </span>
+                    <Color color="red" />
+                    <Color color="blue" />
+                    <Color color="yellow" />
+                    <Color color="green" />
+                    <Color color="white" />
+                </Col>
             </Row>
         )
     }

@@ -12,12 +12,8 @@ export default class detalleText extends Component {
     render() {
         return (
             <Container fluid>
-                <Row>
-                    <Title name="Titulo de prueba" />
-                </Row>
-                <Row>
-                    <Col sm><span className="cash">7'18 €</span></Col><Col sm><Contador /></Col>
-                </Row>
+                <Title name="Titulo de prueba" />
+                <Contador />
                 <DescripcionProducto />
                 <Colors />
                 <BottomDetail />
