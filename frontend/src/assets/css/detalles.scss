@@ -155,10 +155,16 @@
         }
     }
 }*/
+.detalleImg-second-line{
+    margin-top: 20px;
+}
 .title-detail{
     .title-title{
         text-align: left;
     };
+}
+.detail-first-line{
+    margin-bottom: 4%;
 }
 .carrito{
     a{
@@ -171,11 +177,10 @@
     a:link, a:visited {
         background-color: white;
         color: rgb(161, 161, 161);
-        padding: 14px 25px;
+        padding: 14px 15px 14px 0px;
         text-align: center;
         text-decoration: none;
     }
-
     a:hover, a:active {
         background-color: #59FF96;
     }
@@ -184,7 +189,7 @@
     a:link, a:visited {
         background-color: #59FF96;
         color: white;
-        padding: 15px 25px;
+        padding: 15px 15px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -214,6 +219,10 @@
 }
 .bottom-detail{
     margin: 20px 0 0 0;
+    align-items: center;
+    .Opiniones{
+        justify-content: center;
+    }
 }
 .cash-line{
     align-items: baseline;
@@ -233,4 +242,21 @@
 .description-list{
     text-align: left;
     margin-left: 20px;
+}
+.star-row{
+    justify-content: center;
+}
+.card-opinion{
+    width: 100%;
+}
+.opiniones-row{
+    border-bottom: 1px solid gray;
+    margin-bottom: 2%;
+}
+.opinion-row{
+    margin-bottom: 2%;
+    text-align: left;
+}
+.stars{
+    margin-left: -15px;
 }

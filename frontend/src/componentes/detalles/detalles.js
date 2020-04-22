@@ -6,18 +6,20 @@ import '../../assets/css/detalles.css';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import CardDeck from 'react-bootstrap/CardDeck'
 
 export default class detalles extends Component {
     render() {
         return (
-            <Container fluid>
-                <Row>
-                    <Col sm={6}><Card body><DetalleImg /></Card></Col>
-                    <Col sm={6}><Card body><DetalleText /></Card></Col>
+            <Container className="general-container">
+                <Row className="detail-first-line">
+                    <CardDeck>
+                        <Card><Card.Body><DetalleImg /></Card.Body></Card>
+                        <Card><Card.Body><DetalleText /></Card.Body></Card>
+                    </CardDeck>
                 </Row>
                 <Row>
-                    <Opiniones />
+                    <Card className="card-opinion"><Card.Body><Opiniones /></Card.Body></Card> 
                 </Row>
             </Container>
         )

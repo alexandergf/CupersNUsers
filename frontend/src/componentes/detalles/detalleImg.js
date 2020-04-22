@@ -12,7 +12,7 @@ export default class detalleImg extends Component {
                 <Row>
                     <Col><Img src={ImagenPrueba} descripcion="Imagen de prueba" /></Col>
                 </Row>
-                <Row>
+                <Row className="detalleImg-second-line">
                     <Col sm={3}><Img src={ImagenPrueba} descripcion="Imagen de prueba" /></Col>
                     <Col sm={3}><Img src={ImagenPrueba} descripcion="Imagen de prueba" /></Col>
                     <Col sm={3}><Img src={ImagenPrueba} descripcion="Imagen de prueba" /></Col>
