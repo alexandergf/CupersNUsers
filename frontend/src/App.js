@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './assets/images/logo.svg';
 import './assets/css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -7,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Nav from './componentes/nav/Nav';
 import Footer from './componentes/footer/Footer';
+import Contacto from './componentes/contacto/Contacto';
 
 
 function App() {
@@ -14,6 +14,10 @@ function App() {
     <div className="App">
 
       <nav className="NavCss"><Nav/></nav>
+
+      <div>
+        <Contacto/>
+      </div>
 
       <footer><Footer/></footer>
     </div>
