@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './assets/images/logo.svg';
 import './assets/css/App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Nav
 
@@ -9,9 +10,11 @@ import Footer from './componentes/footer/Footer';
 
 
 function App() {
-  var nombre = "Pablo";
   return (
     <div className="App">
+
+      <nav className="NavCss"><Nav/></nav>
+
       <footer><Footer/></footer>
     </div>
   );

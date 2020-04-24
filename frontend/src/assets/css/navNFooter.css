@@ -2,3 +2,25 @@
     background-color: rgb(57, 195, 250);
      
 }
+
+.Nav {
+    width: 100%;
+    background-color: rgb(57, 195, 250);
+}
+
+.Contenedor {
+    padding-top: 15px;
+    padding-bottom: 0px;
+    max-width:100%;
+    color: white;
+}
+
+.LogoImagen {
+    height: 50px;
+    width: 280px;
+}
+
+.Botones {
+    padding-left: 150px;
+    padding-right: 90px;
+}
