@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import WishItems from './wishItems';
-import '../../assets/css/perfil.css';
 
 export default class wishList extends Component {
     render() {

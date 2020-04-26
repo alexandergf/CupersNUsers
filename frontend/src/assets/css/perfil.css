@@ -64,4 +64,18 @@
 .items-wish .item-wish .title-item, .items-wish .item-wish .u-item {
   color: #8a8888;
 }
+
+.opinion-perfil .opiniones-row {
+  display: none;
+}
+
+.opinion-perfil .opinion-title {
+  padding: 0.2em 0.2em;
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+
+.opinion-perfil .col-sm-1 {
+  text-align: center;
+}
 /*# sourceMappingURL=perfil.css.map */

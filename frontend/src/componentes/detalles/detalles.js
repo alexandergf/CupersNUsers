@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DetalleImg from './detalleImg';
 import DetalleText from './detalleText';
-import Opiniones from './opiniones';
+import Opiniones from '../opiniones/opiniones';
 import '../../assets/css/detalles.css';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';

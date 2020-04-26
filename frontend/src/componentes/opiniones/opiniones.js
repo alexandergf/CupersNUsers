@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Opinion from './opinion';
-import Estrellas from './estrellas';
+import Estrellas from '../estrellas/estrellas';
 import ImagenTest from '../../assets/images/prueba.jpg';
 
 export default class opiniones extends Component {

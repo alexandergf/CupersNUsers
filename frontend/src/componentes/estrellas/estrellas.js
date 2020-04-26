@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
 import { BsStarHalf, BsStarFill, BsStar } from 'react-icons/bs';
 
 export default class estrellas extends Component {

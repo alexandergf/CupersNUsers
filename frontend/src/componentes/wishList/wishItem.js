@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import ImagenTest from '../../assets/images/prueba.jpg';
-import Estrellas from '../detalles/estrellas';
+import Estrellas from '../estrellas/estrellas';
 
 export default class wishItem extends Component {
     render() {

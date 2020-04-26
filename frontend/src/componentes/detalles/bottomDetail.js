@@ -3,7 +3,7 @@ import CarritoImg from '../../assets/images/carrito.png';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
-import Estrellas from './estrellas';
+import Estrellas from '../estrellas/estrellas';
 
 export default class bottomDetail extends Component {
     render() {

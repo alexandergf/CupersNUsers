@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import Estrellas from './estrellas';
+import Estrellas from '../estrellas/estrellas';
 
 export default class opinion extends Component {
     render() {    

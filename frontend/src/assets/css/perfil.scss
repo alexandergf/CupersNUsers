@@ -61,3 +61,16 @@
         }
     }
 }
+.opinion-perfil{
+    .opiniones-row{
+        display: none;
+    }
+    .opinion-title{
+        padding: 0.2em 0.2em;
+        text-align: left;
+        border-bottom: 1px solid black;
+    }
+    .col-sm-1{
+        text-align: center;
+    }
+}
