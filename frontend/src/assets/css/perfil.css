@@ -1,0 +1,35 @@
+.edit-perfil .card {
+  width: 100%;
+  margin-bottom: 1.5em;
+  text-align: start;
+}
+
+.edit-perfil .card .editPerfil-title, .edit-perfil .card .password-title {
+  border-bottom: 1px solid black;
+  margin-bottom: 1em;
+}
+
+.edit-perfil .card .btn {
+  padding: 0.5em 3.5em;
+  background-color: #3fadff;
+}
+
+.edit-perfil .card .btn-save {
+  text-align: end;
+}
+
+.edit-perfil .card .edit-card .col-lg-2, .edit-perfil .card .edit-card .col-lg-5 {
+  margin: 0 0;
+  padding: 0;
+}
+
+.admin-perfil .card-header {
+  background-color: #3fadff;
+  color: white;
+}
+
+.admin-perfil a:link, .admin-perfil a:visited, .admin-perfil a:hover, .admin-perfil a:active {
+  color: black;
+  text-decoration: none;
+}
+/*# sourceMappingURL=perfil.css.map */
