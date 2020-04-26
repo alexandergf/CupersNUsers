@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import AdminPerfil from './adminPerfil';
 import WishList from '../wishList/wishList';
 import Opinion from '../opinion-perfil/opinionPerfil';
+import Pedidos from '../pedidos/pedidos';
 import EditarPerfil from '../editarPerfil/editarPerfil';
 
 import '../../assets/css/perfil.css';
@@ -20,9 +21,10 @@ export default class perfil extends Component {
                         
                     </Col>
                     <Col xs={9}>
-                        <Opinion />
+                        <Pedidos />
                         {/*<EditarPerfil />*/}
                         {/*<WishList />*/}
+                        {/*<Opinion />*/}
                     </Col>
                 </Row>
             </Container>

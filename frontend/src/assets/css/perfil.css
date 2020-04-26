@@ -78,4 +78,88 @@
 .opinion-perfil .col-sm-1 {
   text-align: center;
 }
+
+.pedidos-perfil .pedidos-title {
+  text-align: start;
+  border-bottom: 1px solid black;
+  padding: 0.3em;
+  margin-bottom: 1.5em;
+}
+
+.pedidos-perfil .card .card-title {
+  text-align: start;
+  border-bottom: 1px solid black;
+  padding: 0.2em;
+}
+
+.pedidos-perfil .card .card-body {
+  padding-top: 0;
+}
+
+.pedidos-perfil .card .card-body .first-line-pedido, .pedidos-perfil .card .card-body .second-line-pedido {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding-bottom: 0.3em;
+}
+
+.pedidos-perfil .card .card-body .first-line-pedido a:link, .pedidos-perfil .card .card-body .second-line-pedido a:link, .pedidos-perfil .card .card-body .first-line-pedido a:visited, .pedidos-perfil .card .card-body .second-line-pedido a:visited, .pedidos-perfil .card .card-body .first-line-pedido a:hover, .pedidos-perfil .card .card-body .second-line-pedido a:hover, .pedidos-perfil .card .card-body .first-line-pedido a:active, .pedidos-perfil .card .card-body .second-line-pedido a:active {
+  color: #4cb30b;
+  text-decoration: none;
+}
+
+.pedidos-perfil .card .card-body .first-line-pedido .first-line-pedido-enlaces, .pedidos-perfil .card .card-body .second-line-pedido .first-line-pedido-enlaces {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pedidos-perfil .card .card-body .second-line-pedido .row {
+  width: 100%;
+  text-align: left;
+}
+
+.pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido {
+  text-align: end;
+}
+
+.pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:link, .pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:visited, .pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:hover, .pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:active {
+  padding: 0;
+  color: #3fadff;
+  text-decoration: none;
+}
+
+.items-pedidos .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.items-pedidos .row .item-pedido {
+  text-align: left;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.items-pedidos .row .item-pedido-btn {
+  text-align: end;
+}
+
+.items-pedidos .row .col-img {
+  text-align: center;
+}
+
+.items-pedidos .row .item-unidades {
+  color: #8b8a8a;
+}
 /*# sourceMappingURL=perfil.css.map */

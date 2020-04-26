@@ -74,3 +74,70 @@
         text-align: center;
     }
 }
+.pedidos-perfil{
+    .pedidos-title{
+        text-align: start;
+        border-bottom: 1px solid black;
+        padding: 0.3em;
+        margin-bottom: 1.5em;
+    }
+    .card{
+        .card-title{
+            text-align: start;
+            border-bottom: 1px solid black;
+            padding: 0.2em;
+        }
+        .card-body{
+            padding-top: 0;
+            .first-line-pedido{
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid black;
+                padding-bottom: 0.3em;
+                a:link, a:visited,a:hover, a:active{
+                    color: #4cb30b;
+                    text-decoration: none;
+                }
+                .first-line-pedido-enlaces{
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+            .second-line-pedido{
+                @extend .first-line-pedido;
+                .row{
+                    width: 100%;
+                    text-align: left;
+                    .seguimiento-pedido{
+                        
+                        text-align: end;
+                        a:link, a:visited,a:hover, a:active {
+                            padding: 0;
+                            color: #3fadff;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.items-pedidos{
+    .row{
+        display: flex;
+        align-items: center;
+        .item-pedido{
+            text-align: left;
+            align-content: center;
+        }
+        .item-pedido-btn{
+            text-align: end;
+        }
+        .col-img{
+            text-align: center;
+        }
+        .item-unidades{
+            color: #8b8a8a;
+        }
+    }
+}
