@@ -1,0 +1,51 @@
+.login-main {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login-main .card-columns {
+  -webkit-column-count: 2;
+          column-count: 2;
+}
+
+.login-main .card-header {
+  font-weight: 100;
+  font-size: 1.5em;
+  color: white;
+}
+
+.login-main .card-body {
+  text-align: start;
+}
+
+.login-main .card-body .btn {
+  width: 100%;
+}
+
+.login-main .login .card-header {
+  background-color: #4cb30b;
+}
+
+.login-main .login .btn {
+  background-color: #4cb30b;
+  border-color: #4cb30b;
+}
+
+.login-main .login .forgivePassword a {
+  text-decoration: underline;
+}
+
+.login-main .login .forgivePassword a:link, .login-main .login .forgivePassword a:visited, .login-main .login .forgivePassword a:hover, .login-main .login .forgivePassword a:active {
+  color: black;
+}
+
+.login-main .signup .card-header {
+  background-color: #3fadff;
+}
+
+.login-main .signup .btn {
+  background-color: #3fadff;
+  border-color: #3fadff;
+}
+/*# sourceMappingURL=login.css.map */
