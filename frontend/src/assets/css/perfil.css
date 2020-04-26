@@ -32,4 +32,36 @@
   color: black;
   text-decoration: none;
 }
+
+.wish-perfil .wish-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding-bottom: 0.2em;
+}
+
+.wish-perfil .wish-title .btn {
+  padding: 0.3em 3.5em;
+  background-color: #4cb30b;
+  border-color: #4cb30b;
+}
+
+.items-wish a:link, .items-wish a:visited, .items-wish a:hover, .items-wish a:active {
+  color: black;
+  text-decoration: none;
+}
+
+.items-wish .item-wish .row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.items-wish .item-wish .title-item, .items-wish .item-wish .u-item {
+  color: #8a8888;
+}
 /*# sourceMappingURL=perfil.css.map */
