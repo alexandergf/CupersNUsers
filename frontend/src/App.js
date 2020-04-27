@@ -2,11 +2,9 @@ import React from 'react';
 import './assets/css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// Nav
-
 import Nav from './componentes/nav/Nav';
 import Footer from './componentes/footer/Footer';
-import Contacto from './componentes/contacto/Contacto';
+import CuerpoTazas from './componentes/usosTazas/CuerpoTazas';
 
 
 function App() {
@@ -16,7 +14,7 @@ function App() {
       <nav className="NavCss"><Nav/></nav>
 
       <div>
-        <Contacto/>
+        <CuerpoTazas/>
       </div>
 
       <footer><Footer/></footer>
