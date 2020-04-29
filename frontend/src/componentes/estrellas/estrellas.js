@@ -12,11 +12,11 @@ export default class estrellas extends Component {
         const estrellas = [];
         for(let i = 1; i<=5;i++){
             if(parseInt(this.state.numeroStars)>=i){
-                estrellas.push(<BsStarFill />);
+                estrellas.push(<BsStarFill key={i+"-star"} />);
             }else if(parseInt(this.state.numeroStars)===(i-1) && parseFloat(this.state.numeroStars)>(i-0.5)){
-                estrellas.push(<BsStarHalf />);
+                estrellas.push(<BsStarHalf key={i+"-star"} />);
             }else{
-                estrellas.push(<BsStar />);
+                estrellas.push(<BsStar key={i+"-star"} />);
             }
         }    
         return (

@@ -92,6 +92,16 @@
   padding: 0.2em;
 }
 
+.pedidos-perfil .card .card-title .row-title-pedido {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pedidos-perfil .card .card-title .row-title-pedido .col-sm-1 {
+  text-align: end;
+}
+
 .pedidos-perfil .card .card-body {
   padding-top: 0;
 }

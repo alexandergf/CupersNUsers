@@ -8,26 +8,44 @@ import WishList from '../wishList/wishList';
 import Opinion from '../opinion-perfil/opinionPerfil';
 import Pedidos from '../pedidos/pedidos';
 import EditarPerfil from '../editarPerfil/editarPerfil';
-
+import { 
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from 'react-router-dom';
 import '../../assets/css/perfil.css';
 
 export default class perfil extends Component {
     render() {
         return (
-            <Container fluid>
-                <Row>
-                    <Col xs={3}>
-                        <AdminPerfil user="PabloB1990" />
-                        
-                    </Col>
-                    <Col xs={9}>
-                        <Pedidos />
-                        {/*<EditarPerfil />*/}
-                        {/*<WishList />*/}
-                        {/*<Opinion />*/}
-                    </Col>
-                </Row>
-            </Container>
+            <Router>
+                <Container fluid>
+                    <Row>
+                        <Col xs={3}>
+                            <AdminPerfil user="PabloB1990" />
+                        </Col>
+                        <Col xs={9}>
+                            <Switch>
+                                <Route path="/EditarPerfil">
+                                    <EditarPerfil />
+                                </Route>
+                                <Route path="/WishList">
+                                    <WishList />
+                                </Route>
+                                <Route path="/Pedidos">
+                                    <Pedidos />
+                                </Route>
+                                <Route path="/Opinion">
+                                    <Opinion />
+                                </Route>
+                                <Route path="/Contacto">
+                                    {/*<Contacto />*/}
+                                </Route>
+                            </Switch>
+                        </Col>
+                    </Row>
+                </Container>
+            </Router>
         )
     }
 }
