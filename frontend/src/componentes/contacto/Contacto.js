@@ -22,7 +22,7 @@ class Contacto extends Component {
                                         <Form.Control type="text" />
                                     </Col>
                                 </Form.Group>
-                                <Form.Group controlId="exampleForm.ControlTextarea1" className="Formulario">
+                                <Form.Group className="Formulario">
                                     <Form.Label>Mensaje:</Form.Label>
                                     <Col xs={12}>
                                     <Form.Control as="textarea" rows="3" />
