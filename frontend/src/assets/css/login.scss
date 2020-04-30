@@ -1,0 +1,43 @@
+.login-main{
+    justify-content: center;
+    .card-columns{
+        column-count: 2;
+    }
+    .card-header{
+        font-weight: 100;
+        font-size: 1.5em;
+        color: white;
+    }
+    .card-body{
+        text-align: start;
+        .btn{
+            width: 100%;
+        }
+    }
+    .login{
+        .card-header{
+            background-color: #4cb30b;
+        }
+        .btn{
+            background-color: #4cb30b;
+            border-color: #4cb30b;
+        }
+        .forgivePassword{
+            a{
+                text-decoration: underline;
+            }
+            a:link, a:visited,a:hover, a:active {
+                color: black;
+            }
+        }
+    }
+    .signup{
+        .card-header{
+            background-color: #3fadff;
+        } 
+        .btn{
+            background-color: #3fadff;
+            border-color: #3fadff;
+        }
+    }
+}

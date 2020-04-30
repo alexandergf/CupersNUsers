@@ -1,0 +1,36 @@
+.main-productos .contenedor-productos .card-title {
+  text-align: start;
+  border-bottom: 1px solid #ccc;
+  padding: .7em;
+}
+
+.main-productos .contenedor-productos .producto .row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main-productos .contenedor-productos .producto .title-row {
+  color: #929191;
+}
+
+.main-productos .contenedor-productos .producto .price-row {
+  font-weight: 700;
+}
+
+.main-productos .panel-productos .elemento-panel .card .card-title {
+  background-color: #3fadff;
+  color: white;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.main-productos .panel-productos .elemento-panel .card .card-body {
+  text-align: start;
+  padding: 0 1.2em;
+}
+
+.main-productos .panel-productos .elemento-panel .row {
+  width: 100%;
+}
+/*# sourceMappingURL=productos.css.map */

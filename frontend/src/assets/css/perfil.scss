@@ -1,0 +1,149 @@
+.edit-perfil{
+    .card{
+        width: 100%;
+        margin-bottom: 1.5em;
+        text-align: start;
+        .editPerfil-title, .password-title{
+            border-bottom: 1px solid black;
+            margin-bottom: 1em;
+        }
+        .btn{
+            padding: 0.5em 3.5em;
+            background-color: #3fadff;
+        }
+        .btn-save{
+            text-align: end;
+        }
+        .edit-card{
+            .col-lg-2, .col-lg-5{
+                margin: 0 0;
+                padding: 0;
+            }
+        }
+    }
+}
+.admin-perfil{
+    .card-header{
+        background-color: #3fadff;
+        color: white;
+        
+    }
+    a:link, a:visited,a:hover, a:active {
+        color: black;
+        text-decoration: none;
+    }
+}
+
+.wish-perfil{
+    .wish-title{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid black;
+        padding-bottom: 0.2em;
+        .btn{
+            padding: 0.3em 3.5em;
+            background-color: #4cb30b;
+            border-color: #4cb30b;
+        }
+    }
+}
+.items-wish{
+    a:link, a:visited,a:hover, a:active {
+        color: black;
+        text-decoration: none;
+    }
+    .item-wish{
+        .row{
+            justify-content: center;
+        }
+        .title-item, .u-item{
+            color: rgb(138, 136, 136);
+        }
+    }
+}
+.opinion-perfil{
+    .opiniones-row{
+        display: none;
+    }
+    .opinion-title{
+        padding: 0.2em 0.2em;
+        text-align: left;
+        border-bottom: 1px solid black;
+    }
+    .col-sm-1{
+        text-align: center;
+    }
+}
+.pedidos-perfil{
+    .pedidos-title{
+        text-align: start;
+        border-bottom: 1px solid black;
+        padding: 0.3em;
+        margin-bottom: 1.5em;
+    }
+    .card{
+        .card-title{
+            text-align: start;
+            border-bottom: 1px solid black;
+            padding: 0.2em;
+            .row-title-pedido{
+                justify-content: space-between; 
+                .col-sm-1{
+                    text-align: end;
+                }
+            }
+        }
+        .card-body{
+            padding-top: 0;
+            .first-line-pedido{
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid black;
+                padding-bottom: 0.3em;
+                a:link, a:visited,a:hover, a:active{
+                    color: #4cb30b;
+                    text-decoration: none;
+                }
+                .first-line-pedido-enlaces{
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+            .second-line-pedido{
+                @extend .first-line-pedido;
+                .row{
+                    width: 100%;
+                    text-align: left;
+                    .seguimiento-pedido{
+                        
+                        text-align: end;
+                        a:link, a:visited,a:hover, a:active {
+                            padding: 0;
+                            color: #3fadff;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.items-pedidos{
+    .row{
+        display: flex;
+        align-items: center;
+        .item-pedido{
+            text-align: left;
+            align-content: center;
+        }
+        .item-pedido-btn{
+            text-align: end;
+        }
+        .col-img{
+            text-align: center;
+        }
+        .item-unidades{
+            color: #8b8a8a;
+        }
+    }
+}

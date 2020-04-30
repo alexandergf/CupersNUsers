@@ -1,0 +1,175 @@
+.edit-perfil .card {
+  width: 100%;
+  margin-bottom: 1.5em;
+  text-align: start;
+}
+
+.edit-perfil .card .editPerfil-title, .edit-perfil .card .password-title {
+  border-bottom: 1px solid black;
+  margin-bottom: 1em;
+}
+
+.edit-perfil .card .btn {
+  padding: 0.5em 3.5em;
+  background-color: #3fadff;
+}
+
+.edit-perfil .card .btn-save {
+  text-align: end;
+}
+
+.edit-perfil .card .edit-card .col-lg-2, .edit-perfil .card .edit-card .col-lg-5 {
+  margin: 0 0;
+  padding: 0;
+}
+
+.admin-perfil .card-header {
+  background-color: #3fadff;
+  color: white;
+}
+
+.admin-perfil a:link, .admin-perfil a:visited, .admin-perfil a:hover, .admin-perfil a:active {
+  color: black;
+  text-decoration: none;
+}
+
+.wish-perfil .wish-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding-bottom: 0.2em;
+}
+
+.wish-perfil .wish-title .btn {
+  padding: 0.3em 3.5em;
+  background-color: #4cb30b;
+  border-color: #4cb30b;
+}
+
+.items-wish a:link, .items-wish a:visited, .items-wish a:hover, .items-wish a:active {
+  color: black;
+  text-decoration: none;
+}
+
+.items-wish .item-wish .row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.items-wish .item-wish .title-item, .items-wish .item-wish .u-item {
+  color: #8a8888;
+}
+
+.opinion-perfil .opiniones-row {
+  display: none;
+}
+
+.opinion-perfil .opinion-title {
+  padding: 0.2em 0.2em;
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+
+.opinion-perfil .col-sm-1 {
+  text-align: center;
+}
+
+.pedidos-perfil .pedidos-title {
+  text-align: start;
+  border-bottom: 1px solid black;
+  padding: 0.3em;
+  margin-bottom: 1.5em;
+}
+
+.pedidos-perfil .card .card-title {
+  text-align: start;
+  border-bottom: 1px solid black;
+  padding: 0.2em;
+}
+
+.pedidos-perfil .card .card-title .row-title-pedido {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pedidos-perfil .card .card-title .row-title-pedido .col-sm-1 {
+  text-align: end;
+}
+
+.pedidos-perfil .card .card-body {
+  padding-top: 0;
+}
+
+.pedidos-perfil .card .card-body .first-line-pedido, .pedidos-perfil .card .card-body .second-line-pedido {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding-bottom: 0.3em;
+}
+
+.pedidos-perfil .card .card-body .first-line-pedido a:link, .pedidos-perfil .card .card-body .second-line-pedido a:link, .pedidos-perfil .card .card-body .first-line-pedido a:visited, .pedidos-perfil .card .card-body .second-line-pedido a:visited, .pedidos-perfil .card .card-body .first-line-pedido a:hover, .pedidos-perfil .card .card-body .second-line-pedido a:hover, .pedidos-perfil .card .card-body .first-line-pedido a:active, .pedidos-perfil .card .card-body .second-line-pedido a:active {
+  color: #4cb30b;
+  text-decoration: none;
+}
+
+.pedidos-perfil .card .card-body .first-line-pedido .first-line-pedido-enlaces, .pedidos-perfil .card .card-body .second-line-pedido .first-line-pedido-enlaces {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pedidos-perfil .card .card-body .second-line-pedido .row {
+  width: 100%;
+  text-align: left;
+}
+
+.pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido {
+  text-align: end;
+}
+
+.pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:link, .pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:visited, .pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:hover, .pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:active {
+  padding: 0;
+  color: #3fadff;
+  text-decoration: none;
+}
+
+.items-pedidos .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.items-pedidos .row .item-pedido {
+  text-align: left;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.items-pedidos .row .item-pedido-btn {
+  text-align: end;
+}
+
+.items-pedidos .row .col-img {
+  text-align: center;
+}
+
+.items-pedidos .row .item-unidades {
+  color: #8b8a8a;
+}
+/*# sourceMappingURL=perfil.css.map */

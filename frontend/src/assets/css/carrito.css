@@ -1,0 +1,94 @@
+.carrito .articulos-carrito .card-title {
+  text-align: start;
+  padding: .9em;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.carrito .articulos-carrito .card-body {
+  text-align: start;
+}
+
+.carrito .articulos-carrito .card-body table {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.carrito .articulos-carrito .card-body table thead {
+  background-color: #b1b1b1;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.carrito .articulos-carrito .card-body table thead th {
+  border-bottom: 2px solid black;
+}
+
+.carrito .articulos-carrito .card-body table td {
+  vertical-align: middle;
+}
+
+.carrito .articulos-carrito .card-body table img {
+  margin-right: 1.9em;
+}
+
+.carrito .articulos-carrito .card-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: white;
+  padding: .8em .7em;
+  border-top: 4px solid #ccc;
+}
+
+.carrito .articulos-carrito .card-footer .btn-vaciar-cesta {
+  color: #6b6a6a;
+  background-color: white;
+  border-color: #6b6a6a;
+}
+
+.carrito .articulos-carrito .card-footer .btn-vaciar-cesta:hover {
+  background-color: #ff3f3f;
+  color: white;
+}
+
+.carrito .articulos-carrito .card-footer .btn-seguir-comprando {
+  color: #6b6a6a;
+  background-color: #a8a4a4;
+  border-color: #6b6a6a;
+}
+
+.carrito .articulos-carrito .card-footer .btn-seguir-comprando:hover {
+  background-color: #53cf06;
+  color: white;
+}
+
+.carrito .total-carrito .card {
+  border: 1px dotted black;
+  margin-bottom: 1em;
+}
+
+.carrito .total-carrito .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-weight: 700;
+}
+
+.carrito .total-carrito .btn-realizar-pedido {
+  width: 100%;
+  background-color: #4cb30b;
+  border-color: #4cb30b;
+  color: white;
+}
+
+.carrito .total-carrito .btn-realizar-pedido:hover {
+  background-color: #53cf06;
+}
+/*# sourceMappingURL=carrito.css.map */

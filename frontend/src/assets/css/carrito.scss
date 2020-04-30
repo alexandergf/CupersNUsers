@@ -1,0 +1,76 @@
+.carrito{
+    .articulos-carrito{
+        .card-title{
+            text-align: start;
+            padding: .9em;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        .card-body{
+            text-align: start;
+            table{
+                margin-top: 0;
+                padding-top: 0;
+                thead{
+                    background-color: rgb(177, 177, 177);
+                    border-top: 2px solid black;
+                    border-bottom: 2px solid black;
+                    th{
+                        border-bottom: 2px solid black;
+                    }
+                }
+                td{
+                    vertical-align: middle;
+                }
+                img{
+                    margin-right: 1.9em;
+                }
+            }
+        }
+        .card-footer{
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            padding: .8em .7em;
+            border-top: 4px solid #ccc;
+            .btn-vaciar-cesta{
+                color: rgb(107, 106, 106);
+                background-color: white;
+                border-color: rgb(107, 106, 106);
+                &:hover{
+                    background-color: #ff3f3f;
+                    color: white;
+                }
+            }
+            .btn-seguir-comprando{
+                color: rgb(107, 106, 106);
+                background-color: rgb(168, 164, 164);
+                border-color: rgb(107, 106, 106);
+                &:hover{
+                    background-color: #53cf06;
+                    color: white;
+                }
+            }
+        }
+    }
+    .total-carrito{
+        .card{
+            border: 1px dotted black;
+            margin-bottom: 1em;
+        }
+        .row{
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+        }
+        .btn-realizar-pedido{
+            width: 100%;
+            background-color: #4cb30b;
+            border-color: #4cb30b;
+            color: white;
+            &:hover{
+                background-color: #53cf06;
+            }
+        }
+    }
+}

@@ -1,0 +1,105 @@
+.detalleImg-second-line{
+    margin-top: 20px;
+}
+.title-detail{
+    .title-title{
+        text-align: left;
+    };
+}
+.detail-first-line{
+    margin-bottom: 4%;
+}
+.carrito{
+    a{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        border: 1px solid rgb(161, 161, 161);
+    }
+    a:link, a:visited {
+        background-color: white;
+        color: rgb(161, 161, 161);
+        padding: 14px 15px 14px 0px;
+        text-align: center;
+        text-decoration: none;
+    }
+    a:hover, a:active {
+        background-color: #59FF96;
+    }
+}
+.comprar{    
+    a:link, a:visited {
+        background-color: #59FF96;
+        color: white;
+        padding: 15px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    } 
+    a:hover, a:active {
+        background-color: rgb(70, 197, 117);
+    }
+}
+.colors{
+    margin: 20px 0;
+    padding: 20px 0;
+    text-align: left;
+    align-items: baseline;
+    .color-item{
+        span{
+            margin-right: 15px;
+        }
+    }
+    .color{
+        width: 1.4em;
+        height: 1.4em;
+        text-align: left;
+        border: 1px solid black;
+        margin-right: 15px;
+    }
+
+}
+.bottom-detail{
+    margin: 20px 0 0 0;
+    align-items: center;
+    .Opiniones{
+        justify-content: center;
+    }
+}
+.cash-line{
+    align-items: baseline;
+    .cash{
+        color: green;
+        text-align: left;
+    }
+    .cont-btns{
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        span:first-child{
+            margin-right: 10px;
+        }
+    }
+}
+.description-list{
+    text-align: left;
+    margin-left: 20px;
+}
+.star-row{
+    justify-content: center;
+}
+.card-opinion{
+    width: 100%;
+}
+.opiniones-row{
+    border-bottom: 1px solid gray;
+    margin-bottom: 2%;
+}
+.opinion-row{
+    margin-bottom: 2%;
+    text-align: left;
+}
+.stars{
+    margin-left: -15px;
+}

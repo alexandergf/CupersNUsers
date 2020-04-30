@@ -1,0 +1,144 @@
+.detalleImg-second-line {
+  margin-top: 20px;
+}
+
+.title-detail .title-title {
+  text-align: left;
+}
+
+.detail-first-line {
+  margin-bottom: 4%;
+}
+
+.carrito a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #a1a1a1;
+}
+
+.carrito a:link, .carrito a:visited {
+  background-color: white;
+  color: #a1a1a1;
+  padding: 14px 15px 14px 0px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.carrito a:hover, .carrito a:active {
+  background-color: #59FF96;
+}
+
+.comprar a:link, .comprar a:visited {
+  background-color: #59FF96;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.comprar a:hover, .comprar a:active {
+  background-color: #46c575;
+}
+
+.colors {
+  margin: 20px 0;
+  padding: 20px 0;
+  text-align: left;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.colors .color-item span {
+  margin-right: 15px;
+}
+
+.colors .color {
+  width: 1.4em;
+  height: 1.4em;
+  text-align: left;
+  border: 1px solid black;
+  margin-right: 15px;
+}
+
+.bottom-detail {
+  margin: 20px 0 0 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.bottom-detail .Opiniones {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cash-line {
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.cash-line .cash {
+  color: green;
+  text-align: left;
+}
+
+.cash-line .cont-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.cash-line .cont-btns span:first-child {
+  margin-right: 10px;
+}
+
+.description-list {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.star-row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card-opinion {
+  width: 100%;
+}
+
+.opiniones-row {
+  border-bottom: 1px solid gray;
+  margin-bottom: 2%;
+}
+
+.opinion-row {
+  margin-bottom: 2%;
+  text-align: left;
+}
+
+.stars {
+  margin-left: -15px;
+}
+/*# sourceMappingURL=detalles.css.map */
