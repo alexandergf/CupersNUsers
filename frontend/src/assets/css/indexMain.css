@@ -1,0 +1,33 @@
+.main-app .menu-desplegable .card-title {
+  background-color: #4cb30b;
+  color: white;
+  font-size: .9em;
+  padding: .5em;
+  margin-bottom: 0;
+}
+
+.main-app .menu-desplegable .card-body {
+  padding: 0;
+  margin: 0;
+  text-align: start;
+}
+
+.main-app .menu-desplegable .card-body .list-group-item:hover {
+  background-color: #4cb30b;
+  color: white;
+}
+
+.main-app .menu-desplegable .card-body .list-group-item:hover a {
+  color: white;
+}
+
+.main-app .menu-desplegable .card-body a:link, .main-app .menu-desplegable .card-body a:visited, .main-app .menu-desplegable .card-body a:hover, .main-app .menu-desplegable .card-body a:active {
+  color: black;
+  text-decoration: none;
+}
+
+.main-app .contenedor-productos {
+  width: 100%;
+  margin: 2em;
+}
+/*# sourceMappingURL=indexMain.css.map */
