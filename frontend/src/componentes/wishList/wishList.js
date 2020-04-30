@@ -9,8 +9,8 @@ export default class wishList extends Component {
         return (
             <Container fluid className="wish-perfil">
                 <Card>
+                    <Card.Title><h3 className="wish-title">Lista de deseos <Button>Añadir todo al carrito</Button></h3></Card.Title>
                     <Card.Body>
-                        <h3 className="wish-title">Lista de deseos <Button>Añadir todo al carrito</Button></h3>
                         <WishItems />
                     </Card.Body>
                 </Card>

@@ -1,6 +1,7 @@
 .ContactoTitulo {
     border-bottom: 1px solid black;
     text-align: left;
+    padding: .1em 0;
 }
 
 .Submit {

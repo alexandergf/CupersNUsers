@@ -8,8 +8,8 @@ export default class opinionPerfil extends Component {
         return (
             <Container fluid className="opinion-perfil">
                 <Card>
+                    <Card.Title><h3 className="opinion-title">Opiniones</h3></Card.Title>
                     <Card.Body>
-                        <h3 className="opinion-title">Opiniones</h3>
                         <Opiniones />
                     </Card.Body>
                 </Card>

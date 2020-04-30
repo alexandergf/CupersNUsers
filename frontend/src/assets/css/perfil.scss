@@ -6,6 +6,7 @@
         .editPerfil-title, .password-title{
             border-bottom: 1px solid black;
             margin-bottom: 1em;
+            padding: 0.2em;
         }
         .btn{
             padding: 0.5em 3.5em;
@@ -39,7 +40,7 @@
         display: flex;
         justify-content: space-between;
         border-bottom: 1px solid black;
-        padding-bottom: 0.2em;
+        padding: 0.2em;
         .btn{
             padding: 0.3em 3.5em;
             background-color: #4cb30b;
@@ -66,7 +67,7 @@
         display: none;
     }
     .opinion-title{
-        padding: 0.2em 0.2em;
+        padding: 0.2em;
         text-align: left;
         border-bottom: 1px solid black;
     }
@@ -76,16 +77,12 @@
 }
 .pedidos-perfil{
     .pedidos-title{
-        text-align: start;
         border-bottom: 1px solid black;
-        padding: 0.3em;
-        margin-bottom: 1.5em;
+        padding: 0.2em;
     }
     .card{
         .card-title{
             text-align: start;
-            border-bottom: 1px solid black;
-            padding: 0.2em;
             .row-title-pedido{
                 justify-content: space-between; 
                 .col-sm-1{
@@ -145,5 +142,20 @@
         .item-unidades{
             color: #8b8a8a;
         }
+    }
+}
+.Contacto{
+    .ContactoTitulo {
+        border-bottom: 1px solid black;
+        text-align: left;
+        padding: .2em;
+    }
+    
+    .Submit {
+        float: right;
+    }
+    
+    .Formulario {
+        text-align: left;
     }
 }

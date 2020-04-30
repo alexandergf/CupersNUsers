@@ -7,6 +7,7 @@
 .edit-perfil .card .editPerfil-title, .edit-perfil .card .password-title {
   border-bottom: 1px solid black;
   margin-bottom: 1em;
+  padding: 0.2em;
 }
 
 .edit-perfil .card .btn {
@@ -41,7 +42,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   border-bottom: 1px solid black;
-  padding-bottom: 0.2em;
+  padding: 0.2em;
 }
 
 .wish-perfil .wish-title .btn {
@@ -70,7 +71,7 @@
 }
 
 .opinion-perfil .opinion-title {
-  padding: 0.2em 0.2em;
+  padding: 0.2em;
   text-align: left;
   border-bottom: 1px solid black;
 }
@@ -80,16 +81,12 @@
 }
 
 .pedidos-perfil .pedidos-title {
-  text-align: start;
   border-bottom: 1px solid black;
-  padding: 0.3em;
-  margin-bottom: 1.5em;
+  padding: 0.2em;
 }
 
 .pedidos-perfil .card .card-title {
   text-align: start;
-  border-bottom: 1px solid black;
-  padding: 0.2em;
 }
 
 .pedidos-perfil .card .card-title .row-title-pedido {
@@ -171,5 +168,19 @@
 
 .items-pedidos .row .item-unidades {
   color: #8b8a8a;
+}
+
+.Contacto .ContactoTitulo {
+  border-bottom: 1px solid black;
+  text-align: left;
+  padding: .2em;
+}
+
+.Contacto .Submit {
+  float: right;
+}
+
+.Contacto .Formulario {
+  text-align: left;
 }
 /*# sourceMappingURL=perfil.css.map */

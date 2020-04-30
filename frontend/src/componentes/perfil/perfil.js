@@ -8,6 +8,7 @@ import WishList from '../wishList/wishList';
 import Opinion from '../opinion-perfil/opinionPerfil';
 import Pedidos from '../pedidos/pedidos';
 import EditarPerfil from '../editarPerfil/editarPerfil';
+import Contacto from '../contacto/Contacto';
 import { 
     BrowserRouter as Router,
     Switch,
@@ -39,7 +40,7 @@ export default class perfil extends Component {
                                     <Opinion />
                                 </Route>
                                 <Route path="/Contacto">
-                                    {/*<Contacto />*/}
+                                    <Contacto />
                                 </Route>
                             </Switch>
                         </Col>
