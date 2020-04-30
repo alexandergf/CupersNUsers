@@ -9,9 +9,9 @@ export default class producto extends Component {
     render() {
         return (
             <Contenedor fluid className="producto">
-                <Row><Image src={ImagenTest} roundedCircle width="80em" height="80em" /></Row>
-                <Row>{this.props.title}</Row>
-                <Row>{this.props.precio}</Row>
+                <Row><Image src={ImagenTest} roundedCircle width="180em" height="180em" /></Row>
+                <Row className="title-row">{this.props.title}</Row>
+                <Row className="price-row">{this.props.precio} €</Row>
                 <Row><Estrellas numStars={this.props.estrellas} /></Row>
             </Contenedor>
         )

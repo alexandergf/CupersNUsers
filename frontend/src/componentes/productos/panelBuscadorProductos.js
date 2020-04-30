@@ -11,7 +11,7 @@ export default class panelBuscadorProductos extends Component {
             paneles: [
                 {nombre: "Categoría", elementos: ["Todas", "Tazas de plástico", "Tazas de acero", "Tazas everywhere"]},
                 {nombre: "Precio", elementos: ["< 5 €", "5 - 10 €", "< 10 €"]},
-                {nombre: "Puntuaciónn", elementos: ["5 estrellas", "3 - 5 estrellas", "< 3 estrellas"]},
+                {nombre: "Puntuación", elementos: ["5 estrellas", "3 - 5 estrellas", "< 3 estrellas"]},
                 {nombre: "Stock", elementos: ["Disponible", "Sin Stock", "Fuera de Stock"]}
             ] 
         }

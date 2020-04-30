@@ -11,10 +11,10 @@ export default class productos extends Component {
         return (
             <Container fluid className="main-productos">
                 <Row>
-                    <Col xs={2}>
+                    <Col xs={3} md={2}>
                         <Panel />
                     </Col>
-                    <Col xs={10}>
+                    <Col xs={9} md={10}>
                         <CProductos categoria="Tazas de café" totalProductos="5" />
                     </Col>
                 </Row>

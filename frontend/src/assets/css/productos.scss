@@ -1,11 +1,36 @@
 .main-productos{
     .contenedor-productos{
+        .card-title{
+            text-align: start;
+            border-bottom: 1px solid #ccc;
+            padding: .7em;
+        }
         .producto{
-
+            .row{
+                justify-content: center;
+            }
+            .title-row{
+                color: rgb(146, 145, 145);
+            }
+            .price-row{
+                font-weight: 700;
+            }
         }
     }
     .panel-productos{
         .elemento-panel{
+            .card{
+                .card-title{
+                    background-color: #3fadff;
+                    color: white;
+                    border: 1px solid black;
+                    padding: 5px;
+                }
+                .card-body{
+                    text-align: start;
+                    padding: 0 1.2em;
+                }
+            }
             .row{
                 width: 100%;
             }
