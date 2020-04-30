@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import '../../assets/css/usosTazas.css';
+import { Card } from 'react-bootstrap';
 
 class usoTaza extends Component {
 
     render() {
         return (
-            <div>
-                <div className="numero">
-                    <h4>N. Tal</h4>
-                </div>
-                <div className="usoTacero">
-                    <p>Texto ejemplo</p>
-                </div>
-            </div>
+            <Card>
+                <Card.Title>
+                    <div className="numero">
+                        <h4>N. Tal</h4>
+                    </div>
+                </Card.Title>
+                <Card.Body>
+                    <div className="usoTacero">
+                        <p>Texto ejemplo</p>
+                    </div>
+                </Card.Body>
+            </Card>
         )
     }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactBootstrap, { Container, Col, Row, Button, Form, FormControl } from 'react-bootstrap';
+import { Container, Col, Row, Card } from 'react-bootstrap';
 import '../../assets/css/usosTazas.css';
 
 import TituloUsosTazas from './TituloUsosTazas';
@@ -11,37 +11,34 @@ class cuerpoTazas extends Component {
         let tabla = [];
         let usos = [];
 
-        for (let i = 0; i < 120; i++) {
+        for (let i = 0; i < 120; i+=2) {
             usos.push(
                 <Row>
-                    <Col xs={1} />
-                    <Col xs={4} className="textoTazas">
+                    <Col xs={{span:4, offset:1}} className="textoTazas">
+                        <UsoTaza />
+                    </Col>    
+                    <Col xs={{span:4, offset:2}}>
                         <UsoTaza />
                     </Col>
-                    <Col xs={2} />
-                    <Col xs={4}>
-                        <UsoTaza />
-                    </Col>
-                    <Col xs={1} />
                 </Row>
             );
 
         }
         tabla.push(usos);
         return tabla;
-
     }
 
     render() {
         return (
-
-            <Container>
+            <Container fluid>
                 <Row>
-                    <Col xs={2}></Col>
-                    <Col xs={8}>
-                        <TituloUsosTazas />
+                    <Col xs={{span:10, offset:1}}>
+                        <Card>
+                            <Card.Body>
+                                <TituloUsosTazas />
+                            </Card.Body>
+                        </Card>
                     </Col>
-                    <Col xs={2}></Col>
                 </Row>
                 {this.listaUsos()}
             </Container>

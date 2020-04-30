@@ -1,7 +1,22 @@
-.numero {
-    border-bottom: 1px solid gray;
+@font-face{
+    font-family: Broadway;
+    src: url('../fonts/Broadway\ Regular.ttf');
 }
-
+.numero {
+    border-bottom: 2px solid rgb(153, 151, 151);
+}
 .tituloUsosTazas {
     text-align: center;
+}
+.usoTacero, .numero{
+    text-align: start;
+}
+.tituloUsosTazas, .usoTacero, .numero {
+    font-family: Broadway;
+}
+.card-body, .numero{
+    padding: 0.2em 0.4em;
+}
+.card{
+    margin-bottom: 1.5em;
 }
