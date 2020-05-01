@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import { Container, Card, ListGroup, Image, Col, Row } from 'react-bootstrap/Container';
 import ImagenTest from '../../assets/images/prueba.jpg';
-import Image from 'react-bootstrap/Image';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import { 
     Link
 } from 'react-router-dom';

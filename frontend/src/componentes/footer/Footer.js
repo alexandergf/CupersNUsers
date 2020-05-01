@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import '../../assets/css/navNFooter.css';
+import { Container } from 'react-bootstrap';
 
 class Footer extends Component {
     render() {
         return(
-            <div className="Footer">
+            <Container className="Footer" fluid>
                 <b>Cupers N Users © 2020</b>
-            </div>
+            </Container>
         );
     }
 }

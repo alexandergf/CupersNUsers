@@ -1,5 +1,14 @@
 .main-app{
+    padding: 0;
+    height: 100%;
+    .col-menu-desplegable{
+        padding: 0;
+    }
     .menu-desplegable{
+        padding: 0;
+        .card{
+            height: 100%;
+        }
         .card-title{
             background-color: #4cb30b;
             color: white;
@@ -12,6 +21,7 @@
             margin: 0;
             text-align: start;
             .list-group-item{
+                padding: 1.1em;
                 &:hover{
                     background-color: #4cb30b;
                     color: white;
@@ -26,8 +36,17 @@
             }
         }
     }
+    .row-second-line{
+        height: 89.1%;
+    }
+    .special-background{
+        background-color: #ccc;
+    }
     .contenedor-productos{
         width: 100%;
         margin: 2em;
     }
+}
+.row{
+    margin-right: 0;
 }

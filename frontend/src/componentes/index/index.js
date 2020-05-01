@@ -1,28 +1,59 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col} from 'react-bootstrap';
+import '../../assets/css/indexMain.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// Componentes
+import Nav from '../nav/Nav';
 import MenuDesplegable from './menuDesplegable';
 import PantallaInicial from './pantallaInicial';
-import '../../assets/css/indexMain.css';
+import UsoTazas from '../usosTazas/CuerpoTazas';
+import Login from '../login/login';
+import Footer from '../footer/Footer';
 
 export default class index extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            active: true
+        }
+    }
+
+    getStateLaterañMenu = (activo) => {
+        if(activo){
+            this.setState({
+                active: !this.state.active
+            });
+        }
+    }
+
     render() {
         return (
-            <Container fluid style={{padding: 0}} className="main-app">
-                <Row>
-                    {/* Navegador */}
-                </Row>
-                <Row>
-                    <Col sm={2}>
-                        <MenuDesplegable />
-                    </Col>
-                    <Col sm={10}>
-                        {/* Contenido principal */}
-                        <PantallaInicial />
-                    </Col>
-                </Row>
-            </Container>
+            <Router>
+                <Container fluid className="main-app">
+                    <Row>
+                        <Nav callback={this.getStateLaterañMenu.bind(this)} />
+                    </Row>
+                    <Row className="row-second-line">
+                        {this.state.active ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable /></Col> : null}
+                        <Col className="special-background">
+                            <Switch>
+                                <Route path="/UsoTazas">
+                                    <UsoTazas />
+                                </Route>
+                                <Route path="/Login"> 
+                                    <Login />
+                                </Route>
+                                <Route path="/">
+                                    <PantallaInicial />
+                                </Route>
+                            </Switch>
+                        </Col>
+                    </Row>
+                    <Row className="row-footer">
+                        <Footer />
+                    </Row>
+                </Container>
+            </Router>
         )
     }
 }

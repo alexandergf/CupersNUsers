@@ -1,26 +1,55 @@
 .Footer{
-    background-color: rgb(57, 195, 250);
-     
+    background-color: #3fadff;    
 }
 
 .Nav {
     width: 100%;
-    background-color: rgb(57, 195, 250);
+    background-color: #3fadff;
+    padding: .5em;
 }
 
-.Contenedor {
-    padding-top: 15px;
-    padding-bottom: 0px;
-    max-width:100%;
+.Nav > a,a:link, a:visited,a:hover, a:active {
+    color: white;
+    text-decoration: none;
+}
+
+.btn-lupa{
+    color: black;
+    stroke-width: 2em;
+}
+
+.Contenedor{
     color: white;
 }
 
-.LogoImagen {
-    height: 50px;
-    width: 280px;
+.Contenedor .row{
+    display: flex;
+    align-items: center;
+}
+.Contenedor p{
+    margin: 0;
+    padding: 0;
 }
 
-.Botones {
-    padding-left: 150px;
-    padding-right: 90px;
+.mb-2 {
+    margin: 0;
+}
+.LogoImagen {
+    width: 20em;
+    padding: 0.2em;
+    margin-left: .5em;
+}
+.Botones{
+    margin-top: .2em;
+}
+
+.btn-menu-desplegable{
+    padding: .4em .5em;
+}
+
+.btn-menu-desplegable-icono{
+    width: 1.5em;
+    height: 1.5em;
+    color: orange;
+    stroke-width: .1em;
 }

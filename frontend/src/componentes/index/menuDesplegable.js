@@ -25,7 +25,7 @@ export default class menuDesplegable extends Component {
         const categoriasState = this.state.categorias;
         for (let i = 0; i < categoriasState.length; i++) {
             categorias.push(
-                <ListGroup.Item><a href="">{categoriasState[i]}</a></ListGroup.Item>
+                <ListGroup.Item key={i+"-itemCategoria"}><a href="">{categoriasState[i]}</a></ListGroup.Item>
             );
         }
         return (

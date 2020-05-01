@@ -1,14 +1,12 @@
 import React from 'react';
 import './assets/css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-//import Perfil from './componentes/perfil/perfil';
-import UsosTazas from './componentes/usosTazas/CuerpoTazas';
+import Index from './componentes/index/index';
 
 function App() {
   return (
     <div className="App">
-      <UsosTazas />        
+      <Index />        
     </div>
   );
 }
