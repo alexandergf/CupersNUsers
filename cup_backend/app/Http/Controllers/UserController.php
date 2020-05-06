@@ -6,11 +6,13 @@ use App\Mail\MailForgetPass;
 use App\Product;
 use App\Review;
 use App\User;
+use App\UserWishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends MainController
 {
@@ -230,13 +232,12 @@ class UserController extends MainController
           # code...
           $request = $this->data_to_request($request);
           $user = auth()->user();
-
-          if ($user->password != bcrypt($request->old_password)) 
+          if (!Hash::check($request->old_password, $user->password)) 
           {
             return $this->incorrectResponse(4001);
           }
 
-          $user->password = $request->password;
+          $user->password = bcrypt($request->password);
 
           $user->save();
 
@@ -280,6 +281,23 @@ class UserController extends MainController
       }
 
 
+	
+    public function toggleWishProduct(Request $request)
+    {
+        # code...
+        $request = $this->data_to_request($request);
+        $user = auth()->user();
+        $wish = UserWishlist::where('user_id', '=', $user->id)->where('product_id', '=', $request->product_id)->first();
 
+        if ($wish) {
+            $wish->delete();
+        } else {
+            UserWishlist::create([
+                'product_id' => $request->product_id,
+                'user_id' => $user->id,
+            ]);
+        }
 
+        return $this->correctResponse($user->wishlist);
+    }
 }

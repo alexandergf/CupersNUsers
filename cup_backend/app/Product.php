@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\URL;
 class Product extends Model
 {
     //
+	protected $table = 'products';
+
     protected $with = ['pics'];
 
     public function reviews()
@@ -16,7 +18,7 @@ class Product extends Model
     }
     public function pics()
     {
-        return $this->hasMany('App\ProductPic', 'product_id', 'id');
+		return $this->hasMany('App\ProductPic');
     }
 
 }

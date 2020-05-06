@@ -44,13 +44,15 @@ class ProductController extends MainController
     public function getReviews(Request $request)
     {
         # code...
+        $request = $this->data_to_request($request);
         return $this->correctResponse(Product::where('id', '=', $request->product_id)
                                                 ->first()->reviews);
     }
     public function detail(Request $request)
     {
         # code...
-        return $this->correctResponse(Product::where('id', '=', $request->product_id)
+        $request = $this->data_to_request($request);
+		return $this->correctResponse(Product::with('reviews')->where('id', '=', $request->product_id)
                                                 ->first());
     }
 }
