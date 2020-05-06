@@ -17,6 +17,10 @@ Route::any('/verified/finally', 	                             'UserController@fi
 Route::any('/forget/validate', 	                               'UserController@validateForget');
 
 
+Route::get('cancel', 'OrderController@cancel')->name('payment.cancel');
+Route::get('payment/success', 'OrderController@success')->name('payment.success');
+
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

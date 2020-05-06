@@ -15,11 +15,14 @@ class CartController extends MainController
         $user = auth()->user();
 		$cart = UserCart::where('user_id', '=', $user->id)->where('product_id', '=', $request->product_id)->first();
 
+
         if ($cart) {
             $cart->delete();
-        } else {
+        } 
+        if (isset($request->quantity) && $request->quantity > 0) {
             $cart = UserCart::create([
                 'product_id' => $request->product_id,
+                'quantity' => $request->quantity,
                 'user_id' => $user->id,
             ]);
 			

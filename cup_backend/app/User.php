@@ -49,7 +49,7 @@ class User extends \TCG\Voyager\Models\User
     }
     public function cart()
     {
-        return $this->belongsToMany('App\Product', 'user_carts', 'user_id', 'product_id');
+        return $this->hasMany('App\UserCart');
     }
     public function getPicAttribute()
     {

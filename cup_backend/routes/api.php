@@ -46,4 +46,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::group(['prefix' => 'wishlist'], function(){
         Route::get('toggleProduct', 	'UserController@toggleWishProduct');
     });
+    Route::group(['prefix' => 'order'], function(){
+        Route::get('set', 	'OrderController@set');
+        Route::get('getHistory', 	'OrderController@getHistory');
+    });
 });
