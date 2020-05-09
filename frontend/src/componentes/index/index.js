@@ -13,6 +13,7 @@ import Login from '../login/login';
 import Footer from '../footer/Footer';
 import Perfil from '../perfil/perfil';
 import Detail from '../detalles/detalles';
+import Productos from '../productos/productos';
 
 export default class index extends Component {
     constructor(props){
@@ -21,7 +22,8 @@ export default class index extends Component {
             activeLateralMenu: true,
             category: "Todos",
             productos: [],
-            productid: 1
+            productid: 1,
+            searchWordBar: ""
         }
         this.handleCategoria = this.handleCategoria.bind(this);
     }
@@ -67,7 +69,12 @@ export default class index extends Component {
             activeLateralMenu: activo,
             productid: productId
         });
-        
+    }
+
+    searchBar = (searchWord) => {
+        this.setState({
+            searchWordBar: searchWord
+        })
     }
     
     render() {
@@ -75,7 +82,7 @@ export default class index extends Component {
             <Router>
                 <Container fluid className="main-app">
                     <Row>
-                        <Nav callback={this.getStateLaterañMenu.bind(this)} />
+                        <Nav callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} />
                     </Row>
                     <Row className="row-second-line">
                         {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable getCategoria={this.handleCategoria} /></Col> : null}
@@ -92,6 +99,9 @@ export default class index extends Component {
                                 </Route>
                                 <Route path="/Detail">
                                     <Detail productId={this.state.productid} />
+                                </Route>
+                                <Route path="/Productos">
+                                    <Productos searchWords={this.state.searchWordBar} />
                                 </Route>
                                 <Route path="/">
                                     <PantallaInicial itemDetailInfo={this.getItemDetailInfo.bind(this)} categoriaProduct={this.state.category} productos={this.state.productos} />

@@ -14,9 +14,12 @@ class Nav extends Component {
         super(props);
         this.state = {
             admin: false,
-            logIn: false
+            logIn: false,
+            search: ""
         };
         this.updatePerfil = this.updatePerfil.bind(this);
+        this.handleOnChange = this.handleOnChange.bind(this);
+        this.searchWords = this.searchWords.bind(this);
     }
 
     componentWillMount = () => {
@@ -29,6 +32,18 @@ class Nav extends Component {
 
     sendResponseLateralMenu = (value,mode) => {
         this.props.callback(value,mode);
+    }
+
+    handleOnChange = (event) => {
+        const value = event.target.value; 
+        this.setState({
+            search: value
+        })
+    }
+
+    searchWords = () => {
+        this.sendResponseLateralMenu(false,false)
+        this.props.search(this.state.search);
     }
 
     updatePerfil = () => {
@@ -48,9 +63,9 @@ class Nav extends Component {
                         </Col>
                         <Col xs={5}>
                             <InputGroup>
-                                <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" />
+                                <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" onChange={this.handleOnChange} />
                                 <InputGroup.Append>
-                                    <Button variant="light"><GiMagnifyingGlass className="btn-lupa" /></Button>
+                                    <Link to="/Productos" onClick={()=>this.searchWords()}><Button variant="light"><GiMagnifyingGlass className="btn-lupa" /></Button></Link>
                                 </InputGroup.Append>
                             </InputGroup>
                         </Col>
