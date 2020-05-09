@@ -9,7 +9,7 @@ export const instance = {
       'Cache-Control': 'no-cache, private',
       'X-RateLimit-Limit': '60',
       'X-RateLimit-Remaining': '59',
-      
+      'Authorization': "Bearer "+sessionStorage.getItem('token')
     },
     crossDomain: true 
 };

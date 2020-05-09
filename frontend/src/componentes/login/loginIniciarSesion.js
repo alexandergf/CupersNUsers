@@ -46,6 +46,7 @@ export default class loginIniciarSesion extends Component {
 
     sendResponseData = (value) => {
         sessionStorage.setItem('token', value);
+        instance.headers.Authorization = "Bearer "+value;
         // TODO: redirect
     }
 
