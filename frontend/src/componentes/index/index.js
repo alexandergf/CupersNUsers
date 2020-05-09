@@ -18,10 +18,14 @@ export default class index extends Component {
         }
     }
 
-    getStateLaterañMenu = (activo) => {
-        if(activo){
+    getStateLaterañMenu = (activo, mode) => {
+        if(mode){
             this.setState({
                 active: !this.state.active
+            });
+        }else{
+            this.setState({
+                active: activo
             });
         }
     }

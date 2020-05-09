@@ -3,20 +3,56 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
+import axios from 'axios';
+import { instance } from '../../database/config';
 
 export default class loginIniciarSesion extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            email: null,
+            password: null
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    
+    handleChange(event) {   
+        const target = event.target;
+        const value = target.value; 
+        const name = target.name;
+        this.setState({
+            [name]: value
+        });  
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        axios.post('/user/login', {
+            email: this.state.email,
+            password: this.state.password
+          }, instance)
+          .then(function (response) {
+            console.log(response.data.data);
+            //if(response.data.data == null) Fallo inicio sesion
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+
     render() {
         return (
             <Container fluid>
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="logInEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" />
+                        <Form.Control type="email" name="email" onChange={this.handleChange} required />
                     </Form.Group>
 
                     <Form.Group controlId="logInPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" />
+                        <Form.Control type="password" name="password" onChange={this.handleChange} required />
                     </Form.Group>
                     <Button variant="success" type="submit">
                         Iniciar Sesión

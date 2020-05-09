@@ -10,19 +10,26 @@ import { GiMagnifyingGlass } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 
 class Nav extends Component {
-    sendResponseLateralMenu = () => {
-        this.props.callback(true);
+    constructor(props){
+        super(props);
+        this.state = {
+            admin: false
+        }
+    }
+    sendResponseLateralMenu = (value,mode) => {
+        this.props.callback(value,mode);
     }
     render() {
+        const enlaceAdmin = <a href="https://cupersnusers.vestidosaraya.com/admin/login"><Button variant="danger" className="fa fa-bars"><RiAdminLine /></Button><p>Administrador</p></a>;
         return (
             <div className="Nav">
                 <Container className="Contenedor" fluid>
                     <Row>
                         <Col xs={2}>
-                            <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen"/></Link>
+                            <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" onClick={() => this.sendResponseLateralMenu(true,false)}/></Link>
                         </Col>
                         <Col xs={1}>
-                            <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu()}><BsList className="btn-menu-desplegable-icono" /></Button>
+                            <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)}><BsList className="btn-menu-desplegable-icono" /></Button>
                         </Col>
                         <Col xs={5}>
                             <InputGroup>
@@ -35,15 +42,14 @@ class Nav extends Component {
                         <Col xs={4} className="Botones">
                             <Row>
                                 <Col xs={3}>
-                                    <Button variant="danger" className="fa fa-bars"><RiAdminLine /></Button>
-                                    <p>Administrador</p>
+                                    {this.state.admin ? enlaceAdmin : null}
                                 </Col>
                                 <Col xs={3}>
-                                    <Link to="/UsoTazas"><Button variant="light" className="fa fa-bars"><BsBook /></Button>
+                                    <Link to="/UsoTazas"><Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}><BsBook /></Button>
                                     <p>Usos de tazas</p></Link>
                                 </Col>
                                 <Col xs={3}>
-                                    <Link to="/Login"><Button variant="light" className="fa fa-bars"><AiOutlineUser /></Button>
+                                    <Link to="/Login"><Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}><AiOutlineUser /></Button>
                                     <p>Iniciar sesion</p></Link>
                                 </Col>
                                 <Col xs={3}>
