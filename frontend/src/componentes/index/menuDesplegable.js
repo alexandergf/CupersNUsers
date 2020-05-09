@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Container,Card,ListGroup} from 'react-bootstrap';
 import { instance } from '../../database/config';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class menuDesplegable extends Component {
     constructor(props){
@@ -30,8 +31,9 @@ export default class menuDesplegable extends Component {
 
     render() {
         var categorias = this.state.categorias.map((cat,index) => 
-            <div><ListGroup.Item key={cat.id} onClick={() => this.searchCategorie(cat.id,cat.name)} >{cat.name}</ListGroup.Item></div>
+            <Link to="/"><ListGroup.Item key={cat.id} onClick={() => this.searchCategorie(cat.id,cat.name)} >{cat.name}</ListGroup.Item></Link>
         )
+        categorias.push(<div><ListGroup.Item key={-1} onClick={() => this.searchCategorie(-1,"Todos los productos")} >{"Todos los productos"}</ListGroup.Item></div>);
         return (
             <Container fluid style={{padding: 0}} className="menu-desplegable">
                 <Card>

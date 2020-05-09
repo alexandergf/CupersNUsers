@@ -8,13 +8,14 @@ import Container from 'react-bootstrap/Container';
 
 export default class detalleText extends Component {
     render() {
+        var producto = (this.props.producto);
         return (
             <Container fluid>
-                <Title name="Titulo de prueba" />
-                <Contador />
-                <DescripcionProducto />
+                <Title name={producto.name} />
+                <Contador price={producto.price} />
+                <DescripcionProducto descr={producto.description} />
                 <Colors />
-                <BottomDetail />
+                <BottomDetail idOpinion={this.props.id}/>
             </Container>
         )
     }

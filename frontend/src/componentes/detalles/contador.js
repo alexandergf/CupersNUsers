@@ -27,7 +27,7 @@ export default class contador extends Component {
     render() {
         return (
             <Row className="cash-line">
-                <Col sm={2} className="cash">7'18 €</Col>
+                <Col sm={2} className="cash">{this.props.price}</Col>
                 <Col sm={{span: 4, offset: 2}} className="cont-btns">
                     <span className="cant">Cant:</span>
                     <InputGroup className="mb-3" size="sm">

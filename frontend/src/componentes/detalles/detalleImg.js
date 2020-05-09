@@ -7,15 +7,21 @@ import Col from 'react-bootstrap/Col';
 
 export default class detalleImg extends Component {
     render() {
+        var imagenes = (this.props.imgs);
+        var firstPicture = <Col><Img src={imagenes !== undefined ? imagenes[0].pic : ImagenPrueba} descripcion={imagenes !== undefined ? imagenes[0].updated_at : "Imagen de producto "} /></Col>;
+        var otherPictures = [];
+        if(imagenes !== undefined){
+            imagenes.map((img,index) => 
+                index === 0 ? null : otherPictures.push(<Col sm={3}><Img src={img.pic} descripcion={img.updated_at} /></Col>)
+            )
+        }
         return (
             <Container fluid>
                 <Row>
-                    <Col><Img src={ImagenPrueba} descripcion="Imagen de prueba" /></Col>
+                    {firstPicture}
                 </Row>
                 <Row className="detalleImg-second-line">
-                    <Col sm={3}><Img src={ImagenPrueba} descripcion="Imagen de prueba" /></Col>
-                    <Col sm={3}><Img src={ImagenPrueba} descripcion="Imagen de prueba" /></Col>
-                    <Col sm={3}><Img src={ImagenPrueba} descripcion="Imagen de prueba" /></Col>
+                    {otherPictures !== undefined ? otherPictures : null}
                 </Row>
             </Container>
         )

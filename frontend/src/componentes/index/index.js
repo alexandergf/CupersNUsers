@@ -20,7 +20,8 @@ export default class index extends Component {
         this.state = {
             activeLateralMenu: true,
             category: "Todos",
-            productos: []
+            productos: [],
+            productid: 1
         }
         this.handleCategoria = this.handleCategoria.bind(this);
     }
@@ -60,6 +61,14 @@ export default class index extends Component {
             console.log(error);
         });
     }
+
+    getItemDetailInfo = (activo, productId) => {
+        this.setState({
+            activeLateralMenu: activo,
+            productid: productId
+        });
+        
+    }
     
     render() {
         return (
@@ -82,10 +91,10 @@ export default class index extends Component {
                                     <Login />
                                 </Route>
                                 <Route path="/Detail">
-                                    <Detail />
+                                    <Detail productId={this.state.productid} />
                                 </Route>
                                 <Route path="/">
-                                    <PantallaInicial categoriaProduct={this.state.category} productos={this.state.productos} />
+                                    <PantallaInicial itemDetailInfo={this.getItemDetailInfo.bind(this)} categoriaProduct={this.state.category} productos={this.state.productos} />
                                 </Route>
                             </Switch>
                         </Col>

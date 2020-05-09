@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import {Container,Col,Row} from 'react-bootstrap';
 import Productos from '../productos/contenedorProductos';
 export default class pantallaInicial extends Component {
+
+    getStateItem = (activo, productId) => {
+        this.props.itemDetailInfo(activo,productId);
+    }
+
     render() {
         return (
             <Container fluid>
@@ -11,7 +16,7 @@ export default class pantallaInicial extends Component {
 
                         </Row>
                         <Row>
-                            <Productos categoria={this.props.categoriaProduct} productosBy={this.props.productos} />
+                            <Productos callback={this.getStateItem.bind(this)} categoria={this.props.categoriaProduct} productosBy={this.props.productos} />
                         </Row>
                     </Col>
                 </Row>
