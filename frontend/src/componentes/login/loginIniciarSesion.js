@@ -28,17 +28,25 @@ export default class loginIniciarSesion extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        var sendResponseData = this.sendResponseData;
         axios.post('/user/login', {
             email: this.state.email,
             password: this.state.password
           }, instance)
           .then(function (response) {
-            console.log(response.data.data);
             //if(response.data.data == null) Fallo inicio sesion
+            if(response.data.data !== null){
+                sendResponseData(response.data.data.token);
+            }
           })
           .catch(function (error) {
             console.log(error);
           });
+    }
+
+    sendResponseData = (value) => {
+        sessionStorage.setItem('token', value);
+        // TODO: redirect
     }
 
     render() {

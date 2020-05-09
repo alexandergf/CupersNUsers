@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Card, ListGroup, Image, Col, Row } from 'react-bootstrap/Container';
+import { Container, Card, ListGroup, Image, Col, Row } from 'react-bootstrap';
 import ImagenTest from '../../assets/images/prueba.jpg';
 import { 
     Link

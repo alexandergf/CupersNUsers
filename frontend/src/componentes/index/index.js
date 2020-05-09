@@ -9,27 +9,28 @@ import PantallaInicial from './pantallaInicial';
 import UsoTazas from '../usosTazas/CuerpoTazas';
 import Login from '../login/login';
 import Footer from '../footer/Footer';
+import Perfil from '../perfil/perfil';
 
 export default class index extends Component {
     constructor(props){
         super(props);
         this.state = {
-            active: true
+            activeLateralMenu: true,
         }
     }
 
     getStateLaterañMenu = (activo, mode) => {
         if(mode){
             this.setState({
-                active: !this.state.active
+                activeLateralMenu: !this.state.activeLateralMenu
             });
         }else{
             this.setState({
-                active: activo
+                activeLateralMenu: activo
             });
         }
     }
-
+    
     render() {
         return (
             <Router>
@@ -38,11 +39,14 @@ export default class index extends Component {
                         <Nav callback={this.getStateLaterañMenu.bind(this)} />
                     </Row>
                     <Row className="row-second-line">
-                        {this.state.active ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable /></Col> : null}
+                        {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable /></Col> : null}
                         <Col className="special-background">
                             <Switch>
                                 <Route path="/UsoTazas">
                                     <UsoTazas />
+                                </Route>
+                                <Route path="/user"> 
+                                    <Perfil />
                                 </Route>
                                 <Route path="/Login"> 
                                     <Login />
