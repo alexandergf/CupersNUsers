@@ -11,7 +11,7 @@ export default class pantallaInicial extends Component {
 
                         </Row>
                         <Row>
-                            <Productos />
+                            <Productos categoria={this.props.categoriaProduct} />
                         </Row>
                     </Col>
                 </Row>

@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
+import { Card, Col, Row } from 'react-bootstrap';
 import Producto from './producto';
-import Row from 'react-bootstrap/Row';
-
+import { instance } from '../../database/config';
+import axios from 'axios';
 
 export default class contenedorProductos extends Component {
     constructor(props){
         super(props);
         this.state = {
-            productos: [
-                ["Taza de café 1","7,90","3.8"],
-                ["Taza de café 2","6,90","4.9"],
-                ["Taza de café 3","5,90","4.7"],
-                ["Taza de café 4","4,90","2.4"],
-                ["Taza de café 5","3,90","1.8"],
-                ["Taza de café 6","8,90","2.8"]
-            ]
+            productos: []
         }
+    }
+
+    componentDidMount = () => {
+        let categoria = this.props.categoria;
+        let direccion = "";
+        let data = {};
+        if(categoria === "Todos"){
+            direccion = "/product/getAll";
+        }else{
+            data.category_id = categoria;
+            direccion = "/product/getByCategory";
+        }
+
+        axios.get(instance.baseURL+direccion, data, instance)
+        .then((response) => {
+            this.setState({
+                productos: response.data.data
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
     render() {
         const productosRender = [];
@@ -25,13 +39,13 @@ export default class contenedorProductos extends Component {
         for(let i = 0; i<arrayProductos.length;i++){
             productosRender.push(
                 <Col sm={4} key={i+"-col-producto"}>
-                    <Producto title={arrayProductos[i][0]} precio={arrayProductos[i][1]} estrellas={arrayProductos[i][2]} key={i+"-producto"} />
+                    <Producto title={arrayProductos[i].name} precio={arrayProductos[i].price} estrellas={4} key={arrayProductos[i].id+"-producto"} />
                 </Col>
             );
         }
         return (
             <Card className="contenedor-productos">
-                <Card.Title><h3>{this.props.categoria}</h3></Card.Title>
+                <Card.Title><h3>{this.props.categoria === "Todos" ? "Todos los productos" : this.props.categoria}</h3></Card.Title>
                 <Card.Body>
                     <Row>
                         {productosRender}

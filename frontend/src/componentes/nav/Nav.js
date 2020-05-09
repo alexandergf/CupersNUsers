@@ -32,8 +32,7 @@ class Nav extends Component {
     }
 
     updatePerfil = () => {
-        if(sessionStorage.getItem('token') && this.state.logIn == false) this.setState({logIn: true});
-        console.log(this.state.logIn);
+        if(sessionStorage.getItem('token') && this.state.logIn === false) this.setState({logIn: true});
     }
     render() {
         const enlaceAdmin = <a href="https://cupersnusers.vestidosaraya.com/admin/login"><Button variant="danger" className="fa fa-bars"><RiAdminLine /></Button><p>Administrador</p></a>;

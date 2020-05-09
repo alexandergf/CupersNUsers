@@ -16,6 +16,7 @@ export default class index extends Component {
         super(props);
         this.state = {
             activeLateralMenu: true,
+            category: "Todos"
         }
     }
 
@@ -52,7 +53,7 @@ export default class index extends Component {
                                     <Login />
                                 </Route>
                                 <Route path="/">
-                                    <PantallaInicial />
+                                    <PantallaInicial categoriaProduct={this.state.category} />
                                 </Route>
                             </Switch>
                         </Col>

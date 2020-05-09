@@ -38,11 +38,7 @@
   color: white;
 }
 
-.admin-perfil .list-group-item:hover a {
-  color: white;
-}
-
-a:link, a:visited, a:hover, a:active {
+.admin-perfil a:link, .admin-perfil a:visited, .admin-perfil a:hover, .admin-perfil a:active {
   color: black;
   text-decoration: none;
 }

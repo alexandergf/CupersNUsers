@@ -11,17 +11,17 @@ export default class editarPerfil extends Component {
     constructor(props){
         super(props);
         this.state = {
-            perfil: {
-
-            },
-            
-                old_password: null,
-                new_password: null,
-                repeat_password: null
-            
+            nombre: null,
+            apellidos: null,
+            telefono: null,
+            direction: null,
+            old_password: null,
+            new_password: null,
+            repeat_password: null
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmitPassword = this.handleSubmitPassword.bind(this);
+        this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
     }
 
     handleChange(event) {   
@@ -36,25 +36,38 @@ export default class editarPerfil extends Component {
 
     handleSubmitPassword(event) {
         event.preventDefault();
-        var statePassword = this.state.new_password;
         if(this.state.new_password === this.state.repeat_password){
             axios.post('/user/changePassword', {
                 "old_password": this.state.old_password,
                 "password": this.state.new_password.toString()
               }, instance)
               .then(function (response) {
-                  console.log(response);
-                  console.log(statePassword);
-                //if(response.data.data == null) Fallo 
                 (response.data.data !== null) ? alert("Contraseña cambiada.") : alert("La antigua contraseña no coincide.");
               })
               .catch(function (error) {
-                  console.log(instance);
                 console.log(error);
               });
         }else{
             alert("La contraseña repetida no coincide con la nueva.");
         }
+    }
+
+    handleSubmitEdit(event) {
+        event.preventDefault();
+        let dataUser = {};
+        if(this.state.nombre !== null && this.state.nombre !== "") dataUser.name = this.state.nombre;
+        if(this.state.apellidos !== null && this.state.nombre !== "") dataUser.surnames = this.state.apellidos;
+        if(this.state.telefono !== null && this.state.nombre !== "") dataUser.phone = this.state.telefono;
+        if(this.state.direction !== null && this.state.nombre !== "") dataUser.direction = this.state.direction;
+        console.log(dataUser);
+        axios.post('/user/edit', dataUser, instance)
+        .then(function (response) {
+            console.log(response);
+            (response.data.data !== null) ? alert("Bien.") : alert("Mal.");
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
     render() {
@@ -63,29 +76,29 @@ export default class editarPerfil extends Component {
                 <Card>
                     <Card.Title><h3 className="editPerfil-title">Editar Perfil</h3></Card.Title>
                     <Card.Body className="edit-card">
-                        <Form>
+                        <Form onSubmit={this.handleSubmitEdit}>
                             <Form.Group controlId="editNombre">                                    
                             <Form.Label>Nombre:</Form.Label>
                                 <Col lg={5}>
-                                    <Form.Control type="text" />
+                                    <Form.Control type="text" name="nombre" onChange={this.handleChange} />
                                 </Col>
                             </Form.Group>
 
                             <Form.Group controlId="editApellidos">
                                 <Form.Label>Apellidos:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control type="text" name="apellidos" onChange={this.handleChange} />
                             </Form.Group>
 
                             <Form.Group controlId="editTlf">
                                 <Form.Label>Teléfono:</Form.Label>
                                 <Col lg={2}>
-                                    <Form.Control lg={2} type="tel" />
+                                    <Form.Control lg={2} type="tel" name="telefono" onChange={this.handleChange} />
                                 </Col>
                             </Form.Group>
 
                             <Form.Group controlId="editDireccion">
                                 <Form.Label>Dirección:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control type="text" name="direction" onChange={this.handleChange} />
                             </Form.Group>
                             <Button variant="success" type="submit">
                                 Editar

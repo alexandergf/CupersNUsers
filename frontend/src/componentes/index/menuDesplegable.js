@@ -2,30 +2,40 @@ import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { instance } from '../../database/config';
+import axios from 'axios';
 
 export default class menuDesplegable extends Component {
     constructor(props){
         super(props);
         this.state = {
-            categorias: [
-                "Tazas de café",
-                "Tazas de plástico",
-                "Tazas originales",
-                "Tazas de acero",
-                "Tazas de cerámica",
-                "Tazas baratas",
-                "Tazas temáticas",
-                "Tazas para te",
-                "Ofertas"
-            ]
+            categorias: []
         }
+        this.searchCategorie = this.searchCategorie.bind(this);
     }
+
+    componentDidMount = () => {
+        axios.get(instance.baseURL+'/product/getCategories', {}, instance)
+        .then((response) => {
+            this.setState({
+                categorias: response.data.data
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
+    searchCategorie = () => {
+        
+    }
+
     render() {
         const categorias = [];
         const categoriasState = this.state.categorias;
         for (let i = 0; i < categoriasState.length; i++) {
             categorias.push(
-                <a href=""><ListGroup.Item key={i+"-itemCategoria"}>{categoriasState[i]}</ListGroup.Item></a>
+                <a href=""><ListGroup.Item key={categoriasState[i].id} >{categoriasState[i].name}</ListGroup.Item></a>
             );
         }
         return (
