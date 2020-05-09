@@ -36,7 +36,7 @@ export default class detalles extends Component {
                     </CardDeck>
                 </Row>
                 <Row>
-                    <Card className="card-opinion"><Card.Body><Opiniones /></Card.Body></Card> 
+                    <Card className="card-opinion"><Card.Body><Opiniones id={this.props.productId} /></Card.Body></Card> 
                 </Row>
             </Container>
         )
