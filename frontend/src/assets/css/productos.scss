@@ -16,6 +16,12 @@
                 font-weight: 700;
             }
         }
+        a{
+            text-decoration: underline;
+        }
+        a:link, a:visited,a:hover, a:active {
+            color: black;
+        }
     }
     .panel-productos{
         .elemento-panel{

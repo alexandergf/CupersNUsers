@@ -8,7 +8,7 @@
     padding: .5em;
 }
 
-.Nav > a,a:link, a:visited,a:hover, a:active {
+.Nav > .Botones > a,.Nav > .Botones > a:link, .Nav > .Botones > a:visited, .Nav > .Botones > a:hover,  .Nav > .Botones > a:active {
     color: white;
     text-decoration: none;
 }

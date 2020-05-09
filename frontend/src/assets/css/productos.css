@@ -18,6 +18,14 @@
   font-weight: 700;
 }
 
+.main-productos .contenedor-productos a {
+  text-decoration: underline;
+}
+
+.main-productos .contenedor-productos a:link, .main-productos .contenedor-productos a:visited, .main-productos .contenedor-productos a:hover, .main-productos .contenedor-productos a:active {
+  color: black;
+}
+
 .main-productos .panel-productos .elemento-panel .card .card-title {
   background-color: #3fadff;
   color: white;

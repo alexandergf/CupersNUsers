@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import {Container,Card,ListGroup} from 'react-bootstrap';
 import { instance } from '../../database/config';
 import axios from 'axios';
 
@@ -26,18 +24,14 @@ export default class menuDesplegable extends Component {
         });
     }
 
-    searchCategorie = () => {
-        
+    searchCategorie = (id,name) => {
+        this.props.getCategoria(id,name);
     }
 
     render() {
-        const categorias = [];
-        const categoriasState = this.state.categorias;
-        for (let i = 0; i < categoriasState.length; i++) {
-            categorias.push(
-                <a href=""><ListGroup.Item key={categoriasState[i].id} >{categoriasState[i].name}</ListGroup.Item></a>
-            );
-        }
+        var categorias = this.state.categorias.map((cat,index) => 
+            <div><ListGroup.Item key={cat.id} onClick={() => this.searchCategorie(cat.id,cat.name)} >{cat.name}</ListGroup.Item></div>
+        )
         return (
             <Container fluid style={{padding: 0}} className="menu-desplegable">
                 <Card>
