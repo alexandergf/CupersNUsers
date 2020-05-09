@@ -19,12 +19,18 @@ class Nav extends Component {
         this.updatePerfil = this.updatePerfil.bind(this);
     }
 
+    componentWillMount = () => {
+        this.updatePerfil();
+    }
+
     componentDidUpdate = () => {
         this.updatePerfil();
     }
+
     sendResponseLateralMenu = (value,mode) => {
         this.props.callback(value,mode);
     }
+
     updatePerfil = () => {
         if(sessionStorage.getItem('token') && this.state.logIn == false) this.setState({logIn: true});
         console.log(this.state.logIn);
@@ -59,7 +65,7 @@ class Nav extends Component {
                                     <p>Usos de tazas</p></Link>
                                 </Col>
                                 <Col xs={3}>
-                                    <Link to={this.state.logIn ? "/user" : "/Login"}><Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}><AiOutlineUser /></Button>
+                                    <Link to={this.state.logIn ? "/EditarPerfil" : "/Login"}><Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}><AiOutlineUser /></Button>
                                     <p>Iniciar sesion</p></Link>
                                 </Col>
                                 <Col xs={3}>

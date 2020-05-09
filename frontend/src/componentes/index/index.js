@@ -45,7 +45,7 @@ export default class index extends Component {
                                 <Route path="/UsoTazas">
                                     <UsoTazas />
                                 </Route>
-                                <Route path="/user"> 
+                                <Route path="/EditarPerfil"> 
                                     <Perfil />
                                 </Route>
                                 <Route path="/Login"> 
