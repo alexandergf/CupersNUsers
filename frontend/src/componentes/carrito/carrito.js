@@ -18,17 +18,15 @@ export default class carrito extends Component {
     }
 
     componentDidMount = () => {
-        console.log(instance.baseURL+'/user/getCart');
-        axios.get(instance.baseURL+'/user/getCart', {}, instance)
-        .then((response) => {
+        axios.post('/user/getCart', {
+            
+          }, instance)
+          .then(function (response) {
             console.log(response);
-            this.setState({
-                productos: response.data.data
-            })
-        })
-        .catch(function (error) {
+          })
+          .catch(function (error) {
             console.log(error);
-        });
+          });
     }
 
     render() {

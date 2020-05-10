@@ -16,7 +16,7 @@ export default class productos extends Component {
 
     componentDidMount = () => {
         console.log("Busqueda: "+this.props.searchWords);
-        axios.get(instance.baseURL+"/product/getByName", {params:{name: this.props.searchWords}}, instance)
+        axios.post(instance.baseURL+"/product/getByName", {params:{name: this.props.searchWords}}, instance)
         .then((response) => {
             this.setState({
                 products: response.data.data

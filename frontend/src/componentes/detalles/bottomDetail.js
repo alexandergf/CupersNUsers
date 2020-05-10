@@ -18,7 +18,7 @@ export default class bottomDetail extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(instance.baseURL+"/product/getReviews", {params:{product_id: this.props.idOpinion,}}, instance)
+        axios.post("/product/getReviews", {params:{product_id: this.props.idOpinion,}}, instance)
         .then((response) => {
             let point = 0;
             response.data.data.map((opinion,index) => 
@@ -36,19 +36,17 @@ export default class bottomDetail extends Component {
         });
     }
 
-    componentDidUpdate = () => {
-        this.addCart();
-    }
-
     addCart = () => {
-        console.log(this.props.cant);
-       /* axios.get(instance.baseURL+"/cart/toggleProduct", {params:{product_id: this.props.idOpinion,quantity: this.props.cant}}, instance)
-        .then((response) => {
+        axios.post('/cart/toggleProduct', {
+            "product_id": this.props.idOpinion,
+            "quantity": this.props.cant
+          }, instance)
+          .then(function (response) {
             console.log(response);
-        })
-        .catch(function (error) {
+          })
+          .catch(function (error) {
             console.log(error);
-        });*/
+          });
     }
 
     render() {

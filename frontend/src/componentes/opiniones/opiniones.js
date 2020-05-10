@@ -19,7 +19,7 @@ export default class opiniones extends Component {
     componentDidMount = () => {
         let direccion = "";
         this.props.id === -1 ? direccion = "/user/getReviews" : direccion = "/product/getReviews";
-        axios.get(instance.baseURL+direccion, {params:{product_id: this.props.id,}}, instance)
+        axios.post(instance.baseURL+direccion, {params:{product_id: this.props.id,}}, instance)
         .then((response) => {
             let point = 0;
             response.data.data.map((opinion,index) => 

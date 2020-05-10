@@ -15,7 +15,7 @@ export default class detalles extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(instance.baseURL+"/product/detail", {params:{product_id: this.props.productId}}, instance)
+        axios.post("/product/detail", {"product_id": this.props.productId}, instance)
         .then((response) => {
             this.setState({
                 product: response.data.data

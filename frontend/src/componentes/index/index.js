@@ -54,7 +54,7 @@ export default class index extends Component {
 
     refreshProducts = (id) => {
         let direccion =  (id === -1 ? "/product/getAll" : "/product/getByCategory");
-        axios.get(instance.baseURL+direccion, {params:{category_id: id}}, instance)
+        axios.post(instance.baseURL+direccion, {params:{category_id: id}}, instance)
         .then((response) => {
             this.setState({
                 productos: response.data.data

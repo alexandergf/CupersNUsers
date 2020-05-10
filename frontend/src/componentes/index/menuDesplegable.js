@@ -14,7 +14,7 @@ export default class menuDesplegable extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(instance.baseURL+'/product/getCategories', {}, instance)
+        axios.post('/product/getCategories', {}, instance)
         .then((response) => {
             this.setState({
                 categorias: response.data.data
