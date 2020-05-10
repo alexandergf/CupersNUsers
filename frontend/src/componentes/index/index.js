@@ -86,7 +86,7 @@ export default class index extends Component {
                         <Nav callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} />
                     </Row>
                     <Row className="row-second-line">
-                        {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable getCategoria={this.handleCategoria} /></Col> : null}
+                        {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable getCategoria={this.handleCategoria.bind(this)} /></Col> : null}
                         <Col className="special-background">
                             <Switch>
                                 <Route path="/UsoTazas">

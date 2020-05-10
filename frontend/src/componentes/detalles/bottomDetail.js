@@ -4,6 +4,7 @@ import {Row,Col,Image} from 'react-bootstrap';
 import Estrellas from '../estrellas/estrellas';
 import { instance } from '../../database/config';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class bottomDetail extends Component {
     constructor(props){
@@ -13,6 +14,7 @@ export default class bottomDetail extends Component {
             nOpinions: 0,
             rate: 0
         }
+        this.addCart = this.addCart.bind(this);
     }
 
     componentDidMount = () => {
@@ -34,12 +36,27 @@ export default class bottomDetail extends Component {
         });
     }
 
+    componentDidUpdate = () => {
+        this.addCart();
+    }
+
+    addCart = () => {
+        console.log(this.props.cant);
+       /* axios.get(instance.baseURL+"/cart/toggleProduct", {params:{product_id: this.props.idOpinion,quantity: this.props.cant}}, instance)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });*/
+    }
+
     render() {
         return (
             <Row className="bottom-detail">
                 <Col md={3} sm={3}><Row className="Opiniones"><span>{this.state.nOpinions} Opiniones</span></Row><Row className="star-row"><Estrellas numStars={this.state.rate} /></Row></Col>
-                <Col className="carrito" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><a href="#" className="btn-carrito"><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</a></Col>
-                <Col className="comprar" sm={3}><a href="#" className="btn-comprar">Comprar</a></Col>
+                <Col className="carrito" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><a href="#" className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</a></Col>
+                <Link to="/Carrito"><Col className="comprar" sm={3}><a href="#" className="btn-comprar">Comprar</a></Col></Link>
             </Row>
         )
     }

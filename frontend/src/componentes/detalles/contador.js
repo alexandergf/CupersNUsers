@@ -10,24 +10,33 @@ export default class contador extends Component {
         this.state = {
             cont: 1
         }
+        this.actualizarCont = this.actualizarCont.bind(this);
+        this.sumar = this.sumar.bind(this);
+        this.restar = this.restar.bind(this);
     }
 
     sumar = () =>{
         this.setState(() => ({
             cont: this.state.cont+1
         }));
+        this.actualizarCont(this.state.cont+1);
     }
 
     restar = () =>{
         this.setState(() => ({
             cont: this.state.cont-1
         }));
+        this.actualizarCont(this.state.cont-1);
+    }
+
+    actualizarCont = (value) => {
+        this.props.actualizar(value);
     }
 
     render() {
         return (
             <Row className="cash-line">
-                <Col sm={2} className="cash">{this.props.price}</Col>
+                <Col sm={2} className="cash">{this.props.price+ " €"}</Col>
                 <Col sm={{span: 4, offset: 2}} className="cont-btns">
                     <span className="cant">Cant:</span>
                     <InputGroup className="mb-3" size="sm">
