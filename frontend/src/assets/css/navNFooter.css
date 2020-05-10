@@ -53,3 +53,10 @@
     color: orange;
     stroke-width: .1em;
 }
+.carrito-cart{
+    position: fixed;
+    width: 20%;
+    top: 5em;
+    right: 2em;
+    z-index: 1;
+}

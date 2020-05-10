@@ -59,7 +59,6 @@ export default class editarPerfil extends Component {
         if(this.state.apellidos !== null && this.state.nombre !== "") dataUser.surnames = this.state.apellidos;
         if(this.state.telefono !== null && this.state.nombre !== "") dataUser.phone = this.state.telefono;
         if(this.state.direction !== null && this.state.nombre !== "") dataUser.direction = this.state.direction;
-        console.log(dataUser);
         axios.post('/user/edit', dataUser, instance)
         .then(function (response) {
             console.log(response);

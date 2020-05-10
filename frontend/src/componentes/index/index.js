@@ -14,6 +14,7 @@ import Footer from '../footer/Footer';
 import Perfil from '../perfil/perfil';
 import Detail from '../detalles/detalles';
 import Productos from '../productos/productos';
+import Carrito from '../carrito/carrito';
 
 export default class index extends Component {
     constructor(props){
@@ -23,7 +24,7 @@ export default class index extends Component {
             category: "Todos",
             productos: [],
             productid: 1,
-            searchWordBar: ""
+            searchWordBar: "",
         }
         this.handleCategoria = this.handleCategoria.bind(this);
     }
@@ -82,7 +83,7 @@ export default class index extends Component {
             <Router>
                 <Container fluid className="main-app">
                     <Row>
-                        <Nav callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} />
+                        <Nav callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} />
                     </Row>
                     <Row className="row-second-line">
                         {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable getCategoria={this.handleCategoria} /></Col> : null}
@@ -102,6 +103,9 @@ export default class index extends Component {
                                 </Route>
                                 <Route path="/Productos">
                                     <Productos searchWords={this.state.searchWordBar} />
+                                </Route>
+                                <Route path="/Carrito">
+                                    <Carrito />
                                 </Route>
                                 <Route path="/">
                                     <PantallaInicial itemDetailInfo={this.getItemDetailInfo.bind(this)} categoriaProduct={this.state.category} productos={this.state.productos} />

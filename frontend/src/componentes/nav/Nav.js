@@ -8,6 +8,7 @@ import Logo from '../../assets/images/logo.png'
 import '../../assets/css/navNFooter.css';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
+import Cart from './tarjetaCarrito';
 
 class Nav extends Component {
     constructor(props){
@@ -15,11 +16,14 @@ class Nav extends Component {
         this.state = {
             admin: false,
             logIn: false,
-            search: ""
+            search: "",
+            cart_show: false,
+            sValue: false
         };
         this.updatePerfil = this.updatePerfil.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
         this.searchWords = this.searchWords.bind(this);
+        this.cartShow = this.cartShow.bind(this);
     }
 
     componentWillMount = () => {
@@ -46,8 +50,19 @@ class Nav extends Component {
         this.props.search(this.state.search);
     }
 
+    searchCategorie = (id,name) => {
+        this.sendResponseLateralMenu(true,false);
+        this.props.getCategoria(id,name);
+    }
+
     updatePerfil = () => {
         if(sessionStorage.getItem('token') && this.state.logIn === false) this.setState({logIn: true});
+    }
+
+    cartShow = (value) => {
+        if(this.state.cart_show === true && this.state.sValue === false){
+            this.setState({cart_show: value});
+        }        
     }
     render() {
         const enlaceAdmin = <a href="https://cupersnusers.vestidosaraya.com/admin/login"><Button variant="danger" className="fa fa-bars"><RiAdminLine /></Button><p>Administrador</p></a>;
@@ -56,7 +71,7 @@ class Nav extends Component {
                 <Container className="Contenedor" fluid>
                     <Row>
                         <Col xs={2}>
-                            <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" onClick={() => this.sendResponseLateralMenu(true,false)}/></Link>
+                            <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" onClick={() => this.searchCategorie(-1,"Todos los productos")}/></Link>
                         </Col>
                         <Col xs={1}>
                             <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)}><BsList className="btn-menu-desplegable-icono" /></Button>
@@ -69,7 +84,7 @@ class Nav extends Component {
                                 </InputGroup.Append>
                             </InputGroup>
                         </Col>
-                        <Col xs={4} className="Botones">
+                        <Col xs={4} className="Botones" onMouseLeave={() => setTimeout((()=>this.cartShow(false,false)),1000)}>
                             <Row>
                                 <Col xs={3}>
                                     {this.state.admin ? enlaceAdmin : null}
@@ -83,9 +98,10 @@ class Nav extends Component {
                                     <p>Iniciar sesion</p></Link>
                                 </Col>
                                 <Col xs={3}>
-                                    <Button variant="light" className="fa fa-bars"><AiOutlineShoppingCart /></Button>
-                                    <p>Carrito</p>
+                                    <Link to="/Carrito"><Button variant="light" className="fa fa-bars" onMouseEnter={() => this.setState({cart_show: true})} onClick={() => this.sendResponseLateralMenu(false,false)}><AiOutlineShoppingCart /></Button>
+                                    <p>Carrito</p></Link>
                                 </Col>
+                                {this.state.cart_show ? <Cart onMouseEnter={() => this.setState({sValue: true})} onMouseLeave={() => this.setState({sValue: false})} />:null}
                             </Row>
                         </Col>
                     </Row>
