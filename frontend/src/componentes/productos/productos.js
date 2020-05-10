@@ -12,11 +12,16 @@ export default class productos extends Component {
         this.state = {
             products: [],
         }
+        this.handleOnChange = this.handleOnChange.bind();
     }
 
     componentDidMount = () => {
         console.log("Busqueda: "+this.props.searchWords);
-        axios.post(instance.baseURL+"/product/getByName", {params:{name: this.props.searchWords}}, instance)
+        this.handleOnChange();
+    }
+
+    handleOnChange = () => {
+        axios.post("/product/getByName", {name: this.props.searchWords}, instance)
         .then((response) => {
             this.setState({
                 products: response.data.data
@@ -26,6 +31,7 @@ export default class productos extends Component {
             console.log(error);
         });
     }
+
     render() {
         return (
             <Container fluid className="main-productos">
