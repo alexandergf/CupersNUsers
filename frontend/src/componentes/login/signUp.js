@@ -41,7 +41,12 @@ export default class signUp extends Component {
             password: state.password
           }, instance)
           .then(function (response) {
-            console.log(response.data.data);
+            //console.log(response.data.data);
+            if(response.data.data.email[0] !==null){
+                alert(response.data.data.email[0]);
+            }else{
+                alert("Bieeeeeen");
+            }
             //if(response.data.data == null) Fallo inicio sesion
           })
           .catch(function (error) {
@@ -59,17 +64,17 @@ export default class signUp extends Component {
 
                     <Form.Group controlId="signUpApellidos">
                         <Form.Label>Apellidos</Form.Label>
-                        <Form.Control type="text" name="surnames" onChange={this.handleChange} required />
+                        <Form.Control type="text" name="surnames" onChange={this.handleChange} />
                     </Form.Group>
 
                     <Form.Group controlId="signUpTlf">
                         <Form.Label>Teléfono</Form.Label>
-                        <Form.Control type="tel" name="phone" onChange={this.handleChange} required />
+                        <Form.Control type="tel" name="phone" onChange={this.handleChange} />
                     </Form.Group>
 
                     <Form.Group controlId="signUpDireccion">
                         <Form.Label>Dirección</Form.Label>
-                        <Form.Control type="text" name="direction" onChange={this.handleChange} required />
+                        <Form.Control type="text" name="direction" onChange={this.handleChange} />
                     </Form.Group>
 
                     <Form.Group controlId="signUpEmail">

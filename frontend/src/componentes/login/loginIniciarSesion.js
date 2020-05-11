@@ -37,6 +37,8 @@ export default class loginIniciarSesion extends Component {
             //if(response.data.data == null) Fallo inicio sesion
             if(response.data.data !== null){
                 sendResponseData(response.data.data.token);
+            }else{
+                alert("Error al iniciar sesión");
             }
           })
           .catch(function (error) {
@@ -47,7 +49,7 @@ export default class loginIniciarSesion extends Component {
     sendResponseData = (value) => {
         sessionStorage.setItem('token', value);
         instance.headers.Authorization = "Bearer "+value;
-        // TODO: redirect
+        this.props.actualizar(true);
     }
 
     render() {
