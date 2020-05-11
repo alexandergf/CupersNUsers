@@ -5,9 +5,25 @@ import { Link } from 'react-router-dom';
 
 
 export default class contenedorProductos extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            loading: true
+        }
+    }
 
     sendResponseItem = (value, productId) => {
         this.props.callback(value,productId);
+    }
+
+    componentWillUpdate = () => {
+        if(this.props.productosBy.length !== 0){
+            setInterval(()=>{
+                this.setState({
+                    loading: false
+                })
+            }, 2000)
+        }
     }
 
     render() {
@@ -16,13 +32,14 @@ export default class contenedorProductos extends Component {
                 <Link to="/Detail" onClick={() => this.sendResponseItem(false, product.id)}><Producto img={product.pics} title={product.name} precio={product.price} estrellas={4} key={product.id+"-producto"} /></Link>
             </Col>
         )
-        var zeroResult = <Col sm={4}> <p>No se han encontrado resultados.</p></Col>
+        var zeroResult = <Col sm={4}> <p>No se han encontrado resultados.</p></Col>;
+        var cargando = this.state.loading ? <Col sm={4}> <p>Cargando...</p></Col> : zeroResult;
         return (
             <Card className="contenedor-productos">
                 <Card.Title><h3>{this.props.categoria === "Todos" ? "Todos los productos" : this.props.categoria}</h3></Card.Title>
                 <Card.Body>
                     <Row>
-                        {this.props.productosBy.length !== 0 ? productosRender : zeroResult}
+                        {this.props.productosBy.length !== 0 ? productosRender : cargando }
                     </Row>
                 </Card.Body>
             </Card>

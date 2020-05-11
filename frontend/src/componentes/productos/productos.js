@@ -41,6 +41,10 @@ export default class productos extends Component {
         });
     }
 
+    getStateItem = (activo, productId) => {
+        this.props.itemDetailInfo(activo,productId);
+    }
+
     render() {
         return (
             <Container fluid className="main-productos">
@@ -49,7 +53,7 @@ export default class productos extends Component {
                         <Panel />
                     </Col>
                     <Col xs={9} md={10}>
-                        <CProductos productosBy={this.state.products} categoria={"Busqueda: "+this.props.searchWords} totalProductos="5" />
+                        <CProductos callback={this.getStateItem.bind(this)} productosBy={this.state.products} categoria={"Busqueda: "+this.props.searchWords} />
                     </Col>
                 </Row>
             </Container>

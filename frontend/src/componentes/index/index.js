@@ -24,7 +24,7 @@ export default class index extends Component {
             category: "Todos",
             productos: [],
             productid: 1,
-            searchWordBar: "",
+            searchWordBar: ""
         }
         this.handleCategoria = this.handleCategoria.bind(this);
     }
@@ -54,7 +54,7 @@ export default class index extends Component {
 
     refreshProducts = (id) => {
         let direccion =  (id === -1 ? "/product/getAll" : "/product/getByCategory");
-        axios.post(direccion, {params:{category_id: id}}, instance)
+        axios.post(direccion, {"category_id": id}, instance)
         .then((response) => {
             this.setState({
                 productos: response.data.data
@@ -102,7 +102,7 @@ export default class index extends Component {
                                     <Detail productId={this.state.productid} />
                                 </Route>
                                 <Route path="/Productos">
-                                    <Productos searchWords={this.state.searchWordBar} />
+                                    <Productos itemDetailInfo={this.getItemDetailInfo.bind(this)} searchWords={this.state.searchWordBar} />
                                 </Route>
                                 <Route path="/Carrito">
                                     <Carrito />

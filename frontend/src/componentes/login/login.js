@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import CardColumns from 'react-bootstrap/CardColumns';
-import Card from 'react-bootstrap/Card';
+import { Container, CardColumns, Card } from 'react-bootstrap';
 import LogIn from './loginIniciarSesion';
 import SignUp from './signUp';
 import '../../assets/css/login.css';
