@@ -37,7 +37,8 @@ export default class opiniones extends Component {
     }
     render() {
         var opiniones = [];
-        if(this.state.opinions !== null){
+        console.log(this.state.opinions);
+        if(this.state.opinions !== null && this.state.opinions.length !== 0){
             this.state.opinions.map((opinion,index) => 
                 opiniones.push(
                     <Row className="opinion-row">
@@ -46,6 +47,10 @@ export default class opiniones extends Component {
                     </Row>
                 )  
             );
+        }else{
+            opiniones.push(
+                <Col sm={12}>No hay opiniones sobre el producto.</Col>
+            )
         }
         return (
             <Container fluid>

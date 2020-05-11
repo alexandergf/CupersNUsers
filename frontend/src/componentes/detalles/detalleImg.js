@@ -8,9 +8,9 @@ import Col from 'react-bootstrap/Col';
 export default class detalleImg extends Component {
     render() {
         var imagenes = (this.props.imgs);
-        var firstPicture = <Col><Img src={imagenes !== undefined ? imagenes[0].pic : ImagenPrueba} descripcion={imagenes !== undefined ? imagenes[0].updated_at : "Imagen de producto "} /></Col>;
-        var otherPictures = [];
         if(imagenes !== undefined){
+            var firstPicture = <Col><Img src={imagenes[0] !== undefined ? imagenes[0].pic : ImagenPrueba} descripcion={imagenes[0] !== undefined ? imagenes[0].updated_at : "Imagen de producto "} /></Col>;
+            var otherPictures = [];
             imagenes.map((img,index) => 
                 index === 0 ? null : otherPictures.push(<Col sm={3}><Img src={img.pic} descripcion={img.updated_at} /></Col>)
             )
