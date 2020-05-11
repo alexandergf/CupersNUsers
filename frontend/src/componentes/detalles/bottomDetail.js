@@ -18,7 +18,7 @@ export default class bottomDetail extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("/product/getReviews", {params:{product_id: this.props.idOpinion,}}, instance)
+        axios.post("/product/getReviews",{"product_id": this.props.idOpinion}, instance)
         .then((response) => {
             let point = 0;
             response.data.data.map((opinion,index) => 

@@ -16,12 +16,13 @@ export default class contenedorProductos extends Component {
                 <Link to="/Detail" onClick={() => this.sendResponseItem(false, product.id)}><Producto img={product.pics} title={product.name} precio={product.price} estrellas={4} key={product.id+"-producto"} /></Link>
             </Col>
         )
+        var zeroResult = <Col sm={4}> <p>No se han encontrado resultados.</p></Col>
         return (
             <Card className="contenedor-productos">
                 <Card.Title><h3>{this.props.categoria === "Todos" ? "Todos los productos" : this.props.categoria}</h3></Card.Title>
                 <Card.Body>
                     <Row>
-                        {productosRender}
+                        {this.props.productosBy.length !== 0 ? productosRender : zeroResult}
                     </Row>
                 </Card.Body>
             </Card>

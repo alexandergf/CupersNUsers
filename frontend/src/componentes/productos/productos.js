@@ -11,17 +11,26 @@ export default class productos extends Component {
         super(props);
         this.state = {
             products: [],
+            search: ""
         }
         this.handleOnChange = this.handleOnChange.bind();
     }
 
     componentDidMount = () => {
-        console.log("Busqueda: "+this.props.searchWords);
+        this.setState({
+            search: this.props.searchWords
+        })
         this.handleOnChange();
     }
 
+    componentDidUpdate = () => {
+        if(this.props.searchWords !== this.state.search){
+            this.handleOnChange();
+        }
+    }
+
     handleOnChange = () => {
-        axios.post("/product/getByName", {name: this.props.searchWords}, instance)
+        axios.post("/product/getByName", {"name": this.props.searchWords}, instance)
         .then((response) => {
             this.setState({
                 products: response.data.data
