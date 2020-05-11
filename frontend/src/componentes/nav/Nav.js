@@ -24,6 +24,7 @@ class Nav extends Component {
         this.handleOnChange = this.handleOnChange.bind(this);
         this.searchWords = this.searchWords.bind(this);
         this.cartShow = this.cartShow.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     componentWillMount = () => {
@@ -43,6 +44,12 @@ class Nav extends Component {
         this.setState({
             search: value
         })
+    }
+
+    handleKeyPress = (event) => {
+        if(event.keyCode === 13){
+            this.searchWords();
+        }
     }
 
     searchWords = () => {
@@ -78,7 +85,7 @@ class Nav extends Component {
                         </Col>
                         <Col xs={5}>
                             <InputGroup>
-                                <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" onChange={this.handleOnChange} />
+                                <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" onChange={this.handleOnChange} onKeyDown={this.handleKeyPress}/>
                                 <InputGroup.Append>
                                     <Link to="/Productos" onClick={()=>this.searchWords()}><Button variant="light"><GiMagnifyingGlass className="btn-lupa" /></Button></Link>
                                 </InputGroup.Append>

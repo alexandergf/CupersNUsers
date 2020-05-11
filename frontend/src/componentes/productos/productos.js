@@ -17,6 +17,7 @@ export default class productos extends Component {
     }
 
     componentDidMount = () => {
+        
         this.setState({
             search: this.props.searchWords
         })
@@ -25,12 +26,16 @@ export default class productos extends Component {
 
     componentDidUpdate = () => {
         if(this.props.searchWords !== this.state.search){
+            this.setState({
+                search: this.props.searchWords
+            })
             this.handleOnChange();
         }
     }
 
     handleOnChange = () => {
-        axios.post("/product/getByName", {"name": this.props.searchWords}, instance)
+        let direccion = this.props.searchWords !== "" ? "/product/getByName" : "/product/getAll";
+        axios.post(direccion, {"name": this.props.searchWords}, instance)
         .then((response) => {
             this.setState({
                 products: response.data.data
@@ -53,7 +58,7 @@ export default class productos extends Component {
                         <Panel />
                     </Col>
                     <Col xs={9} md={10}>
-                        <CProductos callback={this.getStateItem.bind(this)} productosBy={this.state.products} categoria={"Busqueda: "+this.props.searchWords} />
+                        <CProductos callback={this.getStateItem.bind(this)} productosBy={this.state.products} categoria={"Busqueda: "+(this.props.searchWords !== "" ? this.props.searchWords : "Todos los productos")} />
                     </Col>
                 </Row>
             </Container>
