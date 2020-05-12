@@ -24,9 +24,11 @@ export default class index extends Component {
             category: "Todos",
             productos: [],
             productid: 1,
-            searchWordBar: ""
+            searchWordBar: "",
+            logOut: false
         }
         this.handleCategoria = this.handleCategoria.bind(this);
+        this.functionLogOut = this.functionLogOut.bind(this);
     }
 
     getStateLaterañMenu = (activo, mode) => {
@@ -77,23 +79,29 @@ export default class index extends Component {
             searchWordBar: searchWord
         })
     }
+
+    functionLogOut = (value) => {
+        this.setState({
+            logOut: value
+        })
+    }
     
     render() {
         return (
             <Router>
                 <Container fluid className="main-app">
                     <Row>
-                        <Nav callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} />
+                        <Nav callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} logOut={this.functionLogOut.bind(this)}/>
                     </Row>
                     <Row className="row-second-line">
                         {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable getCategoria={this.handleCategoria.bind(this)} /></Col> : null}
                         <Col className="special-background">
                             <Switch>
                                 <Route path="/UsoTazas">
-                                    <UsoTazas />
+                                    <UsoTazas log={this.state.logOut} />
                                 </Route>
                                 <Route path="/EditarPerfil"> 
-                                    <Perfil />
+                                    <Perfil log={this.state.logOut} />
                                 </Route>
                                 <Route path="/Login"> 
                                     <Login />

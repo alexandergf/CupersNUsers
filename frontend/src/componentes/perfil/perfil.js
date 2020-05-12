@@ -12,12 +12,16 @@ import Contacto from '../contacto/Contacto';
 import { 
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
+    Redirect
 } from 'react-router-dom';
 import '../../assets/css/perfil.css';
 
 export default class perfil extends Component {
     render() {
+        if(this.props.log){
+            return(<Redirect to="/" />)
+        } 
         return (
             <Router>
                 <Container fluid>

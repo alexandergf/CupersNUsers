@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Col, Row, Button, FormControl, Image, InputGroup } from 'react-bootstrap';
+import { Container, Col, Row, Button, FormControl, Image, InputGroup, Modal } from 'react-bootstrap';
 import { BsList } from 'react-icons/bs';
 import { RiAdminLine } from 'react-icons/ri';
 import { BsBook } from 'react-icons/bs';
+import { FiLogOut } from 'react-icons/fi';
 import { AiOutlineUser, AiOutlineShoppingCart } from 'react-icons/ai';
 import Logo from '../../assets/images/logo.png'
 import '../../assets/css/navNFooter.css';
@@ -18,7 +19,9 @@ class Nav extends Component {
             logIn: false,
             search: "",
             cart_show: false,
-            sValue: false
+            sValue: false,
+            show: false,
+            auxLogIn: true
         };
         this.updatePerfil = this.updatePerfil.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
@@ -27,7 +30,7 @@ class Nav extends Component {
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         this.updatePerfil();
     }
 
@@ -71,8 +74,14 @@ class Nav extends Component {
             this.setState({cart_show: value});
         }        
     }
+
+    logOutFunction = () => {
+        this.setState({show: false, logIn: false, auxLogIn: false})
+        this.props.logOut(true);
+    }
+
     render() {
-        const enlaceAdmin = <a href="https://cupersnusers.vestidosaraya.com/admin/login"><Button variant="danger" className="fa fa-bars"><RiAdminLine /></Button><p>Administrador</p></a>;
+        const enlaceAdmin = <a href="https://cupersnusers.vestidosaraya.com/admin/login"><Button variant="danger" className="fa fa-bars"><RiAdminLine /></Button><p>Administrador</p></a>;        
         return (
             <div className="Nav">
                 <Container className="Contenedor" fluid>
@@ -93,22 +102,40 @@ class Nav extends Component {
                         </Col>
                         <Col xs={4} className="Botones" onMouseLeave={() => setTimeout((()=>this.cartShow(false,false)),1000)}>
                             <Row>
-                                <Col xs={3}>
+                                <Col xs={2}>
                                     {this.state.admin ? enlaceAdmin : null}
                                 </Col>
-                                <Col xs={3}>
+                                <Col xs={2}>
                                     <Link to="/UsoTazas"><Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}><BsBook /></Button>
                                     <p>Usos de tazas</p></Link>
                                 </Col>
-                                <Col xs={3}>
+                                <Col xs={2}>
                                     <Link to={this.state.logIn ? "/EditarPerfil" : "/Login"}><Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}><AiOutlineUser /></Button>
                                     <p>Iniciar sesion</p></Link>
                                 </Col>
-                                <Col xs={3}>
+                                <Col xs={2}>
                                     <Link to="/Carrito"><Button variant="light" className="fa fa-bars" onMouseEnter={() => this.setState({cart_show: true})} onClick={() => this.sendResponseLateralMenu(false,false)}><AiOutlineShoppingCart /></Button>
                                     <p>Carrito</p></Link>
                                 </Col>
                                 {this.state.cart_show ? <Cart onMouseEnter={() => this.setState({sValue: true})} onMouseLeave={() => this.setState({sValue: false})} />:null}
+                                <Col xs={2}>
+                                    <Button variant="light" className="fa fa-bars" onClick={() => this.setState({show: true})}><FiLogOut /></Button>
+                                    <p>Cerrar Sesión</p>
+                                    <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
+                                        <Modal.Header closeButton>
+                                        <Modal.Title>Cerrar Sesión</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>Seguro que quieres cerrar la sesión?</Modal.Body>
+                                        <Modal.Footer>
+                                        <Button variant="secondary" onClick={() => this.setState({show: false})}>
+                                            Close
+                                        </Button>
+                                        <Button variant="primary" onClick={() => this.logOutFunction()}>
+                                            Save Changes
+                                        </Button>
+                                        </Modal.Footer>
+                                    </Modal>
+                                </Col>
                             </Row>
                         </Col>
                     </Row>

@@ -31,9 +31,9 @@ export default class menuDesplegable extends Component {
 
     render() {
         var categorias = this.state.categorias.map((cat,index) => 
-            <Link to="/"><ListGroup.Item key={cat.id} onClick={() => this.searchCategorie(cat.id,cat.name)} >{cat.name}</ListGroup.Item></Link>
+            <Link to="/" key={cat.id}><ListGroup.Item key={cat.id} onClick={() => this.searchCategorie(cat.id,cat.name)} >{cat.name}</ListGroup.Item></Link>
         )
-        categorias.push(<Link to="/"><ListGroup.Item key={-1} onClick={() => this.searchCategorie(-1,"Todos")} >{"Todos los productos"}</ListGroup.Item></Link>);
+        categorias.push(<Link to="/" key={-1}><ListGroup.Item key={-1} onClick={() => this.searchCategorie(-1,"Todos")} >{"Todos los productos"}</ListGroup.Item></Link>);
         return (
             <Container fluid style={{padding: 0}} className="menu-desplegable">
                 <Card>

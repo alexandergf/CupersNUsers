@@ -8,12 +8,12 @@ class usoTaza extends Component {
             <Card>
                 <Card.Title>
                     <div className="numero">
-                        <h4>N. Tal</h4>
+                        <h4>N. {this.props.num}</h4>
                     </div>
                 </Card.Title>
                 <Card.Body>
                     <div className="usoTacero">
-                        <p>Texto ejemplo</p>
+                        <p>{this.props.texto}</p>
                     </div>
                 </Card.Body>
             </Card>
