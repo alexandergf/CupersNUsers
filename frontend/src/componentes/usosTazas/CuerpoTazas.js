@@ -37,17 +37,19 @@ class cuerpoTazas extends Component {
         let usos = [];
 
         usos = this.state.usos.map((us,index) => 
-                <Col xs={{span:4, offset:1}} className="textoTazas" key={us.id.toString()+"-col"}>
-                    <UsoTaza key={us.id.toString()} num={index+1} texto={us.use} />
-                </Col>    
+                <UsoTaza key={us.id.toString()} num={index+1} texto={us.use} />
             )
         
         for (let i = 0; i < usos.length; i+=2) {
             
             tabla.push(
                 <Row key={i}>
-                    {usos[i]}  
-                    {usos[i+1]}  
+                    <Col xs={{span:4, offset:1}} className="textoTazas" key={i.toString()+"-col"}>
+                        {usos[i]}  
+                    </Col>
+                    <Col xs={{span:4, offset:2}} className="textoTazas" key={i.toString()+"-col2"}>
+                        {usos[i+1]}  
+                    </Col>
                 </Row>
             );
         }
