@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {Container,Row,Col} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Panel from './panelBuscadorProductos';
 import CProductos from './contenedorProductos';
 import '../../assets/css/productos.css';
 import { instance } from '../../database/config';
 import axios from 'axios';
-
+import { Redirect } from 'react-router-dom';
 export default class productos extends Component {
     constructor(props){
         super(props);
@@ -31,6 +31,11 @@ export default class productos extends Component {
             })
             this.handleOnChange();
         }
+        
+        if(this.props.log){
+            this.props.logOut(false);
+        } 
+        
     }
 
     handleOnChange = () => {
@@ -51,6 +56,9 @@ export default class productos extends Component {
     }
 
     render() {
+        if(this.props.log){
+            return(<Redirect to="/" />)
+        } 
         return (
             <Container fluid className="main-productos">
                 <Row>

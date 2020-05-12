@@ -76,7 +76,8 @@ class Nav extends Component {
     }
 
     logOutFunction = () => {
-        this.setState({show: false, logIn: false, auxLogIn: false})
+        this.setState({show: false, logIn: false, auxLogIn: false});
+        sessionStorage.removeItem('token');
         this.props.logOut(true);
     }
 
@@ -127,12 +128,12 @@ class Nav extends Component {
                                         </Modal.Header>
                                         <Modal.Body>Seguro que quieres cerrar la sesión?</Modal.Body>
                                         <Modal.Footer>
-                                        <Button variant="secondary" onClick={() => this.setState({show: false})}>
-                                            Close
-                                        </Button>
-                                        <Button variant="primary" onClick={() => this.logOutFunction()}>
-                                            Save Changes
-                                        </Button>
+                                            <Button variant="secondary" onClick={() => this.setState({show: false})}>
+                                                Cancelar
+                                            </Button>
+                                            <Button variant="primary" onClick={() => this.logOutFunction()}>
+                                                Salir
+                                            </Button>
                                         </Modal.Footer>
                                     </Modal>
                                 </Col>

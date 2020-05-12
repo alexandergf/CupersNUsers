@@ -26,6 +26,12 @@ class cuerpoTazas extends Component {
           });
     }
 
+    componentDidUpdate = () => {
+        if(this.props.log){
+            this.props.logOut(false);
+        } 
+    }
+
     actualizar = (usosTazas) => {
         this.setState({
             usos: usosTazas

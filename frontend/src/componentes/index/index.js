@@ -98,22 +98,22 @@ export default class index extends Component {
                         <Col className="special-background">
                             <Switch>
                                 <Route path="/UsoTazas">
-                                    <UsoTazas log={this.state.logOut} />
+                                    <UsoTazas log={this.state.logOut} logOut={this.functionLogOut.bind(this)} />
                                 </Route>
                                 <Route path="/EditarPerfil"> 
-                                    <Perfil log={this.state.logOut} />
+                                    <Perfil log={this.state.logOut} logOut={this.functionLogOut.bind(this)} />
                                 </Route>
                                 <Route path="/Login"> 
                                     <Login />
                                 </Route>
                                 <Route path="/Detail">
-                                    <Detail productId={this.state.productid} />
+                                    <Detail log={this.state.logOut} productId={this.state.productid} logOut={this.functionLogOut.bind(this)} />
                                 </Route>
                                 <Route path="/Productos">
-                                    <Productos itemDetailInfo={this.getItemDetailInfo.bind(this)} searchWords={this.state.searchWordBar} />
+                                    <Productos log={this.state.logOut} logOut={this.functionLogOut.bind(this)} itemDetailInfo={this.getItemDetailInfo.bind(this)} searchWords={this.state.searchWordBar} />
                                 </Route>
                                 <Route path="/Carrito">
-                                    <Carrito />
+                                    <Carrito log={this.state.logOut} logOut={this.functionLogOut.bind(this)} />
                                 </Route>
                                 <Route path="/">
                                     <PantallaInicial itemDetailInfo={this.getItemDetailInfo.bind(this)} categoriaProduct={this.state.category} productos={this.state.productos} />

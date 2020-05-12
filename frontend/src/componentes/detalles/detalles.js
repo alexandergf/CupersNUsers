@@ -6,6 +6,7 @@ import '../../assets/css/detalles.css';
 import {Container,Card,Row,CardDeck} from 'react-bootstrap';
 import { instance } from '../../database/config';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 export default class detalles extends Component {
     constructor(props){
         super(props);
@@ -26,7 +27,16 @@ export default class detalles extends Component {
         });
     }
 
+    componentDidUpdate = () => {
+        if(this.props.log){
+            this.props.logOut(false);
+        } 
+    }
+
     render() {
+        if(this.props.log){
+            return(<Redirect to="/" />)
+        } 
         return (
             <Container className="general-container">
                 <Row className="detail-first-line">

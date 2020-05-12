@@ -7,7 +7,7 @@ import Total from './totalCarrito';
 import '../../assets/css/carrito.css';
 import { instance } from '../../database/config';
 import axios from 'axios';
-
+import { Redirect } from 'react-router-dom';
 
 export default class carrito extends Component {
     constructor(props){
@@ -29,7 +29,16 @@ export default class carrito extends Component {
           });
     }
 
+    componentDidUpdate = () => {
+        if(this.props.log){
+            this.props.logOut(false);
+        } 
+    }
+
     render() {
+        if(this.props.log){
+            return(<Redirect to="/" />)
+        } 
         return (
             <Container fluid className="carrito">
                 <Row>

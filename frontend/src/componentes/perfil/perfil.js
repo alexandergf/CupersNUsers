@@ -18,6 +18,11 @@ import {
 import '../../assets/css/perfil.css';
 
 export default class perfil extends Component {
+    componentDidUpdate = () => {
+        if(this.props.log){
+            this.props.logOut(false);
+        } 
+    }
     render() {
         if(this.props.log){
             return(<Redirect to="/" />)
