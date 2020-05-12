@@ -53,8 +53,8 @@ export default class bottomDetail extends Component {
         return (
             <Row className="bottom-detail">
                 <Col md={3} sm={3}><Row className="Opiniones"><span>{this.state.nOpinions} Opiniones</span></Row><Row className="star-row"><Estrellas numStars={this.state.rate} /></Row></Col>
-                <Col className="carrito" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><a href="#" className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</a></Col>
-                <Link to="/Carrito"><Col className="comprar" sm={3}><a href="#" className="btn-comprar">Comprar</a></Col></Link>
+                <Col className="carrito" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><Link className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Link></Col>
+                <Link to="/Carrito"><Col className="comprar" sm={3}><Link className="btn-comprar">Comprar</Link></Col></Link>
             </Row>
         )
     }

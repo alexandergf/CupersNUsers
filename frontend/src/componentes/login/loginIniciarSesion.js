@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 import { instance } from '../../database/config';
+import { Link } from 'react-router-dom';
 
 export default class loginIniciarSesion extends Component {
     constructor(props){
@@ -34,7 +35,6 @@ export default class loginIniciarSesion extends Component {
             password: this.state.password
           }, instance)
           .then(function (response) {
-            //if(response.data.data == null) Fallo inicio sesion
             if(response.data.data !== null){
                 sendResponseData(response.data.data.token);
             }else{
@@ -69,7 +69,7 @@ export default class loginIniciarSesion extends Component {
                         Iniciar Sesión
                     </Button>
                 </Form>
-                <Row className="forgivePassword"><a href="#">¿Has olvidado la contraseña?</a></Row>
+                <Row className="forgivePassword"><Link to="/Forgot">¿Has olvidado la contraseña?</Link></Row>
             </Container>
         )
     }
