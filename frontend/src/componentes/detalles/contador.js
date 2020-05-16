@@ -8,7 +8,8 @@ export default class contador extends Component {
     constructor(props){
         super(props);
         this.state = {
-            cont: 1
+            cont: 1,
+            desabilitarResta: true
         }
         this.actualizarCont = this.actualizarCont.bind(this);
         this.sumar = this.sumar.bind(this);
@@ -17,16 +18,20 @@ export default class contador extends Component {
 
     sumar = () =>{
         this.setState(() => ({
-            cont: this.state.cont+1
+            cont: this.state.cont+1,
+            desabilitarResta: false
         }));
         this.actualizarCont(this.state.cont+1);
     }
 
     restar = () =>{
-        this.setState(() => ({
-            cont: this.state.cont-1
-        }));
-        this.actualizarCont(this.state.cont-1);
+        if(this.state.cont !== 1){
+            this.setState(() => ({
+                cont: this.state.cont-1
+            }));
+            this.actualizarCont(this.state.cont-1);
+        }
+        
     }
 
     actualizarCont = (value) => {
@@ -41,7 +46,7 @@ export default class contador extends Component {
                     <span className="cant">Cant:</span>
                     <InputGroup className="mb-3" size="sm">
                         <InputGroup.Prepend>
-                            <Button variant="outline-secondary" onClick={this.restar}>-</Button>
+                            <Button variant="outline-secondary" onClick={this.restar} disabled={this.state.desabilitarResta}>-</Button>
                         </InputGroup.Prepend>
                         <InputGroup.Text>{this.state.cont}</InputGroup.Text>
                         <InputGroup.Append>
