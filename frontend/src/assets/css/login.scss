@@ -23,11 +23,15 @@
             border-color: #4cb30b;
         }
         .forgivePassword{
-            a{
-                text-decoration: underline;
-            }
-            a:link, a:visited,a:hover, a:active {
+            button{
+                background-color: white;
+                border: 0px;
                 color: black;
+                text-align: start;
+                text-decoration: underline;
+                padding: 0;
+                width: auto;
+                margin: .4em 0;
             }
         }
     }

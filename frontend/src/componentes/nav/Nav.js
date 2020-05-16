@@ -65,7 +65,7 @@ class Nav extends Component {
     }
 
     updatePerfil = () => {
-        if(sessionStorage.getItem('token') && this.state.logIn === false) this.setState({logIn: true});
+        if(sessionStorage.getItem('token') && this.state.logIn === false) this.setState({logIn: true, productosCarrito: []});
     }
 
     cartShow = (value) => {
@@ -87,7 +87,25 @@ class Nav extends Component {
                         <RiAdminLine />
                     </Button>
                 </a>
-            </Col>;      
+            </Col>;    
+            
+        const enlaceLogOut = <Col xs={2}>
+                <Button variant="light" className="fa fa-bars" onClick={() => this.setState({show: true})}><FiLogOut /></Button>
+                <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Cerrar Sesión</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Seguro que quieres cerrar la sesión?</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.setState({show: false})}>
+                            Cancelar
+                        </Button>
+                        <Button variant="primary" onClick={() => this.logOutFunction()}>
+                            Salir
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </Col>;
 
         return (
             <div className="Nav">
@@ -132,23 +150,7 @@ class Nav extends Component {
                                     </Link>
                                 </Col>
                                 {this.state.cart_show ? <Cart productos={this.props.productosCarrito} show={this.state.cart_show} calltoclose={() => this.setState({cart_show: false})} />:null}
-                                <Col xs={2}>
-                                    <Button variant="light" className="fa fa-bars" onClick={() => this.setState({show: true})}><FiLogOut /></Button>
-                                    <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
-                                        <Modal.Header closeButton>
-                                        <Modal.Title>Cerrar Sesión</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>Seguro que quieres cerrar la sesión?</Modal.Body>
-                                        <Modal.Footer>
-                                            <Button variant="secondary" onClick={() => this.setState({show: false})}>
-                                                Cancelar
-                                            </Button>
-                                            <Button variant="primary" onClick={() => this.logOutFunction()}>
-                                                Salir
-                                            </Button>
-                                        </Modal.Footer>
-                                    </Modal>
-                                </Col>
+                                {this.state.logIn ? enlaceLogOut : null}
                             </Row>
                         </Col>
                     </Row>
