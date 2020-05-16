@@ -30,6 +30,8 @@ export default class index extends Component {
         }
         this.handleCategoria = this.handleCategoria.bind(this);
         this.functionLogOut = this.functionLogOut.bind(this);
+        this.actualizarCarrito = this.actualizarCarrito.bind(this);
+        this.refreshCarrito = this.refreshCarrito.bind(this);
     }
 
     getStateLaterañMenu = (activo, mode) => {
@@ -96,7 +98,8 @@ export default class index extends Component {
 
     functionLogOut = (value) => {
         this.setState({
-            logOut: value
+            logOut: value,
+            productosCarrito: []
         })
     }
 
@@ -122,7 +125,7 @@ export default class index extends Component {
                                     <Perfil log={this.state.logOut} logOut={this.functionLogOut.bind(this)} />
                                 </Route>
                                 <Route path="/Login"> 
-                                    <Login />
+                                    <Login callback={this.actualizarCarrito}/>
                                 </Route>
                                 <Route path="/Detail">
                                     <Detail callback={this.actualizarCarrito} log={this.state.logOut} productId={this.state.productid} logOut={this.functionLogOut.bind(this)} />

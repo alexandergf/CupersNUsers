@@ -65,7 +65,7 @@ class Nav extends Component {
     }
 
     updatePerfil = () => {
-        if(sessionStorage.getItem('token') && this.state.logIn === false) this.setState({logIn: true, productosCarrito: []});
+        if(sessionStorage.getItem('token') && this.state.logIn === false) this.setState({logIn: true});
     }
 
     cartShow = (value) => {
