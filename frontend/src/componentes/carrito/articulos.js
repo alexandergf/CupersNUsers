@@ -10,33 +10,36 @@ export default class articulos extends Component {
     constructor(props){
         super(props);
         this.state = {
-            productos: [
-                {imagen: "", nombre: "Taza de cafe 1", precio: "7.9", unidades:"1"},
-                {imagen: "", nombre: "Taza de cafe 2", precio: "6.9", unidades:"2"},
-                {imagen: "", nombre: "Taza de cafe 3", precio: "4.9", unidades:"3"},
-                {imagen: "", nombre: "Taza de cafe 4", precio: "3.9", unidades:"4"}
-            ]
+            totalPrecio: 0
         }
     }
-    render() {
-        const tabla = [];
-        const productosState = this.state.productos;
-        for (let i = 0; i < productosState.length; i++) {
-            tabla.push(
-                <tr>
-                    <td><Image src={ImagenTest} roundedCircle width="100em" height="100em" />{productosState[i].nombre}</td>
-                    <td>{productosState[i].precio}</td>
-                    <td>{productosState[i].unidades}</td>
-                    <td>{Math.round(((parseFloat(productosState[i].precio)*parseInt(productosState[i].unidades))+ Number.EPSILON)*100)/100} €</td>
-                    {/*Formula redondeo: Math.round((num + Number.EPSILON) * 100) / 100*/}
-                </tr>
-            );
+
+    calculoTotales = (productos) => {
+        let quantity = 0;
+        for(let i = 0; i < productos.length; i++){
+            quantity += productos[i].quantity;
         }
+
+        return quantity;
+    }
+
+    render() {
+        const tabla =  this.props.products.map((product,index) => 
+            <tr key={"table-row-"+index}>
+                <td><Image src={product.product.pics[0] !== undefined ? product.product.pics[0].pic : ImagenTest} roundedCircle width="72em" height="72em" />{product.product.name}</td>
+                <td>{product.product.price}</td>
+                <td>{product.quantity}</td>
+                <td>{product.product.price.toFixed(2) * product.quantity} €</td>
+            </tr>
+        )
+
+        let total = this.calculoTotales(this.props.products);
+        
         return (
             <Container fluid className="articulos-carrito">
                 <Card>
                     <Card.Title>
-                        <h4>({productosState.length}) Artículos en tu carrito</h4>
+                        <h4>({total}) Artículos en tu carrito</h4>
                     </Card.Title>
                     <Card.Body>
                         <Table responsive>

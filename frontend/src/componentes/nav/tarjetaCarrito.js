@@ -18,6 +18,10 @@ export default class tarjetaCarrito extends Component {
             this.setState({
                 products: this.props.productos
             })
+        }else if(!sessionStorage.getItem('token')){
+            this.setState({
+                productosCarrito: []
+            }) 
         }
     }
 
