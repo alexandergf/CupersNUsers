@@ -21,6 +21,10 @@ export default class detalleText extends Component {
         })
     }
 
+    actualizarCarrito = () => {
+        this.props.callback();
+    }
+
     render() {
         var producto = (this.props.producto);
         return (
@@ -29,7 +33,7 @@ export default class detalleText extends Component {
                 <Contador price={producto.price} actualizar={this.actualizarCont.bind(this)} />
                 <DescripcionProducto descr={producto.description} />
                 <Colors />
-                <BottomDetail idOpinion={this.props.id} cant={this.state.cont} />
+                <BottomDetail callback={this.actualizarCarrito} idOpinion={this.props.id} cant={this.state.cont} />
             </Container>
         )
     }

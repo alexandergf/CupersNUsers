@@ -37,11 +37,10 @@ export default class opiniones extends Component {
     }
     render() {
         var opiniones = [];
-        console.log(this.state.opinions);
         if(this.state.opinions !== null && this.state.opinions.length !== 0){
             this.state.opinions.map((opinion,index) => 
                 opiniones.push(
-                    <Row className="opinion-row">
+                    <Row className="opinion-row" key={"opinion-row-"+index}>
                         <Col sm={1}><Image src={opinion.user.pic !== null ? opinion.user.pic : ImagenTest} roundedCircle width="20px" /></Col>
                         <Col sm={11}><Opinion nameUser={opinion.user.name} opinion={opinion.description} fecha={opinion.updated_at} numStars={opinion.rate} /></Col>
                     </Row>
@@ -49,7 +48,7 @@ export default class opiniones extends Component {
             );
         }else{
             opiniones.push(
-                <Col sm={12}>No hay opiniones sobre el producto.</Col>
+                <Col sm={12} key={"no-opinions"}>No hay opiniones sobre el producto.</Col>
             )
         }
         return (

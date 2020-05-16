@@ -43,6 +43,10 @@
     margin-top: .2em;
 }
 
+.Botones .btn-row{
+    justify-content: end;
+}
+
 .btn-menu-desplegable{
     padding: .4em .5em;
 }
@@ -55,8 +59,25 @@
 }
 .carrito-cart{
     position: fixed;
+    min-height: 200px;
     width: 20%;
-    top: 5em;
-    right: 2em;
+    top: 4.5em;
+    right: 0em;
     z-index: 1;
+    color: black;
+}
+.carrito-cart .btn-pedido{
+    width: 100%;
+    background-color: #4cb30b;
+    margin-top: 1.5em;
+}
+.carrito-cart .row-unidades-total :first-child{
+    text-align: start;
+}
+.carrito-cart .row-unidades-total :last-child{
+    text-align: end;
+}
+.carrito-cart .product-item-list{
+    max-height: 30em;
+    overflow-y: scroll;
 }

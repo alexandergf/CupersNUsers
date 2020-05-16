@@ -33,6 +33,10 @@ export default class detalles extends Component {
         } 
     }
 
+    actualizarCarrito = () => {
+        this.props.callback();
+    }
+
     render() {
         if(this.props.log){
             return(<Redirect to="/" />)
@@ -42,7 +46,7 @@ export default class detalles extends Component {
                 <Row className="detail-first-line">
                     <CardDeck>
                         <Card><Card.Body><DetalleImg imgs={this.state.product.pics} /></Card.Body></Card>
-                        <Card><Card.Body><DetalleText producto={this.state.product} id={this.props.productId} /></Card.Body></Card>
+                        <Card><Card.Body><DetalleText callback={this.actualizarCarrito} producto={this.state.product} id={this.props.productId} /></Card.Body></Card>
                     </CardDeck>
                 </Row>
                 <Row>

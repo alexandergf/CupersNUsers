@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CarritoImg from '../../assets/images/carrito.png';
-import {Row,Col,Image} from 'react-bootstrap';
+import {Row,Col,Image,Button} from 'react-bootstrap';
 import Estrellas from '../estrellas/estrellas';
 import { instance } from '../../database/config';
 import axios from 'axios';
@@ -42,19 +42,25 @@ export default class bottomDetail extends Component {
             "quantity": this.props.cant
           }, instance)
           .then(function (response) {
-            console.log(response);
+
+                console.log(response);
           })
           .catch(function (error) {
+            if (error.response.status === 401) {
+                alert('No estas logeado');
+            }
             console.log(error);
           });
+
+          this.props.callback();
     }
 
     render() {
         return (
             <Row className="bottom-detail">
                 <Col md={3} sm={3}><Row className="Opiniones"><span>{this.state.nOpinions} Opiniones</span></Row><Row className="star-row"><Estrellas numStars={this.state.rate} /></Row></Col>
-                <Col className="carrito" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><Link className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Link></Col>
-                <Link to="/Carrito"><Col className="comprar" sm={3}><Link className="btn-comprar">Comprar</Link></Col></Link>
+                <Col className="carrito" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><Button className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Button></Col>
+                <Col className="comprar" sm={3}><Link to="/Carrito" className="btn-comprar">Comprar</Link></Col>
             </Row>
         )
     }
