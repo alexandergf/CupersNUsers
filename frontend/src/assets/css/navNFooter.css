@@ -8,7 +8,7 @@
     padding: .5em;
 }
 
-.Nav > a,a:link, a:visited,a:hover, a:active {
+.Nav > .Botones > a,.Nav > .Botones > a:link, .Nav > .Botones > a:visited, .Nav > .Botones > a:hover,  .Nav > .Botones > a:active {
     color: white;
     text-decoration: none;
 }
@@ -52,4 +52,11 @@
     height: 1.5em;
     color: orange;
     stroke-width: .1em;
+}
+.carrito-cart{
+    position: fixed;
+    width: 20%;
+    top: 5em;
+    right: 2em;
+    z-index: 1;
 }

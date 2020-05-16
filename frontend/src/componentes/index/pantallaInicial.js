@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import {Container,Col,Row} from 'react-bootstrap';
 import Productos from '../productos/contenedorProductos';
-import MenuDesplegable from './menuDesplegable';
 export default class pantallaInicial extends Component {
+
+    getStateItem = (activo, productId) => {
+        this.props.itemDetailInfo(activo,productId);
+    }
+
     render() {
         return (
             <Container fluid>
                 <Row>
-                    <Col sm={10}>
+                    <Col>
                         <Row>
 
                         </Row>
                         <Row>
-                            <Productos />
+                            <Productos callback={this.getStateItem.bind(this)} categoria={this.props.categoriaProduct} productosBy={this.props.productos} />
                         </Row>
                     </Col>
                 </Row>

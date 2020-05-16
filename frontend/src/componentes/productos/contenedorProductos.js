@@ -1,40 +1,45 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
+import { Card, Col, Row } from 'react-bootstrap';
 import Producto from './producto';
-import Row from 'react-bootstrap/Row';
+import { Link } from 'react-router-dom';
 
 
 export default class contenedorProductos extends Component {
     constructor(props){
         super(props);
         this.state = {
-            productos: [
-                ["Taza de café 1","7,90","3.8"],
-                ["Taza de café 2","6,90","4.9"],
-                ["Taza de café 3","5,90","4.7"],
-                ["Taza de café 4","4,90","2.4"],
-                ["Taza de café 5","3,90","1.8"],
-                ["Taza de café 6","8,90","2.8"]
-            ]
+            loading: true
         }
     }
-    render() {
-        const productosRender = [];
-        const arrayProductos = this.state.productos;
-        for(let i = 0; i<arrayProductos.length;i++){
-            productosRender.push(
-                <Col sm={4} key={i+"-col-producto"}>
-                    <Producto title={arrayProductos[i][0]} precio={arrayProductos[i][1]} estrellas={arrayProductos[i][2]} key={i+"-producto"} />
-                </Col>
-            );
+
+    sendResponseItem = (value, productId) => {
+        this.props.callback(value,productId);
+    }
+
+    componentWillUpdate = () => {
+        if(this.props.productosBy.length !== 0){
+            setInterval(()=>{
+                this.setState({
+                    loading: false
+                })
+            }, 2000)
         }
+    }
+
+    render() {
+        var productosRender = this.props.productosBy.map((product,index) => 
+            <Col sm={4} key={product.id+"-col-producto"}>
+                <Link to="/Detail" onClick={() => this.sendResponseItem(false, product.id)}><Producto img={product.pics} title={product.name} precio={product.price} estrellas={4} key={product.id+"-producto"} /></Link>
+            </Col>
+        )
+        var zeroResult = <Col sm={4}> <p>No se han encontrado resultados.</p></Col>;
+        var cargando = this.state.loading ? <Col sm={4}> <p>Cargando...</p></Col> : zeroResult;
         return (
             <Card className="contenedor-productos">
-                <Card.Title><h3>{this.props.categoria}</h3></Card.Title>
+                <Card.Title><h3>{this.props.categoria === "Todos" ? "Todos los productos" : this.props.categoria}</h3></Card.Title>
                 <Card.Body>
                     <Row>
-                        {productosRender}
+                        {this.props.productosBy.length !== 0 ? productosRender : cargando }
                     </Row>
                 </Card.Body>
             </Card>

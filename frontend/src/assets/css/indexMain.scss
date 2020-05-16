@@ -28,6 +28,7 @@
                     a{
                         color: white;
                     }
+                    cursor: pointer;
                 }
             }
             a:link, a:visited,a:hover, a:active {
@@ -45,6 +46,29 @@
     .contenedor-productos{
         width: 100%;
         margin: 2em;
+
+        .card-title{
+            text-align: start;
+            border-bottom: 1px solid #ccc;
+            padding: .7em;
+        }
+        .producto{
+            .row{
+                justify-content: center;
+            }
+            .title-row{
+                color: rgb(146, 145, 145);
+            }
+            .price-row{
+                font-weight: 700;
+            }
+        }
+        a{
+            text-decoration: none;
+        }
+        a:link, a:visited,a:hover, a:active {
+            color: black;
+        }
     }
 }
 .row{

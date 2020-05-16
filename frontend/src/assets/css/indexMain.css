@@ -36,6 +36,7 @@
 .main-app .menu-desplegable .card-body .list-group-item:hover {
   background-color: #4cb30b;
   color: white;
+  cursor: pointer;
 }
 
 .main-app .menu-desplegable .card-body .list-group-item:hover a {
@@ -58,6 +59,34 @@
 .main-app .contenedor-productos {
   width: 100%;
   margin: 2em;
+}
+
+.main-app .contenedor-productos .card-title {
+  text-align: start;
+  border-bottom: 1px solid #ccc;
+  padding: .7em;
+}
+
+.main-app .contenedor-productos .producto .row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main-app .contenedor-productos .producto .title-row {
+  color: #929191;
+}
+
+.main-app .contenedor-productos .producto .price-row {
+  font-weight: 700;
+}
+
+.main-app .contenedor-productos a {
+  text-decoration: none;
+}
+
+.main-app .contenedor-productos a:link, .main-app .contenedor-productos a:visited, .main-app .contenedor-productos a:hover, .main-app .contenedor-productos a:active {
+  color: black;
 }
 
 .row {

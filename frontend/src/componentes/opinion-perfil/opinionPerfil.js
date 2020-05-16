@@ -10,7 +10,7 @@ export default class opinionPerfil extends Component {
                 <Card>
                     <Card.Title><h3 className="opinion-title">Opiniones</h3></Card.Title>
                     <Card.Body>
-                        <Opiniones />
+                        <Opiniones id={-1} />
                     </Card.Body>
                 </Card>
             </Container>

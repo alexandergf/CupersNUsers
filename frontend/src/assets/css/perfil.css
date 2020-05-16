@@ -29,6 +29,15 @@
   color: white;
 }
 
+.admin-perfil .list-group-item {
+  padding: 1.1em;
+}
+
+.admin-perfil .list-group-item:hover {
+  background-color: #4cb30b;
+  color: white;
+}
+
 .admin-perfil a:link, .admin-perfil a:visited, .admin-perfil a:hover, .admin-perfil a:active {
   color: black;
   text-decoration: none;

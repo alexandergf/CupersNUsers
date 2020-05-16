@@ -9,13 +9,7 @@ export default class descripcionProducto extends Component {
             <Row>
                 <Col sm={12} className="description-list">
                     <ListGroup>
-                        <li>Lorem Ipsum.</li>
-                        <li>Lorem Ipsum.</li>
-                        <li>Lorem Ipsum.</li>
-                        <li>Lorem Ipsum.</li>
-                        <li>Lorem Ipsum.</li>
-                        <li>Lorem Ipsum.</li>
-                        <li>Lorem Ipsum.</li>
+                        <li>{this.props.descr}</li>
                     </ListGroup>
                 </Col>
             </Row>
