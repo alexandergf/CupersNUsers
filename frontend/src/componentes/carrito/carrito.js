@@ -16,6 +16,7 @@ export default class carrito extends Component {
             productos: [],
             total: 0
         }
+        this.actualizarProductos = this.actualizarProductos.bind(this);
     }
 
     componentDidMount = () => {
@@ -40,6 +41,17 @@ export default class carrito extends Component {
         })
     }
 
+    actualizarProductos = () => {
+        let este = this;
+        axios.post('/user/getCart', {}, instance)
+          .then(function (response) {
+                este.montarProductos(response.data.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+
     componentDidUpdate = () => {
         if(this.props.log){
             this.props.logOut(false);
@@ -54,7 +66,7 @@ export default class carrito extends Component {
             <Container fluid className="carrito">
                 <Row>
                     <Col sm={9}>
-                        <Articulos products={this.state.productos} />
+                        <Articulos callback={this.actualizarProductos.bind(this)} products={this.state.productos} />
                     </Col>
                     <Col sm={3}>
                         <Total totalPrecio={this.state.total.toFixed(2)} />

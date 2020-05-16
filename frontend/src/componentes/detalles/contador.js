@@ -30,8 +30,11 @@ export default class contador extends Component {
                 cont: this.state.cont-1
             }));
             this.actualizarCont(this.state.cont-1);
+        }else{
+            this.setState(() => ({
+                desabilitarResta: true
+            }));
         }
-        
     }
 
     actualizarCont = (value) => {

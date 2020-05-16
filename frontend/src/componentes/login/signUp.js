@@ -45,7 +45,7 @@ export default class signUp extends Component {
           }, instance)
           .then(function (response) {
               console.log(response);
-            if(response.data.data.email !== null || response.data.data.email !== undefined){
+            if(response.data.data.email !== null && response.data.data.email !== undefined){
                 responseCreateCount(true);
             }else{
                 responseCreateCount(false);
