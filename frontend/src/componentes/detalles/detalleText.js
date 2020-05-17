@@ -29,7 +29,7 @@ export default class detalleText extends Component {
         var producto = (this.props.producto);
         return (
             <Container fluid>
-                <Title name={producto.name} />
+                <Title name={producto.name} id={this.props.id} />
                 <Contador price={producto.price} actualizar={this.actualizarCont.bind(this)} />
                 <DescripcionProducto descr={producto.description} />
                 <Colors />
