@@ -16,6 +16,7 @@ import Detail from '../detalles/detalles';
 import Productos from '../productos/productos';
 import Carrito from '../carrito/carrito';
 
+
 export default class index extends Component {
     constructor(props){
         super(props);
@@ -23,7 +24,6 @@ export default class index extends Component {
             activeLateralMenu: true,
             category: "Todos",
             productos: [],
-            productid: 1,
             searchWordBar: "",
             logOut: false,
             productosCarrito: []
@@ -83,13 +83,6 @@ export default class index extends Component {
         });
     }
 
-    getItemDetailInfo = (activo, productId) => {
-        this.setState({
-            activeLateralMenu: activo,
-            productid: productId
-        });
-    }
-
     searchBar = (searchWord) => {
         this.setState({
             searchWordBar: searchWord
@@ -127,17 +120,17 @@ export default class index extends Component {
                                 <Route path="/Login"> 
                                     <Login callback={this.actualizarCarrito}/>
                                 </Route>
-                                <Route path="/Detail">
-                                    <Detail callback={this.actualizarCarrito} log={this.state.logOut} productId={this.state.productid} logOut={this.functionLogOut.bind(this)} />
-                                </Route>
+                                <Route path="/Detail/:productId" render={(props) =>
+                                    <Detail {...props} callback={this.actualizarCarrito} log={this.state.logOut} logOut={this.functionLogOut.bind(this)} />
+                                } />
                                 <Route path="/Productos">
-                                    <Productos log={this.state.logOut} logOut={this.functionLogOut.bind(this)} itemDetailInfo={this.getItemDetailInfo.bind(this)} searchWords={this.state.searchWordBar} />
+                                    <Productos log={this.state.logOut} logOut={this.functionLogOut.bind(this)} searchWords={this.state.searchWordBar} />
                                 </Route>
                                 <Route path="/Carrito">
                                     <Carrito log={this.state.logOut} logOut={this.functionLogOut.bind(this)} />
                                 </Route>
                                 <Route path="/">
-                                    <PantallaInicial itemDetailInfo={this.getItemDetailInfo.bind(this)} categoriaProduct={this.state.category} productos={this.state.productos} />
+                                    <PantallaInicial categoriaProduct={this.state.category} productos={this.state.productos} />
                                 </Route>
                             </Switch>
                         </Col>

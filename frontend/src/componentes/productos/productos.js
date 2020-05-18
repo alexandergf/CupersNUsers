@@ -51,10 +51,6 @@ export default class productos extends Component {
         });
     }
 
-    getStateItem = (activo, productId) => {
-        this.props.itemDetailInfo(activo,productId);
-    }
-
     render() {
         if(this.props.log){
             return(<Redirect to="/" />)
@@ -66,7 +62,7 @@ export default class productos extends Component {
                         <Panel />
                     </Col>
                     <Col xs={9} md={10}>
-                        <CProductos callback={this.getStateItem.bind(this)} productosBy={this.state.products} categoria={"Busqueda: "+(this.props.searchWords !== "" ? this.props.searchWords : "Todos los productos")} />
+                        <CProductos productosBy={this.state.products} categoria={"Busqueda: "+(this.props.searchWords !== "" ? this.props.searchWords : "Todos los productos")} />
                     </Col>
                 </Row>
             </Container>

@@ -12,10 +12,6 @@ export default class contenedorProductos extends Component {
         }
     }
 
-    sendResponseItem = (value, productId) => {
-        this.props.callback(value,productId);
-    }
-
     componentWillUpdate = () => {
         if(this.props.productosBy.length !== 0){
             setInterval(()=>{
@@ -29,7 +25,7 @@ export default class contenedorProductos extends Component {
     render() {
         var productosRender = this.props.productosBy.map((product,index) => 
             <Col sm={4} key={product.id+"-col-producto"}>
-                <Link to="/Detail" onClick={() => this.sendResponseItem(false, product.id)}><Producto img={product.pics} title={product.name} precio={product.price} estrellas={4} key={product.id+"-producto"} /></Link>
+                <Link to={"/Detail/"+product.id}><Producto img={product.pics} title={product.name} precio={product.price} estrellas={4} key={product.id+"-producto"} /></Link>
             </Col>
         )
         var zeroResult = <Col sm={4}> <p>No se han encontrado resultados.</p></Col>;

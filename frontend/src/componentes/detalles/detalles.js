@@ -7,16 +7,17 @@ import {Container,Card,Row,CardDeck} from 'react-bootstrap';
 import { instance } from '../../database/config';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+
 export default class detalles extends Component {
     constructor(props){
         super(props);
         this.state = {
-            product: [],
+            product: []
         }
     }
 
     componentDidMount = () => {
-        axios.post("/product/detail", {"product_id": this.props.productId}, instance)
+        axios.post("/product/detail", {"product_id": this.props.match.params.productId}, instance)
         .then((response) => {
             this.setState({
                 product: response.data.data
