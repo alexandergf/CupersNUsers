@@ -75,6 +75,10 @@
   color: #8a8888;
 }
 
+.items-wish .container-item-wish {
+  cursor: pointer;
+}
+
 .opinion-perfil .opiniones-row {
   display: none;
 }

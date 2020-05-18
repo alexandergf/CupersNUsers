@@ -18,14 +18,28 @@ import {
 import '../../assets/css/perfil.css';
 
 export default class perfil extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            out: false,
+            num: 1
+        }
+    }
     componentDidUpdate = () => {
         if(this.props.log){
             this.props.logOut(false);
         } 
     }
+
+    redireccionar = (id) => {
+        this.setState({out: true, num: id});
+    }
+
     render() {
         if(this.props.log){
             return(<Redirect to="/" />)
+        }else if(this.state.out){
+            return(<Redirect to={"/Detail/"+this.state.num} />)
         } 
         return (
             <Router>
@@ -40,7 +54,7 @@ export default class perfil extends Component {
                                     <EditarPerfil />
                                 </Route>
                                 <Route path="/WishList">
-                                    <WishList />
+                                    <WishList red={this.redireccionar.bind(this)} />
                                 </Route>
                                 <Route path="/Pedidos">
                                     <Pedidos />

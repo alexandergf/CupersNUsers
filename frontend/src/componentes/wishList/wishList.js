@@ -25,7 +25,6 @@ export default class wishList extends Component {
     }
 
     montarProductos = (products) => {
-        console.log(products);
         if(products.length === 0){
             this.setState({zeroProductos: true});
         }else{
@@ -35,13 +34,17 @@ export default class wishList extends Component {
         }
     }
 
+    redireccionar = (id) => {
+        this.props.red(id);
+    }
+
     render() {
         return (
             <Container fluid className="wish-perfil">
                 <Card>
                     <Card.Title><h3 className="wish-title">Lista de deseos <Button>Añadir todo al carrito</Button></h3></Card.Title>
                     <Card.Body>
-                        {this.state.zeroProductos? "No hay productos en la lista de deseados.":<WishItems productos={this.state.productos} />}
+                        {this.state.zeroProductos? "No hay productos en la lista de deseados.":<WishItems red={this.redireccionar.bind(this)} productos={this.state.productos} />}
                     </Card.Body>
                 </Card>
             </Container>
