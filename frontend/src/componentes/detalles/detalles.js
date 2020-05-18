@@ -34,8 +34,8 @@ export default class detalles extends Component {
         } 
     }
 
-    actualizarCarrito = () => {
-        this.props.callback();
+    actualizarCarrito = (productos) => {
+        this.props.callback(productos);
     }
 
     render() {
@@ -47,11 +47,11 @@ export default class detalles extends Component {
                 <Row className="detail-first-line">
                     <CardDeck>
                         <Card><Card.Body><DetalleImg imgs={this.state.product.pics} /></Card.Body></Card>
-                        <Card><Card.Body><DetalleText callback={this.actualizarCarrito} producto={this.state.product} id={this.props.productId} /></Card.Body></Card>
+                        <Card><Card.Body><DetalleText callback={this.actualizarCarrito.bind(this)} producto={this.state.product} id={this.props.match.params.productId} /></Card.Body></Card>
                     </CardDeck>
                 </Row>
                 <Row>
-                    <Card className="card-opinion"><Card.Body><Opiniones id={this.props.productId} /></Card.Body></Card> 
+                    <Card className="card-opinion"><Card.Body><Opiniones id={this.props.match.params.productId} /></Card.Body></Card> 
                 </Row>
             </Container>
         )

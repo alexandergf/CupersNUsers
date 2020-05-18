@@ -12,9 +12,9 @@ export default class tarjetaCarrito extends Component {
             products: this.props.productos
         }
     }
-
-    componentDidUpdate = () => {
-        if(this.state.products.length !== this.props.productos.length){
+    
+    componentDidUpdate = (prevProps) => {
+        if(prevProps.productos.length !== this.props.productos.length){
             this.setState({
                 products: this.props.productos
             })

@@ -37,13 +37,13 @@ export default class bottomDetail extends Component {
     }
 
     addCart = () => {
+        let este = this;
         axios.post('/cart/toggleProduct', {
             "product_id": this.props.idOpinion,
             "quantity": this.props.cant
           }, instance)
           .then(function (response) {
-
-                console.log(response);
+                este.props.callback(response.data.data);
           })
           .catch(function (error) {
             if (error.response.status === 401) {
@@ -51,8 +51,6 @@ export default class bottomDetail extends Component {
             }
             console.log(error);
           });
-
-          this.props.callback();
     }
 
     render() {
