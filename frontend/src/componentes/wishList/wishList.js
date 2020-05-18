@@ -38,13 +38,26 @@ export default class wishList extends Component {
         this.props.red(id);
     }
 
+    deleteItemWishList = (id) => {
+        let montarProductos = this.montarProductos;
+        axios.post('/wishlist/toggleProduct', {"product_id": id}, instance)
+          .then(function (response) {
+                if(response.data.data){
+                    montarProductos(response.data.data);
+                }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+
     render() {
         return (
             <Container fluid className="wish-perfil">
                 <Card>
                     <Card.Title><h3 className="wish-title">Lista de deseos <Button>Añadir todo al carrito</Button></h3></Card.Title>
                     <Card.Body>
-                        {this.state.zeroProductos? "No hay productos en la lista de deseados.":<WishItems red={this.redireccionar.bind(this)} productos={this.state.productos} />}
+                        {this.state.zeroProductos? "No hay productos en la lista de deseados.":<WishItems delete={this.deleteItemWishList.bind(this)} red={this.redireccionar.bind(this)} productos={this.state.productos} />}
                     </Card.Body>
                 </Card>
             </Container>

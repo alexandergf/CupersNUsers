@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import WishItem from './wishItem';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { GrClose } from 'react-icons/gr';
 
 export default class wishItems extends Component {
+    componentDidMount = () => {
+        
+    }
+    
     getReviews = () =>{
         
     }
@@ -11,9 +16,14 @@ export default class wishItems extends Component {
         this.props.red(id);
     }
 
+    deleteItemWish = (id) => {
+        this.props.delete(id);
+    }
+
     render() {
         var productosList = this.props.productos.map((producto,index) =>
             <Col sm={3} key={producto.id+"-col-product-wish"}>
+                <Row className="x-wish-item"><Button onClick={() => this.deleteItemWish(producto.id)}><GrClose /></Button></Row>
                 <Container onClick={()=>this.redireccionar(producto.id)} className="container-item-wish"><WishItem title={producto.name} precio={producto.price+" €"} estrellas="3.8" unidades={producto.stock} img={producto.pics} /></Container>
             </Col>
         )

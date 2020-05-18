@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Image from 'react-bootstrap/Image';
+import { Container, Row, Image } from 'react-bootstrap';
 import ImagenPrueba from '../../assets/images/prueba.jpg';
 import Estrellas from '../estrellas/estrellas';
 

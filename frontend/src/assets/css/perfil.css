@@ -65,6 +65,22 @@
   text-decoration: none;
 }
 
+.items-wish .x-wish-item {
+  -webkit-box-pack: end !important;
+      -ms-flex-pack: end !important;
+          justify-content: end !important;
+}
+
+.items-wish .x-wish-item .btn {
+  padding: .1em .2em;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.items-wish .x-wish-item .btn:hover {
+  background-color: #fd7070;
+}
+
 .items-wish .item-wish .row {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
