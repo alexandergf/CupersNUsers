@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import { Form, Container, Button, Modal} from 'react-bootstrap';
 import axios from 'axios';
 import { instance } from '../../database/config';
+import {Redirect} from 'react-router-dom';
 
 export default class signUp extends Component {
     constructor(props){
@@ -14,7 +13,10 @@ export default class signUp extends Component {
             phone: null,
             direction: null,
             email: null,
-            password: null
+            password: null,
+            failCreate: false,
+            create: false,
+            log: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,6 +34,7 @@ export default class signUp extends Component {
     handleSubmit(event) {
         event.preventDefault();
         let state = this.state;
+        let responseCreateCount = this.responseCreateCount
         axios.post('/user/register', {
             name: state.name,
             surnames: state.surnames,
@@ -41,19 +44,57 @@ export default class signUp extends Component {
             password: state.password
           }, instance)
           .then(function (response) {
-            //console.log(response.data.data);
-            if(response.data.data.email[0] !==null){
-                alert(response.data.data.email[0]);
+              console.log(response);
+            if(response.data.data.email !== null && response.data.data.email !== undefined){
+                responseCreateCount(true);
             }else{
-                alert("Bieeeeeen");
+                responseCreateCount(false);
             }
-            //if(response.data.data == null) Fallo inicio sesion
           })
           .catch(function (error) {
             console.log(error);
           });
     }
+
+    responseCreateCount = (verify) => {
+        if(verify){
+            this.setState({create: true});
+        }else{
+            this.setState({failCreate: true});
+        }
+    }
+
+    redirect = () => {
+        this.setState({create: false, log: true});
+    }
+
     render() {
+        const errorCreateCount = <Modal show={this.state.failCreate} onHide={() => this.setState({failCreate: false})}>
+            <Modal.Header closeButton>
+            <Modal.Title>Error</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>El email ya esta registrado o algunos de los campos no ha sido correctamente rellenados.</Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => this.setState({failCreate: false})}>
+                    Vale
+                </Button>
+            </Modal.Footer>
+        </Modal>;
+
+        const acceptCreateCount = <Modal show={this.state.create} onHide={() => this.redirect()}>
+            <Modal.Header closeButton>
+            <Modal.Title>Felicidades</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>La cuenta se ha creado correctamente, ahora inicia sesión.</Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => this.redirect()}>
+                    Vale
+                </Button>
+            </Modal.Footer>
+        </Modal>;
+        if(this.state.log){
+            return(<Redirect to="/" />)
+        } 
         return (
             <Container fluid>
                 <Form onSubmit={this.handleSubmit}>
@@ -91,6 +132,8 @@ export default class signUp extends Component {
                         Crear Usuario
                     </Button>
                 </Form>
+                {errorCreateCount}
+                {acceptCreateCount}
             </Container>
         )
     }

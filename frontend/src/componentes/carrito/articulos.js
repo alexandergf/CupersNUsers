@@ -1,42 +1,127 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Table from 'react-bootstrap/Table';
-import Image from 'react-bootstrap/Image';
+import { Container, Button, Card, Table, Image, Modal} from 'react-bootstrap';
 import ImagenTest from '../../assets/images/prueba.jpg';
+import axios from 'axios';
+import { instance } from '../../database/config';
 
 export default class articulos extends Component {
     constructor(props){
         super(props);
         this.state = {
-            productos: [
-                {imagen: "", nombre: "Taza de cafe 1", precio: "7.9", unidades:"1"},
-                {imagen: "", nombre: "Taza de cafe 2", precio: "6.9", unidades:"2"},
-                {imagen: "", nombre: "Taza de cafe 3", precio: "4.9", unidades:"3"},
-                {imagen: "", nombre: "Taza de cafe 4", precio: "3.9", unidades:"4"}
-            ]
+            totalPrecio: 0,
+            show: false,
+            failRemove: false,
+            remove: false
         }
     }
-    render() {
-        const tabla = [];
-        const productosState = this.state.productos;
-        for (let i = 0; i < productosState.length; i++) {
-            tabla.push(
-                <tr>
-                    <td><Image src={ImagenTest} roundedCircle width="100em" height="100em" />{productosState[i].nombre}</td>
-                    <td>{productosState[i].precio}</td>
-                    <td>{productosState[i].unidades}</td>
-                    <td>{Math.round(((parseFloat(productosState[i].precio)*parseInt(productosState[i].unidades))+ Number.EPSILON)*100)/100} €</td>
-                    {/*Formula redondeo: Math.round((num + Number.EPSILON) * 100) / 100*/}
-                </tr>
-            );
+
+    calculoTotales = (productos) => {
+        let quantity = 0;
+        for(let i = 0; i < productos.length; i++){
+            quantity += productos[i].quantity;
         }
+
+        return quantity;
+    }
+
+    removeItemsCart = () => {
+        this.setState({show: true})
+    }
+
+    removeOneItem = (id) => {
+        let setState = this.setState;
+        let props = this.props;
+        axios.post('/cart/toggleProduct', {
+            "product_id": id,
+            "quantity": 0
+        }, instance)
+          .then(function (response) {
+              console.log(response);
+            props.callback(response.data.data);
+          })
+          .catch(function (error) {
+            setState({failRemove: true, show: false});
+          });
+    }
+
+    totalRemove = () => {
+        let resultRemove = this.resultRemove;
+        axios.post('/cart/deleteAll', {}, instance)
+          .then(function (response) {
+            resultRemove(true);
+          })
+          .catch(function (error) {
+            resultRemove(false);
+          });  
+    }
+
+    resultRemove = (value) => {
+        let prod = [];
+        if(value){
+            this.setState({remove: true, show: false});
+        }else{
+            this.setState({failRemove: true, show: false});
+        }
+        this.props.callback(prod);
+    }
+
+    render() {
+        const modalRemove = <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
+            <Modal.Header closeButton>
+            <Modal.Title>Confirmación</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Seguro que quieres borrar todos los articulos de la cesta?</Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => this.setState({show: false})}>
+                    Cancelar
+                </Button>
+                <Button variant="primary" onClick={() => this.totalRemove()}>
+                    Si, estoy de acuerdo
+                </Button>
+            </Modal.Footer>
+        </Modal>;
+
+        const errorRemove = <Modal show={this.state.failRemove} onHide={() => this.setState({failRemove: false})}>
+            <Modal.Header closeButton>
+            <Modal.Title>Ups</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Algo no ha ido bien.</Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => this.setState({failRemove: false})}>
+                    Vale
+                </Button>
+            </Modal.Footer>
+        </Modal>;
+
+        const acceptRemove = <Modal show={this.state.remove} onHide={() => this.setState({remove: false})}>
+            <Modal.Header closeButton>
+            <Modal.Title>Bien</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>La cesta se ha vaciado con exito.</Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => this.setState({remove: false})}>
+                    Vale
+                </Button>
+            </Modal.Footer>
+        </Modal>;
+
+        const tabla =  this.props.products.map((product,index) => 
+            <tr key={"table-row-"+index}>
+                <td><Image src={product.product.pics[0] !== undefined ? product.product.pics[0].pic : ImagenTest} roundedCircle width="72em" height="72em" />{product.product.name}</td>
+                <td>{product.product.price}</td>
+                <td>{product.quantity}</td>
+                <td>{product.product.price.toFixed(2) * product.quantity} €</td>
+                <td><Button className="btn-danger" onClick={() => this.removeOneItem(product.id)}>Eliminar</Button></td>
+            </tr>
+        )
+
+        let total = this.calculoTotales(this.props.products);
+        
         return (
             <Container fluid className="articulos-carrito">
                 <Card>
                     <Card.Title>
-                        <h4>({productosState.length}) Artículos en tu carrito</h4>
+                        <h4>({total}) Artículos en tu carrito</h4>
                     </Card.Title>
                     <Card.Body>
                         <Table responsive>
@@ -46,6 +131,7 @@ export default class articulos extends Component {
                                     <th>PRECIO</th>
                                     <th>UNIDADES</th>
                                     <th>TOTAL</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,10 +140,15 @@ export default class articulos extends Component {
                         </Table>
                     </Card.Body>
                     <Card.Footer>
-                        <Button className="btn-vaciar-cesta">Vaciar cesta</Button>
+                        <Button className="btn-vaciar-cesta" onClick={() => this.removeItemsCart()}
+                            disabled={this.props.products.length === 0 ? true : false}
+                            >Vaciar cesta</Button>
                         <Button className="btn-seguir-comprando">Seguir comprando</Button>
                     </Card.Footer>
                 </Card>
+                {modalRemove}
+                {errorRemove}
+                {acceptRemove}
             </Container>
         )
     }

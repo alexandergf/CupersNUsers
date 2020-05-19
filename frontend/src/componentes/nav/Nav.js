@@ -19,7 +19,6 @@ class Nav extends Component {
             logIn: false,
             search: "",
             cart_show: false,
-            sValue: false,
             show: false,
             auxLogIn: true
         };
@@ -82,7 +81,32 @@ class Nav extends Component {
     }
 
     render() {
-        const enlaceAdmin = <a href="https://cupersnusers.vestidosaraya.com/admin/login"><Button variant="danger" className="fa fa-bars"><RiAdminLine /></Button><p>Administrador</p></a>;        
+        const enlaceAdmin = <Col xs={2}>
+                <a href="https://cupersnusers.vestidosaraya.com/admin/login">
+                    <Button variant="danger" className="fa fa-bars">
+                        <RiAdminLine />
+                    </Button>
+                </a>
+            </Col>;    
+            
+        const enlaceLogOut = <Col xs={2}>
+                <Button variant="light" className="fa fa-bars" onClick={() => this.setState({show: true})}><FiLogOut /></Button>
+                <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Cerrar Sesión</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Seguro que quieres cerrar la sesión?</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.setState({show: false})}>
+                            Cancelar
+                        </Button>
+                        <Button variant="primary" onClick={() => this.logOutFunction()}>
+                            Salir
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </Col>;
+
         return (
             <div className="Nav">
                 <Container className="Contenedor" fluid>
@@ -93,7 +117,7 @@ class Nav extends Component {
                         <Col xs={1}>
                             <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)}><BsList className="btn-menu-desplegable-icono" /></Button>
                         </Col>
-                        <Col xs={5}>
+                        <Col xs={6}>
                             <InputGroup>
                                 <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" onChange={this.handleOnChange} onKeyDown={this.handleKeyPress}/>
                                 <InputGroup.Append>
@@ -101,42 +125,32 @@ class Nav extends Component {
                                 </InputGroup.Append>
                             </InputGroup>
                         </Col>
-                        <Col xs={4} className="Botones" onMouseLeave={() => setTimeout((()=>this.cartShow(false,false)),1000)}>
-                            <Row>
+                        <Col xs={3} className="Botones">
+                            <Row className="btn-row">
+                                {this.state.admin ? enlaceAdmin : null}
                                 <Col xs={2}>
-                                    {this.state.admin ? enlaceAdmin : null}
+                                    <Link to="/UsoTazas">
+                                        <Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}>
+                                            <BsBook />
+                                        </Button>
+                                    </Link>
                                 </Col>
                                 <Col xs={2}>
-                                    <Link to="/UsoTazas"><Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}><BsBook /></Button>
-                                    <p>Usos de tazas</p></Link>
+                                    <Link to={this.state.logIn ? "/EditarPerfil" : "/Login"}>
+                                        <Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}>
+                                            <AiOutlineUser />
+                                        </Button>
+                                    </Link>
                                 </Col>
                                 <Col xs={2}>
-                                    <Link to={this.state.logIn ? "/EditarPerfil" : "/Login"}><Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}><AiOutlineUser /></Button>
-                                    <p>Iniciar sesion</p></Link>
+                                    <Link to="/Carrito">
+                                        <Button variant="light" className="fa fa-bars" onMouseEnter={() => this.setState({cart_show: true})} onClick={() => this.sendResponseLateralMenu(false,false)}>
+                                            <AiOutlineShoppingCart />
+                                        </Button>
+                                    </Link>
                                 </Col>
-                                <Col xs={2}>
-                                    <Link to="/Carrito"><Button variant="light" className="fa fa-bars" onMouseEnter={() => this.setState({cart_show: true})} onClick={() => this.sendResponseLateralMenu(false,false)}><AiOutlineShoppingCart /></Button>
-                                    <p>Carrito</p></Link>
-                                </Col>
-                                {this.state.cart_show ? <Cart onMouseEnter={() => this.setState({sValue: true})} onMouseLeave={() => this.setState({sValue: false})} />:null}
-                                <Col xs={2}>
-                                    <Button variant="light" className="fa fa-bars" onClick={() => this.setState({show: true})}><FiLogOut /></Button>
-                                    <p>Cerrar Sesión</p>
-                                    <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
-                                        <Modal.Header closeButton>
-                                        <Modal.Title>Cerrar Sesión</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>Seguro que quieres cerrar la sesión?</Modal.Body>
-                                        <Modal.Footer>
-                                            <Button variant="secondary" onClick={() => this.setState({show: false})}>
-                                                Cancelar
-                                            </Button>
-                                            <Button variant="primary" onClick={() => this.logOutFunction()}>
-                                                Salir
-                                            </Button>
-                                        </Modal.Footer>
-                                    </Modal>
-                                </Col>
+                                {this.state.cart_show ? <Cart productos={this.props.productosCarrito} show={this.state.cart_show} calltoclose={() => this.setState({cart_show: false})} />:null}
+                                {this.state.logIn ? enlaceLogOut : null}
                             </Row>
                         </Col>
                     </Row>

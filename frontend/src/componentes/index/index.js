@@ -16,6 +16,7 @@ import Detail from '../detalles/detalles';
 import Productos from '../productos/productos';
 import Carrito from '../carrito/carrito';
 
+
 export default class index extends Component {
     constructor(props){
         super(props);
@@ -23,12 +24,14 @@ export default class index extends Component {
             activeLateralMenu: true,
             category: "Todos",
             productos: [],
-            productid: 1,
             searchWordBar: "",
-            logOut: false
+            logOut: false,
+            productosCarrito: []
         }
         this.handleCategoria = this.handleCategoria.bind(this);
         this.functionLogOut = this.functionLogOut.bind(this);
+        this.actualizarCarrito = this.actualizarCarrito.bind(this);
+        this.refreshCarrito = this.refreshCarrito.bind(this);
     }
 
     getStateLaterañMenu = (activo, mode) => {
@@ -52,6 +55,7 @@ export default class index extends Component {
 
     componentDidMount = () => {
         this.refreshProducts(-1);
+        this.refreshCarrito();
     }
 
     refreshProducts = (id) => {
@@ -67,10 +71,15 @@ export default class index extends Component {
         });
     }
 
-    getItemDetailInfo = (activo, productId) => {
-        this.setState({
-            activeLateralMenu: activo,
-            productid: productId
+    refreshCarrito = () => {
+        axios.post("/cart/toggleProduct",{}, instance)
+        .then((response) => {
+            this.setState({
+                productosCarrito: response.data.data
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
         });
     }
 
@@ -82,7 +91,14 @@ export default class index extends Component {
 
     functionLogOut = (value) => {
         this.setState({
-            logOut: value
+            logOut: value,
+            productosCarrito: []
+        })
+    }
+
+    actualizarCarrito = (productos) => {
+        this.setState({
+            productosCarrito: productos
         })
     }
     
@@ -91,33 +107,50 @@ export default class index extends Component {
             <Router>
                 <Container fluid className="main-app">
                     <Row>
-                        <Nav callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} logOut={this.functionLogOut.bind(this)}/>
+                        <Nav productosCarrito={this.state.productosCarrito} callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} logOut={this.functionLogOut.bind(this)}/>
                     </Row>
                     <Row className="row-second-line">
                         {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable getCategoria={this.handleCategoria.bind(this)} /></Col> : null}
                         <Col className="special-background">
                             <Switch>
-                                <Route path="/UsoTazas">
-                                    <UsoTazas log={this.state.logOut} logOut={this.functionLogOut.bind(this)} />
-                                </Route>
-                                <Route path="/EditarPerfil"> 
-                                    <Perfil log={this.state.logOut} logOut={this.functionLogOut.bind(this)} />
-                                </Route>
-                                <Route path="/Login"> 
-                                    <Login />
-                                </Route>
-                                <Route path="/Detail">
-                                    <Detail log={this.state.logOut} productId={this.state.productid} logOut={this.functionLogOut.bind(this)} />
-                                </Route>
-                                <Route path="/Productos">
-                                    <Productos log={this.state.logOut} logOut={this.functionLogOut.bind(this)} itemDetailInfo={this.getItemDetailInfo.bind(this)} searchWords={this.state.searchWordBar} />
-                                </Route>
-                                <Route path="/Carrito">
-                                    <Carrito log={this.state.logOut} logOut={this.functionLogOut.bind(this)} />
-                                </Route>
-                                <Route path="/">
-                                    <PantallaInicial itemDetailInfo={this.getItemDetailInfo.bind(this)} categoriaProduct={this.state.category} productos={this.state.productos} />
-                                </Route>
+                                <Route path="/UsoTazas" render={(props)=>
+                                    <UsoTazas {...props} 
+                                    log={this.state.logOut} 
+                                    logOut={this.functionLogOut.bind(this)} />
+                                } />
+                                <Route path="/EditarPerfil" render={(props)=>
+                                    <Perfil {...props} 
+                                    log={this.state.logOut} 
+                                    logOut={this.functionLogOut.bind(this)} 
+                                    callback={this.actualizarCarrito.bind(this)} />
+                                } /> 
+                                <Route path="/Login" render={(props) =>
+                                    <Login {...props} 
+                                    callback={this.refreshCarrito}/>
+                                } />
+                                <Route path="/Detail/:productId" render={(props) =>
+                                    <Detail {...props} 
+                                        callback={this.actualizarCarrito.bind(this)} 
+                                        log={this.state.logOut} 
+                                        logOut={this.functionLogOut.bind(this)} />
+                                } />
+                                <Route path="/Productos" render={(props) => 
+                                    <Productos {...props} 
+                                        log={this.state.logOut} 
+                                        logOut={this.functionLogOut.bind(this)} 
+                                        searchWords={this.state.searchWordBar} />
+                                } />
+                                <Route path="/Carrito" render={(props) => 
+                                    <Carrito {...props} 
+                                    callback={this.actualizarCarrito.bind(this)} 
+                                    log={this.state.logOut} 
+                                    logOut={this.functionLogOut.bind(this)} />
+                                } />
+                                <Route path="/" render={(props) => 
+                                    <PantallaInicial {...props} 
+                                    categoriaProduct={this.state.category} 
+                                    productos={this.state.productos} />
+                                }/> 
                             </Switch>
                         </Col>
                     </Row>

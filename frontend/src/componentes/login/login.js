@@ -14,6 +14,7 @@ export default class login extends Component {
     }
 
     actualizarLog = (value) => {
+        this.props.callback();
         this.setState({
             log: value
         })

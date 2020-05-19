@@ -32,12 +32,15 @@
   border-color: #4cb30b;
 }
 
-.login-main .login .forgivePassword a {
-  text-decoration: underline;
-}
-
-.login-main .login .forgivePassword a:link, .login-main .login .forgivePassword a:visited, .login-main .login .forgivePassword a:hover, .login-main .login .forgivePassword a:active {
+.login-main .login .forgivePassword button {
+  background-color: white;
+  border: 0px;
   color: black;
+  text-align: start;
+  text-decoration: underline;
+  padding: 0;
+  width: auto;
+  margin: .4em 0;
 }
 
 .login-main .signup .card-header {

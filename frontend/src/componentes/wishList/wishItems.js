@@ -1,29 +1,36 @@
 import React, { Component } from 'react';
 import WishItem from './wishItem';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { GrClose } from 'react-icons/gr';
 
 export default class wishItems extends Component {
+    componentDidMount = () => {
+        
+    }
+    
+    getReviews = () =>{
+        
+    }
+
+    redireccionar = (id) => {
+        this.props.red(id);
+    }
+
+    deleteItemWish = (id) => {
+        this.props.delete(id);
+    }
+
     render() {
+        var productosList = this.props.productos.map((producto,index) =>
+            <Col sm={3} key={producto.id+"-col-product-wish"}>
+                <Row className="x-wish-item"><Button onClick={() => this.deleteItemWish(producto.id)}><GrClose /></Button></Row>
+                <Container onClick={()=>this.redireccionar(producto.id)} className="container-item-wish"><WishItem title={producto.name} precio={producto.price+" €"} id={producto.id} unidades={producto.stock} img={producto.pics} /></Container>
+            </Col>
+        )
         return (
             <Container fluid className="items-wish">
                 <Row>
-                    <Col sm={3}>
-                        <a href="#"><WishItem title="Taza 1" precio="8,90 €" estrellas="3.8" unidades="1" /></a>
-                    </Col>
-
-                    <Col sm={3}>
-                        <a href="#"><WishItem title="Taza 2" precio="6,90 €" estrellas="5" unidades="1" /></a>
-                    </Col>
-
-                    <Col sm={3}>
-                        <a href="#"><WishItem title="Taza 3" precio="7,90 €" estrellas="2.5" unidades="1" /></a>
-                    </Col>
-
-                    <Col sm={3}>
-                        <a href="#"><WishItem title="Taza 4" precio="8,90 €" estrellas="3.8" unidades="1" /></a>
-                    </Col>
+                    {productosList}
                 </Row>
             </Container>
         )
