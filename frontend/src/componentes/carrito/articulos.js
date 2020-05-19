@@ -28,6 +28,22 @@ export default class articulos extends Component {
         this.setState({show: true})
     }
 
+    removeOneItem = (id) => {
+        let setState = this.setState;
+        let props = this.props;
+        axios.post('/cart/toggleProduct', {
+            "product_id": id,
+            "quantity": 0
+        }, instance)
+          .then(function (response) {
+              console.log(response);
+            props.callback(response.data.data);
+          })
+          .catch(function (error) {
+            setState({failRemove: true, show: false});
+          });
+    }
+
     totalRemove = () => {
         let resultRemove = this.resultRemove;
         axios.post('/cart/deleteAll', {}, instance)
@@ -36,17 +52,17 @@ export default class articulos extends Component {
           })
           .catch(function (error) {
             resultRemove(false);
-          });
-          
+          });  
     }
 
     resultRemove = (value) => {
+        let prod = [];
         if(value){
             this.setState({remove: true, show: false});
         }else{
             this.setState({failRemove: true, show: false});
         }
-        this.props.callback();
+        this.props.callback(prod);
     }
 
     render() {
@@ -95,6 +111,7 @@ export default class articulos extends Component {
                 <td>{product.product.price}</td>
                 <td>{product.quantity}</td>
                 <td>{product.product.price.toFixed(2) * product.quantity} €</td>
+                <td><Button className="btn-danger" onClick={() => this.removeOneItem(product.id)}>Eliminar</Button></td>
             </tr>
         )
 
@@ -114,6 +131,7 @@ export default class articulos extends Component {
                                     <th>PRECIO</th>
                                     <th>UNIDADES</th>
                                     <th>TOTAL</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
