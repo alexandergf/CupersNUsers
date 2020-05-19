@@ -5,6 +5,18 @@
     .title-title{
         text-align: left;
     };
+    .toast-title{
+        position: fixed;
+        right: 1em;
+    }
+    .heartToBasket{
+        .btn{
+            &:hover{
+                background-color: #3fadff;
+            }
+        }
+        
+    }
 }
 .detail-first-line{
     margin-bottom: 4%;

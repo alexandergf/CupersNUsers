@@ -26,7 +26,7 @@ export default class detalleTitle extends Component {
     }
 
     render() {
-        const favProduct = <Toast onClose={() => this.setState({show:false})} show={this.state.show} delay={3000} autohide>
+        const favProduct = <Toast className="toast-title" onClose={() => this.setState({show:false})} show={this.state.show} delay={3000} autohide>
             <Toast.Header>
             <img
                 src="holder.js/20x20?text=%20"
