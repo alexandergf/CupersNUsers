@@ -26,7 +26,7 @@ export default class tarjetaCarrito extends Component {
     }
 
     render() {
-        var renderProducts = this.state.products.map((product,index) => 
+        var renderProducts = this.state.products !== undefined ? this.state.products.map((product,index) => 
             <ListGroup.Item key={"item-listgroup-"+index}>
                 <Row>
                 <Col>
@@ -38,8 +38,8 @@ export default class tarjetaCarrito extends Component {
                     <Row>{product.product.price} €</Row>
                 </Col>
                 </Row>
-            </ListGroup.Item>
-        )
+            </ListGroup.Item> 
+        ): null;
         var totalPrice=0, totalQuantity=0;
         for(let i = 0; i < renderProducts.length;i++){
             totalPrice += this.state.products[i].product.price * this.state.products[i].quantity;

@@ -55,7 +55,7 @@ export default class wishList extends Component {
         return (
             <Container fluid className="wish-perfil">
                 <Card>
-                    <Card.Title><h3 className="wish-title">Lista de deseos <Button>Añadir todo al carrito</Button></h3></Card.Title>
+                    <Card.Title><h3 className="wish-title">Lista de deseos <Container><Button className="btn-delete-all">Borrar todos los productos</Button><Button className="btn-add-all">Añadir todo al carrito</Button></Container></h3></Card.Title>
                     <Card.Body>
                         {this.state.zeroProductos? "No hay productos en la lista de deseados.":<WishItems delete={this.deleteItemWishList.bind(this)} red={this.redireccionar.bind(this)} productos={this.state.productos} />}
                     </Card.Body>

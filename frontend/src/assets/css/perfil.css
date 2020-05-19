@@ -54,10 +54,21 @@
   padding: 0.2em;
 }
 
-.wish-perfil .wish-title .btn {
-  padding: 0.3em 3.5em;
+.wish-perfil .wish-title .container {
+  text-align: end;
+}
+
+.wish-perfil .wish-title .container .btn-add-all {
+  padding: 0.3em 2.5em;
   background-color: #4cb30b;
   border-color: #4cb30b;
+}
+
+.wish-perfil .wish-title .container .btn-delete-all {
+  padding: 0.3em 2.5em;
+  background-color: #fd3939;
+  border-color: #fd3939;
+  margin-right: .5em;
 }
 
 .items-wish a:link, .items-wish a:visited, .items-wish a:hover, .items-wish a:active {

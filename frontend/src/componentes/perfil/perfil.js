@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-// -- Imports de componentes -- //
-import AdminPerfil from './adminPerfil';
-import WishList from '../wishList/wishList';
-import Opinion from '../opinion-perfil/opinionPerfil';
-import Pedidos from '../pedidos/pedidos';
-import EditarPerfil from '../editarPerfil/editarPerfil';
-import Contacto from '../contacto/Contacto';
+import { Container, Col, Row} from 'react-bootstrap';
 import { 
     BrowserRouter as Router,
     Switch,
@@ -16,6 +7,14 @@ import {
     Redirect
 } from 'react-router-dom';
 import '../../assets/css/perfil.css';
+// -- Imports de componentes -- //
+import AdminPerfil from './adminPerfil';
+import WishList from '../wishList/wishList';
+import Opinion from '../opinion-perfil/opinionPerfil';
+import Pedidos from '../pedidos/pedidos';
+import EditarPerfil from '../editarPerfil/editarPerfil';
+import Contacto from '../contacto/Contacto';
+
 
 export default class perfil extends Component {
     constructor(props){
@@ -25,6 +24,7 @@ export default class perfil extends Component {
             num: 1
         }
     }
+
     componentDidUpdate = () => {
         if(this.props.log){
             this.props.logOut(false);
@@ -46,25 +46,26 @@ export default class perfil extends Component {
                 <Container fluid>
                     <Row>
                         <Col xs={3}>
-                            <AdminPerfil user="PabloB1990" />
+                            <AdminPerfil />
                         </Col>
                         <Col xs={9}>
                             <Switch>
-                                <Route path="/EditarPerfil">
-                                    <EditarPerfil />
-                                </Route>
-                                <Route path="/WishList">
-                                    <WishList red={this.redireccionar.bind(this)} />
-                                </Route>
-                                <Route path="/Pedidos">
-                                    <Pedidos />
-                                </Route>
-                                <Route path="/Opinion">
-                                    <Opinion />
-                                </Route>
-                                <Route path="/Contacto">
-                                    <Contacto />
-                                </Route>
+                                <Route path="/EditarPerfil" render={(props)=>
+                                    <EditarPerfil {...props} />
+                                } />
+                                <Route path="/WishList" render={(props) => 
+                                    <WishList {...props}
+                                    red={this.redireccionar.bind(this)} />
+                                } />
+                                <Route path="/Pedidos" render={(props) => 
+                                    <Pedidos {...props} />
+                                } />
+                                <Route path="/Opinion" render={(props) => 
+                                    <Opinion {...props} />
+                                } />
+                                <Route path="/Contacto" render={(props) => 
+                                    <Contacto {...props} />
+                                } />
                             </Switch>
                         </Col>
                     </Row>
