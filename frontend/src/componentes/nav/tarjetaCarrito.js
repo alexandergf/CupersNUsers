@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Button, Toast, ListGroup, Row, Col, Image } from 'react-bootstrap';
+import { Container, Button, Toast, ListGroup, Row, Col, Image, Modal } from 'react-bootstrap';
 import ImagenTest from '../../assets/images/prueba.jpg';
 import { Link } from 'react-router-dom';
+import { BsTrashFill } from 'react-icons/bs';
+import axios from 'axios';
+import { instance } from '../../database/config';
 
 export default class tarjetaCarrito extends Component {
     constructor(props){
@@ -9,7 +12,8 @@ export default class tarjetaCarrito extends Component {
         this.state = {
             unidades: 0,
             total: "0,00",
-            products: this.props.productos
+            products: this.props.productos,
+            failRemove: false
         }
     }
     
@@ -25,7 +29,38 @@ export default class tarjetaCarrito extends Component {
         this.props.calltoclose();
     }
 
+    deleteItemCart = (id) => {
+        let aux = this.aux;
+        let setState = this.setState;
+        axios.post('/cart/toggleProduct', {
+            "product_id": id,
+            "quantity": 0
+        }, instance)
+          .then(function (response) {
+            aux(response.data.data);
+          })
+          .catch(function (error) {
+              setState({failRemove: true});
+          });
+    }
+
+    aux = (product) => {
+        this.setState({products: product})
+        this.props.deleteFromCartCard(product);
+    }
+
     render() {
+        const errorRemove = <Modal show={this.state.failRemove} onHide={() => this.setState({failRemove: false})}>
+            <Modal.Header closeButton>
+            <Modal.Title>Ups</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Algo no ha ido bien.</Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => this.setState({failRemove: false})}>
+                    Vale
+                </Button>
+            </Modal.Footer>
+        </Modal>;
         var renderProducts = this.state.products !== undefined ? this.state.products.map((product,index) => 
             <ListGroup.Item key={"item-listgroup-"+index}>
                 <Row>
@@ -37,6 +72,7 @@ export default class tarjetaCarrito extends Component {
                     <Row>Cantidad: {product.quantity}</Row>
                     <Row>{product.product.price} €</Row>
                 </Col>
+                <Col><Button onClick={() => this.deleteItemCart(product.product.id)}><BsTrashFill /></Button></Col>
                 </Row>
             </ListGroup.Item> 
         ): null;
@@ -66,6 +102,7 @@ export default class tarjetaCarrito extends Component {
                         </Container>
                     </Toast.Body>
                 </Toast>
+                {errorRemove}
             </Container>
         )
     }

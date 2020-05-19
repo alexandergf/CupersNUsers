@@ -36,11 +36,10 @@ export default class articulos extends Component {
             "quantity": 0
         }, instance)
           .then(function (response) {
-              console.log(response);
             props.callback(response.data.data);
           })
           .catch(function (error) {
-            setState({failRemove: true, show: false});
+            setState({failRemove: true});
           });
     }
 
@@ -111,10 +110,9 @@ export default class articulos extends Component {
                 <td>{product.product.price}</td>
                 <td>{product.quantity}</td>
                 <td>{product.product.price.toFixed(2) * product.quantity} €</td>
-                <td><Button className="btn-danger" onClick={() => this.removeOneItem(product.id)}>Eliminar</Button></td>
+                <td><Button className="btn-danger" onClick={() => this.removeOneItem(product.product_id)}>Eliminar</Button></td>
             </tr>
         )
-
         let total = this.calculoTotales(this.props.products);
         
         return (

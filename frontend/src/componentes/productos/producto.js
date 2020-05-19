@@ -14,7 +14,7 @@ export default class producto extends Component {
             estrellas: 0
         }
     }
-    componentDidMount = () => {
+    /*componentDidMount = () => {
         axios.post("/product/getReviews",{"product_id": this.props.id}, instance)
         .then((response) => {
             let point = 0;
@@ -29,7 +29,7 @@ export default class producto extends Component {
         .catch(function (error) {
             console.log(error);
         });
-    }
+    }*/
     render() {
         return (
             <Contenedor fluid className="producto">

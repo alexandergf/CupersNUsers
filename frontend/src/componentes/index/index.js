@@ -107,7 +107,7 @@ export default class index extends Component {
             <Router>
                 <Container fluid className="main-app">
                     <Row>
-                        <Nav productosCarrito={this.state.productosCarrito} callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} logOut={this.functionLogOut.bind(this)}/>
+                        <Nav deleteFromCartCard={this.actualizarCarrito.bind(this)} productosCarrito={this.state.productosCarrito} callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} logOut={this.functionLogOut.bind(this)}/>
                     </Row>
                     <Row className="row-second-line">
                         {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable getCategoria={this.handleCategoria.bind(this)} /></Col> : null}
