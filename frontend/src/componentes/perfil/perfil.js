@@ -25,6 +25,10 @@ export default class perfil extends Component {
         }
     }
 
+    actualizarCarrito = (productos) => {
+        this.props.callback(productos);
+    }
+
     componentDidUpdate = () => {
         if(this.props.log){
             this.props.logOut(false);
@@ -55,7 +59,8 @@ export default class perfil extends Component {
                                 } />
                                 <Route path="/WishList" render={(props) => 
                                     <WishList {...props}
-                                    red={this.redireccionar.bind(this)} />
+                                    red={this.redireccionar.bind(this)} 
+                                    callback={this.actualizarCarrito.bind(this)} />
                                 } />
                                 <Route path="/Pedidos" render={(props) => 
                                     <Pedidos {...props} />

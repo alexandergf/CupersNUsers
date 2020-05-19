@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Card, Button, Modal } from 'react-bootstrap';
+import { Container, Card, Button, Modal, Toast } from 'react-bootstrap';
 import WishItems from './wishItems';
 import { instance } from '../../database/config';
 import axios from 'axios';
@@ -12,7 +12,8 @@ export default class wishList extends Component {
             zeroProductos: false,
             show: false,
             failRemove: false,
-            remove: false
+            remove: false,
+            showCart: false
         }
     }
 
@@ -77,6 +78,23 @@ export default class wishList extends Component {
         }
     }
 
+    addAllItemsWish = () => {
+        let props = this.props;
+        this.state.productos.map((product,index)=>
+            axios.post('/cart/toggleProduct', {
+                "product_id": product.id,
+                "quantity": 1
+            }, instance)
+            .then(function (response) {
+                props.callback(response.data.data);
+            })
+            .catch(function (error) {
+            console.log(error);
+            })
+        )
+        this.setState({showCart: true})
+    }
+
     render() {
         const modalRemove = <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
             <Modal.Header closeButton>
@@ -116,10 +134,31 @@ export default class wishList extends Component {
                 </Button>
             </Modal.Footer>
         </Modal>;
+
+        const cartProduct = <Toast className="toast-title" onClose={() => this.setState({showCart:false})} show={this.state.showCart} delay={3000} autohide>
+            <Toast.Header>
+            <img
+                src="holder.js/20x20?text=%20"
+                className="rounded mr-2"
+                alt=""
+            />
+            <strong className="mr-auto">Lista de deseos</strong>
+            </Toast.Header>
+            <Toast.Body>Productos añadidos al carrito.</Toast.Body>
+        </Toast>;
+
         return (
             <Container fluid className="wish-perfil">
+                {cartProduct}
                 <Card>
-                    <Card.Title><h3 className="wish-title">Lista de deseos <Container><Button className="btn-delete-all" onClick={() => this.deleteAllWishItems()}>Borrar todos los productos</Button><Button className="btn-add-all">Añadir todo al carrito</Button></Container></h3></Card.Title>
+                    <Card.Title>
+                        <h3 className="wish-title">Lista de deseos 
+                        <Container>
+                            <Button className="btn-delete-all" onClick={() => this.deleteAllWishItems()}>Borrar todos los productos</Button>
+                            <Button className="btn-add-all" onClick={() => this.addAllItemsWish()}>Añadir todo al carrito</Button>
+                        </Container>
+                        </h3>
+                    </Card.Title>
                     <Card.Body>
                         {this.state.zeroProductos? "No hay productos en la lista de deseados.":<WishItems delete={this.deleteItemWishList.bind(this)} red={this.redireccionar.bind(this)} productos={this.state.productos} />}
                     </Card.Body>

@@ -121,11 +121,12 @@ export default class index extends Component {
                                 <Route path="/EditarPerfil" render={(props)=>
                                     <Perfil {...props} 
                                     log={this.state.logOut} 
-                                    logOut={this.functionLogOut.bind(this)} />
+                                    logOut={this.functionLogOut.bind(this)} 
+                                    callback={this.actualizarCarrito.bind(this)} />
                                 } /> 
                                 <Route path="/Login" render={(props) =>
                                     <Login {...props} 
-                                    callback={this.actualizarCarrito}/>
+                                    callback={this.refreshCarrito}/>
                                 } />
                                 <Route path="/Detail/:productId" render={(props) =>
                                     <Detail {...props} 
