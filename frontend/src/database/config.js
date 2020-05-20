@@ -1,6 +1,6 @@
 export const instance = {
   baseURL: "https://cupersnusers.vestidosaraya.com/api",
-  timeout: 3000,
+  timeout: 5000,
   headers: {
       'Access-Control-Allow-Origin': "*",
       'Content-type': 'application/json',

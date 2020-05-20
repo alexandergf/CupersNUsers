@@ -64,6 +64,126 @@ export const cartItem = async (id, quantity) => {
             error401 = true;
         }
     });
-    
+
     return [result, error401];
+}
+
+export const totalRemoveCartItems = async () => {
+    let resultRemove = false;
+    await axios.post('/cart/deleteAll', {}, instance)
+          .then(function (response) {
+            resultRemove = true;
+          })
+          .catch(function (error) {
+            resultRemove=false;
+          }); 
+    return resultRemove; 
+}
+
+export const userGetCart = async () => {
+    let result = [];
+    await axios.post('/user/getCart', {}, instance)
+        .then(function (response) {
+            result = response.data.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    return result;
+}
+
+export const userChangePass = async (oldPass, newPass) => {
+    let result = false;
+    await axios.post('/user/changePassword', {
+        "old_password": oldPass,
+        "password": newPass.toString()
+      }, instance)
+      .then(function (response) {
+        if(response.data.data !== null){
+            result = true;
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    
+    return result;
+}
+
+export const userEdit = async (dataUser) => {
+    let result = false;
+    await axios.post('/user/edit', dataUser, instance)
+        .then(function (response) {
+            if(response.data.data !== null) {
+                result=true;
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+    return result;
+}
+
+export const getProductByCategory = async (id) => {
+    let result = [];
+    let direccion =  (id === -1 ? "/product/getAll" : "/product/getByCategory");
+    await axios.post(direccion, {"category_id": id}, instance)
+    .then((response) => {
+        result = response.data.data;
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+    return result;
+}
+
+export const getCateorys = async () => {
+    let result = [];
+    await axios.post('/product/getCategories', {}, instance)
+    .then((response) => {
+        result = response.data.data;
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+    return result;
+}
+
+export const userLog = async (email, password) => {
+    let result = null;
+    let show = false;
+    await axios.post('/user/login', {
+        email: email,
+        password: password
+      }, instance)
+      .then(function (response) {
+        if(response.data.data !== null){
+            result = response.data.data.token;
+        }else{
+            show = true;
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    return [result, show];
+}
+
+export const forgotPass = async (email) => {
+    let result = [];
+    await axios.post('/user/forget', {
+        "email": email
+      }, instance)
+      .then(function (response) {
+        console.log(response);
+        result = response;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+      return result;
 }

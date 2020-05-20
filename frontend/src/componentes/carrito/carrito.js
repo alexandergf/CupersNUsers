@@ -5,9 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Articulos from './articulos';
 import Total from './totalCarrito';
 import '../../assets/css/carrito.css';
-import { instance } from '../../database/config';
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { userGetCart } from '../../database/functions';
 
 export default class carrito extends Component {
     constructor(props){
@@ -20,14 +19,11 @@ export default class carrito extends Component {
     }
 
     componentDidMount = () => {
-        let este = this;
-        axios.post('/user/getCart', {}, instance)
-          .then(function (response) {
-                este.montarProductos(response.data.data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        this.getCart();
+    }
+
+    getCart = async() => {
+        this.montarProductos(await userGetCart());
     }
 
     montarProductos = (prod) => {

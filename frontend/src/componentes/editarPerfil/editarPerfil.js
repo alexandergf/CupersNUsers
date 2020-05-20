@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import { instance } from '../../database/config';
-import axios from 'axios';
+import { Container, Card, Form, Button, Col, Modal} from 'react-bootstrap';
+import { userChangePass, userEdit } from '../../database/functions';
 
 export default class editarPerfil extends Component {
     constructor(props){
@@ -17,14 +12,18 @@ export default class editarPerfil extends Component {
             direction: null,
             old_password: null,
             new_password: null,
-            repeat_password: null
+            repeat_password: null,
+            showErrorChange: false,
+            showSuccessChange: false,
+            messageError: "",
+            messageSuccess: ""
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmitPassword = this.handleSubmitPassword.bind(this);
         this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
     }
 
-    handleChange(event) {   
+    handleChange = (event) => {   
         const target = event.target;
         const value = target.value; 
         const name = target.name;
@@ -34,44 +33,57 @@ export default class editarPerfil extends Component {
         
     }
 
-    handleSubmitPassword(event) {
+    handleSubmitPassword = async (event) => {
         event.preventDefault();
         if(this.state.new_password === this.state.repeat_password){
-            axios.post('/user/changePassword', {
-                "old_password": this.state.old_password,
-                "password": this.state.new_password.toString()
-              }, instance)
-              .then(function (response) {
-                (response.data.data !== null) ? alert("Contraseña cambiada.") : alert("La antigua contraseña no coincide.");
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            let result = await userChangePass(this.state.old_password, this.state.new_password);
+            result === true ? this.setState({showSuccessChange: true, messageSuccess: "Se ha cambiado con exito."}) : this.setState({showErrorChange: true, messageError: "La antigua contraseña no coincide."});
         }else{
-            alert("La contraseña repetida no coincide con la nueva.");
+            this.setState({showErrorChange: true, messageError: "La contraseña repetida no coincide con la nueva."});
         }
     }
 
-    handleSubmitEdit(event) {
+    handleSubmitEdit = async (event) => {
         event.preventDefault();
         let dataUser = {};
         if(this.state.nombre !== null && this.state.nombre !== "") dataUser.name = this.state.nombre;
         if(this.state.apellidos !== null && this.state.nombre !== "") dataUser.surnames = this.state.apellidos;
         if(this.state.telefono !== null && this.state.nombre !== "") dataUser.phone = this.state.telefono;
         if(this.state.direction !== null && this.state.nombre !== "") dataUser.direction = this.state.direction;
-        axios.post('/user/edit', dataUser, instance)
-        .then(function (response) {
-            console.log(response);
-            (response.data.data !== null) ? alert("Bien.") : alert("Mal.");
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        
+        let result = await userEdit(dataUser);
+        result === true ? this.setState({showSuccessChange: true, messageSuccess: "Los datos se han cambiado con exito"}) : this.setState({showErrorChange: true, messageError: "Ha habido un error al modificar los datos."});
     }
 
     render() {
+        const errorChangePass = <Modal show={this.state.showErrorChange} onHide={() => this.setState({showErrorChange: false})}>
+            <Modal.Header closeButton>
+            <Modal.Title>Ups</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>{this.state.messageError}</Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => this.setState({showErrorChange: false})}>
+                    Vale
+                </Button>
+            </Modal.Footer>
+        </Modal>;
+
+        const successChangePass = <Modal show={this.state.showSuccessChange} onHide={() => this.setState({showSuccessChange: false})}>
+            <Modal.Header closeButton>
+            <Modal.Title>Perfecto.</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>{this.state.messageSuccess}</Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => this.setState({showSuccessChange: false})}>
+                    Vale
+                </Button>
+            </Modal.Footer>
+        </Modal>;
+
         return (
             <Container fluid className="edit-perfil">
+                {errorChangePass}
+                {successChangePass}
                 <Card>
                     <Card.Title><h3 className="editPerfil-title">Editar Perfil</h3></Card.Title>
                     <Card.Body className="edit-card">

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col} from 'react-bootstrap';
 import '../../assets/css/indexMain.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { instance } from '../../database/config';
-import axios from 'axios';
+import { getProductByCategory, userGetCart } from '../../database/functions';
 // Componentes
 import Nav from '../nav/Nav';
 import MenuDesplegable from './menuDesplegable';
@@ -58,30 +57,12 @@ export default class index extends Component {
         this.refreshCarrito();
     }
 
-    refreshProducts = (id) => {
-        let direccion =  (id === -1 ? "/product/getAll" : "/product/getByCategory");
-        axios.post(direccion, {"category_id": id}, instance)
-        .then((response) => {
-            this.setState({
-                productos: response.data.data
-            })
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    refreshProducts = async (id) => {
+        this.setState({productos: await getProductByCategory(id)});
     }
 
-    refreshCarrito = () => {
-        let actualizarCarrito = this.actualizarCarrito;
-        axios.post("/cart/toggleProduct",{}, instance)
-        .then((response) => {
-            this.setState({
-                productosCarrito: response.data.data
-            })
-        })
-        .catch(function (error) {
-            actualizarCarrito([]);
-        });
+    refreshCarrito = async () => {
+        this.actualizarCarrito(await userGetCart());        
     }
 
     searchBar = (searchWord) => {

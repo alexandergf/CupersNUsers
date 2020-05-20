@@ -3,7 +3,7 @@ import DetalleImg from './detalleImg';
 import DetalleText from './detalleText';
 import Opiniones from '../opiniones/opiniones';
 import '../../assets/css/detalles.css';
-import {Container,Card,Row,CardDeck} from 'react-bootstrap';
+import { Container, Card, Row, CardDeck} from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { detailProduct } from '../../database/functions';
 

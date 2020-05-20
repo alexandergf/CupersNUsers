@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Form, Container, Button, Row, Modal} from 'react-bootstrap';
-import axios from 'axios';
 import { instance } from '../../database/config';
+import { userLog, forgotPass } from '../../database/functions';
 
 export default class loginIniciarSesion extends Component {
     constructor(props){
@@ -17,7 +17,7 @@ export default class loginIniciarSesion extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    handleChange(event) {   
+    handleChange = (event) => {   
         const target = event.target;
         const value = target.value; 
         const name = target.name;
@@ -26,28 +26,10 @@ export default class loginIniciarSesion extends Component {
         });  
     }
 
-    handleSubmit(event) {
+    handleSubmit = async (event) => {
         event.preventDefault();
-        var sendResponseData = this.sendResponseData;
-        var showError = this.showError;
-        axios.post('/user/login', {
-            email: this.state.email,
-            password: this.state.password
-          }, instance)
-          .then(function (response) {
-            if(response.data.data !== null){
-                sendResponseData(response.data.data.token);
-            }else{
-                showError();
-            }
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-    }
-
-    showError = () => {
-        this.setState({showError: true})
+        let result = await userLog(this.state.email, this.state.password);
+        result[1] === true ? this.setState({showError: result[1]}) : this.sendResponseData(result[0]);
     }
 
     sendResponseData = (value) => {
@@ -56,17 +38,9 @@ export default class loginIniciarSesion extends Component {
         this.props.actualizar(true);
     }
 
-    forgotPassword = () => {
-        axios.post('/user/forget', {
-            "email": this.state.email
-          }, instance)
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-          
+    forgotPassword = async () => {
+        let result = await forgotPass(this.state.email);
+        console.log(result);
         this.setState({show: false,showConfirmation: true});
     }
 

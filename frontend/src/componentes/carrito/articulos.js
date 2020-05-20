@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Button, Card, Table, Image, Modal} from 'react-bootstrap';
 import ImagenTest from '../../assets/images/prueba.jpg';
-import axios from 'axios';
-import { instance } from '../../database/config';
+import { cartItem, totalRemoveCartItems } from '../../database/functions';
 
 export default class articulos extends Component {
     constructor(props){
@@ -28,30 +27,20 @@ export default class articulos extends Component {
         this.setState({show: true})
     }
 
-    removeOneItem = (id) => {
-        let setState = this.setState;
-        let props = this.props;
-        axios.post('/cart/toggleProduct', {
-            "product_id": id,
-            "quantity": 0
-        }, instance)
-          .then(function (response) {
-            props.callback(response.data.data);
-          })
-          .catch(function (error) {
-            setState({failRemove: true});
-          });
+    removeOneItem = async (id) => {
+        let result = await cartItem(id, 0);
+        if(result[1] === false){
+            this.props.callback(result[0]);
+        }else{
+            this.setState({
+                failRemove: result[1]
+            });
+        }
     }
 
-    totalRemove = () => {
-        let resultRemove = this.resultRemove;
-        axios.post('/cart/deleteAll', {}, instance)
-          .then(function (response) {
-            resultRemove(true);
-          })
-          .catch(function (error) {
-            resultRemove(false);
-          });  
+    totalRemove = async () => {
+        let result = await totalRemoveCartItems();  
+        this.resultRemove(result);
     }
 
     resultRemove = (value) => {

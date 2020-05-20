@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import {Container,Card,ListGroup} from 'react-bootstrap';
-import { instance } from '../../database/config';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import { getCateorys } from '../../database/functions';
 export default class menuDesplegable extends Component {
     constructor(props){
         super(props);
@@ -14,15 +12,11 @@ export default class menuDesplegable extends Component {
     }
 
     componentDidMount = () => {
-        axios.post('/product/getCategories', {}, instance)
-        .then((response) => {
-            this.setState({
-                categorias: response.data.data
-            })
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        this.getCat();
+    }
+
+    getCat = async () => {
+        this.setState({categorias: await getCateorys()});
     }
 
     searchCategorie = (id,name) => {
