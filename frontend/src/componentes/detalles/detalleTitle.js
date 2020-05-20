@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
-import { Col, Button, Row, Toast } from 'react-bootstrap';
+import { Col, Button, Row, Toast, Modal } from 'react-bootstrap';
 import { FaHeart } from 'react-icons/fa';
-import { instance } from '../../database/config';
-import axios from 'axios';
+import { addWishItem } from '../../database/functions';
+import { Redirect } from 'react-router-dom';
 
 export default class detalleTitle extends Component {
     constructor(props){
         super(props);
         this.state = {
-            show: false
+            show: false,
+            showLogin: false,
+            redirectLogin: false
         }
     }
 
-    whishItem = (id) => {
-        let este=this;
-        axios.post('/wishlist/toggleProduct', {"product_id": id}, instance)
-          .then(function (response) {
-                if(response.data.data){
-                    este.setState({show: true})
-                }
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+    whishItem = async (id) => {
+        let result = await addWishItem(id);
+        if(result[1] === false){
+            this.setState({
+                show: result[0]
+            })
+        }else{
+            this.setState({
+                showLogin: result[1]
+            })
+        }
+        
     }
 
     render() {
@@ -37,9 +40,27 @@ export default class detalleTitle extends Component {
             </Toast.Header>
             <Toast.Body>Producto añadido a la lista de deseos.</Toast.Body>
         </Toast>;
+        const logIn = <Modal show={this.state.showLogin} onHide={() => this.setState({showLogin: false})}>
+            <Modal.Header closeButton>
+            <Modal.Title>Ups</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Para añadir a la lista de deseos tienes que estar logeado.</Modal.Body>
+            <Modal.Footer>
+                <Button variant="danger" onClick={() => this.setState({showLogin: false})}>
+                    Cancelar
+                </Button>
+                <Button variant="primary" onClick={() => this.setState({redirectLogin: true})}>
+                    Logearse
+                </Button>
+            </Modal.Footer>
+        </Modal>;
+        if(this.state.redirectLogin === true){
+            return <Redirect to="/Login" />
+        }
         return (
             <Row className="title-detail">
                 {favProduct}
+                {logIn}
                 <Col md={6} className="title-title"><h3>{this.props.name}</h3></Col><Col md={{ span: 2, offset: 4 }} className="heartToBasket"><Button className="btn" variant="secondary" onClick={() => this.whishItem(this.props.id)}><FaHeart /></Button></Col>
             </Row>
         )

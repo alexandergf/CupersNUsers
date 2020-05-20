@@ -4,8 +4,7 @@ import Image from 'react-bootstrap/Image';
 import Opinion from './opinion';
 import Estrellas from '../estrellas/estrellas';
 import ImagenTest from '../../assets/images/prueba.jpg';
-import { instance } from '../../database/config';
-import axios from 'axios';
+import { getOpinions } from '../../database/functions';
 
 export default class opiniones extends Component {
     constructor(props){
@@ -17,23 +16,15 @@ export default class opiniones extends Component {
     }
 
     componentDidMount = () => {
-        let direccion = "";
-        this.props.id === -1 ? direccion = "/user/getReviews" : direccion = "/product/getReviews";
-        axios.post(direccion, {"product_id": this.props.id}, instance)
-        .then((response) => {
-            let point = 0;
-            response.data.data.map((opinion,index) => 
-                point+=opinion.rate
-            )
-            point/=response.data.data.length;
-            this.setState({
-                opinions: response.data.data,
-                rate: point
-            })
+        this.getOpiniones();
+    }
+
+    getOpiniones = async () => {
+        let result = await getOpinions(this.props.id);
+        this.setState({
+            opinions: result[0],
+            rate: result[1]
         })
-        .catch(function (error) {
-            console.log(error);
-        });
     }
     render() {
         var opiniones = [];

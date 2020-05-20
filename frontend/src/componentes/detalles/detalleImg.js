@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import Img from './img';
 import ImagenPrueba from '../../assets/images/prueba.jpg';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col} from 'react-bootstrap';
 
 export default class detalleImg extends Component {
     render() {

@@ -72,6 +72,7 @@ export default class index extends Component {
     }
 
     refreshCarrito = () => {
+        let actualizarCarrito = this.actualizarCarrito;
         axios.post("/cart/toggleProduct",{}, instance)
         .then((response) => {
             this.setState({
@@ -79,7 +80,7 @@ export default class index extends Component {
             })
         })
         .catch(function (error) {
-            console.log(error);
+            actualizarCarrito([]);
         });
     }
 

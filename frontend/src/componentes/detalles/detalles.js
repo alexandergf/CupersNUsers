@@ -4,9 +4,8 @@ import DetalleText from './detalleText';
 import Opiniones from '../opiniones/opiniones';
 import '../../assets/css/detalles.css';
 import {Container,Card,Row,CardDeck} from 'react-bootstrap';
-import { instance } from '../../database/config';
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { detailProduct } from '../../database/functions';
 
 export default class detalles extends Component {
     constructor(props){
@@ -17,15 +16,14 @@ export default class detalles extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("/product/detail", {"product_id": this.props.match.params.productId}, instance)
-        .then((response) => {
-            this.setState({
-                product: response.data.data
-            })
+        this.getProductos();
+    }
+
+    getProductos = async () => {
+        let prod = await detailProduct(this.props.match.params.productId);
+        this.setState({
+            product: prod
         })
-        .catch(function (error) {
-            console.log(error);
-        });
     }
 
     componentDidUpdate = () => {
