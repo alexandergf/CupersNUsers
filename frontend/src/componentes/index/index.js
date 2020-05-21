@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col} from 'react-bootstrap';
 import '../../assets/css/indexMain.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { instance } from '../../database/config';
-import axios from 'axios';
+import { getProductByCategory, userGetCart } from '../../database/functions';
 // Componentes
 import Nav from '../nav/Nav';
 import MenuDesplegable from './menuDesplegable';
@@ -58,29 +57,12 @@ export default class index extends Component {
         this.refreshCarrito();
     }
 
-    refreshProducts = (id) => {
-        let direccion =  (id === -1 ? "/product/getAll" : "/product/getByCategory");
-        axios.post(direccion, {"category_id": id}, instance)
-        .then((response) => {
-            this.setState({
-                productos: response.data.data
-            })
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    refreshProducts = async (id) => {
+        this.setState({productos: await getProductByCategory(id)});
     }
 
-    refreshCarrito = () => {
-        axios.post("/cart/toggleProduct",{}, instance)
-        .then((response) => {
-            this.setState({
-                productosCarrito: response.data.data
-            })
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    refreshCarrito = async () => {
+        this.actualizarCarrito(await userGetCart());        
     }
 
     searchBar = (searchWord) => {
@@ -107,7 +89,7 @@ export default class index extends Component {
             <Router>
                 <Container fluid className="main-app">
                     <Row>
-                        <Nav productosCarrito={this.state.productosCarrito} callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} logOut={this.functionLogOut.bind(this)}/>
+                        <Nav deleteFromCartCard={this.actualizarCarrito.bind(this)} productosCarrito={this.state.productosCarrito} callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} logOut={this.functionLogOut.bind(this)}/>
                     </Row>
                     <Row className="row-second-line">
                         {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable getCategoria={this.handleCategoria.bind(this)} /></Col> : null}

@@ -80,6 +80,10 @@ class Nav extends Component {
         this.props.logOut(true);
     }
 
+    deleteFromCart = (prod) => {
+        this.props.deleteFromCartCard(prod);
+    }
+
     render() {
         const enlaceAdmin = <Col xs={2}>
                 <a href="https://cupersnusers.vestidosaraya.com/admin/login">
@@ -149,7 +153,7 @@ class Nav extends Component {
                                         </Button>
                                     </Link>
                                 </Col>
-                                {this.state.cart_show ? <Cart productos={this.props.productosCarrito} show={this.state.cart_show} calltoclose={() => this.setState({cart_show: false})} />:null}
+                                {this.state.cart_show ? <Cart deleteFromCartCard={() => this.deleteFromCart.bind(this)} productos={this.props.productosCarrito} show={this.state.cart_show} calltoclose={() => this.setState({cart_show: false})} />:null}
                                 {this.state.logIn ? enlaceLogOut : null}
                             </Row>
                         </Col>

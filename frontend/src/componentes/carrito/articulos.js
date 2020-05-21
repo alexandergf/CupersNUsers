@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Button, Card, Table, Image, Modal} from 'react-bootstrap';
 import ImagenTest from '../../assets/images/prueba.jpg';
-import axios from 'axios';
-import { instance } from '../../database/config';
+import { cartItem, totalRemoveCartItems } from '../../database/functions';
 
 export default class articulos extends Component {
     constructor(props){
@@ -28,31 +27,20 @@ export default class articulos extends Component {
         this.setState({show: true})
     }
 
-    removeOneItem = (id) => {
-        let setState = this.setState;
-        let props = this.props;
-        axios.post('/cart/toggleProduct', {
-            "product_id": id,
-            "quantity": 0
-        }, instance)
-          .then(function (response) {
-              console.log(response);
-            props.callback(response.data.data);
-          })
-          .catch(function (error) {
-            setState({failRemove: true, show: false});
-          });
+    removeOneItem = async (id) => {
+        let result = await cartItem(id, 0);
+        if(result[1] === false){
+            this.props.callback(result[0]);
+        }else{
+            this.setState({
+                failRemove: result[1]
+            });
+        }
     }
 
-    totalRemove = () => {
-        let resultRemove = this.resultRemove;
-        axios.post('/cart/deleteAll', {}, instance)
-          .then(function (response) {
-            resultRemove(true);
-          })
-          .catch(function (error) {
-            resultRemove(false);
-          });  
+    totalRemove = async () => {
+        let result = await totalRemoveCartItems();  
+        this.resultRemove(result);
     }
 
     resultRemove = (value) => {
@@ -111,10 +99,9 @@ export default class articulos extends Component {
                 <td>{product.product.price}</td>
                 <td>{product.quantity}</td>
                 <td>{product.product.price.toFixed(2) * product.quantity} €</td>
-                <td><Button className="btn-danger" onClick={() => this.removeOneItem(product.id)}>Eliminar</Button></td>
+                <td><Button className="btn-danger" onClick={() => this.removeOneItem(product.product_id)}>Eliminar</Button></td>
             </tr>
         )
-
         let total = this.calculoTotales(this.props.products);
         
         return (

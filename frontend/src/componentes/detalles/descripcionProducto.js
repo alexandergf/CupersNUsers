@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Row from 'react-bootstrap/Row';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Col from 'react-bootstrap/Col';
+import { Row, ListGroup, Col } from 'react-bootstrap';
 
 export default class descripcionProducto extends Component {
     render() {
