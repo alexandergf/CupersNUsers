@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import ItemPedido from './itemPedido';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 export default class itemsPedidos extends Component {
     render() {

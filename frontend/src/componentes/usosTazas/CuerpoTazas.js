@@ -4,8 +4,7 @@ import '../../assets/css/usosTazas.css';
 import { Redirect } from 'react-router-dom';
 import TituloUsosTazas from './TituloUsosTazas';
 import UsoTaza from './UsoTaza';
-import axios from 'axios';
-import { instance } from '../../database/config';
+import { getUsesCup } from '../../database/functions';
 
 class cuerpoTazas extends Component {
     constructor(props){
@@ -16,14 +15,16 @@ class cuerpoTazas extends Component {
     }
 
     componentDidMount = () => {
-        let actualizar = this.actualizar;
-        axios.post('/cup/getUses', {}, instance)
-          .then(function (response) {
-            actualizar(response.data.data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        this.getUses();
+    }
+
+    getUses = async () => {
+        let result = await getUsesCup();
+        if(result[1] === false){
+            this.actualizar(result[0]);
+        }else{
+            console.log(result[0]);
+        }
     }
 
     componentDidUpdate = () => {

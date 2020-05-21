@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Card, Button, Modal, Toast } from 'react-bootstrap';
 import WishItems from './wishItems';
-import { instance } from '../../database/config';
-import axios from 'axios';
+import { getWishList, addWishItem, deleteWishList, cartItem } from '../../database/functions';
 
 export default class wishList extends Component {
     constructor(props){
@@ -18,14 +17,16 @@ export default class wishList extends Component {
     }
 
     componentDidMount = () => {
-        let montarProductos = this.montarProductos;
-        axios.post('/user/getWishlist', {}, instance)
-          .then(function (response) {
-                montarProductos(response.data.data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        this.getWishListUser();
+    }
+
+    getWishListUser = async () => {
+        let result = await getWishList();
+        if(result[1] === false){
+            this.montarProductos(result[0]);
+        }else{
+            console.log(result[1]);
+        }
     }
 
     montarProductos = (products) => {
@@ -42,32 +43,21 @@ export default class wishList extends Component {
         this.props.red(id);
     }
 
-    deleteItemWishList = (id) => {
-        let montarProductos = this.montarProductos;
-        axios.post('/wishlist/toggleProduct', {"product_id": id}, instance)
-          .then(function (response) {
-                if(response.data.data){
-                    montarProductos(response.data.data);
-                }
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+    deleteItemWishList = async (id) => {
+        let result = await addWishItem(id);
+        if(result[1] === false){
+            this.montarProductos(result[0]);
+        }else{
+            console.log(result[1]);
+        }
     }
 
     deleteAllWishItems = () => {
         this.setState({show: true})
     }
 
-    totalRemove = () => {
-        let resultRemove = this.resultRemove;
-        axios.post('/wishlist/deleteAll', {}, instance)
-          .then(function (response) {
-            resultRemove(true);
-          })
-          .catch(function (error) {
-            resultRemove(false);
-          });
+    totalRemove = async () => {
+        this.resultRemove(await deleteWishList());
     }
 
     resultRemove = (value) => {
@@ -80,17 +70,12 @@ export default class wishList extends Component {
 
     addAllItemsWish = () => {
         let props = this.props;
-        this.state.productos.map((product,index)=>
-            axios.post('/cart/toggleProduct', {
-                "product_id": product.id,
-                "quantity": 1
-            }, instance)
-            .then(function (response) {
-                props.callback(response.data.data);
-            })
-            .catch(function (error) {
-            console.log(error);
-            })
+        let result = false;
+        this.state.productos.map(async(product,index)=>
+            {
+                result = await cartItem(product.id,1);
+                result[1] === true ? props.callback(result[0]) : console.log(result[1]);
+            }
         )
         this.setState({showCart: true})
     }

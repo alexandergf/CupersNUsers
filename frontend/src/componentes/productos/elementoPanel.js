@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
+import { Container, Card, Form } from 'react-bootstrap';
 
 export default class elementoPanel extends Component {
     render() {

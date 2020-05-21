@@ -92,7 +92,7 @@ export const userGetCart = async () => {
     return result;
 }
 
-export const userChangePass = async (oldPass, newPass) => {
+export const userChangePass = async (oldPass, newPass) => { 
     let result = false;
     await axios.post('/user/changePassword', {
         "old_password": oldPass,
@@ -186,4 +186,95 @@ export const forgotPass = async (email) => {
       });
 
       return result;
+}
+
+export const createAccount = async (dataUser) => {
+    let result = false;
+    await axios.post('/user/register', dataUser, instance)
+      .then(function (response) {
+        if(response.data.data.email !== null && response.data.data.email !== undefined){
+            result = true;
+        }else{
+            result = false;
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        result = false;
+      });
+
+    return result;
+}
+
+export const getDetailUser = async () => {
+    let result = [];
+    let error = false;
+    await axios.post("/user/detail", {}, instance)
+        .then((response) => {
+            result = response.data.data;
+        })
+        .catch(function (error) {
+            error = true;
+        });
+    
+    return [result, error];
+}
+
+export const getProductByName = async (searchWord) => {
+    let result = [];
+    let error = false;
+    let direccion = searchWord !== "" ? "/product/getByName" : "/product/getAll";
+    await axios.post(direccion, {"name": searchWord}, instance)
+    .then((response) => {
+        result = response.data.data;
+    })
+    .catch(function (error) {
+        console.log(error);
+        error = true;
+    });
+
+    return [result, error];
+}
+
+export const getUsesCup = async (searchWord) => {
+    let result = [];
+    let error = false;
+    await axios.post('/cup/getUses', {}, instance)
+    .then(function (response) {
+      result = response.data.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+      error = true;
+    });
+
+    return [result, error];
+}
+
+export const getWishList = async () => {
+    let result = [];
+    let error = false;
+    await axios.post('/user/getWishlist', {}, instance)
+    .then(function (response) {
+          result = response.data.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+      error = true;
+    });
+
+    return [result, error];
+}
+
+export const deleteWishList = async () => {
+    let result = false;
+    await axios.post('/wishlist/deleteAll', {}, instance)
+    .then(function (response) {
+      result = true;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    return result;
 }

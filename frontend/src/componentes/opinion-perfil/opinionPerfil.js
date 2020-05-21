@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
+import { Container, Card } from 'react-bootstrap';
 import Opiniones from '../opiniones/opiniones';
 
 export default class opinionPerfil extends Component {

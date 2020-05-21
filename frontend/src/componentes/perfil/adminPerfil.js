@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Card, ListGroup, Image, Col, Row } from 'react-bootstrap';
 import ImagenTest from '../../assets/images/prueba.jpg';
-import { 
-    Link
-} from 'react-router-dom';
-import { instance } from '../../database/config';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { getDetailUser } from '../../database/functions';
 
 export default class adminPerfil extends Component {
     constructor(props){
@@ -16,14 +13,14 @@ export default class adminPerfil extends Component {
         }
     }
     componentDidMount = () => {
-        let infoUser = this.infoUser;
-        axios.post("/user/detail", {}, instance)
-        .then((response) => {
-            infoUser(response.data.data);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        this.getDetail();
+    }
+
+    getDetail = async () => {
+        let result = await getDetailUser();
+        if(result[1] === false){
+            this.infoUser(result[0]);
+        }
     }
 
     infoUser = (data) => {

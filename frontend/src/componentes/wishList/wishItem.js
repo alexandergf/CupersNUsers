@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Image } from 'react-bootstrap';
 import ImagenPrueba from '../../assets/images/prueba.jpg';
 import Estrellas from '../estrellas/estrellas';
-import { instance } from '../../database/config';
-import axios from 'axios';
+import { getOpinions } from '../../database/functions';
 
 export default class wishItem extends Component {
     constructor(props){
@@ -13,21 +12,13 @@ export default class wishItem extends Component {
         }
     }
     componentDidMount = () => {
-        axios.post("/product/getReviews",{"product_id": this.props.id}, instance)
-        .then((response) => {
-            console.log(response);
-            let point = 0;
-            response.data.data.map((opinion,index) => 
-                point+=opinion.rate
-            )
-            point/=response.data.data.length;
-            this.setState({
-                estrellas: point
-            })
+        this.getReviews(this.props.id);
+    }
+
+    getReviews = async (id) => {
+        this.setState({
+            estrellas: await getOpinions(id)
         })
-        .catch(function (error) {
-            console.log(error);
-        });
     }
     render() {
         return (

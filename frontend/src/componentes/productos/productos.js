@@ -3,9 +3,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Panel from './panelBuscadorProductos';
 import CProductos from './contenedorProductos';
 import '../../assets/css/productos.css';
-import { instance } from '../../database/config';
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { getProductByName } from '../../database/functions';
+
 export default class productos extends Component {
     constructor(props){
         super(props);
@@ -17,7 +17,6 @@ export default class productos extends Component {
     }
 
     componentDidMount = () => {
-        
         this.setState({
             search: this.props.searchWords
         })
@@ -38,17 +37,15 @@ export default class productos extends Component {
         
     }
 
-    handleOnChange = () => {
-        let direccion = this.props.searchWords !== "" ? "/product/getByName" : "/product/getAll";
-        axios.post(direccion, {"name": this.props.searchWords}, instance)
-        .then((response) => {
+    handleOnChange = async () => {
+        let result = await getProductByName(this.props.searchWords);
+        if(result[1] === false){
             this.setState({
-                products: response.data.data
+                products: result[0]
             })
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        }else{
+            console.log("Error");
+        }
     }
 
     render() {
