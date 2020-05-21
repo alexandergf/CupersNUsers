@@ -33,12 +33,12 @@ export const getOpinions = async (id) => {
 }
 
 export const addWishItem = async (id) => {
-    let result = false;
+    let result = [];
     let error401 = false;
     await axios.post('/wishlist/toggleProduct', {"product_id": id}, instance)
           .then(function (response) {
                 if(response.data.data){
-                    result = true;
+                    result = response.data.data;
                 }
           })
           .catch(function (error) {
@@ -46,6 +46,7 @@ export const addWishItem = async (id) => {
                 error401 = true;
             }
           });
+          
     return [result, error401];
 }
 

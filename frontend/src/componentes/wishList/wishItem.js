@@ -16,8 +16,9 @@ export default class wishItem extends Component {
     }
 
     getReviews = async (id) => {
+        let result = await getOpinions(id);
         this.setState({
-            estrellas: await getOpinions(id)
+            estrellas: result[1]
         })
     }
     render() {

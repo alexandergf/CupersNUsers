@@ -18,14 +18,13 @@ export default class detalleTitle extends Component {
         let result = await addWishItem(id);
         if(result[1] === false){
             this.setState({
-                show: result[0]
+                show: true
             })
         }else{
             this.setState({
                 showLogin: result[1]
             })
         }
-        
     }
 
     render() {
