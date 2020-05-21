@@ -12,7 +12,7 @@ export default class elementoPanel extends Component {
                             <Form.Group controlId={this.props.name+"-checkbox"}>
                                 {this.props.filas.map((fila,index) => {
                                     return (
-                                        <Form.Check type="checkbox" label={fila} />
+                                        <Form.Check key={"fila"+index} type="checkbox" label={fila} />
                                     );
                                 })}
                             </Form.Group>

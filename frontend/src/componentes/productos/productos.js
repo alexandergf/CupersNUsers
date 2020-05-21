@@ -47,7 +47,7 @@ export default class productos extends Component {
             console.log("Error");
         }
     }
-
+    
     render() {
         if(this.props.log){
             return(<Redirect to="/" />)
