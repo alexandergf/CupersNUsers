@@ -17,7 +17,7 @@ export default class contenedorProductos extends Component {
         this.setState({products: this.props.productosBy});
     }
 
-    componentDidUpdate = (prevState) => {
+    componentDidUpdate = () => {
         if(this.props.productosBy !== this.state.products){
             this.setState({products: this.props.productosBy});
         }

@@ -11,8 +11,10 @@ export default class pantallaInicial extends Component {
             categoryName: "",
             idCat: -1
         }
+        this._isMounted = false;
     }
     componentDidMount = () => {
+        this._isMounted = true;
         this.refreshProducts();
     }
 
@@ -31,7 +33,11 @@ export default class pantallaInicial extends Component {
     }
 
     getProd = async (id, nameCategory) => {
-        this.setState({productos: await getProductByCategory(id), categoryName: nameCategory, idCat: id});
+        if(this._isMounted) this.setState({productos: await getProductByCategory(id), categoryName: nameCategory, idCat: id});
+    }
+
+    componentWillUnmount = () => {
+        this._isMounted = false;
     }
 
     render() {

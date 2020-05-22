@@ -41,32 +41,42 @@ export default class productos extends Component {
 
     changeProducts = (filter) => {
         let prod = this.state.allProducts;
-        let newProducts = [];
         if(filter.length === 0){
             this.setState({products: this.state.allProducts})
         }else{
             for (let index = 0; index < filter.length; index++) {
                 switch(filter[index].name) {
                     case 'Categoría':
-                        prod.filter(pr => pr.id === 1).map(pr=>(newProducts.push(pr)));
+                        prod = (this.filtraPorCategoria(prod, filter[index]));
                         break;
                     case 'Precio':
                         prod = (this.filtraPorPrecio(prod,filter[index]));
                         break;
                     case 'Puntuación':
-        
+                        //Falta filtrar por puntuacion
                         break;
                     case 'Stock':
                         prod = (this.filtrarPorStock(prod,filter[index]));
                         break;
                     default:
-                        prod = prod;
+                        
                         break;
                 }
                 
             }
             this.setState({products: prod})
         }        
+    }
+
+    filtraPorCategoria = (prod, filter) => {
+        let newArray = [];
+        if(filter.idRow > 0) {
+            prod.filter(pr => pr.category_id === filter.idRow).map(pr=>(newArray.push(pr)));
+        }else{
+            newArray = this.state.allProducts;
+        }
+
+        return newArray;
     }
 
     filtraPorPrecio = (prod, filter) => {
@@ -86,7 +96,7 @@ export default class productos extends Component {
                 break;
         }
 
-        return (newArray);
+        return newArray;
     }
 
     filtrarPorStock = (prod, filter) => {
@@ -96,17 +106,17 @@ export default class productos extends Component {
                 prod.filter(pr => pr.price >= 1).map(pr=>(newArray.push(pr)));
                 break;
             case 'Sin Stock':
-                prod.filter(pr => pr.stock == 0).map(pr=>(newArray.push(pr)));
+                prod.filter(pr => pr.stock === 0).map(pr=>(newArray.push(pr)));
                 break;
             case 'Fuera de Stock':
-                prod.filter(pr => pr.stock == null || pr.stock == undefined).map(pr=>(newArray.push(pr)));
+                prod.filter(pr => pr.stock === null || pr.stock === undefined).map(pr=>(newArray.push(pr)));
                 break;
             default:
                 newArray = prod;
                 break;
         }
 
-        return (newArray);
+        return newArray;
     }
 
     allProducts = async () => {
@@ -115,13 +125,6 @@ export default class productos extends Component {
             allProducts: result
         })   
     }
-
-    /*
-        {nombre: "Categoría", elementos: ["Todas", "Tazas de plástico", "Tazas de acero", "Tazas everywhere"]},
-                {nombre: "Precio", elementos: ["< 5 €", "5 - 10 €", "< 10 €"]},
-                {nombre: "Puntuación", elementos: ["5 estrellas", "3 - 5 estrellas", "< 3 estrellas"]},
-                {nombre: "Stock", elementos: ["Disponible", "Sin Stock", "Fuera de Stock"]}
-    */
 
     handleOnChange = async () => {
         let result = await getProductByName(this.props.match.params.searchWord);
