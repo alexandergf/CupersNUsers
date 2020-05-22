@@ -57,9 +57,11 @@ export default class index extends Component {
     }
 
     actualizarCarrito = (productos) => {
-        this.setState({
-            productosCarrito: productos
-        })
+        if(productos[1] !== false){
+            this.setState({
+                productosCarrito: productos[0]
+            })
+        }
     }
     
     render() {

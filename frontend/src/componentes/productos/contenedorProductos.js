@@ -8,7 +8,18 @@ export default class contenedorProductos extends Component {
     constructor(props){
         super(props);
         this.state = {
-            loading: true
+            loading: true, 
+            products: []
+        }
+    }
+
+    componentDidMount = () => {
+        this.setState({products: this.props.productosBy});
+    }
+
+    componentDidUpdate = (prevState) => {
+        if(this.props.productosBy !== this.state.products){
+            this.setState({products: this.props.productosBy});
         }
     }
 

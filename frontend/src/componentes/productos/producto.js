@@ -12,12 +12,13 @@ export default class producto extends Component {
         }
     }
     componentDidMount = () => {
-        this.getReviews();
+        this.getReviews(this.props.id);
     }
+
     getReviews = async (id) => {
         //let result = await getOpinions(id);
         this.setState({
-            estrellas: 4
+            estrellas: 1
         })
     }
     render() {

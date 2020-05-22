@@ -27,16 +27,17 @@ export default class carrito extends Component {
     }
 
     montarProductos = (prod) => {
-        let totalPrecio = 0;
-        prod.forEach(product => {
-            if(product.product !== null)
-                totalPrecio += product.quantity * product.product.price
-        });
-        this.setState({
-            productos: prod,
-            total: totalPrecio
-        })
-        
+        if(prod[1] !== true){
+            let totalPrecio = 0;
+            prod[0].forEach(product => {
+                if(product.product !== null)
+                    totalPrecio += product.quantity * product.product.price
+            });
+            this.setState({
+                productos: prod[0],
+                total: totalPrecio
+            })
+        }
     }
 
     actualizarProductos = (prod) => {

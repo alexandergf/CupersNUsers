@@ -54,11 +54,6 @@ class Nav extends Component {
         }
     }
 
-    searchCategorie = (id,name) => {
-        this.sendResponseLateralMenu(true,false);
-        this.props.getCategoria(id,name);
-    }
-
     updatePerfil = () => {
         if(sessionStorage.getItem('token') && this.state.logIn === false) this.setState({logIn: true});
     }
@@ -111,7 +106,7 @@ class Nav extends Component {
                 <Container className="Contenedor" fluid>
                     <Row>
                         <Col xs={2}>
-                            <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" onClick={() => this.searchCategorie(-1,"Todos los productos")}/></Link>
+                            <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" /></Link>
                         </Col>
                         <Col xs={1}>
                             <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)}><BsList className="btn-menu-desplegable-icono" /></Button>

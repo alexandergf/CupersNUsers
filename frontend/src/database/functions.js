@@ -83,14 +83,16 @@ export const totalRemoveCartItems = async () => {
 
 export const userGetCart = async () => {
     let result = [];
+    let error401 = false;
     await axios.post('/user/getCart', {}, instance)
         .then(function (response) {
             result = response.data.data;
         })
         .catch(function (error) {
-            console.log(error);
+            error401 = true;
         });
-    return result;
+
+    return [result, error401];
 }
 
 export const userChangePass = async (oldPass, newPass) => { 
@@ -136,7 +138,6 @@ export const getProductByCategory = async (id) => {
     .catch(function (error) {
         console.log(error);
     });
-
     return result;
 }
 

@@ -40,9 +40,6 @@ export default class pantallaInicial extends Component {
                 <Row>
                     <Col>
                         <Row>
-
-                        </Row>
-                        <Row>
                             <Productos categoria={this.state.categoryName} productosBy={this.state.productos} />
                         </Row>
                     </Col>
