@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col} from 'react-bootstrap';
 import '../../assets/css/indexMain.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { getProductByCategory, userGetCart } from '../../database/functions';
+import { userGetCart } from '../../database/functions';
 // Componentes
 import Nav from '../nav/Nav';
 import MenuDesplegable from './menuDesplegable';
@@ -21,12 +21,9 @@ export default class index extends Component {
         super(props);
         this.state = {
             activeLateralMenu: true,
-            category: "Todos",
-            productos: [],
             logOut: false,
             productosCarrito: []
         }
-        this.handleCategoria = this.handleCategoria.bind(this);
         this.functionLogOut = this.functionLogOut.bind(this);
         this.actualizarCarrito = this.actualizarCarrito.bind(this);
         this.refreshCarrito = this.refreshCarrito.bind(this);
@@ -44,20 +41,8 @@ export default class index extends Component {
         }
     }
 
-    handleCategoria = (id,name) =>{
-        this.setState({
-            category: name
-        });
-        this.refreshProducts(id);
-    }
-
     componentDidMount = () => {
-        this.refreshProducts(-1);
         this.refreshCarrito();
-    }
-
-    refreshProducts = async (id) => {
-        this.setState({productos: await getProductByCategory(id)});
     }
 
     refreshCarrito = async () => {
@@ -85,11 +70,10 @@ export default class index extends Component {
                         <Nav deleteFromCartCard={this.actualizarCarrito.bind(this)} 
                             productosCarrito={this.state.productosCarrito} 
                             callback={this.getStateLaterañMenu.bind(this)} 
-                            getCategoria={this.handleCategoria} 
                             logOut={this.functionLogOut.bind(this)} />
                     </Row>
                     <Row className="row-second-line">
-                        {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable getCategoria={this.handleCategoria.bind(this)} /></Col> : null}
+                        {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable /></Col> : null}
                         <Col className="special-background">
                             <Switch>
                                 <Route path="/UsoTazas" render={(props)=>
@@ -124,11 +108,12 @@ export default class index extends Component {
                                     log={this.state.logOut} 
                                     logOut={this.functionLogOut.bind(this)} />
                                 } />
-                                <Route path="/" render={(props) => 
-                                    <PantallaInicial {...props} 
-                                    categoriaProduct={this.state.category} 
-                                    productos={this.state.productos} />
-                                }/> 
+                                <Route path="/" exact render={(props) => 
+                                    <PantallaInicial {...props} />
+                                } /> 
+                                <Route path="/:idCat/:nameCat" exact render={(props) => 
+                                    <PantallaInicial {...props} />
+                                } /> 
                             </Switch>
                         </Col>
                     </Row>
