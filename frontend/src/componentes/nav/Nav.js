@@ -8,7 +8,7 @@ import { AiOutlineUser, AiOutlineShoppingCart } from 'react-icons/ai';
 import Logo from '../../assets/images/logo.png'
 import '../../assets/css/navNFooter.css';
 import { GiMagnifyingGlass } from 'react-icons/gi';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Cart from './tarjetaCarrito';
 
 class Nav extends Component {
@@ -25,7 +25,6 @@ class Nav extends Component {
         this.buttonSend = React.createRef();
         this.updatePerfil = this.updatePerfil.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
-        this.searchWords = this.searchWords.bind(this);
         this.cartShow = this.cartShow.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
@@ -51,14 +50,8 @@ class Nav extends Component {
 
     handleKeyPress = (event) => {
         if(event.keyCode === 13){
-            this.searchWords();
             this.buttonSend.current.click();
         }
-    }
-
-    searchWords = () => {
-        this.sendResponseLateralMenu(false,false);
-        this.props.search(this.state.search);
     }
 
     searchCategorie = (id,name) => {
@@ -127,7 +120,7 @@ class Nav extends Component {
                             <InputGroup>
                                 <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" onChange={this.handleOnChange} onKeyDown={this.handleKeyPress}/>
                                 <InputGroup.Append>
-                                    <Link to="/Productos" ref={this.buttonSend} onClick={()=>this.searchWords()}><Button variant="light"><GiMagnifyingGlass className="btn-lupa" /></Button></Link>
+                                    <Link to={"/Productos/"+this.state.search} ref={this.buttonSend}><Button variant="light"><GiMagnifyingGlass className="btn-lupa" /></Button></Link>
                                 </InputGroup.Append>
                             </InputGroup>
                         </Col>

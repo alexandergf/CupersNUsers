@@ -18,15 +18,15 @@ export default class productos extends Component {
 
     componentDidMount = () => {
         this.setState({
-            search: this.props.searchWords
+            search: this.props.match.params.searchWord
         })
         this.handleOnChange();
     }
 
     componentDidUpdate = () => {
-        if(this.props.searchWords !== this.state.search){
+        if(this.props.match.params.searchWord !== this.state.search){
             this.setState({
-                search: this.props.searchWords
+                search: this.props.match.params.searchWord
             })
             this.handleOnChange();
         }
@@ -38,7 +38,7 @@ export default class productos extends Component {
     }
 
     handleOnChange = async () => {
-        let result = await getProductByName(this.props.searchWords);
+        let result = await getProductByName(this.props.match.params.searchWord);
         if(result[1] === false){
             this.setState({
                 products: result[0]
@@ -59,7 +59,7 @@ export default class productos extends Component {
                         <Panel />
                     </Col>
                     <Col xs={9} md={10}>
-                        <CProductos productosBy={this.state.products} categoria={"Busqueda: "+(this.props.searchWords !== "" ? this.props.searchWords : "Todos los productos")} />
+                        <CProductos productosBy={this.state.products} categoria={"Busqueda: "+(this.state.search !== "" ? this.state.search : "Todos los productos")} />
                     </Col>
                 </Row>
             </Container>

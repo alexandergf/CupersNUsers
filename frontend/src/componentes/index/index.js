@@ -23,7 +23,6 @@ export default class index extends Component {
             activeLateralMenu: true,
             category: "Todos",
             productos: [],
-            searchWordBar: "",
             logOut: false,
             productosCarrito: []
         }
@@ -65,12 +64,6 @@ export default class index extends Component {
         this.actualizarCarrito(await userGetCart());        
     }
 
-    searchBar = (searchWord) => {
-        this.setState({
-            searchWordBar: searchWord
-        })
-    }
-
     functionLogOut = (value) => {
         this.setState({
             logOut: value,
@@ -92,7 +85,6 @@ export default class index extends Component {
                         <Nav deleteFromCartCard={this.actualizarCarrito.bind(this)} 
                             productosCarrito={this.state.productosCarrito} 
                             callback={this.getStateLaterañMenu.bind(this)} 
-                            search={this.searchBar.bind(this)} 
                             getCategoria={this.handleCategoria} 
                             logOut={this.functionLogOut.bind(this)} />
                     </Row>
@@ -121,11 +113,10 @@ export default class index extends Component {
                                         log={this.state.logOut} 
                                         logOut={this.functionLogOut.bind(this)} />
                                 } />
-                                <Route path="/Productos" render={(props) => 
+                                <Route path="/Productos/:searchWord" render={(props) => 
                                     <Productos {...props} 
                                         log={this.state.logOut} 
-                                        logOut={this.functionLogOut.bind(this)} 
-                                        searchWords={this.state.searchWordBar} />
+                                        logOut={this.functionLogOut.bind(this)} />
                                 } />
                                 <Route path="/Carrito" render={(props) => 
                                     <Carrito {...props} 
