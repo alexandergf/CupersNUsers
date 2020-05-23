@@ -3,35 +3,49 @@ import { Card, Col, Row } from 'react-bootstrap';
 import Producto from './producto';
 import { Link } from 'react-router-dom';
 
-
 export default class contenedorProductos extends Component {
     constructor(props){
         super(props);
         this.state = {
             loading: true, 
             products: []
-        }
+        };
+        this.timerID = null;
+        this._mount = false;
     }
-
+    
     componentDidMount = () => {
+        this._mount = true;
         this.setState({products: this.props.productosBy});
+        this.useEffect();
     }
 
     componentDidUpdate = () => {
         if(this.props.productosBy !== this.state.products){
-            this.setState({products: this.props.productosBy});
+           this.setState({products: this.props.productosBy, loading: true});
+           this.useEffect();
         }
     }
 
-    componentWillUpdate = () => {
-        if(this.props.productosBy.length !== 0){
-            setTimeout(()=>{
-                this.setState({
-                    loading: false
-                })
-            }, 2000)
-        }
+    useEffect = () => {
+        this.timerID = setTimeout(
+            function() {
+                if(this._mount){
+                    this.setState({loading: false});
+                }
+                
+            }
+            .bind(this),
+            3000
+        );
     }
+
+    componentWillUnmount = () => {
+        this._mount = false;
+        clearTimeout(this.timerID);
+    }
+    
+    
 
     render() {
         var productosRender = this.props.productosBy.map((product,index) => 

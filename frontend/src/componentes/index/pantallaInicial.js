@@ -5,7 +5,6 @@ import { getProductByCategory } from '../../database/functions';
 
 
 export default class pantallaInicial extends Component {
-    _isMounted = false;
     constructor(props){
         super(props);
         this.state = {
@@ -13,12 +12,9 @@ export default class pantallaInicial extends Component {
             categoryName: "",
             idCat: -1
         }
-        this.mounted = null;
     }
     componentDidMount = () => {
-        this._isMounted = true;
         this.refreshProducts();
-        
     }
 
     componentDidUpdate = () => {
@@ -28,25 +24,19 @@ export default class pantallaInicial extends Component {
     }
 
     refreshProducts = () => {
-        if(this.props.match.params.idCat === undefined || this.props.match.params.idCat === null){
-            this.getProd(-1, "Todos los productos");
-        }else{
-            this.getProd(this.props.match.params.idCat, this.props.match.params.nameCat);
-        }
-    
+        this.getProd(this.props.match.params.idCat, this.props.match.params.nameCat);
     }
 
     getProd = async (id, nameCategory) => {
-        
-
+        if(this.props.match.params.idCat === undefined || this.props.match.params.idCat === null){
+            this.setState({productos: await getProductByCategory(-1), categoryName: "Todos los productos", idCat: undefined});
+        }else{
             this.setState({productos: await getProductByCategory(id), categoryName: nameCategory, idCat: id});
-        
-            
-        
+        }
     }
 
     componentWillUnmount = () => {
-        this._isMounted = false;
+
     }
 
     render() {
