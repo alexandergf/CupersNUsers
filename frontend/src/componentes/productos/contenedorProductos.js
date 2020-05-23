@@ -55,9 +55,10 @@ export default class contenedorProductos extends Component {
         )
         var zeroResult = <Col sm={4}> <p>No se han encontrado resultados.</p></Col>;
         var cargando = this.state.loading ? <Col sm={4}> <p>Cargando...</p></Col> : zeroResult;
+        var title = this.props.change === true ? "Busqueda: por parametros." : (this.props.categoria === "Todos" ? "Todos los productos" : this.props.categoria);
         return (
             <Card className="contenedor-productos">
-                <Card.Title><h3>{this.props.categoria === "Todos" ? "Todos los productos" : this.props.categoria}</h3></Card.Title>
+                <Card.Title><h3>{title}</h3></Card.Title>
                 <Card.Body>
                     <Row>
                         {this.props.productosBy.length !== 0 ? productosRender : cargando }

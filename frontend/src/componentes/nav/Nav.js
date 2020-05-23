@@ -23,6 +23,7 @@ class Nav extends Component {
             auxLogIn: true
         };
         this.buttonSend = React.createRef();
+        this.formInput = React.createRef();
         this.updatePerfil = this.updatePerfil.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
         this.cartShow = this.cartShow.bind(this);
@@ -50,6 +51,7 @@ class Nav extends Component {
 
     handleKeyPress = (event) => {
         if(event.keyCode === 13){
+            this.borrarSearchBar()
             this.buttonSend.current.click();
         }
     }
@@ -72,6 +74,10 @@ class Nav extends Component {
 
     deleteFromCart = (prod) => {
         this.props.deleteFromCartCard(prod);
+    }
+
+    borrarSearchBar = () => {
+        this.formInput.current.value = "";
     }
 
     render() {
@@ -113,9 +119,9 @@ class Nav extends Component {
                         </Col>
                         <Col xs={6}>
                             <InputGroup>
-                                <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" onChange={this.handleOnChange} onKeyDown={this.handleKeyPress}/>
+                                <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" onChange={this.handleOnChange} onKeyDown={this.handleKeyPress} ref={this.formInput} />
                                 <InputGroup.Append>
-                                    <Link to={"/Productos/"+this.state.search} ref={this.buttonSend}><Button variant="light"><GiMagnifyingGlass className="btn-lupa" /></Button></Link>
+                                    <Link to={"/Productos/"+this.state.search} ref={this.buttonSend} onClick={() => this.borrarSearchBar()}><Button variant="light"><GiMagnifyingGlass className="btn-lupa" /></Button></Link>
                                 </InputGroup.Append>
                             </InputGroup>
                         </Col>

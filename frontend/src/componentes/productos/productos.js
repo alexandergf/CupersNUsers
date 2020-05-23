@@ -12,7 +12,8 @@ export default class productos extends Component {
         this.state = {
             products: [],
             search: "",
-            allProducts: []
+            allProducts: [],
+            changeTitle: false
         }
         this.handleOnChange = this.handleOnChange.bind(this);
         this.changeProducts = this.changeProducts.bind(this);
@@ -29,7 +30,8 @@ export default class productos extends Component {
     componentDidUpdate = () => {
         if(this.props.match.params.searchWord !== this.state.search){
             this.setState({
-                search: this.props.match.params.searchWord
+                search: this.props.match.params.searchWord,
+                changeTitle: false
             })
             this.handleOnChange();
         }
@@ -42,7 +44,11 @@ export default class productos extends Component {
     changeProducts = (filter) => {
         let prod = this.state.allProducts;
         if(filter.length === 0){
-            this.setState({products: this.state.allProducts})
+            this.setState({
+                search: this.props.match.params.searchWord,
+                changeTitle: false
+            })
+            this.handleOnChange();
         }else{
             for (let index = 0; index < filter.length; index++) {
                 switch(filter[index].name) {
@@ -64,7 +70,7 @@ export default class productos extends Component {
                 }
                 
             }
-            this.setState({products: prod})
+            this.setState({products: prod, changeTitle: true})
         }        
     }
 
@@ -148,7 +154,7 @@ export default class productos extends Component {
                         <Panel otraForma={this.changeProducts.bind(this)} />
                     </Col>
                     <Col xs={9} md={10}>
-                        <CProductos productosBy={this.state.products} categoria={"Busqueda: "+(this.state.search !== "" ? this.state.search : "Todos los productos")} />
+                        <CProductos productosBy={this.state.products} change={this.state.changeTitle} categoria={"Busqueda: "+(this.state.search !== "" ? this.state.search : "Todos los productos")} />
                     </Col>
                 </Row>
             </Container>
