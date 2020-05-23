@@ -56,7 +56,7 @@ export default class tarjetaCarrito extends Component {
                 </Button>
             </Modal.Footer>
         </Modal>;
-        var renderProducts = this.state.products !== undefined ? this.state.products.map((product,index) => 
+        var renderProducts = this.state.products !== undefined && this.state.products !== null ? this.state.products.map((product,index) => 
             <ListGroup.Item key={"item-listgroup-"+index}>
                 <Row>
                 <Col>

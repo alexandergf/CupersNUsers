@@ -3,7 +3,9 @@ import { Container, Col, Row} from 'react-bootstrap';
 import Productos from '../productos/contenedorProductos';
 import { getProductByCategory } from '../../database/functions';
 
+
 export default class pantallaInicial extends Component {
+    _isMounted = false;
     constructor(props){
         super(props);
         this.state = {
@@ -11,11 +13,12 @@ export default class pantallaInicial extends Component {
             categoryName: "",
             idCat: -1
         }
-        this._isMounted = false;
+        this.mounted = null;
     }
     componentDidMount = () => {
         this._isMounted = true;
         this.refreshProducts();
+        
     }
 
     componentDidUpdate = () => {
@@ -30,10 +33,16 @@ export default class pantallaInicial extends Component {
         }else{
             this.getProd(this.props.match.params.idCat, this.props.match.params.nameCat);
         }
+    
     }
 
     getProd = async (id, nameCategory) => {
-        if(this._isMounted) this.setState({productos: await getProductByCategory(id), categoryName: nameCategory, idCat: id});
+        
+
+            this.setState({productos: await getProductByCategory(id), categoryName: nameCategory, idCat: id});
+        
+            
+        
     }
 
     componentWillUnmount = () => {

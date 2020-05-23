@@ -25,7 +25,7 @@ export default class contenedorProductos extends Component {
 
     componentWillUpdate = () => {
         if(this.props.productosBy.length !== 0){
-            setInterval(()=>{
+            setTimeout(()=>{
                 this.setState({
                     loading: false
                 })

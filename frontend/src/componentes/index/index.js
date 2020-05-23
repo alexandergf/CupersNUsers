@@ -46,7 +46,8 @@ export default class index extends Component {
     }
 
     refreshCarrito = async () => {
-        this.actualizarCarrito(await userGetCart());        
+        let result = await userGetCart();
+        if(result[1] === false) this.actualizarCarrito(result[0]);        
     }
 
     functionLogOut = (value) => {
@@ -57,11 +58,11 @@ export default class index extends Component {
     }
 
     actualizarCarrito = (productos) => {
-        if(productos[1] !== false){
+        
             this.setState({
-                productosCarrito: productos[0]
+                productosCarrito: productos
             })
-        }
+        
     }
     
     render() {
