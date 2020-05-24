@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Row, Col} from 'react-bootstrap';
+import { Container, Row, Col, Collapse, Button } from 'react-bootstrap';
+import { BsList } from 'react-icons/bs';
 import '../../assets/css/indexMain.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { userGetCart } from '../../database/functions';
+import { userGetCart, getCateorys } from '../../database/functions';
 // Componentes
 import Nav from '../nav/Nav';
 import MenuDesplegable from './menuDesplegable';
@@ -15,18 +16,24 @@ import Detail from '../detalles/detalles';
 import Productos from '../productos/productos';
 import Carrito from '../carrito/carrito';
 
-
 export default class index extends Component {
     constructor(props){
         super(props);
         this.state = {
+            categorias: [],
             activeLateralMenu: true,
             logOut: false,
             productosCarrito: []
         }
+        this.lateralMenu = React.createRef();
         this.functionLogOut = this.functionLogOut.bind(this);
         this.actualizarCarrito = this.actualizarCarrito.bind(this);
         this.refreshCarrito = this.refreshCarrito.bind(this);
+    }
+
+    componentDidMount = () => {
+        this.refreshCarrito();
+        this.iniCategorias();
     }
 
     getStateLaterañMenu = (activo, mode) => {
@@ -41,8 +48,8 @@ export default class index extends Component {
         }
     }
 
-    componentDidMount = () => {
-        this.refreshCarrito();
+    iniCategorias = async () => {
+        this.setState({categorias: await getCateorys()});
     }
 
     refreshCarrito = async () => {
@@ -58,11 +65,9 @@ export default class index extends Component {
     }
 
     actualizarCarrito = (productos) => {
-        
-            this.setState({
-                productosCarrito: productos
-            })
-        
+        this.setState({
+            productosCarrito: productos
+        })
     }
     
     render() {
@@ -73,10 +78,16 @@ export default class index extends Component {
                         <Nav deleteFromCartCard={this.actualizarCarrito.bind(this)} 
                             productosCarrito={this.state.productosCarrito} 
                             callback={this.getStateLaterañMenu.bind(this)} 
-                            logOut={this.functionLogOut.bind(this)} />
+                            logOut={this.functionLogOut.bind(this)} 
+                            reference={this.lateralMenu}/>
                     </Row>
                     <Row className="row-second-line">
-                        {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable /></Col> : null}
+                        <Collapse in={this.state.activeLateralMenu}>
+                            <Col sm={2} className="col-menu-desplegable" ref={this.lateralMenu} >
+                                <MenuDesplegable cat={this.state.categorias} />
+                            </Col>
+                        </Collapse>
+                        
                         <Col className="special-background">
                             <Switch>
                                 <Route path="/UsoTazas" render={(props)=>

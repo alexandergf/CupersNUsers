@@ -20,10 +20,12 @@ class Nav extends Component {
             search: "",
             cart_show: false,
             show: false,
-            auxLogIn: true
+            auxLogIn: true,
+            lateralMenu: true
         };
         this.buttonSend = React.createRef();
         this.formInput = React.createRef();
+        this.lateralMenu = this.props.reference;
         this.updatePerfil = this.updatePerfil.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
         this.cartShow = this.cartShow.bind(this);
@@ -115,7 +117,7 @@ class Nav extends Component {
                             <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" /></Link>
                         </Col>
                         <Col xs={1}>
-                            <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)}><BsList className="btn-menu-desplegable-icono" /></Button>
+                            <Button aria-expanded={this.state.activeLateralMenu} aria-controls={this.lateralMenu.current} variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)} ><BsList className="btn-menu-desplegable-icono" /></Button>
                         </Col>
                         <Col xs={6}>
                             <InputGroup>
