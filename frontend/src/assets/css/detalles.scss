@@ -19,6 +19,14 @@
 }
 .detail-first-line{
     margin-bottom: 4%;
+    .foto-taza{
+        width: 100%;
+        height: 100%;
+    }
+    .card-deck{
+        width: 100%;
+        margin: 0;
+    }
 }
 .carrito{
     a{
@@ -110,6 +118,9 @@
 .opinion-row{
     margin-bottom: 2%;
     text-align: left;
+}
+.card-opinion-row{
+    margin: 0 15px!important;
 }
 .stars{
     margin-left: -15px;

@@ -4,9 +4,20 @@
     .col-menu-desplegable{
         padding: 0;
     }
-    
+    .active .col-menu-desplegable{
+        transform: translateX(-1000px);
+        width: 0px;
+    }
+    .col-menu-desplegable{
+        transition: transform .5s ease, width .5s;
+        overflow: auto;
+        width: 100%;
+        
+    }
     .menu-desplegable{
+        z-index: 2;
         padding: 0;
+        
         .card{
             height: 100%;
         }
@@ -40,9 +51,15 @@
     }
     .row-second-line{
         height: 89.1%;
+        
     }
     .special-background{
         background-color: #ccc;
+        padding-right: 0!important;
+        
+        .container-fluid .row{
+            margin-left: 0;
+        }
     }
     .contenedor-productos{
         width: 100%;

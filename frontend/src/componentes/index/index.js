@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Collapse, Button } from 'react-bootstrap';
-import { BsList } from 'react-icons/bs';
+import { Container, Row, Col, Collapse } from 'react-bootstrap';
 import '../../assets/css/indexMain.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { userGetCart, getCateorys } from '../../database/functions';
@@ -78,17 +77,13 @@ export default class index extends Component {
                         <Nav deleteFromCartCard={this.actualizarCarrito.bind(this)} 
                             productosCarrito={this.state.productosCarrito} 
                             callback={this.getStateLaterañMenu.bind(this)} 
-                            logOut={this.functionLogOut.bind(this)} 
-                            reference={this.lateralMenu}/>
+                            logOut={this.functionLogOut.bind(this)} />
                     </Row>
-                    <Row className="row-second-line">
-                        <Collapse in={this.state.activeLateralMenu}>
-                            <Col sm={2} className="col-menu-desplegable" ref={this.lateralMenu} >
-                                <MenuDesplegable cat={this.state.categorias} />
-                            </Col>
-                        </Collapse>
-                        
-                        <Col className="special-background">
+                    <Row className={"row-second-line " + (!this.state.activeLateralMenu?"active":"")}>
+                        <Col className={"col-menu-desplegable "} ref={this.lateralMenu} >
+                            <MenuDesplegable cat={this.state.categorias} />
+                        </Col>
+                        <Col className="special-background" sm={(!this.state.activeLateralMenu?"12":"10")}>
                             <Switch>
                                 <Route path="/UsoTazas" render={(props)=>
                                     <UsoTazas {...props} 

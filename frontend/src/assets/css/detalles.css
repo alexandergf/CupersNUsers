@@ -19,6 +19,16 @@
   margin-bottom: 4%;
 }
 
+.detail-first-line .foto-taza {
+  width: 100%;
+  height: 100%;
+}
+
+.detail-first-line .card-deck {
+  width: 100%;
+  margin: 0;
+}
+
 .carrito a {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -145,6 +155,10 @@
 .opinion-row {
   margin-bottom: 2%;
   text-align: left;
+}
+
+.card-opinion-row {
+  margin: 0 15px !important;
 }
 
 .stars {

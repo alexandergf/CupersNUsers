@@ -117,7 +117,7 @@ class Nav extends Component {
                             <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" /></Link>
                         </Col>
                         <Col xs={1}>
-                            <Button aria-expanded={this.state.activeLateralMenu} aria-controls={this.lateralMenu.current} variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)} ><BsList className="btn-menu-desplegable-icono" /></Button>
+                            <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)} ><BsList className="btn-menu-desplegable-icono" /></Button>
                         </Col>
                         <Col xs={6}>
                             <InputGroup>
