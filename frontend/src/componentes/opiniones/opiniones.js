@@ -41,7 +41,7 @@ export default class opiniones extends Component {
             );
         }else{
             opiniones.push(
-                <Row className="opinion-row">
+                <Row className="opinion-row" key="opinion-row-non">
                     <Col sm={12} key={"no-opinions"}>No hay opiniones.</Col>
                 </Row>
             )

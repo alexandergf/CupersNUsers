@@ -59,13 +59,12 @@ export default class productos extends Component {
                         prod = (this.filtraPorPrecio(prod,filter[index]));
                         break;
                     case 'Puntuación':
-                        //Falta filtrar por puntuacion
+                        prod = (this.filtrarPorEstrellas(prod,filter[index]));
                         break;
                     case 'Stock':
                         prod = (this.filtrarPorStock(prod,filter[index]));
                         break;
                     default:
-                        
                         break;
                 }
                 
@@ -116,6 +115,26 @@ export default class productos extends Component {
                 break;
             case 'Fuera de Stock':
                 prod.filter(pr => pr.stock === null || pr.stock === undefined).map(pr=>(newArray.push(pr)));
+                break;
+            default:
+                newArray = prod;
+                break;
+        }
+
+        return newArray;
+    }
+
+    filtrarPorEstrellas = (prod, filter) => {
+        let newArray = [];
+        switch(filter.fil){
+            case '5 estrellas':
+                prod.filter(pr => pr.average >= 5).map(pr=>(newArray.push(pr)));
+                break;
+            case '3 - 5 estrellas':
+                prod.filter(pr => pr.average >= 3 && pr.average < 5).map(pr=>(newArray.push(pr)));
+                break;
+            case '< 3 estrellas':
+                prod.filter(pr => pr.average < 3).map(pr=>(newArray.push(pr)));
                 break;
             default:
                 newArray = prod;
