@@ -44,7 +44,7 @@ export default class pantallaInicial extends Component {
             <Container fluid>
                 <Row>
                     <Col>
-                        <Row>
+                        <Row className="contenedor-productos-row">
                             <Productos categoria={this.state.categoryName} productosBy={this.state.productos} />
                         </Row>
                     </Col>

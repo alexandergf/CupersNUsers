@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Collapse } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import '../../assets/css/indexMain.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { userGetCart, getCateorys } from '../../database/functions';

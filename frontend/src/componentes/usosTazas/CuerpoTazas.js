@@ -69,7 +69,7 @@ class cuerpoTazas extends Component {
             return(<Redirect to="/" />)
         } 
         return (
-            <Container fluid>
+            <Container fluid className="uso-tazas-container">
                 <Row>
                     <Col xs={{span:10, offset:1}}>
                         <Card>

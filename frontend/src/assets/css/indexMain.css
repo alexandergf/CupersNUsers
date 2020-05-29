@@ -1,10 +1,7 @@
 .main-app {
   padding: 0;
   height: 100%;
-}
-
-.main-app .col-menu-desplegable {
-  padding: 0;
+  background-color: #ccc;
 }
 
 .main-app .active .col-menu-desplegable {
@@ -14,21 +11,30 @@
 }
 
 .main-app .col-menu-desplegable {
+  padding: 0;
   -webkit-transition: width .5s, -webkit-transform .5s ease;
   transition: width .5s, -webkit-transform .5s ease;
   transition: transform .5s ease, width .5s;
   transition: transform .5s ease, width .5s, -webkit-transform .5s ease;
   overflow: auto;
   width: 100%;
+  background-color: #ccc;
 }
 
 .main-app .menu-desplegable {
-  z-index: 2;
+  background-color: #ccc;
+  z-index: 0;
   padding: 0;
+  position: fixed;
+  width: 15%;
+  left: 0;
+  height: 100%;
+  top: 4.5em;
 }
 
 .main-app .menu-desplegable .card {
   height: 100%;
+  background-color: white;
 }
 
 .main-app .menu-desplegable .card-title {
@@ -64,10 +70,6 @@
   text-decoration: none;
 }
 
-.main-app .row-second-line {
-  height: 89.1%;
-}
-
 .main-app .special-background {
   background-color: #ccc;
   padding-right: 0 !important;
@@ -77,15 +79,24 @@
   margin-left: 0;
 }
 
+.main-app .special-background .contenedor-productos-row {
+  margin-bottom: 5.5em;
+}
+
 .main-app .contenedor-productos {
   width: 100%;
   margin: 2em;
+  top: 4.5em;
 }
 
 .main-app .contenedor-productos .card-title {
   text-align: start;
   border-bottom: 1px solid #ccc;
   padding: .7em;
+}
+
+.main-app .contenedor-productos .producto {
+  margin-bottom: 2em;
 }
 
 .main-app .contenedor-productos .producto .row {

@@ -1,11 +1,21 @@
 .Footer{
-    background-color: #3fadff;    
+    background-color: #3fadff; 
+    bottom: 0;
+    position: fixed;
+    z-index: 1;
+}
+
+.row-footer{
+    margin: 0;
 }
 
 .Nav {
     width: 100%;
     background-color: #3fadff;
     padding: .5em;
+    position: fixed;
+    left: 0;
+    z-index: 2;
 }
 
 .Nav > .Botones > a,.Nav > .Botones > a:link, .Nav > .Botones > a:visited, .Nav > .Botones > a:hover,  .Nav > .Botones > a:active {
