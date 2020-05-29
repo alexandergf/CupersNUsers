@@ -63,10 +63,16 @@
             border: 1px dotted black;
             margin-bottom: 1em;
         }
-        .row{
-            display: flex;
-            justify-content: space-between;
+        .row-total-price-cart{
             font-weight: 700;
+            .col{
+                &:first-of-type{
+                    text-align: start;
+                }
+                &:last-of-type{
+                    text-align: end;
+                }
+            }
         }
         .btn-realizar-pedido{
             width: 100%;

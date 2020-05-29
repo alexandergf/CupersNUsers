@@ -131,7 +131,7 @@ export default class articulos extends Component {
                         <Button className="btn-vaciar-cesta" onClick={() => this.removeItemsCart()}
                             disabled={this.props.products.length === 0 ? true : false}
                             >Vaciar cesta</Button>
-                        <Button className="btn-seguir-comprando">Seguir comprando</Button>
+                        <Link to="/"><Button className="btn-seguir-comprando">Seguir comprando</Button></Link>
                     </Card.Footer>
                 </Card>
                 {modalRemove}

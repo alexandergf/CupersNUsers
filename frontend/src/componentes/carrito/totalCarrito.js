@@ -1,27 +1,64 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Card, Button, Row, Col, Modal } from 'react-bootstrap';
+import { setOrder } from '../../database/functions';
 
 export default class totalCarrito extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            link: null,
+            linkOpen: false,
+            show: false,
+            showError: false
+        }
+    }
+
+    makeOrder = async () => {
+        this.setState({show: true})
+        let result = await setOrder();
+        if(result !== "" && result !== null && result !== undefined){
+            window.location.href = result; 
+        }else{
+            this.setState({show: false, showError: true})
+        }
+    }
+
     render() {
+        const waitAmoment = <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Un momento</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Se le esta redirigiendo a una plataforma de pago.</Modal.Body>
+                </Modal>;
+        const errorCart = <Modal show={this.state.showError} onHide={() => this.setState({showError: false})}>
+            <Modal.Header closeButton>
+            <Modal.Title>Ups!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Ha habido un error con la plataforma de pago.</Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => this.setState({showError: false})}>
+                    Vale
+                </Button>
+            </Modal.Footer>
+        </Modal>;
+            
         return (
             <Container className="total-carrito">
                 <Card>
                     <Card.Body>
-                        <Row>
-                            <Col sm={3}>
+                        <Row className="row-total-price-cart">
+                            <Col>
                                 TOTAL
                             </Col>
-                            <Col sm={3}>
+                            <Col>
                                 {this.props.totalPrecio} €
                             </Col>
                         </Row>
                     </Card.Body>
                 </Card>
-                <Button className="btn-realizar-pedido">REALIZAR PEDIDO</Button>
+                <Button className="btn-realizar-pedido" onClick={this.makeOrder} disabled={this.props.products.length === 0 ? true : false}>REALIZAR PEDIDO</Button>
+                {waitAmoment}
+                {errorCart}
             </Container>
         )
     }

@@ -280,3 +280,16 @@ export const deleteWishList = async () => {
 
     return result;
 }
+
+export const setOrder = async () => {
+    let result = "";
+    await axios.post('/order/set', {}, instance)
+    .then(function (response) {
+        result = response.data.data.link;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    return result;
+}

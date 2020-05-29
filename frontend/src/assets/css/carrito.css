@@ -80,14 +80,16 @@
   margin-bottom: 1em;
 }
 
-.carrito .total-carrito .row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.carrito .total-carrito .row-total-price-cart {
   font-weight: 700;
+}
+
+.carrito .total-carrito .row-total-price-cart .col:first-of-type {
+  text-align: start;
+}
+
+.carrito .total-carrito .row-total-price-cart .col:last-of-type {
+  text-align: end;
 }
 
 .carrito .total-carrito .btn-realizar-pedido {

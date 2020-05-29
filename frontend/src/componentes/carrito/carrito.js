@@ -65,7 +65,7 @@ export default class carrito extends Component {
                         <Articulos callback={this.actualizarProductos.bind(this)} products={this.state.productos} />
                     </Col>
                     <Col sm={3}>
-                        <Total totalPrecio={this.state.total.toFixed(2)} />
+                        <Total totalPrecio={this.state.total.toFixed(2)} products={this.state.productos} />
                     </Col>
                 </Row>
 
