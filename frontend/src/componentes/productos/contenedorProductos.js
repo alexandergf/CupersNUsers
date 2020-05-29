@@ -49,7 +49,7 @@ export default class contenedorProductos extends Component {
 
     render() {
         var productosRender = this.props.productosBy.map((product,index) => 
-            <Col sm={4} key={product.id+"-col-producto"}>
+            <Col sm={3} key={product.id+"-col-producto"}>
                 <Link to={"/Detail/"+product.id}><Producto img={product.pics} title={product.name} precio={product.price} id={product.id} key={product.id+"-producto"} estrellas={product.average} /></Link>
             </Col>
         )

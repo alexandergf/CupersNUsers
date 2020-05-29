@@ -11,7 +11,6 @@ export default class bottomDetail extends Component {
         this.state = {
             opinions: 0,
             nOpinions: 0,
-            rate: 0,
             showLogin: false,
             redirectLogin: false,
             redirectCart: false,
@@ -28,8 +27,7 @@ export default class bottomDetail extends Component {
         let result = await getOpinions(this.props.idProducto);
         this.setState({
             opinions: result[0],
-            nOpinions: result[0].length,
-            rate: result[1]
+            nOpinions: result[0].length
         })
     }
 
@@ -81,7 +79,7 @@ export default class bottomDetail extends Component {
         return (
             <Row className="bottom-detail">
                 {logIn}
-                <Col md={3} sm={3}><Row className="Opiniones"><span>{this.state.nOpinions} Opiniones</span></Row><Row className="star-row"><Estrellas numStars={this.state.rate} /></Row></Col>
+                <Col md={3} sm={3}><Row className="Opiniones"><span>{this.state.nOpinions} Opiniones</span></Row><Row className="star-row"><Estrellas numStars={this.props.estrellas} /></Row></Col>
                 <Col className="carrito" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><Button className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Button></Col>
                 <Col className="comprar" sm={3}><Button className="btn-comprar" variant="success" onClick={() => this.buyItem()} >Comprar</Button></Col>
             </Row>
