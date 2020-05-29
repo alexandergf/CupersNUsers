@@ -1,4 +1,5 @@
 .carrito{
+    margin-top: 5.5em;
     .articulos-carrito{
         .card-title{
             text-align: start;
@@ -21,6 +22,10 @@
                 }
                 td{
                     vertical-align: middle;
+                    a:link, a:visited,a:hover, a:active {
+                        color: black;
+                        text-decoration: none;
+                    }
                 }
                 img{
                     margin-right: 1.9em;
@@ -36,7 +41,7 @@
             .btn-vaciar-cesta{
                 color: rgb(107, 106, 106);
                 background-color: white;
-                border-color: rgb(107, 106, 106);
+                border: 1px solid rgb(107, 106, 106);
                 &:hover{
                     background-color: #ff3f3f;
                     color: white;

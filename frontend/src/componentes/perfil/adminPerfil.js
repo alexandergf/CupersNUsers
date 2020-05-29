@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Card, ListGroup, Image, Col, Row } from 'react-bootstrap';
-import ImagenTest from '../../assets/images/prueba.jpg';
+import ImagenTest from '../../assets/images/user-icon.png';
 import { Link } from 'react-router-dom';
 import { getDetailUser } from '../../database/functions';
 

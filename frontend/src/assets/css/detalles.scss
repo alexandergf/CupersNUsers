@@ -50,7 +50,7 @@
         margin: 0;
     }
 }
-.carrito{
+.carrito-col-btn{
     button{
         display: flex;
         flex-direction: row;
@@ -130,6 +130,12 @@
 .opiniones-row{
     border-bottom: 1px solid gray;
     margin-bottom: 2em;
+    .col-sm-2{
+        &:first-of-type{
+            text-align: left;  
+        }
+        text-align: end;
+    }
 }
 .opinion-row{
     margin-bottom: 2em;

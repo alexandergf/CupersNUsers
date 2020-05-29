@@ -79,14 +79,10 @@
   margin-left: 0;
 }
 
-.main-app .special-background .contenedor-productos-row {
-  margin-bottom: 5.5em;
-}
-
 .main-app .contenedor-productos {
   width: 100%;
-  margin: 2em;
-  top: 4.5em;
+  margin-top: 5.5em;
+  margin-bottom: 2.5em;
 }
 
 .main-app .contenedor-productos .card-title {

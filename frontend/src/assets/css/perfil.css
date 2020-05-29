@@ -1,3 +1,7 @@
+.container-perfil-general {
+  margin-top: 5.5em;
+}
+
 .edit-perfil .card {
   width: 100%;
   margin-bottom: 1.5em;
@@ -7,7 +11,7 @@
 .edit-perfil .card .editPerfil-title, .edit-perfil .card .password-title {
   border-bottom: 1px solid black;
   margin-bottom: 1em;
-  padding: 0.2em;
+  margin: 0.5em;
 }
 
 .edit-perfil .card .btn {
@@ -17,6 +21,11 @@
 
 .edit-perfil .card .btn-save {
   text-align: end;
+}
+
+.edit-perfil .card .changePasswordCard, .edit-perfil .card .edit-card {
+  padding: 0 1em;
+  margin-bottom: 1em;
 }
 
 .edit-perfil .card .edit-card .col-lg-2, .edit-perfil .card .edit-card .col-lg-5 {
@@ -44,31 +53,37 @@
 }
 
 .wish-perfil .wish-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   border-bottom: 1px solid black;
+  margin-top: 0.5em;
   padding: 0.2em;
 }
 
-.wish-perfil .wish-title .container {
+.wish-perfil .wish-title .col {
   text-align: end;
 }
 
-.wish-perfil .wish-title .container .btn-add-all {
+.wish-perfil .wish-title .col:first-of-type {
+  text-align: start;
+}
+
+.wish-perfil .wish-title .col .btn-add-all {
   padding: 0.3em 2.5em;
   background-color: #4cb30b;
   border-color: #4cb30b;
 }
 
-.wish-perfil .wish-title .container .btn-delete-all {
+.wish-perfil .wish-title .col .btn-delete-all {
   padding: 0.3em 2.5em;
   background-color: #fd3939;
   border-color: #fd3939;
   margin-right: .5em;
+}
+
+.wish-perfil .toast-title {
+  position: absolute;
 }
 
 .items-wish a:link, .items-wish a:visited, .items-wish a:hover, .items-wish a:active {
@@ -85,11 +100,15 @@
 .items-wish .x-wish-item .btn {
   padding: .1em .2em;
   background-color: white;
-  border: 1px solid black;
+  border: 0px;
 }
 
 .items-wish .x-wish-item .btn:hover {
   background-color: #fd7070;
+}
+
+.items-wish .item-wish {
+  margin-bottom: 1em;
 }
 
 .items-wish .item-wish .row {
@@ -111,9 +130,10 @@
 }
 
 .opinion-perfil .opinion-title {
-  padding: 0.2em;
-  text-align: left;
+  text-align: start;
   border-bottom: 1px solid black;
+  margin-bottom: 1em;
+  margin: 0.5em;
 }
 
 .opinion-perfil .col-sm-1 {
@@ -210,17 +230,34 @@
   color: #8b8a8a;
 }
 
+.Contacto .card {
+  padding-bottom: 1em;
+}
+
 .Contacto .ContactoTitulo {
   border-bottom: 1px solid black;
-  text-align: left;
-  padding: .2em;
+  margin-bottom: 1em;
+  margin: 0.5em;
 }
 
 .Contacto .Submit {
   float: right;
+  margin-top: .5em;
+  padding: 0.3em 2.5em;
+  background-color: #4cb30b;
+  border-color: #4cb30b;
+}
+
+.Contacto .Submit:hover {
+  background-color: #327907;
 }
 
 .Contacto .Formulario {
   text-align: left;
+}
+
+.Contacto .Formulario .col-12, .Contacto .Formulario .col-5 {
+  margin: 0 0;
+  padding: 0;
 }
 /*# sourceMappingURL=perfil.css.map */

@@ -41,7 +41,7 @@ export default class perfil extends Component {
         } 
         return (
             <Router>
-                <Container fluid>
+                <Container fluid className="container-perfil-general">
                     <Row>
                         <Col xs={3}>
                             <AdminPerfil />

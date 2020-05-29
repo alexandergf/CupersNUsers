@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Card, Button, Modal, Toast } from 'react-bootstrap';
+import { Container, Card, Button, Modal, Toast, Row, Col } from 'react-bootstrap';
 import WishItems from './wishItems';
 import { getWishList, addWishItem, deleteWishList, cartItem } from '../../database/functions';
 
@@ -137,12 +137,17 @@ export default class wishList extends Component {
                 {cartProduct}
                 <Card>
                     <Card.Title>
-                        <h3 className="wish-title">Lista de deseos 
-                        <Container>
-                            <Button className="btn-delete-all" onClick={() => this.deleteAllWishItems()}>Borrar todos los productos</Button>
-                            <Button className="btn-add-all" onClick={() => this.addAllItemsWish()}>Añadir todo al carrito</Button>
+                        <Container fluid>
+                            <Row className="wish-title">
+                                <Col>
+                                    <h3>Lista de deseos</h3>
+                                </Col>
+                                <Col>
+                                    <Button className="btn-delete-all" onClick={() => this.deleteAllWishItems()}>Borrar todos los productos</Button>
+                                    <Button className="btn-add-all" onClick={() => this.addAllItemsWish()}>Añadir todo al carrito</Button>
+                                </Col>
+                            </Row>
                         </Container>
-                        </h3>
                     </Card.Title>
                     <Card.Body>
                         {this.state.zeroProductos? "No hay productos en la lista de deseados.":<WishItems delete={this.deleteItemWishList.bind(this)} red={this.redireccionar.bind(this)} productos={this.state.productos} />}
