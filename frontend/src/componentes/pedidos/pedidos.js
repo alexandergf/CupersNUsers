@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import { Container, Card } from 'react-bootstrap';
 import Pedido from './pedido';
+import { getOrders } from '../../database/functions';
 
 export default class pedidos extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            orders: []
+        }
+    }
+
+    componentDidMount = () => {
+        this.getArrayOrders();
+    }
+
+    getArrayOrders = async () => {
+        let result = await getOrders();
+        console.log(result);
+    }
+
     render() {
         return (
             <Container fluid className="pedidos-perfil">

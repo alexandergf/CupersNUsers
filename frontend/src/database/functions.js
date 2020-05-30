@@ -293,3 +293,16 @@ export const setOrder = async () => {
 
     return result;
 }
+
+export const getOrders = async () => {
+    let result = [];
+    await axios.post('/order/getHistory', {}, instance)
+    .then(function (response) {
+        result = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    return result;
+}
