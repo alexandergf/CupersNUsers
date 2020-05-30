@@ -18,6 +18,7 @@ export default class pedidos extends Component {
     getArrayOrders = async () => {
         let result = await getOrders();
         console.log(result);
+        this.setState({orders: result})
     }
 
     render() {

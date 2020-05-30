@@ -209,7 +209,7 @@
         &:hover{
             background-color: #327907;
         }
-    }
+    } 
     .Formulario {
         text-align: left;
         .col-12, .col-5{
@@ -217,4 +217,9 @@
             padding: 0;
         }
     }
+}
+.container-icon-spinner{
+    display: flex;
+    justify-content: center;
+    padding: 1.3em;
 }

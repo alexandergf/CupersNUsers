@@ -306,3 +306,16 @@ export const getOrders = async () => {
 
     return result;
 }
+
+export const contactoMail = async (asunto, mensaje) => {
+    let result = false;
+    await axios.post('/user/sendMail', {"asunto": asunto, "message": mensaje}, instance)
+    .then(function (response){
+        result = true;
+    })
+    .catch(function (error){
+        console.log(error);
+    });
+
+    return result;
+}
