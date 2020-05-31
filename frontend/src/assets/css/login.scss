@@ -1,4 +1,5 @@
 .login-main{
+    margin-top: 5.5em;
     justify-content: center;
     .card-columns{
         column-count: 2;
@@ -42,6 +43,7 @@
         .btn{
             background-color: #3fadff;
             border-color: #3fadff;
+            margin-bottom: 0.5em;
         }
     }
 }

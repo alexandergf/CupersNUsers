@@ -33,12 +33,12 @@ export const getOpinions = async (id) => {
 }
 
 export const addWishItem = async (id) => {
-    let result = false;
+    let result = [];
     let error401 = false;
     await axios.post('/wishlist/toggleProduct', {"product_id": id}, instance)
           .then(function (response) {
                 if(response.data.data){
-                    result = true;
+                    result = response.data.data;
                 }
           })
           .catch(function (error) {
@@ -46,6 +46,7 @@ export const addWishItem = async (id) => {
                 error401 = true;
             }
           });
+          
     return [result, error401];
 }
 
@@ -82,17 +83,19 @@ export const totalRemoveCartItems = async () => {
 
 export const userGetCart = async () => {
     let result = [];
+    let error401 = false;
     await axios.post('/user/getCart', {}, instance)
         .then(function (response) {
             result = response.data.data;
         })
         .catch(function (error) {
-            console.log(error);
+            error401 = true;
         });
-    return result;
+
+    return [result, error401];
 }
 
-export const userChangePass = async (oldPass, newPass) => {
+export const userChangePass = async (oldPass, newPass) => { 
     let result = false;
     await axios.post('/user/changePassword', {
         "old_password": oldPass,
@@ -135,7 +138,6 @@ export const getProductByCategory = async (id) => {
     .catch(function (error) {
         console.log(error);
     });
-
     return result;
 }
 
@@ -186,4 +188,134 @@ export const forgotPass = async (email) => {
       });
 
       return result;
+}
+
+export const createAccount = async (dataUser) => {
+    let result = false;
+    await axios.post('/user/register', dataUser, instance)
+      .then(function (response) {
+        if(response.data.data.email !== null && response.data.data.email !== undefined){
+            result = true;
+        }else{
+            result = false;
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        result = false;
+      });
+
+    return result;
+}
+
+export const getDetailUser = async () => {
+    let result = [];
+    let error = false;
+    await axios.post("/user/detail", {}, instance)
+        .then((response) => {
+            result = response.data.data;
+        })
+        .catch(function (error) {
+            error = true;
+        });
+    
+    return [result, error];
+}
+
+export const getProductByName = async (searchWord) => {
+    let result = [];
+    let error = false;
+    let direccion = searchWord !== "" ? "/product/getByName" : "/product/getAll";
+    await axios.post(direccion, {"name": searchWord}, instance)
+    .then((response) => {
+        result = response.data.data;
+    })
+    .catch(function (error) {
+        console.log(error);
+        error = true;
+    });
+
+    return [result, error];
+}
+
+export const getUsesCup = async (searchWord) => {
+    let result = [];
+    let error = false;
+    await axios.post('/cup/getUses', {}, instance)
+    .then(function (response) {
+      result = response.data.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+      error = true;
+    });
+
+    return [result, error];
+}
+
+export const getWishList = async () => {
+    let result = [];
+    let error = false;
+    await axios.post('/user/getWishlist', {}, instance)
+    .then(function (response) {
+          result = response.data.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+      error = true;
+    });
+
+    return [result, error];
+}
+
+export const deleteWishList = async () => {
+    let result = false;
+    await axios.post('/wishlist/deleteAll', {}, instance)
+    .then(function (response) {
+      result = true;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    return result;
+}
+
+export const setOrder = async () => {
+    let result = "";
+    await axios.post('/order/set', {}, instance)
+    .then(function (response) {
+        result = response.data.data.link;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    return result;
+}
+
+export const getOrders = async () => {
+    let result = [];
+    await axios.post('/order/getHistory', {}, instance)
+    .then(function (response) {
+        result = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    return result;
+}
+
+export const contactoMail = async (asunto, mensaje) => {
+    let result = false;
+    await axios.post('/user/sendMail', {"asunto": asunto, "message": mensaje}, instance)
+    .then(function (response){
+        result = true;
+    })
+    .catch(function (error){
+        console.log(error);
+    });
+
+    return result;
 }

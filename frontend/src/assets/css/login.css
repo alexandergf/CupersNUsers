@@ -1,4 +1,5 @@
 .login-main {
+  margin-top: 5.5em;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -50,5 +51,6 @@
 .login-main .signup .btn {
   background-color: #3fadff;
   border-color: #3fadff;
+  margin-bottom: 0.5em;
 }
 /*# sourceMappingURL=login.css.map */

@@ -1,3 +1,7 @@
+.carrito {
+  margin-top: 5.5em;
+}
+
 .carrito .articulos-carrito .card-title {
   text-align: start;
   padding: .9em;
@@ -28,6 +32,11 @@
   vertical-align: middle;
 }
 
+.carrito .articulos-carrito .card-body table td a:link, .carrito .articulos-carrito .card-body table td a:visited, .carrito .articulos-carrito .card-body table td a:hover, .carrito .articulos-carrito .card-body table td a:active {
+  color: black;
+  text-decoration: none;
+}
+
 .carrito .articulos-carrito .card-body table img {
   margin-right: 1.9em;
 }
@@ -47,7 +56,7 @@
 .carrito .articulos-carrito .card-footer .btn-vaciar-cesta {
   color: #6b6a6a;
   background-color: white;
-  border-color: #6b6a6a;
+  border: 1px solid #6b6a6a;
 }
 
 .carrito .articulos-carrito .card-footer .btn-vaciar-cesta:hover {
@@ -71,14 +80,16 @@
   margin-bottom: 1em;
 }
 
-.carrito .total-carrito .row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.carrito .total-carrito .row-total-price-cart {
   font-weight: 700;
+}
+
+.carrito .total-carrito .row-total-price-cart .col:first-of-type {
+  text-align: start;
+}
+
+.carrito .total-carrito .row-total-price-cart .col:last-of-type {
+  text-align: end;
 }
 
 .carrito .total-carrito .btn-realizar-pedido {

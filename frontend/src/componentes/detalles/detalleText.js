@@ -28,12 +28,12 @@ export default class detalleText extends Component {
     render() {
         var producto = (this.props.producto);
         return (
-            <Container fluid>
+            <Container fluid className="detalle-text-card">
                 <Title name={producto.name} id={this.props.id} />
                 <Contador price={producto.price} actualizar={this.actualizarCont.bind(this)} />
                 <DescripcionProducto descr={producto.description} />
                 <Colors />
-                <BottomDetail callback={this.actualizarCarrito.bind(this)} idOpinion={this.props.id} cant={this.state.cont} />
+                <BottomDetail callback={this.actualizarCarrito.bind(this)} idProducto={this.props.id} cant={this.state.cont} estrellas={producto.average} />
             </Container>
         )
     }

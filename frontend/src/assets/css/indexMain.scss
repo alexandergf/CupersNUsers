@@ -1,13 +1,30 @@
 .main-app{
     padding: 0;
     height: 100%;
+    background-color: #ccc;
+    .active .col-menu-desplegable{
+        transform: translateX(-1000px);
+        width: 0px;
+    }
     .col-menu-desplegable{
         padding: 0;
+        transition: transform .5s ease, width .5s;
+        overflow: auto;
+        width: 100%;
+        background-color: #ccc;
     }
     .menu-desplegable{
+        background-color: #ccc;
+        z-index: 0;
         padding: 0;
+        position: fixed;
+        width: 15%;
+        left: 0;
+        height: 100%;
+        top: 4.5em;
         .card{
             height: 100%;
+            background-color: white;
         }
         .card-title{
             background-color: #4cb30b;
@@ -37,22 +54,24 @@
             }
         }
     }
-    .row-second-line{
-        height: 89.1%;
-    }
     .special-background{
         background-color: #ccc;
+        padding-right: 0!important;
+        .container-fluid .row{
+            margin-left: 0;
+        }
     }
     .contenedor-productos{
         width: 100%;
-        margin: 2em;
-
+        margin-top: 5.5em;
+        margin-bottom: 2.5em;
         .card-title{
             text-align: start;
             border-bottom: 1px solid #ccc;
             padding: .7em;
         }
         .producto{
+            margin-bottom: 2em;
             .row{
                 justify-content: center;
             }

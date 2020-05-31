@@ -119,7 +119,7 @@ export default class editarPerfil extends Component {
                 </Card>
                 <Card>
                     <Card.Title><h3 className="password-title">Contraseña</h3></Card.Title>
-                    <Card.Body>
+                    <Card.Body className="changePasswordCard">
                         <Form onSubmit={this.handleSubmitPassword}>
                             <Form.Row>
                                 <Form.Group as={Col} controlId="oldPasswordEdit">

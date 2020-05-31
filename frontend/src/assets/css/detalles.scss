@@ -1,5 +1,16 @@
+.general-container{
+    margin-top: 5.5em;
+    margin-bottom: 1.5em;
+}
 .detalleImg-second-line{
-    margin-top: 20px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    img{
+        cursor: pointer;
+    }
+}
+.detalle-text-card{
+    margin-top: 2em;
 }
 .title-detail{
     .title-title{
@@ -10,6 +21,8 @@
         right: 1em;
     }
     .heartToBasket{
+        text-align: end;
+        padding-right: 0;
         .btn{
             &:hover{
                 background-color: #3fadff;
@@ -18,39 +31,49 @@
     }
 }
 .detail-first-line{
-    margin-bottom: 4%;
+    margin-bottom: 2em;
+    .card{
+        height: 25em;
+    }
+    .foto-taza{
+        margin-top: 2em;
+        img{
+            max-width: 15em;
+            max-height: 15em;
+        }
+    }
+    .img-thumbnail{
+        max-width: 5em;
+    }
+    .card-deck{
+        width: 100%;
+        margin: 0;
+    }
 }
-.carrito{
-    a{
+.carrito-col-btn{
+    button{
         display: flex;
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        border: 1px solid rgb(161, 161, 161);
-    }
-    a:link, a:visited {
-        background-color: white;
-        color: rgb(161, 161, 161);
-        padding: 14px 15px 14px 0px;
-        text-align: center;
-        text-decoration: none;
-    }
-    a:hover, a:active {
-        background-color: #59FF96;
+        border: 0px;
+        padding: .5em 3em;
+        img{
+            margin-right: 1em;
+            color: white;
+        }
     }
 }
 .comprar{    
-    a:link, a:visited {
+    button {
         background-color: #59FF96;
         color: white;
-        padding: 15px 15px;
+        padding: .5em 3em;
         text-align: center;
         text-decoration: none;
         display: inline-block;
+        border: 0px;
     } 
-    a:hover, a:active {
-        background-color: rgb(70, 197, 117);
-    }
 }
 .colors{
     margin: 20px 0;
@@ -72,7 +95,7 @@
 
 }
 .bottom-detail{
-    margin: 20px 0 0 0;
+    margin-top: 2em;
     align-items: center;
     .Opiniones{
         justify-content: center;
@@ -95,7 +118,8 @@
 }
 .description-list{
     text-align: left;
-    margin-left: 20px;
+    margin-left: 1em;
+    margin-top: 2em;
 }
 .star-row{
     justify-content: center;
@@ -105,11 +129,20 @@
 }
 .opiniones-row{
     border-bottom: 1px solid gray;
-    margin-bottom: 2%;
+    margin-bottom: 2em;
+    .col-sm-2{
+        &:first-of-type{
+            text-align: left;  
+        }
+        text-align: end;
+    }
 }
 .opinion-row{
-    margin-bottom: 2%;
+    margin-bottom: 2em;
     text-align: left;
+}
+.card-opinion-row{
+    margin: 0 15px!important;
 }
 .stars{
     margin-left: -15px;

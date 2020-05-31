@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Row,Col,Container} from 'react-bootstrap';
-import Image from 'react-bootstrap/Image';
+import { Row, Col, Container, Image } from 'react-bootstrap';
 import Opinion from './opinion';
 import Estrellas from '../estrellas/estrellas';
 import ImagenTest from '../../assets/images/prueba.jpg';
@@ -21,6 +20,9 @@ export default class opiniones extends Component {
 
     getOpiniones = async () => {
         let result = await getOpinions(this.props.id);
+        if(result[0].length === 0){
+            result[1] = 5;
+        }
         this.setState({
             opinions: result[0],
             rate: result[1]
@@ -39,7 +41,9 @@ export default class opiniones extends Component {
             );
         }else{
             opiniones.push(
-                <Col sm={12} key={"no-opinions"}>No hay opiniones sobre el producto.</Col>
+                <Row className="opinion-row" key="opinion-row-non">
+                    <Col sm={12} key={"no-opinions"}>No hay opiniones.</Col>
+                </Row>
             )
         }
         return (

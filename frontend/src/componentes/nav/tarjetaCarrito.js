@@ -3,8 +3,7 @@ import { Container, Button, Toast, ListGroup, Row, Col, Image, Modal } from 'rea
 import ImagenTest from '../../assets/images/prueba.jpg';
 import { Link } from 'react-router-dom';
 import { BsTrashFill } from 'react-icons/bs';
-import axios from 'axios';
-import { instance } from '../../database/config';
+import { cartItem } from '../../database/functions';
 
 export default class tarjetaCarrito extends Component {
     constructor(props){
@@ -29,19 +28,15 @@ export default class tarjetaCarrito extends Component {
         this.props.calltoclose();
     }
 
-    deleteItemCart = (id) => {
-        let aux = this.aux;
-        let setState = this.setState;
-        axios.post('/cart/toggleProduct', {
-            "product_id": id,
-            "quantity": 0
-        }, instance)
-          .then(function (response) {
-            aux(response.data.data);
-          })
-          .catch(function (error) {
-              setState({failRemove: true});
-          });
+    deleteItemCart = async (id) => {
+        let result = await cartItem(id, 0);
+        if(result[1] === false){
+            this.aux(result[0]);
+        }else{
+            this.setState({
+                failRemove: result[1]
+            });
+        }
     }
 
     aux = (product) => {
@@ -61,7 +56,7 @@ export default class tarjetaCarrito extends Component {
                 </Button>
             </Modal.Footer>
         </Modal>;
-        var renderProducts = this.state.products !== undefined ? this.state.products.map((product,index) => 
+        var renderProducts = this.state.products !== undefined && this.state.products !== null ? this.state.products.map((product,index) => 
             <ListGroup.Item key={"item-listgroup-"+index}>
                 <Row>
                 <Col>

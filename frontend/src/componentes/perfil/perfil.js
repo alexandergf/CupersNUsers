@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Col, Row} from 'react-bootstrap';
-import { 
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import '../../assets/css/perfil.css';
 // -- Imports de componentes -- //
 import AdminPerfil from './adminPerfil';
@@ -14,7 +9,6 @@ import Opinion from '../opinion-perfil/opinionPerfil';
 import Pedidos from '../pedidos/pedidos';
 import EditarPerfil from '../editarPerfil/editarPerfil';
 import Contacto from '../contacto/Contacto';
-
 
 export default class perfil extends Component {
     constructor(props){
@@ -47,7 +41,7 @@ export default class perfil extends Component {
         } 
         return (
             <Router>
-                <Container fluid>
+                <Container fluid className="container-perfil-general">
                     <Row>
                         <Col xs={3}>
                             <AdminPerfil />

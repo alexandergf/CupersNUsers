@@ -1,5 +1,19 @@
+.general-container {
+  margin-top: 5.5em;
+  margin-bottom: 1.5em;
+}
+
 .detalleImg-second-line {
-  margin-top: 20px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.detalleImg-second-line img {
+  cursor: pointer;
+}
+
+.detalle-text-card {
+  margin-top: 2em;
 }
 
 .title-detail .title-title {
@@ -11,15 +25,42 @@
   right: 1em;
 }
 
+.title-detail .heartToBasket {
+  text-align: end;
+  padding-right: 0;
+}
+
 .title-detail .heartToBasket .btn:hover {
   background-color: #3fadff;
 }
 
 .detail-first-line {
-  margin-bottom: 4%;
+  margin-bottom: 2em;
 }
 
-.carrito a {
+.detail-first-line .card {
+  height: 25em;
+}
+
+.detail-first-line .foto-taza {
+  margin-top: 2em;
+}
+
+.detail-first-line .foto-taza img {
+  max-width: 15em;
+  max-height: 15em;
+}
+
+.detail-first-line .img-thumbnail {
+  max-width: 5em;
+}
+
+.detail-first-line .card-deck {
+  width: 100%;
+  margin: 0;
+}
+
+.carrito-col-btn button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -32,32 +73,23 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid #a1a1a1;
+  border: 0px;
+  padding: .5em 3em;
 }
 
-.carrito a:link, .carrito a:visited {
-  background-color: white;
-  color: #a1a1a1;
-  padding: 14px 15px 14px 0px;
-  text-align: center;
-  text-decoration: none;
+.carrito-col-btn button img {
+  margin-right: 1em;
+  color: white;
 }
 
-.carrito a:hover, .carrito a:active {
-  background-color: #59FF96;
-}
-
-.comprar a:link, .comprar a:visited {
+.comprar button {
   background-color: #59FF96;
   color: white;
-  padding: 15px 15px;
+  padding: .5em 3em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-}
-
-.comprar a:hover, .comprar a:active {
-  background-color: #46c575;
+  border: 0px;
 }
 
 .colors {
@@ -82,7 +114,7 @@
 }
 
 .bottom-detail {
-  margin: 20px 0 0 0;
+  margin-top: 2em;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -124,7 +156,8 @@
 
 .description-list {
   text-align: left;
-  margin-left: 20px;
+  margin-left: 1em;
+  margin-top: 2em;
 }
 
 .star-row {
@@ -139,12 +172,24 @@
 
 .opiniones-row {
   border-bottom: 1px solid gray;
-  margin-bottom: 2%;
+  margin-bottom: 2em;
+}
+
+.opiniones-row .col-sm-2 {
+  text-align: end;
+}
+
+.opiniones-row .col-sm-2:first-of-type {
+  text-align: left;
 }
 
 .opinion-row {
-  margin-bottom: 2%;
+  margin-bottom: 2em;
   text-align: left;
+}
+
+.card-opinion-row {
+  margin: 0 15px !important;
 }
 
 .stars {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Button, Card, Table, Image, Modal} from 'react-bootstrap';
 import ImagenTest from '../../assets/images/prueba.jpg';
 import { cartItem, totalRemoveCartItems } from '../../database/functions';
+import { Link } from 'react-router-dom';
 
 export default class articulos extends Component {
     constructor(props){
@@ -95,11 +96,11 @@ export default class articulos extends Component {
 
         const tabla =  this.props.products.map((product,index) => 
             <tr key={"table-row-"+index}>
-                <td><Image src={product.product.pics[0] !== undefined ? product.product.pics[0].pic : ImagenTest} roundedCircle width="72em" height="72em" />{product.product.name}</td>
+                <td><Link to={"/Detail/"+product.product_id}><Image src={product.product.pics[0] !== undefined ? product.product.pics[0].pic : ImagenTest} roundedCircle width="72em" height="72em" />{product.product.name}</Link></td>
                 <td>{product.product.price}</td>
                 <td>{product.quantity}</td>
                 <td>{product.product.price.toFixed(2) * product.quantity} €</td>
-                <td><Button className="btn-danger" onClick={() => this.removeOneItem(product.product_id)}>Eliminar</Button></td>
+                <td align="right"><Button className="btn-danger" onClick={() => this.removeOneItem(product.product_id)}>Eliminar</Button></td>
             </tr>
         )
         let total = this.calculoTotales(this.props.products);
@@ -130,7 +131,7 @@ export default class articulos extends Component {
                         <Button className="btn-vaciar-cesta" onClick={() => this.removeItemsCart()}
                             disabled={this.props.products.length === 0 ? true : false}
                             >Vaciar cesta</Button>
-                        <Button className="btn-seguir-comprando">Seguir comprando</Button>
+                        <Link to="/"><Button className="btn-seguir-comprando">Seguir comprando</Button></Link>
                     </Card.Footer>
                 </Card>
                 {modalRemove}

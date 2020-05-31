@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import ItemsPedidos from './itemsPedidos';
-import Button from 'react-bootstrap/Button';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
 
@@ -50,7 +46,7 @@ export default class pedido extends Component {
                         </Col>    
                     </Row>
                 </Row>
-                <ItemsPedidos />
+                <ItemsPedidos products={this.props.productos} />
             </Card.Body>
         )
     }

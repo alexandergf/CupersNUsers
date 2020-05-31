@@ -1,10 +1,42 @@
 import React, { Component } from 'react';
 import { Container, Col, Row} from 'react-bootstrap';
 import Productos from '../productos/contenedorProductos';
-export default class pantallaInicial extends Component {
+import { getProductByCategory } from '../../database/functions';
 
-    getStateItem = (activo, productId) => {
-        this.props.itemDetailInfo(activo,productId);
+
+export default class pantallaInicial extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            productos: [],
+            categoryName: "",
+            idCat: -1
+        }
+    }
+    componentDidMount = () => {
+        this.refreshProducts();
+    }
+
+    componentDidUpdate = () => {
+        if(this.props.match.params.idCat !== this.state.idCat){
+            this.refreshProducts();
+        }
+    }
+
+    refreshProducts = () => {
+        this.getProd(this.props.match.params.idCat, this.props.match.params.nameCat);
+    }
+
+    getProd = async (id, nameCategory) => {
+        if(this.props.match.params.idCat === undefined || this.props.match.params.idCat === null){
+            this.setState({productos: await getProductByCategory(-1), categoryName: "Todos los productos", idCat: undefined});
+        }else{
+            this.setState({productos: await getProductByCategory(id), categoryName: nameCategory, idCat: id});
+        }
+    }
+
+    componentWillUnmount = () => {
+
     }
 
     render() {
@@ -12,11 +44,8 @@ export default class pantallaInicial extends Component {
             <Container fluid>
                 <Row>
                     <Col>
-                        <Row>
-
-                        </Row>
-                        <Row>
-                            <Productos callback={this.getStateItem.bind(this)} categoria={this.props.categoriaProduct} productosBy={this.props.productos} />
+                        <Row className="contenedor-productos-row">
+                            <Productos categoria={this.state.categoryName} productosBy={this.state.productos} />
                         </Row>
                     </Col>
                 </Row>

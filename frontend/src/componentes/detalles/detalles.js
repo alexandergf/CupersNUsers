@@ -41,14 +41,14 @@ export default class detalles extends Component {
             return(<Redirect to="/" />)
         } 
         return (
-            <Container className="general-container">
+            <Container className="general-container" fluid>
                 <Row className="detail-first-line">
                     <CardDeck>
                         <Card><Card.Body><DetalleImg imgs={this.state.product.pics} /></Card.Body></Card>
                         <Card><Card.Body><DetalleText callback={this.actualizarCarrito.bind(this)} producto={this.state.product} id={this.props.match.params.productId} /></Card.Body></Card>
                     </CardDeck>
                 </Row>
-                <Row>
+                <Row className="card-opinion-row">
                     <Card className="card-opinion"><Card.Body><Opiniones id={this.props.match.params.productId} /></Card.Body></Card> 
                 </Row>
             </Container>

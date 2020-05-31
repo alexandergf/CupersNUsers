@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Row, Col} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import '../../assets/css/indexMain.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { getProductByCategory, userGetCart } from '../../database/functions';
+import { userGetCart, getCateorys } from '../../database/functions';
 // Componentes
 import Nav from '../nav/Nav';
 import MenuDesplegable from './menuDesplegable';
@@ -15,22 +15,24 @@ import Detail from '../detalles/detalles';
 import Productos from '../productos/productos';
 import Carrito from '../carrito/carrito';
 
-
 export default class index extends Component {
     constructor(props){
         super(props);
         this.state = {
+            categorias: [],
             activeLateralMenu: true,
-            category: "Todos",
-            productos: [],
-            searchWordBar: "",
             logOut: false,
             productosCarrito: []
         }
-        this.handleCategoria = this.handleCategoria.bind(this);
+        this.lateralMenu = React.createRef();
         this.functionLogOut = this.functionLogOut.bind(this);
         this.actualizarCarrito = this.actualizarCarrito.bind(this);
         this.refreshCarrito = this.refreshCarrito.bind(this);
+    }
+
+    componentDidMount = () => {
+        this.refreshCarrito();
+        this.iniCategorias();
     }
 
     getStateLaterañMenu = (activo, mode) => {
@@ -45,30 +47,13 @@ export default class index extends Component {
         }
     }
 
-    handleCategoria = (id,name) =>{
-        this.setState({
-            category: name
-        });
-        this.refreshProducts(id);
-    }
-
-    componentDidMount = () => {
-        this.refreshProducts(-1);
-        this.refreshCarrito();
-    }
-
-    refreshProducts = async (id) => {
-        this.setState({productos: await getProductByCategory(id)});
+    iniCategorias = async () => {
+        this.setState({categorias: await getCateorys()});
     }
 
     refreshCarrito = async () => {
-        this.actualizarCarrito(await userGetCart());        
-    }
-
-    searchBar = (searchWord) => {
-        this.setState({
-            searchWordBar: searchWord
-        })
+        let result = await userGetCart();
+        if(result[1] === false) this.actualizarCarrito(result[0]);        
     }
 
     functionLogOut = (value) => {
@@ -89,11 +74,16 @@ export default class index extends Component {
             <Router>
                 <Container fluid className="main-app">
                     <Row>
-                        <Nav deleteFromCartCard={this.actualizarCarrito.bind(this)} productosCarrito={this.state.productosCarrito} callback={this.getStateLaterañMenu.bind(this)} search={this.searchBar.bind(this)} getCategoria={this.handleCategoria} logOut={this.functionLogOut.bind(this)}/>
+                        <Nav deleteFromCartCard={this.actualizarCarrito.bind(this)} 
+                            productosCarrito={this.state.productosCarrito} 
+                            callback={this.getStateLaterañMenu.bind(this)} 
+                            logOut={this.functionLogOut.bind(this)} />
                     </Row>
-                    <Row className="row-second-line">
-                        {this.state.activeLateralMenu ? <Col sm={2} className="col-menu-desplegable"><MenuDesplegable getCategoria={this.handleCategoria.bind(this)} /></Col> : null}
-                        <Col className="special-background">
+                    <Row className={"row-second-line " + (!this.state.activeLateralMenu?"active":"")}>
+                        <Col className={"col-menu-desplegable "} ref={this.lateralMenu} >
+                            <MenuDesplegable cat={this.state.categorias} />
+                        </Col>
+                        <Col className="special-background" sm={(!this.state.activeLateralMenu?"12":"10")}>
                             <Switch>
                                 <Route path="/UsoTazas" render={(props)=>
                                     <UsoTazas {...props} 
@@ -116,11 +106,10 @@ export default class index extends Component {
                                         log={this.state.logOut} 
                                         logOut={this.functionLogOut.bind(this)} />
                                 } />
-                                <Route path="/Productos" render={(props) => 
+                                <Route path="/Productos/:searchWord" render={(props) => 
                                     <Productos {...props} 
                                         log={this.state.logOut} 
-                                        logOut={this.functionLogOut.bind(this)} 
-                                        searchWords={this.state.searchWordBar} />
+                                        logOut={this.functionLogOut.bind(this)} />
                                 } />
                                 <Route path="/Carrito" render={(props) => 
                                     <Carrito {...props} 
@@ -128,11 +117,12 @@ export default class index extends Component {
                                     log={this.state.logOut} 
                                     logOut={this.functionLogOut.bind(this)} />
                                 } />
-                                <Route path="/" render={(props) => 
-                                    <PantallaInicial {...props} 
-                                    categoriaProduct={this.state.category} 
-                                    productos={this.state.productos} />
-                                }/> 
+                                <Route path="/" exact render={(props) => 
+                                    <PantallaInicial {...props} />
+                                } /> 
+                                <Route path="/:idCat/:nameCat" exact render={(props) => 
+                                    <PantallaInicial {...props} />
+                                } /> 
                             </Switch>
                         </Col>
                     </Row>

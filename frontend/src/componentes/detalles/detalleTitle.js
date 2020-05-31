@@ -18,14 +18,13 @@ export default class detalleTitle extends Component {
         let result = await addWishItem(id);
         if(result[1] === false){
             this.setState({
-                show: result[0]
+                show: true
             })
         }else{
             this.setState({
                 showLogin: result[1]
             })
         }
-        
     }
 
     render() {
@@ -61,7 +60,7 @@ export default class detalleTitle extends Component {
             <Row className="title-detail">
                 {favProduct}
                 {logIn}
-                <Col md={6} className="title-title"><h3>{this.props.name}</h3></Col><Col md={{ span: 2, offset: 4 }} className="heartToBasket"><Button className="btn" variant="secondary" onClick={() => this.whishItem(this.props.id)}><FaHeart /></Button></Col>
+                <Col className="title-title"><h3>{this.props.name}</h3></Col><Col className="heartToBasket"><Button className="btn" variant="secondary" onClick={() => this.whishItem(this.props.id)}><FaHeart /></Button></Col>
             </Row>
         )
     }

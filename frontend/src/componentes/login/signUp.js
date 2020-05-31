@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Container, Button, Modal} from 'react-bootstrap';
-import axios from 'axios';
-import { instance } from '../../database/config';
 import {Redirect} from 'react-router-dom';
+import { createAccount } from '../../database/functions';
 
 export default class signUp extends Component {
     constructor(props){
@@ -22,7 +21,7 @@ export default class signUp extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    handleChange(event) {   
+    handleChange = (event) => {   
         const target = event.target;
         const value = target.value; 
         const name = target.name;
@@ -31,29 +30,16 @@ export default class signUp extends Component {
         });  
     }
 
-    handleSubmit(event) {
+    handleSubmit = async (event) => {
         event.preventDefault();
-        let state = this.state;
-        let responseCreateCount = this.responseCreateCount
-        axios.post('/user/register', {
-            name: state.name,
-            surnames: state.surnames,
-            phone: state.phone,
-            direction: state.direction,
-            email: state.email,
-            password: state.password
-          }, instance)
-          .then(function (response) {
-              console.log(response);
-            if(response.data.data.email !== null && response.data.data.email !== undefined){
-                responseCreateCount(true);
-            }else{
-                responseCreateCount(false);
-            }
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        let dataUser = {};
+        if(this.state.nombre !== null && this.state.nombre !== "") dataUser.name = this.state.nombre;
+        if(this.state.apellidos !== null && this.state.nombre !== "") dataUser.surnames = this.state.apellidos;
+        if(this.state.telefono !== null && this.state.nombre !== "") dataUser.phone = this.state.telefono;
+        if(this.state.direction !== null && this.state.nombre !== "") dataUser.direction = this.state.direction;
+        dataUser.direction = this.state.email;
+        dataUser.direction = this.state.password;
+        this.responseCreateCount(await createAccount(dataUser));
     }
 
     responseCreateCount = (verify) => {

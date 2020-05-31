@@ -20,11 +20,14 @@ class Nav extends Component {
             search: "",
             cart_show: false,
             show: false,
-            auxLogIn: true
+            auxLogIn: true,
+            lateralMenu: true
         };
+        this.buttonSend = React.createRef();
+        this.formInput = React.createRef();
+        this.lateralMenu = this.props.reference;
         this.updatePerfil = this.updatePerfil.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
-        this.searchWords = this.searchWords.bind(this);
         this.cartShow = this.cartShow.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
@@ -50,18 +53,9 @@ class Nav extends Component {
 
     handleKeyPress = (event) => {
         if(event.keyCode === 13){
-            this.searchWords();
+            this.borrarSearchBar()
+            this.buttonSend.current.click();
         }
-    }
-
-    searchWords = () => {
-        this.sendResponseLateralMenu(false,false)
-        this.props.search(this.state.search);
-    }
-
-    searchCategorie = (id,name) => {
-        this.sendResponseLateralMenu(true,false);
-        this.props.getCategoria(id,name);
     }
 
     updatePerfil = () => {
@@ -82,6 +76,10 @@ class Nav extends Component {
 
     deleteFromCart = (prod) => {
         this.props.deleteFromCartCard(prod);
+    }
+
+    borrarSearchBar = () => {
+        this.formInput.current.value = "";
     }
 
     render() {
@@ -110,22 +108,22 @@ class Nav extends Component {
                     </Modal.Footer>
                 </Modal>
             </Col>;
-
+        
         return (
             <div className="Nav">
                 <Container className="Contenedor" fluid>
                     <Row>
                         <Col xs={2}>
-                            <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" onClick={() => this.searchCategorie(-1,"Todos los productos")}/></Link>
+                            <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" /></Link>
                         </Col>
                         <Col xs={1}>
-                            <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)}><BsList className="btn-menu-desplegable-icono" /></Button>
+                            <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)} ><BsList className="btn-menu-desplegable-icono" /></Button>
                         </Col>
                         <Col xs={6}>
                             <InputGroup>
-                                <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" onChange={this.handleOnChange} onKeyDown={this.handleKeyPress}/>
+                                <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" onChange={this.handleOnChange} onKeyDown={this.handleKeyPress} ref={this.formInput} />
                                 <InputGroup.Append>
-                                    <Link to="/Productos" onClick={()=>this.searchWords()}><Button variant="light"><GiMagnifyingGlass className="btn-lupa" /></Button></Link>
+                                    <Link to={"/Productos/"+this.state.search} ref={this.buttonSend} onClick={() => this.borrarSearchBar()}><Button variant="light"><GiMagnifyingGlass className="btn-lupa" /></Button></Link>
                                 </InputGroup.Append>
                             </InputGroup>
                         </Col>

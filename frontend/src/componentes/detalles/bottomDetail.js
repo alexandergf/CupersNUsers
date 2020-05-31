@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CarritoImg from '../../assets/images/carrito.png';
 import { Row, Col, Image, Button, Modal } from 'react-bootstrap';
 import Estrellas from '../estrellas/estrellas';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { getOpinions, cartItem } from '../../database/functions';
 
 export default class bottomDetail extends Component {
@@ -11,9 +11,10 @@ export default class bottomDetail extends Component {
         this.state = {
             opinions: 0,
             nOpinions: 0,
-            rate: 0,
             showLogin: false,
-            redirectLogin: false
+            redirectLogin: false,
+            redirectCart: false,
+            errorMessage: ""
         }
         this.addCart = this.addCart.bind(this);
     }
@@ -23,21 +24,34 @@ export default class bottomDetail extends Component {
     }
 
     getOpiniones = async () => {
-        let result = await getOpinions(this.props.idOpinion);
+        let result = await getOpinions(this.props.idProducto);
         this.setState({
             opinions: result[0],
-            nOpinions: result[0].length,
-            rate: result[1]
+            nOpinions: result[0].length
         })
     }
 
     addCart = async () => {
-        let result = await cartItem(this.props.idOpinion, this.props.cant);
+        let result = await cartItem(this.props.idProducto, this.props.cant);
         if(result[1] === false){
             this.props.callback(result[0]);
         }else{
             this.setState({
+                errorMessage: "Para añadir a la lista de deseos tienes que estar logeado.",
                 showLogin: result[1]
+            })
+        }
+    }
+
+    buyItem = async () => {
+        let result = await cartItem(this.props.idProducto, this.props.cant);
+        if(result[1] === false){
+            this.props.callback(result[0]);
+            this.setState({redirectCart: true});
+        }else{
+            this.setState({
+                showLogin: result[1],
+                errorMessage: "Para comprar un producto tienes que estar logeado.",
             })
         }
     }
@@ -47,7 +61,7 @@ export default class bottomDetail extends Component {
             <Modal.Header closeButton>
             <Modal.Title>Ups</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Para añadir a la lista de deseos tienes que estar logeado.</Modal.Body>
+            <Modal.Body>{this.state.errorMessage}</Modal.Body>
             <Modal.Footer>
                 <Button variant="danger" onClick={() => this.setState({showLogin: false})}>
                     Cancelar
@@ -59,13 +73,15 @@ export default class bottomDetail extends Component {
         </Modal>;
         if(this.state.redirectLogin === true){
             return <Redirect to="/Login" />
+        }else if(this.state.redirectCart === true){
+            return <Redirect to="/Carrito" />
         }
         return (
             <Row className="bottom-detail">
                 {logIn}
-                <Col md={3} sm={3}><Row className="Opiniones"><span>{this.state.nOpinions} Opiniones</span></Row><Row className="star-row"><Estrellas numStars={this.state.rate} /></Row></Col>
-                <Col className="carrito" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><Button className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Button></Col>
-                <Col className="comprar" sm={3}><Link to="/Carrito" className="btn-comprar">Comprar</Link></Col>
+                <Col md={3} sm={3}><Row className="Opiniones"><span>{this.state.nOpinions} Opiniones</span></Row><Row className="star-row"><Estrellas numStars={this.props.estrellas} /></Row></Col>
+                <Col className="carrito-col-btn" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><Button className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Button></Col>
+                <Col className="comprar" sm={3}><Button className="btn-comprar" variant="success" onClick={() => this.buyItem()} >Comprar</Button></Col>
             </Row>
         )
     }
