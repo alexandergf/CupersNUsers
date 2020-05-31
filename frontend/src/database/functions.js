@@ -209,17 +209,18 @@ export const createAccount = async (dataUser) => {
 }
 
 export const getDetailUser = async () => {
-    let result = [];
-    let error = false;
+    var result = [];
+    var err = false;
     await axios.post("/user/detail", {}, instance)
         .then((response) => {
             result = response.data.data;
         })
         .catch(function (error) {
-            error = true;
+            console.log(error);
+            err = true;
         });
     
-    return [result, error];
+    return [result, err];
 }
 
 export const getProductByName = async (searchWord) => {
@@ -312,6 +313,19 @@ export const contactoMail = async (asunto, mensaje) => {
     await axios.post('/user/sendMail', {"asunto": asunto, "message": mensaje}, instance)
     .then(function (response){
         result = true;
+    })
+    .catch(function (error){
+        console.log(error);
+    });
+
+    return result;
+}
+
+export const setReview = async (id,puntuacion,descripcion) => {
+    let result = [];
+    await axios.post('/user/setReview', {"product_id": id, "rate": puntuacion, "Description": descripcion}, instance)
+    .then(function (response){
+        result = response;
     })
     .catch(function (error){
         console.log(error);

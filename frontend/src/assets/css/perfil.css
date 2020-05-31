@@ -270,4 +270,35 @@
           justify-content: center;
   padding: 1.3em;
 }
+
+.star-opinion-user p {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  font-size: 20px;
+}
+
+.star-opinion-user label {
+  color: grey;
+}
+
+.star-opinion-user label:hover,
+.star-opinion-user label:hover ~ label {
+  color: orange;
+}
+
+.star-opinion-user input[type="radio"]:checked ~ label {
+  color: orange;
+}
+
+.star-opinion-user input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 30px;
+  cursor: pointer;
+}
+
+.star-opinion-user input[type=radio] + label {
+  cursor: pointer;
+}
 /*# sourceMappingURL=perfil.css.map */

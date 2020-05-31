@@ -51,10 +51,9 @@ export default class pedidos extends Component {
     }
 
     render() {
-        let arrayOrders = this.state.orders.map((order, index) => 
+        let arrayOrders = this.state.orders.length !== 0 ? this.state.orders.map((order, index) => 
             this.montarOrders(order, index)
-        )
-
+        ) : <Container>Aun no has realizado ningún pedido.</Container>;
         return (
             <Container fluid className="pedidos-perfil">
                 <Card>

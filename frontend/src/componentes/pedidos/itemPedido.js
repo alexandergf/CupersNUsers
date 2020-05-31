@@ -8,7 +8,7 @@ export default class itemPedido extends Component {
             <Container className="item-pedido">
                 <Row>
                     <Col className="col-img">
-                        <Image src={ImagenTest} roundedCircle width="80em" height="80em" />
+                        <Image src={this.props.imagen !== undefined ? this.props.imagen : ImagenTest} roundedCircle width="80em" height="80em" />
                     </Col>
                     <Col>
                         <div>{this.props.nombre}</div>
