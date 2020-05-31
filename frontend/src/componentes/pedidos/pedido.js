@@ -46,7 +46,7 @@ export default class pedido extends Component {
                         </Col>    
                     </Row>
                 </Row>
-                <ItemsPedidos />
+                <ItemsPedidos products={this.props.productos} />
             </Card.Body>
         )
     }

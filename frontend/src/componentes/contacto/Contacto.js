@@ -4,6 +4,59 @@ import '../../assets/css/Contacto.css';
 import { contactoMail } from '../../database/functions';
 import MoonLoader from "react-spinners/MoonLoader";
 
+function Wait(props) {
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Un momento</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Se esta enviando el mensaje...
+                    <Container fluid className="container-icon-spinner">
+                        <MoonLoader size={30} color={"#000000"} />
+                    </Container>
+                </Modal.Body>
+            </Modal>
+        </>
+    );
+}
+
+function ErrorMail(props) {
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Ups!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>El mensaje no ha podido ser enviado.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+}
+
+function OkMail(props) {
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Bien</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>El mensaje se ha enviado correctamente.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+}
+
 class Contacto extends Component {
     constructor(props){
         super(props);
@@ -15,6 +68,7 @@ class Contacto extends Component {
             showOk: false
         }
     }
+    
 
     handleChange = (event) => {   
         const target = event.target;
@@ -37,39 +91,6 @@ class Contacto extends Component {
     }
 
     render() {
-        const waitAmoment = <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
-                    <Modal.Header closeButton>
-                    <Modal.Title>Un momento</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        Se esta enviando el mensaje...
-                        <Container fluid className="container-icon-spinner">
-                            <MoonLoader size={30} color={"#000000"} />
-                        </Container>
-                    </Modal.Body>
-                </Modal>;
-        const errorMail = <Modal show={this.state.showError} onHide={() => this.setState({showError: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Ups!</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>El mensaje no ha podido ser enviado.</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({showError: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
-        const okMail = <Modal show={this.state.showOk} onHide={() => this.setState({showOk: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Bien</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>El mensaje se ha enviado correctamente.</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({showOk: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
         return (
             <Container fluid className="Contacto">
                 <Card>
@@ -92,13 +113,14 @@ class Contacto extends Component {
                                     </Col>
                                 </Form.Group>
                                 <Button variant="primary" type="submit" className="Submit">Enviar Consulta</Button>
+                                
                             </Form>
                         </Col>
                     </Card.Body>
                 </Card>
-                {waitAmoment}
-                {errorMail}
-                {okMail}
+                <Wait show={this.state.show} onHide={() => this.setState({show:false})} animation={false}/>
+                <ErrorMail show={this.state.showError} onHide={() => this.setState({showError: false})} animation={false}/>
+                <OkMail show={this.state.showOk} onHide={() => this.setState({showOk: false})} animation={false} />
             </Container>
         )
     }
