@@ -14,15 +14,10 @@
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
-<<<<<<< HEAD
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "typescript": "^3.8.3"
-=======
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
->>>>>>> ecf054d93dc2e43711b4ce58880a7847a09693e1
   },
   "scripts": {
     "start": "react-scripts start",

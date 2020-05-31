@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Col, Button, Form, Card } from 'react-bootstrap';
+import axios from 'axios';
 import '../../assets/css/Contacto.css';
 
 class Contacto extends Component {
@@ -17,17 +18,17 @@ class Contacto extends Component {
                                         Asunto:
                                     </Form.Label>
                                     <Col xs={5}>
-                                        <Form.Control type="text" />
+                                        <Form.Control type="text" ref={(c) => this.asunto = c} />
                                     </Col>
                                 </Form.Group>
                                 <Form.Group className="Formulario">
                                     <Form.Label>Mensaje:</Form.Label>
                                     <Col xs={12}>
-                                        <Form.Control as="textarea" rows="3" />
+                                        <Form.Control as="textarea" rows="3" ref={(c) => this.mensaje = c} />
                                     </Col>
                                 </Form.Group>
-                                <Button variant="primary" type="submit" className="Submit">Enviar Consulta</Button>
                             </Form>
+                            <button className="button" onClick={this.pruebaNazi}>Enviar consulta2</button>
                         </Col>
                     </Card.Body>
                 </Card>

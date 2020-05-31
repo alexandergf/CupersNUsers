@@ -36,12 +36,12 @@ export default class pedido extends Component {
                 <Row className="second-line-pedido">
                     <Row>
                         <Col>
-                            Entrega prevista: {this.props.fechaEntrega}<br />
+                                Entrega prevista: {this.props.fechaEntrega}<br />
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            Estado: {this.props.estado}<br />
+                                Estado: {this.props.estado}<br />
                         </Col>
                     </Row>
                     <Row>
