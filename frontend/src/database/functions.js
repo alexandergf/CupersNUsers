@@ -323,13 +323,14 @@ export const contactoMail = async (asunto, mensaje) => {
 
 export const setReview = async (id,puntuacion,descripcion) => {
     let result = [];
-    await axios.post('/user/setReview', {"product_id": id, "rate": puntuacion, "Description": descripcion}, instance)
+    let err = false;
+    await axios.post('/user/setReview', {"product_id": id, "rate": puntuacion, "description": descripcion}, instance)
     .then(function (response){
         result = response;
     })
     .catch(function (error){
-        console.log(error);
+        err= true;
     });
 
-    return result;
+    return [result, err];
 }

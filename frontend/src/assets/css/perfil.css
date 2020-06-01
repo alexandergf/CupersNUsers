@@ -271,34 +271,19 @@
   padding: 1.3em;
 }
 
-.star-opinion-user p {
-  direction: rtl;
-  unicode-bidi: bidi-override;
-  font-size: 20px;
+.star-opinion-user {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.star-opinion-user label {
-  color: grey;
+.star-opinion-user input[type="radio"] {
+  display: none;
 }
 
-.star-opinion-user label:hover,
-.star-opinion-user label:hover ~ label {
-  color: orange;
-}
-
-.star-opinion-user input[type="radio"]:checked ~ label {
-  color: orange;
-}
-
-.star-opinion-user input[type=radio] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 30px;
+.star-opinion-user .star {
   cursor: pointer;
-}
-
-.star-opinion-user input[type=radio] + label {
-  cursor: pointer;
+  -webkit-transition: color 200ms;
+  transition: color 200ms;
 }
 /*# sourceMappingURL=perfil.css.map */

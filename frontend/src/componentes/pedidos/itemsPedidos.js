@@ -3,7 +3,7 @@ import ItemPedido from './itemPedido';
 import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
 import { setReview } from '../../database/functions';
 import MoonLoader from "react-spinners/MoonLoader";
-import { BsStarFill } from 'react-icons/bs';
+import { FaStar } from 'react-icons/fa';
 
 function Wait(props) {
     return (
@@ -23,7 +23,15 @@ function Wait(props) {
 }
 
 function ModalOpinion(props) {
-    const [estrellas, setEstrellas] = React.useState(0);
+    const [rating, setRating] = React.useState(null);
+    const [hover, setHover] = React.useState(null);
+    let descr = React.useRef(null);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.handleValues(descr.current.value,rating);
+    }
+
     return (
         <>
             <Modal show={props.show} onHide={() => props.onHide()} animation={false}>
@@ -31,31 +39,75 @@ function ModalOpinion(props) {
                     <Modal.Title>Opinion al respecto</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                         <Form.Group className="Formulario">
                             <Form.Label>
                                 Puntuacion:
                             </Form.Label>
-                            <Col xs={5} className="star-opinion-user" as={Row}>
-                                <p>
-                                    <input id="radio1" type="radio" name="estrellas" value="5" /><label for="radio1">★</label>
-                                    <input id="radio2" type="radio" name="estrellas" value="4" /><label for="radio2">★</label>
-                                    <input id="radio3" type="radio" name="estrellas" value="3" /><label for="radio3">★</label>
-                                    <input id="radio4" type="radio" name="estrellas" value="2" /><label for="radio4">★</label>
-                                    <input id="radio5" type="radio" name="estrellas" value="1" /><label for="radio5">★</label>
-                                </p>
-                                    
+                            <Col className="star-opinion-user" as={Row}>
+                                {[...Array(5)].map((star,i) => {
+                                    const ratingValue = i+1;
+                                    return (
+                                        <label key={"star-"+i}>
+                                            <input 
+                                                type="radio" 
+                                                name="rating" 
+                                                value={ratingValue} 
+                                                onClick={() => setRating(ratingValue)} 
+                                            />
+                                            <FaStar 
+                                                className="star" 
+                                                color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"} 
+                                                size={50} 
+                                                onMouseEnter={() => setHover(ratingValue)}
+                                                onMouseLeave={() => setHover(null)}
+                                            />
+                                        </label>
+                                    );
+                                })}
                             </Col>
                         </Form.Group>
                         <Form.Group className="Formulario">
                             <Form.Label>Mensaje:</Form.Label>
                             <Col xs={12}>
-                                <Form.Control type="text" name="descripcion" required />
+                                <Form.Control type="text" name="descripcion" ref={descr} required />
                             </Col>
                         </Form.Group>
-                        <Button variant="primary" type="submit" className="Submit">Enviar Consulta</Button>
+                        <Button variant="primary" type="submit" className="Submit">Enviar Opinion</Button>
                     </Form>
                 </Modal.Body>
+            </Modal>
+        </>
+    );
+}
+
+function Confirm(props) {
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Bien</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>La opinion se ha enviado correctamente.</Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={() => props.onHide()}>Vale</Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+}
+
+function Error(props) {
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Ups!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Ha habido un problema con tu opinion.</Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={() => props.onHide()}>Vale</Button>
+                </Modal.Footer>
             </Modal>
         </>
     );
@@ -66,16 +118,24 @@ export default class itemsPedidos extends Component {
         super(props);
         this.state = {
             show: false,
-            showOpinion: false
+            showOpinion: false,
+            idOpinar: -1,
+            showConfirm: false,
+            showError: false
         }
     }
 
-    mostrarModalDarTuOpinion = () => {
-
-    }
-
-    darTuOpinion = () => {
-
+    darTuOpinion = async (descr, rate) => {
+        this.setState({show: true, showOpinion: false});
+        if(this.state.idOpinar !== -1){
+            let result = await setReview(this.state.idOpinar,rate,descr);
+            if(result[1] === false){
+                this.setState({show: false, showConfirm: true});
+            }else{
+                this.setState({show: false, showError: true});
+            }
+        }
+        
     }
 
     render() {
@@ -85,9 +145,11 @@ export default class itemsPedidos extends Component {
                     <ItemPedido nombre={producto.product.name} precio={producto.product.price} unidades={producto.quantity} imagen={producto.product.pics[0].pic} />
                 </Col>
                 <Col className="item-pedido-btn">
-                    <Button onClick={() => this.setState({showOpinion: true})}>Opinar</Button>
-                    <ModalOpinion show={this.state.showOpinion} onHide={() => this.setState({showOpinion:false})} />
+                    <Button onClick={() => this.setState({showOpinion: true, idOpinar: producto.product_id})}>Opinar</Button>
+                    <ModalOpinion show={this.state.showOpinion} onHide={() => this.setState({showOpinion:false})} handleValues={this.darTuOpinion.bind(this)} />
                     <Wait show={this.state.show} onHide={() => this.setState({show:false})} animation={false}/>
+                    <Confirm show={this.state.showConfirm} onHide={() => this.setState({showConfirm:false})} animation={false}/>
+                    <Error show={this.state.showError} onHide={() => this.setState({showError:false})} animation={false}/>
                 </Col>
             </Row>
         ):null;

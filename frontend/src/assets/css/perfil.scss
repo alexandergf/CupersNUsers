@@ -224,30 +224,12 @@
     padding: 1.3em;
 }
 .star-opinion-user{  
-        p{
-            direction: rtl;
-            unicode-bidi: bidi-override; 
-            font-size: 20px;
-        }
-      label {
-        color: grey;
-      }
-       label:hover,
-       label:hover ~ label {
-        color: orange;
-      }
-      input[type="radio"]:checked ~ label {
-        color: orange;
-      }
-      input[type=radio] { 
-        position: absolute;
-        opacity: 0;
-        width: 0;
-        height: 30px;
+    justify-content: center;
+    input[type="radio"]{
+        display: none;
+    }
+    .star{
         cursor: pointer;
-      }
-      
-      input[type=radio] + label {
-        cursor: pointer;
-      }
+        transition: color 200ms;
+    }
 }
