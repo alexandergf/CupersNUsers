@@ -15,7 +15,7 @@ export default class opinion extends Component {
                     <Col sm={2}><Estrellas numStars={this.props.numStars} /></Col><Col sm={{span: 2,offset:8}}>{fechaFormatted}</Col>
                 </Row>
                 <Row>
-                    <Col sm={2}>"{this.props.opinion}"</Col>
+                    <Col>"{this.props.opinion}"</Col>
                 </Row>
             </Container>
         )

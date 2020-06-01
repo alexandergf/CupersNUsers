@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Row, Col, Container, Image } from 'react-bootstrap';
 import Opinion from './opinion';
 import Estrellas from '../estrellas/estrellas';
-import ImagenTest from '../../assets/images/prueba.jpg';
 import { getOpinions } from '../../database/functions';
+import ImagenUser from '../../assets/images/user-icon.png';
 
 export default class opiniones extends Component {
     constructor(props){
@@ -34,8 +34,8 @@ export default class opiniones extends Component {
             this.state.opinions.map((opinion,index) => 
                 opiniones.push(
                     <Row className="opinion-row" key={"opinion-row-"+index}>
-                        <Col sm={1}><Image src={opinion.user.pic !== null ? opinion.user.pic : ImagenTest} roundedCircle width="20px" /></Col>
-                        <Col sm={11}><Opinion nameUser={opinion.user.name} opinion={opinion.description} fecha={opinion.updated_at} numStars={opinion.rate} /></Col>
+                        <Col sm={1}><Image src={opinion.user !== undefined ? opinion.user.pic : ImagenUser} roundedCircle width="20px" /></Col>
+                        <Col sm={11}><Opinion nameUser={opinion.user !== undefined ? opinion.user.name : localStorage.getItem('name')} opinion={opinion.description} fecha={opinion.updated_at} numStars={opinion.rate} /></Col>
                     </Row>
                 )  
             );

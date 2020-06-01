@@ -20,6 +20,7 @@ export default class adminPerfil extends Component {
         let result = await getDetailUser();
         if(result[1] === false){
             this.infoUser(result[0]);
+            localStorage.setItem('name', result[0].name);
         }
     }
 

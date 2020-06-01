@@ -83,10 +83,10 @@ export default class pedido extends Component {
         return(
             <Card.Body>
                 <Row className="first-line-pedido">
-                    <Col sm={2}>
+                    <Col>
                         Nº de pedido: {this.props.numPedido}
                     </Col>
-                    <Col sm={3} className="first-line-pedido-enlaces">
+                    <Col className="first-line-pedido-enlaces">
                         <Button className="detalles-pedido-btn" onClick={()=> this.setState({show: true})}>Detalles pedido</Button>
                         <DetallesPedido 
                             show={this.state.show} 
@@ -95,7 +95,7 @@ export default class pedido extends Component {
                             numPedido={this.props.numPedido} 
                             nProd={this.props.productos.length}
                         />
-                        <a href="#">Ver factura</a>
+                        <Button className="ver-factura-btn">Ver factura</Button>
                     </Col>
                 </Row>
                 <Row className="second-line-pedido">
@@ -110,16 +110,20 @@ export default class pedido extends Component {
                         </Col>
                     </Row>
                 </Row>
-                <ItemsPedidos products={this.props.productos} />
+                <ItemsPedidos products={this.props.productos} red={this.redireccionarLink.bind(this)} />
             </Card.Body>
         )
+    }
+
+    redireccionarLink = (id) => {
+        this.props.redirec(id);
     }
 
     render() {
         return (
             <Container fluid className="pedidos-perfil">
                 <Card className="card-pedido">
-                    <Card.Title><Row className="row-title-pedido"><Col sm={4}>Realizado: {this.props.fecha} | {this.props.unidades} unidades</Col><Col sm={1}><Button onClick={this.despliegue}><MdKeyboardArrowDown /></Button></Col></Row></Card.Title>
+                    <Card.Title><Row className="row-title-pedido"><Col>Realizado: {this.props.fecha} | {this.props.unidades} unidades</Col><Col><Button onClick={this.despliegue}><MdKeyboardArrowDown /></Button></Col></Row></Card.Title>
                     {this.state.active?this.facturaCompleta():null}
                 </Card>
             </Container>

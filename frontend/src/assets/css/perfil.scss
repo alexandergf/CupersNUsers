@@ -126,47 +126,60 @@
     .pedidos-title{
         border-bottom: 1px solid black;
         padding: 0.2em;
+        margin-bottom: 1em;
     }
     .card{
-        .card-title{
+        .card-title{     
+            margin-bottom: 0;       
             text-align: start;
             .row-title-pedido{
                 justify-content: space-between; 
-                .col-sm-1{
+                .col:first-child{
+                    text-align: left;
+                }
+                .col:last-child{
                     text-align: end;
+                    padding-right: 0;
+                    button{
+                        background-color: white;
+                        color: #3fadff;
+                        border: 0px;
+                        &:hover{
+                            background-color: #82c4f7;
+                        }
+                    }
                 }
             }
         }
         .card-body{
-            padding-top: 0;
+            //padding-top: 0;
             .first-line-pedido{
                 display: flex;
                 justify-content: space-between;
                 border-bottom: 1px solid black;
                 padding-bottom: 0.3em;
-                a:link, a:visited,a:hover, a:active{
+                text-align: left;
+                align-items: center;
+                button{
+                    background-color: white;
+                    border: 0px;
                     color: #4cb30b;
                     text-decoration: none;
+                    margin-left: .2em;
                 }
                 .first-line-pedido-enlaces{
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: right;
+                    padding-right: 0;
                 }
             }
             .second-line-pedido{
                 @extend .first-line-pedido;
+                padding: .5em 0;
                 .row{
                     width: 100%;
                     text-align: left;
-                    .seguimiento-pedido{
-                        
-                        text-align: end;
-                        a:link, a:visited,a:hover, a:active {
-                            padding: 0;
-                            color: #3fadff;
-                            text-decoration: none;
-                        }
-                    }
+                    
                 }
             }
         }
@@ -174,17 +187,26 @@
 }
 .items-pedidos{
     .row{
+        padding: .3em;
         display: flex;
         align-items: center;
         .item-pedido{
             text-align: left;
-            align-content: center;
+            padding-left: 0;
         }
         .item-pedido-btn{
             text-align: end;
+            padding-right: 0;
+            button{
+                background-color: #3fadff;
+                &:hover{
+                    background-color: #3497e2;
+                }
+            }
         }
         .col-img{
             text-align: center;
+            cursor: pointer;
         }
         .item-unidades{
             color: #8b8a8a;

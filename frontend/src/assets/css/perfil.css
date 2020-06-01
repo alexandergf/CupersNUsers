@@ -143,9 +143,11 @@
 .pedidos-perfil .pedidos-title {
   border-bottom: 1px solid black;
   padding: 0.2em;
+  margin-bottom: 1em;
 }
 
 .pedidos-perfil .card .card-title {
+  margin-bottom: 0;
   text-align: start;
 }
 
@@ -155,12 +157,23 @@
           justify-content: space-between;
 }
 
-.pedidos-perfil .card .card-title .row-title-pedido .col-sm-1 {
-  text-align: end;
+.pedidos-perfil .card .card-title .row-title-pedido .col:first-child {
+  text-align: left;
 }
 
-.pedidos-perfil .card .card-body {
-  padding-top: 0;
+.pedidos-perfil .card .card-title .row-title-pedido .col:last-child {
+  text-align: end;
+  padding-right: 0;
+}
+
+.pedidos-perfil .card .card-title .row-title-pedido .col:last-child button {
+  background-color: white;
+  color: #3fadff;
+  border: 0px;
+}
+
+.pedidos-perfil .card .card-title .row-title-pedido .col:last-child button:hover {
+  background-color: #82c4f7;
 }
 
 .pedidos-perfil .card .card-body .first-line-pedido, .pedidos-perfil .card .card-body .second-line-pedido {
@@ -172,20 +185,32 @@
           justify-content: space-between;
   border-bottom: 1px solid black;
   padding-bottom: 0.3em;
+  text-align: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.pedidos-perfil .card .card-body .first-line-pedido a:link, .pedidos-perfil .card .card-body .second-line-pedido a:link, .pedidos-perfil .card .card-body .first-line-pedido a:visited, .pedidos-perfil .card .card-body .second-line-pedido a:visited, .pedidos-perfil .card .card-body .first-line-pedido a:hover, .pedidos-perfil .card .card-body .second-line-pedido a:hover, .pedidos-perfil .card .card-body .first-line-pedido a:active, .pedidos-perfil .card .card-body .second-line-pedido a:active {
+.pedidos-perfil .card .card-body .first-line-pedido button, .pedidos-perfil .card .card-body .second-line-pedido button {
+  background-color: white;
+  border: 0px;
   color: #4cb30b;
   text-decoration: none;
+  margin-left: .2em;
 }
 
 .pedidos-perfil .card .card-body .first-line-pedido .first-line-pedido-enlaces, .pedidos-perfil .card .card-body .second-line-pedido .first-line-pedido-enlaces {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  padding-right: 0;
+}
+
+.pedidos-perfil .card .card-body .second-line-pedido {
+  padding: .5em 0;
 }
 
 .pedidos-perfil .card .card-body .second-line-pedido .row {
@@ -193,17 +218,8 @@
   text-align: left;
 }
 
-.pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido {
-  text-align: end;
-}
-
-.pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:link, .pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:visited, .pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:hover, .pedidos-perfil .card .card-body .second-line-pedido .row .seguimiento-pedido a:active {
-  padding: 0;
-  color: #3fadff;
-  text-decoration: none;
-}
-
 .items-pedidos .row {
+  padding: .3em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -214,16 +230,25 @@
 
 .items-pedidos .row .item-pedido {
   text-align: left;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  padding-left: 0;
 }
 
 .items-pedidos .row .item-pedido-btn {
   text-align: end;
+  padding-right: 0;
+}
+
+.items-pedidos .row .item-pedido-btn button {
+  background-color: #3fadff;
+}
+
+.items-pedidos .row .item-pedido-btn button:hover {
+  background-color: #3497e2;
 }
 
 .items-pedidos .row .col-img {
   text-align: center;
+  cursor: pointer;
 }
 
 .items-pedidos .row .item-unidades {

@@ -57,7 +57,8 @@ export default class perfil extends Component {
                                     callback={this.actualizarCarrito.bind(this)} />
                                 } />
                                 <Route path="/Pedidos" render={(props) => 
-                                    <Pedidos {...props} />
+                                    <Pedidos {...props}
+                                    red={this.redireccionar.bind(this)} />
                                 } />
                                 <Route path="/Opinion" render={(props) => 
                                     <Opinion {...props} />

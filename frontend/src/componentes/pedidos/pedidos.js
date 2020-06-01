@@ -20,6 +20,10 @@ export default class pedidos extends Component {
         this.setState({orders: result})
     }
 
+    redireccionarLink = (id) => {
+        this.props.red(id);
+    }
+
     montarOrders = (order, index) => {
         let status = "";
         let fecha = new Date(order.updated_at);
@@ -54,6 +58,7 @@ export default class pedidos extends Component {
                     key={"order - "+index} 
                     productos={order.products} 
                     totalCash={order.price}    
+                    redirec={this.redireccionarLink.bind(this)}
                 />);
     }
 

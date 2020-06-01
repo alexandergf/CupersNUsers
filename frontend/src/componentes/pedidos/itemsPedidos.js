@@ -138,11 +138,22 @@ export default class itemsPedidos extends Component {
         
     }
 
+    redireccionarLink = (id) => {
+        this.props.red(id);
+    }
+
     render() {
         let productos = this.props.products !== undefined ? this.props.products.map((producto, index) => 
             <Row key={"item-pedido-index-"+producto.product_id+"-"+index}>
                 <Col className="item-pedido">
-                    <ItemPedido nombre={producto.product.name} precio={producto.product.price} unidades={producto.quantity} imagen={producto.product.pics[0].pic} />
+                    <ItemPedido 
+                        nombre={producto.product.name} 
+                        precio={producto.product.price} 
+                        unidades={producto.quantity} 
+                        imagen={producto.product.pics[0].pic}
+                        redireccionar={this.redireccionarLink.bind(this)}
+                        id={producto.product_id}
+                    />
                 </Col>
                 <Col className="item-pedido-btn">
                     <Button onClick={() => this.setState({showOpinion: true, idOpinar: producto.product_id})}>Opinar</Button>
