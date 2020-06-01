@@ -17,7 +17,6 @@ export default class pedidos extends Component {
 
     getArrayOrders = async () => {
         let result = await getOrders();
-        console.log(result);
         this.setState({orders: result})
     }
 
@@ -46,8 +45,16 @@ export default class pedidos extends Component {
             default:
                 break;
         }
-
-        return <Pedido fecha={fechaFormatted} unidades={cantidad} numPedido={order.order_token} fechaEntrega={fechaEntrega} estado={status} key={"order - "+index} productos={order.products} />;
+        return (<Pedido 
+                    fecha={fechaFormatted} 
+                    unidades={cantidad} 
+                    numPedido={order.order_token} 
+                    fechaEntrega={fechaEntrega} 
+                    estado={status} 
+                    key={"order - "+index} 
+                    productos={order.products} 
+                    totalCash={order.price}    
+                />);
     }
 
     render() {

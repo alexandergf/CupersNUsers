@@ -1,14 +1,76 @@
 import React, { Component } from 'react';
-import { Container, Card, Row, Col, Button } from 'react-bootstrap';
+import { Container, Card, Row, Col, Button, Table, Modal } from 'react-bootstrap';
 import ItemsPedidos from './itemsPedidos';
-import { MdKeyboardArrowDown } from 'react-icons/md';
+import { MdKeyboardArrowDown, MdPayment } from 'react-icons/md';
+import { RiBillLine } from 'react-icons/ri';
 
+function DetallesPedido(props) {
+    return (
+        <>
+            <Modal show={props.show} onHide={() => props.onHide()} animation={false}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Detalles pedido</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="model-body-order">
+                    <Row className="model-body-title-order">
+                        Nº de pedido: {props.numPedido} | {props.nProd} artículo(s)
+                    </Row>
+                    <Row>
+                        <Table responsive>
+                            <thead>
+                                <tr>
+                                    <th><MdPayment /> Método de pago</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PayPal</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                    </Row>
+                    <Row>
+                        <Table responsive>
+                            <thead>
+                                <tr>
+                                    <th><RiBillLine /> Resumen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Subtotal de producto(s):</td>
+                                    <td>{(props.totalCash-props.totalCash*(21/100)).toFixed(2)}€</td>
+                                </tr>
+                                <tr>
+                                    <td>Envío:</td>
+                                    <td>0.00€</td>
+                                </tr>
+                                <tr>
+                                    <td>Impuestos:</td>
+                                    <td>{(props.totalCash*(21/100)).toFixed(2)}€</td>
+                                </tr>
+                                <tr>
+                                    <td>Total:</td>
+                                    <td>{props.totalCash}€</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                    </Row>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={() => props.onHide()}>Cerrar</Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+}
 
 export default class pedido extends Component {
     constructor(props){
         super(props);
         this.state = {
-            active: false
+            active: false,
+            show: false
         }
     }
     despliegue = () => {
@@ -25,7 +87,14 @@ export default class pedido extends Component {
                         Nº de pedido: {this.props.numPedido}
                     </Col>
                     <Col sm={3} className="first-line-pedido-enlaces">
-                        <a href="#">Detalles pedido</a>
+                        <Button className="detalles-pedido-btn" onClick={()=> this.setState({show: true})}>Detalles pedido</Button>
+                        <DetallesPedido 
+                            show={this.state.show} 
+                            onHide={() => this.setState({show:false})} 
+                            totalCash={this.props.totalCash} 
+                            numPedido={this.props.numPedido} 
+                            nProd={this.props.productos.length}
+                        />
                         <a href="#">Ver factura</a>
                     </Col>
                 </Row>
@@ -39,11 +108,6 @@ export default class pedido extends Component {
                         <Col>
                             Estado: {this.props.estado}<br />
                         </Col>
-                    </Row>
-                    <Row>
-                        <Col className="seguimiento-pedido">
-                            <span><a href="#">Seguimiento</a></span><br />
-                        </Col>    
                     </Row>
                 </Row>
                 <ItemsPedidos products={this.props.productos} />

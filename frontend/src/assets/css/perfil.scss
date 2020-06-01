@@ -233,3 +233,16 @@
         transition: color 200ms;
     }
 }
+.table th, .table td, .table thead th{
+    border: 0px solid black;
+    padding: .5em;
+}
+.model-body-order{
+    .model-body-title-order{
+        justify-content: center;
+        background-color: rgb(226, 223, 223);
+    }
+    .row{
+        margin-left: 0;
+    }
+}
