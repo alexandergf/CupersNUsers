@@ -3,6 +3,81 @@ import { Container, Card, Button, Modal, Toast, Row, Col } from 'react-bootstrap
 import WishItems from './wishItems';
 import { getWishList, addWishItem, deleteWishList, cartItem } from '../../database/functions';
 
+function CartProductToast(props){
+    return (
+        <>
+            <Toast className="toast-title" {...props}>
+                <Toast.Header>
+                <img
+                    src="holder.js/20x20?text=%20"
+                    className="rounded mr-2"
+                    alt=""
+                />
+                <strong className="mr-auto">Lista de deseos</strong>
+                </Toast.Header>
+                <Toast.Body>Productos añadidos al carrito.</Toast.Body>
+            </Toast>
+        </>
+    )
+}
+
+function ModalRemove(props){
+    return (
+        <>
+            <Modal show={props.show} onHide={() => props.onHide()} animation={false}>
+                <Modal.Header closeButton>
+                <Modal.Title>Confirmación</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Seguro que quieres borrar todos los articulos de la lista de deseos?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => props.onHide()}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={() => props.totalRemove()}>
+                        Si, estoy de acuerdo
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
+function ErrorRemove(props){
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Ups</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Algo no ha ido bien.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
+function AcceptRemove(props){
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Bien</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>La lista se ha vaciado con exito.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
 export default class wishList extends Component {
     constructor(props){
         super(props);
@@ -81,60 +156,9 @@ export default class wishList extends Component {
     }
 
     render() {
-        const modalRemove = <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Confirmación</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Seguro que quieres borrar todos los articulos de la lista de deseos?</Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={() => this.setState({show: false})}>
-                    Cancelar
-                </Button>
-                <Button variant="primary" onClick={() => this.totalRemove()}>
-                    Si, estoy de acuerdo
-                </Button>
-            </Modal.Footer>
-        </Modal>;
-
-        const errorRemove = <Modal show={this.state.failRemove} onHide={() => this.setState({failRemove: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Ups</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Algo no ha ido bien.</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({failRemove: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
-
-        const acceptRemove = <Modal show={this.state.remove} onHide={() => this.setState({remove: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Bien</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>La lista se ha vaciado con exito.</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({remove: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
-
-        const cartProduct = <Toast className="toast-title" onClose={() => this.setState({showCart:false})} show={this.state.showCart} delay={3000} autohide>
-            <Toast.Header>
-            <img
-                src="holder.js/20x20?text=%20"
-                className="rounded mr-2"
-                alt=""
-            />
-            <strong className="mr-auto">Lista de deseos</strong>
-            </Toast.Header>
-            <Toast.Body>Productos añadidos al carrito.</Toast.Body>
-        </Toast>;
-
         return (
             <Container fluid className="wish-perfil">
-                {cartProduct}
+                <CartProductToast onClose={() => this.setState({showCart:false})} show={this.state.showCart} delay={3000} autohide />
                 <Card>
                     <Card.Title>
                         <Container fluid>
@@ -153,9 +177,9 @@ export default class wishList extends Component {
                         {this.state.zeroProductos? "No hay productos en la lista de deseados.":<WishItems delete={this.deleteItemWishList.bind(this)} red={this.redireccionar.bind(this)} productos={this.state.productos} />}
                     </Card.Body>
                 </Card>
-                {modalRemove}
-                {errorRemove}
-                {acceptRemove}
+                <ModalRemove show={this.state.show} onHide={() => this.setState({show: false})} totalRemove={()=>this.totalRemove()} />
+                <ErrorRemove show={this.state.failRemove} onHide={() => this.setState({failRemove: false})} animation={false} />
+                <AcceptRemove show={this.state.remove} onHide={() => this.setState({remove: false})} animation={false} />
             </Container>
         )
     }

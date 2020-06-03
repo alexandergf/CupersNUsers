@@ -1,8 +1,65 @@
 import React, { Component } from 'react';
-import { Container, Button, Card, Table, Image, Modal} from 'react-bootstrap';
+import { Container, Button, Card, Table, Image, Modal } from 'react-bootstrap';
 import ImagenTest from '../../assets/images/prueba.jpg';
 import { cartItem, totalRemoveCartItems } from '../../database/functions';
 import { Link } from 'react-router-dom';
+
+function ModalRemove(props){
+    return(
+        <>
+            <Modal show={props.show} onHide={() => props.onHide()} animation={false}>
+                <Modal.Header closeButton>
+                <Modal.Title>Confirmación</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Seguro que quieres borrar todos los articulos de la cesta?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => props.onHide()}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={() => props.remove()}>
+                        Si, estoy de acuerdo
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
+function ErrorRemove(props){
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Ups</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Algo no ha ido bien.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal> 
+        </>
+    )
+}
+
+function AcceptRemove(props){
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Bien</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>La cesta se ha vaciado con exito.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal> 
+        </>
+    )
+}
 
 export default class articulos extends Component {
     constructor(props){
@@ -55,45 +112,6 @@ export default class articulos extends Component {
     }
 
     render() {
-        const modalRemove = <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Confirmación</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Seguro que quieres borrar todos los articulos de la cesta?</Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={() => this.setState({show: false})}>
-                    Cancelar
-                </Button>
-                <Button variant="primary" onClick={() => this.totalRemove()}>
-                    Si, estoy de acuerdo
-                </Button>
-            </Modal.Footer>
-        </Modal>;
-
-        const errorRemove = <Modal show={this.state.failRemove} onHide={() => this.setState({failRemove: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Ups</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Algo no ha ido bien.</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({failRemove: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
-
-        const acceptRemove = <Modal show={this.state.remove} onHide={() => this.setState({remove: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Bien</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>La cesta se ha vaciado con exito.</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({remove: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
-
         const tabla =  this.props.products.map((product,index) => 
             <tr key={"table-row-"+index}>
                 <td><Link to={"/Detail/"+product.product_id}><Image src={product.product.pics[0] !== undefined ? product.product.pics[0].pic : ImagenTest} roundedCircle width="72em" height="72em" />{product.product.name}</Link></td>
@@ -104,7 +122,6 @@ export default class articulos extends Component {
             </tr>
         )
         let total = this.calculoTotales(this.props.products);
-        
         return (
             <Container fluid className="articulos-carrito">
                 <Card>
@@ -134,9 +151,9 @@ export default class articulos extends Component {
                         <Link to="/"><Button className="btn-seguir-comprando">Seguir comprando</Button></Link>
                     </Card.Footer>
                 </Card>
-                {modalRemove}
-                {errorRemove}
-                {acceptRemove}
+                <ModalRemove show={this.state.show} onHide={() => this.setState({show:false})} remove={()=>this.totalRemove()} />
+                <ErrorRemove show={this.state.failRemove} onHide={() => this.setState({failRemove: false})} />
+                <AcceptRemove show={this.state.remove} onHide={() => this.setState({remove: false})} />
             </Container>
         )
     }

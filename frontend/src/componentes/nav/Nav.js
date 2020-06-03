@@ -11,7 +11,41 @@ import { GiMagnifyingGlass } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import Cart from './tarjetaCarrito';
 
-class Nav extends Component {
+function EnlaceAdmin(){
+    return (
+        <Col xs={2}>
+            <a href="https://cupersnusers.vestidosaraya.com/admin/login">
+                <Button variant="danger" className="fa fa-bars">
+                    <RiAdminLine />
+                </Button>
+            </a>
+        </Col>
+    )
+}
+
+function EnlaceLogOut(props){
+    return (
+        <Col xs={2}>
+            <Button variant="light" className="fa fa-bars" onClick={() => props.showModal()}><FiLogOut /></Button>
+            <Modal show={props.show} onHide={() => props.onHide()} animation={false}>
+                <Modal.Header closeButton>
+                <Modal.Title>Cerrar Sesión</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Seguro que quieres cerrar la sesión?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => props.onHide()}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={() => props.logOut()}>
+                        Salir
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </Col>
+    )
+}
+
+export default class Nav extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -82,33 +116,7 @@ class Nav extends Component {
         this.formInput.current.value = "";
     }
 
-    render() {
-        const enlaceAdmin = <Col xs={2}>
-                <a href="https://cupersnusers.vestidosaraya.com/admin/login">
-                    <Button variant="danger" className="fa fa-bars">
-                        <RiAdminLine />
-                    </Button>
-                </a>
-            </Col>;    
-            
-        const enlaceLogOut = <Col xs={2}>
-                <Button variant="light" className="fa fa-bars" onClick={() => this.setState({show: true})}><FiLogOut /></Button>
-                <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
-                    <Modal.Header closeButton>
-                    <Modal.Title>Cerrar Sesión</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Seguro que quieres cerrar la sesión?</Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={() => this.setState({show: false})}>
-                            Cancelar
-                        </Button>
-                        <Button variant="primary" onClick={() => this.logOutFunction()}>
-                            Salir
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </Col>;
-        
+    render() {            
         return (
             <div className="Nav">
                 <Container className="Contenedor" fluid>
@@ -129,7 +137,7 @@ class Nav extends Component {
                         </Col>
                         <Col xs={3} className="Botones">
                             <Row className="btn-row">
-                                {this.state.admin ? enlaceAdmin : null}
+                                {this.state.admin ? <EnlaceAdmin /> : null}
                                 <Col xs={2}>
                                     <Link to="/UsoTazas">
                                         <Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}>
@@ -152,7 +160,12 @@ class Nav extends Component {
                                     </Link>
                                 </Col>
                                 {this.state.cart_show ? <Cart deleteFromCartCard={() => this.deleteFromCart.bind(this)} productos={this.props.productosCarrito} show={this.state.cart_show} calltoclose={() => this.setState({cart_show: false})} />:null}
-                                {this.state.logIn ? enlaceLogOut : null}
+                                {this.state.logIn ? <EnlaceLogOut 
+                                                        show={this.state.show} 
+                                                        onHide={() => this.setState({show: false})} 
+                                                        logOut={() => this.logOutFunction()} 
+                                                        showModal={()=>this.setState({show: true})} 
+                                                        /> : null}
                             </Row>
                         </Col>
                     </Row>
@@ -162,5 +175,3 @@ class Nav extends Component {
     }
 
 }
-
-export default Nav;

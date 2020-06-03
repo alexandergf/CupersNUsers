@@ -3,6 +3,63 @@ import {Form, Container, Button, Row, Modal} from 'react-bootstrap';
 import { instance } from '../../database/config';
 import { userLog, forgotPass } from '../../database/functions';
 
+function ErrorLogin(props){
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Error</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>El email o la contraseña introducidos no son correctos</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
+function RecuperarPassword(props){
+    return (
+        <>
+            <Modal show={props.show} onHide={() => props.onHide()} animation={false}>
+                <Modal.Header closeButton>
+                <Modal.Title>Recuperar contraseña</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Cual es tu email?<br /><input type="email" name="email" onChange={props.handleChange} /></Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => props.onHide()}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={() => props.forgotPassword()}>
+                        Recuperar contraseña
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
+function SuccessRecuperarPassword(props){
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Recuperar contraseña</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Se te ha enviado un email a tu correo para cambiar la contraseña</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
 export default class loginIniciarSesion extends Component {
     constructor(props){
         super(props);
@@ -45,17 +102,6 @@ export default class loginIniciarSesion extends Component {
     }
 
     render() {
-        const errorLogin = <Modal show={this.state.showError} onHide={() => this.setState({showError: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Error</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>El email o la contraseña introducidos no son correctos</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({showError: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
         return (
             <Container fluid>
                 <Form onSubmit={this.handleSubmit}>
@@ -73,34 +119,9 @@ export default class loginIniciarSesion extends Component {
                     </Button>
                 </Form>
                 <Row className="forgivePassword"><Button onClick={() => this.setState({show: true})}>¿Has olvidado la contraseña?</Button></Row>
-                <Modal show={this.state.show} onHide={() => this.setState({show: false})}>
-                    <Modal.Header closeButton>
-                    <Modal.Title>Recuperar contraseña</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Cual es tu email?<br /><input type="email" name="email" onChange={this.handleChange} /></Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={() => this.setState({show: false})}>
-                            Cancelar
-                        </Button>
-                        <Button variant="primary" onClick={() => this.forgotPassword()}>
-                            Recuperar contraseña
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-
-                <Modal show={this.state.showConfirmation} onHide={() => this.setState({showConfirmation: false})}>
-                    <Modal.Header closeButton>
-                    <Modal.Title>Recuperar contraseña</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Se te ha enviado un email a tu correo para cambiar la contraseña</Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={() => this.setState({showConfirmation: false})}>
-                            Vale
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-
-                {errorLogin}
+                <RecuperarPassword show={this.state.show} onHide={() => this.setState({show: false})} handleChange={this.handleChange} forgotPassword={this.forgotPassword}/>
+                <SuccessRecuperarPassword show={this.state.showConfirmation} onHide={() => this.setState({showConfirmation: false})} animation={false} />
+                <ErrorLogin show={this.state.showError} onHide={() => this.setState({showError: false})} animation={false} />
             </Container>
         )
     }

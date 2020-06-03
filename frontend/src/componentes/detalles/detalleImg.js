@@ -9,7 +9,6 @@ export default class detalleImg extends Component {
         this.state = {
             src: ImagenPrueba
         }
-        this.principalImage = React.createRef();
         this.handleClickToChange = this.handleClickToChange.bind(this);
     }
 

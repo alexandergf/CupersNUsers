@@ -5,6 +5,27 @@ import Estrellas from '../estrellas/estrellas';
 import { Redirect } from 'react-router-dom';
 import { getOpinions, cartItem } from '../../database/functions';
 
+function LogIn(props){
+    return (
+        <>
+            <Modal show={props.showLogin} onHide={() => props.onHide()} animation={false}>
+                <Modal.Header closeButton>
+                <Modal.Title>Ups</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{props.errorMessage}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={() => props.onHide()}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={() => props.redirect}>
+                        Logearse
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
 export default class bottomDetail extends Component {
     constructor(props){
         super(props);
@@ -57,20 +78,6 @@ export default class bottomDetail extends Component {
     }
 
     render() {
-        const logIn = <Modal show={this.state.showLogin} onHide={() => this.setState({showLogin: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Ups</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>{this.state.errorMessage}</Modal.Body>
-            <Modal.Footer>
-                <Button variant="danger" onClick={() => this.setState({showLogin: false})}>
-                    Cancelar
-                </Button>
-                <Button variant="primary" onClick={() => this.setState({redirectLogin: true})}>
-                    Logearse
-                </Button>
-            </Modal.Footer>
-        </Modal>;
         if(this.state.redirectLogin === true){
             return <Redirect to="/Login" />
         }else if(this.state.redirectCart === true){
@@ -78,7 +85,12 @@ export default class bottomDetail extends Component {
         }
         return (
             <Row className="bottom-detail">
-                {logIn}
+                <LogIn 
+                    showLogin={this.state.showLogin} 
+                    onHide={() => this.setState({showLogin: false})} 
+                    errorMessage={this.state.errorMessage} 
+                    redirect={() => this.setState({redirectLogin: true})}
+                />
                 <Col md={3} sm={3}><Row className="Opiniones"><span>{this.state.nOpinions} Opiniones</span></Row><Row className="star-row"><Estrellas numStars={this.props.estrellas} /></Row></Col>
                 <Col className="carrito-col-btn" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><Button className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Button></Col>
                 <Col className="comprar" sm={3}><Button className="btn-comprar" variant="success" onClick={() => this.buyItem()} >Comprar</Button></Col>

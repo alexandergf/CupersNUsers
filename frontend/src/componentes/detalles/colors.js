@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Color from './color';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col } from 'react-bootstrap';
 
 export default class colors extends Component {
     render() {

@@ -18,7 +18,6 @@ export const getOpinions = async (id) => {
     let point = 0;
     let opinions = [];
     id === -1 ? direccion = "/user/getReviews" : direccion = "/product/getReviews";
-    console.log(direccion);
     await axios.post(direccion, {"product_id": id}, instance)
         .then((response) => {
             response.data.data.map((opinion,index) => 

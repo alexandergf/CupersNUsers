@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
 
-class usoTaza extends Component {
-
+export default class usoTaza extends Component {
     render() {
         return (
             <Card>
@@ -19,7 +18,4 @@ class usoTaza extends Component {
             </Card>
         )
     }
-
 }
-
-export default usoTaza;

@@ -6,7 +6,7 @@ import TituloUsosTazas from './TituloUsosTazas';
 import UsoTaza from './UsoTaza';
 import { getUsesCup } from '../../database/functions';
 
-class cuerpoTazas extends Component {
+export default class cuerpoTazas extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -41,11 +41,9 @@ class cuerpoTazas extends Component {
 
     listaUsos = () => {
         let tabla = [];
-        let usos = [];
-
-        usos = this.state.usos.map((us,index) => 
+        let usos = this.state.usos.map((us,index) => 
                 <UsoTaza key={us.id.toString()} num={index+1} texto={us.use} />
-            )
+            );
         
         for (let i = 0; i < usos.length; i+=2) {
             
@@ -85,5 +83,3 @@ class cuerpoTazas extends Component {
     }
 
 }
-
-export default cuerpoTazas;

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Col, Row} from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import Productos from '../productos/contenedorProductos';
 import { getProductByCategory } from '../../database/functions';
-
 
 export default class pantallaInicial extends Component {
     constructor(props){
@@ -33,10 +32,6 @@ export default class pantallaInicial extends Component {
         }else{
             this.setState({productos: await getProductByCategory(id), categoryName: nameCategory, idCat: id});
         }
-    }
-
-    componentWillUnmount = () => {
-
     }
 
     render() {

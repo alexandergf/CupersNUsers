@@ -5,6 +5,24 @@ import { Link } from 'react-router-dom';
 import { BsTrashFill } from 'react-icons/bs';
 import { cartItem } from '../../database/functions';
 
+function ErrorRemove(props){
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Ups</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Algo no ha ido bien.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
 export default class tarjetaCarrito extends Component {
     constructor(props){
         super(props);
@@ -45,17 +63,6 @@ export default class tarjetaCarrito extends Component {
     }
 
     render() {
-        const errorRemove = <Modal show={this.state.failRemove} onHide={() => this.setState({failRemove: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Ups</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Algo no ha ido bien.</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({failRemove: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
         var renderProducts = this.state.products !== undefined && this.state.products !== null ? this.state.products.map((product,index) => 
             <ListGroup.Item key={"item-listgroup-"+index}>
                 <Row>
@@ -97,7 +104,7 @@ export default class tarjetaCarrito extends Component {
                         </Container>
                     </Toast.Body>
                 </Toast>
-                {errorRemove}
+                <ErrorRemove show={this.state.failRemove} onHide={() => this.setState({failRemove: false})} animation={false} />
             </Container>
         )
     }

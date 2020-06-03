@@ -4,7 +4,7 @@ import Colors from './colors';
 import Title from './detalleTitle';
 import BottomDetail from './bottomDetail';
 import Contador from './contador';
-import Container from 'react-bootstrap/Container';
+import { Container } from 'react-bootstrap';
 
 export default class detalleText extends Component {
     constructor(props){

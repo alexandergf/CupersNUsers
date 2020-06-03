@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class tituloUsosTazas extends Component {
+export default class tituloUsosTazas extends Component {
     render(){
         return(
             <div className="tituloUsosTazas">
@@ -9,5 +9,3 @@ class tituloUsosTazas extends Component {
         )
     }
 }
-
-export default tituloUsosTazas;

@@ -48,30 +48,26 @@ export default class panelBuscadorProductos extends Component {
     }
 
     render() {
-        const elementosPanel = [];
-        const paneles = this.state.paneles;
-        for(let i = 0; i < paneles.length; i++){
-            elementosPanel.push(
-                <Row key={i+"-row-elementosPanel"}>
-                    <Container fluid className="elemento-panel">
-                        <Card>
-                            <Card.Title>{paneles[i].nombre}</Card.Title>
-                            <Card.Body>
-                                <Form>
-                                    <Form.Group controlId={paneles[i].nombre+"-checkbox"}>
-                                        {paneles[i].elementos.map((fila,index) => {
-                                            return (
-                                                <Form.Check key={"fila"+index} type="checkbox" label={fila} onClick={() => this.mirarSiSelecciona(paneles[i].nombre,fila,index)} />
-                                            );
-                                        })}
-                                    </Form.Group>
-                                </Form>
-                            </Card.Body>
-                        </Card>
-                    </Container>
-                </Row>
-            );
-        }
+        const elementosPanel = this.state.paneles.map((panel,i)=>
+            <Row key={i+"-row-elementosPanel"}>
+                <Container fluid className="elemento-panel">
+                    <Card>
+                        <Card.Title>{panel.nombre}</Card.Title>
+                        <Card.Body>
+                            <Form>
+                                <Form.Group controlId={panel.nombre+"-checkbox"}>
+                                    {panel.elementos.map((fila,index) => {
+                                        return (
+                                            <Form.Check key={"fila"+index} type="checkbox" label={fila} onClick={() => this.mirarSiSelecciona(panel.nombre,fila,index)} />
+                                        );
+                                    })}
+                                </Form.Group>
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                </Container>
+            </Row>
+        );
         return (
             <Container fluid className="panel-productos">
                 <Col>

@@ -4,6 +4,45 @@ import { FaHeart } from 'react-icons/fa';
 import { addWishItem } from '../../database/functions';
 import { Redirect } from 'react-router-dom';
 
+function LogIn(props){
+    return (
+        <>
+            <Modal show={props.showLogin} onHide={() => props.onHide()} animation={false}>
+                <Modal.Header closeButton>
+                <Modal.Title>Ups</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Para añadir a la lista de deseos tienes que estar logeado.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={() => props.onHide()}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={() => props.redirect}>
+                        Logearse
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
+function FavProduct(props){
+    return (
+        <>
+            <Toast className="toast-title" {...props}>
+                <Toast.Header>
+                <img
+                    src="holder.js/20x20?text=%20"
+                    className="rounded mr-2"
+                    alt=""
+                />
+                <strong className="mr-auto">Lista de deseos</strong>
+                </Toast.Header>
+                <Toast.Body>Producto añadido a la lista de deseos.</Toast.Body>
+            </Toast>
+        </>
+    )
+}
+
 export default class detalleTitle extends Component {
     constructor(props){
         super(props);
@@ -28,38 +67,17 @@ export default class detalleTitle extends Component {
     }
 
     render() {
-        const favProduct = <Toast className="toast-title" onClose={() => this.setState({show:false})} show={this.state.show} delay={3000} autohide>
-            <Toast.Header>
-            <img
-                src="holder.js/20x20?text=%20"
-                className="rounded mr-2"
-                alt=""
-            />
-            <strong className="mr-auto">Lista de deseos</strong>
-            </Toast.Header>
-            <Toast.Body>Producto añadido a la lista de deseos.</Toast.Body>
-        </Toast>;
-        const logIn = <Modal show={this.state.showLogin} onHide={() => this.setState({showLogin: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Ups</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Para añadir a la lista de deseos tienes que estar logeado.</Modal.Body>
-            <Modal.Footer>
-                <Button variant="danger" onClick={() => this.setState({showLogin: false})}>
-                    Cancelar
-                </Button>
-                <Button variant="primary" onClick={() => this.setState({redirectLogin: true})}>
-                    Logearse
-                </Button>
-            </Modal.Footer>
-        </Modal>;
         if(this.state.redirectLogin === true){
             return <Redirect to="/Login" />
         }
         return (
             <Row className="title-detail">
-                {favProduct}
-                {logIn}
+                <FavProduct onClose={() => this.setState({show:false})} show={this.state.show} delay={3000} autohide />
+                <LogIn 
+                    showLogin={this.state.showLogin} 
+                    onHide={() => this.setState({showLogin: false})} 
+                    redirect={() => this.setState({redirectLogin: true})}
+                />
                 <Col className="title-title"><h3>{this.props.name}</h3></Col><Col className="heartToBasket"><Button className="btn" variant="secondary" onClick={() => this.whishItem(this.props.id)}><FaHeart /></Button></Col>
             </Row>
         )

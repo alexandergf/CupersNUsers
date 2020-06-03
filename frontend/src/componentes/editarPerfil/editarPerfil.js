@@ -2,6 +2,42 @@ import React, { Component } from 'react';
 import { Container, Card, Form, Button, Col, Modal} from 'react-bootstrap';
 import { userChangePass, userEdit } from '../../database/functions';
 
+function ErrorChangePass(props){
+    return (
+        <>
+            <Modal show={props.show} onHide={() => props.onHide()} animation={false}>
+                <Modal.Header closeButton>
+                <Modal.Title>Ups</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{props.errorMessage}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
+function SuccessChangePass(props){
+    return (
+        <>
+            <Modal show={props.show} onHide={() => props.onHide()} animation={false}>
+                <Modal.Header closeButton>
+                <Modal.Title>Perfecto.</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{props.successMesage}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
 export default class editarPerfil extends Component {
     constructor(props){
         super(props);
@@ -56,34 +92,10 @@ export default class editarPerfil extends Component {
     }
 
     render() {
-        const errorChangePass = <Modal show={this.state.showErrorChange} onHide={() => this.setState({showErrorChange: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Ups</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>{this.state.messageError}</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({showErrorChange: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
-
-        const successChangePass = <Modal show={this.state.showSuccessChange} onHide={() => this.setState({showSuccessChange: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Perfecto.</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>{this.state.messageSuccess}</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({showSuccessChange: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
-
         return (
             <Container fluid className="edit-perfil">
-                {errorChangePass}
-                {successChangePass}
+                <ErrorChangePass show={this.state.showErrorChange} onHide={() => this.setState({showErrorChange: false})} errorMessage={this.state.messageError} />
+                <SuccessChangePass show={this.state.showSuccessChange} onHide={() => this.setState({showSuccessChange: false})} successMesage={this.state.messageSuccess} />
                 <Card>
                     <Card.Title><h3 className="editPerfil-title">Editar Perfil</h3></Card.Title>
                     <Card.Body className="edit-card">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../assets/css/navNFooter.css';
 import { Container } from 'react-bootstrap';
 
-class Footer extends Component {
+export default class Footer extends Component {
     render() {
         return(
             <Container className="Footer" fluid>
@@ -11,5 +11,3 @@ class Footer extends Component {
         );
     }
 }
-
-export default Footer;

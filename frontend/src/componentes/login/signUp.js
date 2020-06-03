@@ -3,6 +3,42 @@ import { Form, Container, Button, Modal} from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
 import { createAccount } from '../../database/functions';
 
+function ErrorCreateCount(props){
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Error</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>El email ya esta registrado o algunos de los campos no ha sido correctamente rellenados.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
+function AcceptCreateCount(props){
+    return (
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Felicidades</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>La cuenta se ha creado correctamente, ahora inicia sesión.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={() => props.onHide()}>
+                        Vale
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+
 export default class signUp extends Component {
     constructor(props){
         super(props);
@@ -55,29 +91,6 @@ export default class signUp extends Component {
     }
 
     render() {
-        const errorCreateCount = <Modal show={this.state.failCreate} onHide={() => this.setState({failCreate: false})}>
-            <Modal.Header closeButton>
-            <Modal.Title>Error</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>El email ya esta registrado o algunos de los campos no ha sido correctamente rellenados.</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.setState({failCreate: false})}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
-
-        const acceptCreateCount = <Modal show={this.state.create} onHide={() => this.redirect()}>
-            <Modal.Header closeButton>
-            <Modal.Title>Felicidades</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>La cuenta se ha creado correctamente, ahora inicia sesión.</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => this.redirect()}>
-                    Vale
-                </Button>
-            </Modal.Footer>
-        </Modal>;
         if(this.state.log){
             return(<Redirect to="/" />)
         } 
@@ -118,8 +131,8 @@ export default class signUp extends Component {
                         Crear Usuario
                     </Button>
                 </Form>
-                {errorCreateCount}
-                {acceptCreateCount}
+                <ErrorCreateCount show={this.state.failCreate} onHide={() => this.setState({failCreate: false})} animation={false} />
+                <AcceptCreateCount show={this.state.create} onHide={() => this.redirect()} animation={false} />
             </Container>
         )
     }
