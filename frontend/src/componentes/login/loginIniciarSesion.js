@@ -2,6 +2,24 @@ import React, { Component } from 'react';
 import {Form, Container, Button, Row, Modal} from 'react-bootstrap';
 import { instance } from '../../database/config';
 import { userLog, forgotPass } from '../../database/functions';
+import MoonLoader from "react-spinners/MoonLoader";
+
+function WaitAmoment(props){
+    return(
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Un momento</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Cargando...
+                    <Container fluid className="container-icon-spinner">
+                        <MoonLoader size={30} color={"#000000"} />
+                    </Container>
+                </Modal.Body>
+            </Modal>
+        </>
+    )
+}
 
 function ErrorLogin(props){
     return (
@@ -68,7 +86,8 @@ export default class loginIniciarSesion extends Component {
             password: null,
             show: false,
             showConfirmation: false,
-            showError: false
+            showError: false,
+            showCharge: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -85,13 +104,15 @@ export default class loginIniciarSesion extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
+        this.setState({showCharge: true});
         let result = await userLog(this.state.email, this.state.password);
-        result[1] === true ? this.setState({showError: result[1]}) : this.sendResponseData(result[0]);
+        result[1] === true ? this.setState({showError: result[1], showCharge: false}) : this.sendResponseData(result[0]);
     }
 
     sendResponseData = (value) => {
         sessionStorage.setItem('token', value);
         instance.headers.Authorization = "Bearer "+value;
+        this.setState({showCharge: false});
         this.props.actualizar(true);
     }
 
@@ -122,6 +143,7 @@ export default class loginIniciarSesion extends Component {
                 <RecuperarPassword show={this.state.show} onHide={() => this.setState({show: false})} handleChange={this.handleChange} forgotPassword={this.forgotPassword}/>
                 <SuccessRecuperarPassword show={this.state.showConfirmation} onHide={() => this.setState({showConfirmation: false})} animation={false} />
                 <ErrorLogin show={this.state.showError} onHide={() => this.setState({showError: false})} animation={false} />
+                <WaitAmoment show={this.state.showCharge} onHide={() => this.setState({showCharge: false})} animation={false} />
             </Container>
         )
     }

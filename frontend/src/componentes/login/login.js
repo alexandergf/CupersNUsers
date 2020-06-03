@@ -33,7 +33,7 @@ export default class login extends Component {
                     </Card>
                     <Card className="signup">
                         <Card.Header>Crear Cuenta</Card.Header>
-                        <Card.Body><SignUp /></Card.Body>
+                        <Card.Body><SignUp actualizar={this.actualizarLog.bind(this)} /></Card.Body>
                     </Card>
                 </CardColumns>
             </Container>

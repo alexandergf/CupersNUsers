@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Card, Button, Row, Col, Modal } from 'react-bootstrap';
 import { setOrder } from '../../database/functions';
+import MoonLoader from "react-spinners/MoonLoader";
 
 function WaitAmoment(props){
     return(
@@ -9,7 +10,11 @@ function WaitAmoment(props){
                 <Modal.Header closeButton>
                 <Modal.Title>Un momento</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Se le esta redirigiendo a una plataforma de pago.</Modal.Body>
+                <Modal.Body>Se le esta redirigiendo a una plataforma de pago...
+                    <Container fluid className="container-icon-spinner">
+                        <MoonLoader size={30} color={"#000000"} />
+                    </Container>
+                </Modal.Body>
             </Modal>
         </>
     )

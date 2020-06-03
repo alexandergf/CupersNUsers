@@ -1,7 +1,24 @@
 import React, { Component } from 'react';
 import { Form, Container, Button, Modal} from 'react-bootstrap';
-import {Redirect} from 'react-router-dom';
 import { createAccount } from '../../database/functions';
+import MoonLoader from "react-spinners/MoonLoader";
+
+function WaitAmoment(props){
+    return(
+        <>
+            <Modal {...props}>
+                <Modal.Header closeButton>
+                <Modal.Title>Un momento</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Se está creando la cuenta...
+                    <Container fluid className="container-icon-spinner">
+                        <MoonLoader size={30} color={"#000000"} />
+                    </Container>
+                </Modal.Body>
+            </Modal>
+        </>
+    )
+}
 
 function ErrorCreateCount(props){
     return (
@@ -51,7 +68,8 @@ export default class signUp extends Component {
             password: null,
             failCreate: false,
             create: false,
-            log: false
+            log: false,
+            show: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -68,6 +86,7 @@ export default class signUp extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
+        this.setState({show: false});
         let dataUser = {};
         if(this.state.nombre !== null && this.state.nombre !== "") dataUser.name = this.state.nombre;
         if(this.state.apellidos !== null && this.state.nombre !== "") dataUser.surnames = this.state.apellidos;
@@ -80,20 +99,17 @@ export default class signUp extends Component {
 
     responseCreateCount = (verify) => {
         if(verify){
-            this.setState({create: true});
+            this.setState({create: true, show: false});
         }else{
-            this.setState({failCreate: true});
+            this.setState({failCreate: true, show: false});
         }
     }
 
     redirect = () => {
-        this.setState({create: false, log: true});
+        this.props.actualizar(true);
     }
 
     render() {
-        if(this.state.log){
-            return(<Redirect to="/" />)
-        } 
         return (
             <Container fluid>
                 <Form onSubmit={this.handleSubmit}>
@@ -133,6 +149,7 @@ export default class signUp extends Component {
                 </Form>
                 <ErrorCreateCount show={this.state.failCreate} onHide={() => this.setState({failCreate: false})} animation={false} />
                 <AcceptCreateCount show={this.state.create} onHide={() => this.redirect()} animation={false} />
+                <WaitAmoment show={this.state.show} onHide={() => this.setState({show: false})} animation={false} />
             </Container>
         )
     }

@@ -7,12 +7,16 @@ export default class pedidos extends Component {
     constructor(props){
         super(props);
         this.state = {
-            orders: []
+            orders: [],
+            loading: true
         }
+        this.timerID = null;
+        this._mount = false;
     }
 
     componentDidMount = () => {
         this.getArrayOrders();
+        this.useEffect();
     }
 
     getArrayOrders = async () => {
@@ -62,16 +66,36 @@ export default class pedidos extends Component {
                 />);
     }
 
+    useEffect = () => {
+        this.timerID = setTimeout(
+            function() {
+                if(this._mount){
+                    this.setState({loading: false});
+                }
+                
+            }
+            .bind(this),
+            5000
+        );
+    }
+
+    componentWillUnmount = () => {
+        this._mount = false;
+        clearTimeout(this.timerID);
+    }
+
     render() {
-        let arrayOrders = this.state.orders.length !== 0 ? this.state.orders.map((order, index) => 
+        let arrayOrders = this.state.orders.map((order, index) => 
             this.montarOrders(order, index)
-        ) : <Container>Aun no has realizado ningún pedido.</Container>;
+        );
+        var zeroResult = <Container sm={4}> <p>No has realizado pedidos aún.</p></Container>;
+        var cargando = this.state.loading ? <Container sm={4}> <p>Cargando...</p></Container> : zeroResult;
         return (
             <Container fluid className="pedidos-perfil">
                 <Card>
                     <Card.Title className="especial-non-border"><h3 className="pedidos-title">Pedidos y facturas</h3></Card.Title>
                     <Card.Body>
-                        {arrayOrders}
+                        {this.state.orders.length !== 0 ? arrayOrders : cargando}
                     </Card.Body>
                 </Card>
             </Container>
