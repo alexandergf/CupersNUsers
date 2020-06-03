@@ -151,8 +151,8 @@
                 }
             }
         }
+        
         .card-body{
-            //padding-top: 0;
             .first-line-pedido{
                 display: flex;
                 justify-content: space-between;
@@ -161,7 +161,7 @@
                 text-align: left;
                 align-items: center;
                 button{
-                    background-color: white;
+                    background-color: hsla(255, 255, 255, 0.0);
                     border: 0px;
                     color: #4cb30b;
                     text-decoration: none;
@@ -267,4 +267,19 @@
     .row{
         margin-left: 0;
     }
+}
+.active.card-body-animate{
+    transform: translateY(0px);
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+    padding: .2em 0;
+}
+.card-body-animate{
+    padding: 0;
+    transform: translateY(-40px);
+    height: 0px;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform .4s ease, opacity .4s ease, visibility .4s ease;
 }

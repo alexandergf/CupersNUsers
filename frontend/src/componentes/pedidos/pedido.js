@@ -81,7 +81,7 @@ export default class pedido extends Component {
 
     facturaCompleta = () => {
         return(
-            <Card.Body>
+            <Card.Body className={"card-body-animate "+ (this.state.active?"active":"")}>
                 <Row className="first-line-pedido">
                     <Col>
                         Nº de pedido: {this.props.numPedido}
@@ -122,9 +122,9 @@ export default class pedido extends Component {
     render() {
         return (
             <Container fluid className="pedidos-perfil">
-                <Card className="card-pedido">
-                    <Card.Title><Row className="row-title-pedido"><Col>Realizado: {this.props.fecha} | {this.props.unidades} unidades</Col><Col><Button onClick={this.despliegue}><MdKeyboardArrowDown /></Button></Col></Row></Card.Title>
-                    {this.state.active?this.facturaCompleta():null}
+                <Card className={"card-pedido"}>
+                    <Card.Title><Row className="row-title-pedido "><Col>Realizado: {this.props.fecha} | {this.props.unidades} unidades</Col><Col><Button onClick={this.despliegue}><MdKeyboardArrowDown /></Button></Col></Row></Card.Title>
+                    {this.facturaCompleta()}
                 </Card>
             </Container>
         )

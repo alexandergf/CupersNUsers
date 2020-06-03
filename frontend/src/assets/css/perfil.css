@@ -192,7 +192,7 @@
 }
 
 .pedidos-perfil .card .card-body .first-line-pedido button, .pedidos-perfil .card .card-body .second-line-pedido button {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   border: 0px;
   color: #4cb30b;
   text-decoration: none;
@@ -326,5 +326,27 @@
 
 .model-body-order .row {
   margin-left: 0;
+}
+
+.active.card-body-animate {
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+  height: 100%;
+  visibility: visible;
+  opacity: 1;
+  padding: .2em 0;
+}
+
+.card-body-animate {
+  padding: 0;
+  -webkit-transform: translateY(-40px);
+          transform: translateY(-40px);
+  height: 0px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity .4s ease, visibility .4s ease, -webkit-transform .4s ease;
+  transition: opacity .4s ease, visibility .4s ease, -webkit-transform .4s ease;
+  transition: transform .4s ease, opacity .4s ease, visibility .4s ease;
+  transition: transform .4s ease, opacity .4s ease, visibility .4s ease, -webkit-transform .4s ease;
 }
 /*# sourceMappingURL=perfil.css.map */
