@@ -1,7 +1,104 @@
 .taza-personalizada-container{
+    margin-top: 5.5em;
     .card-title{
         text-align: start;
         border-bottom: 1px solid #ccc;
         padding: .7em;
+        margin-bottom: 1.5em;
+    }
+    .card-body > .row{
+        &:first-child{
+            margin: 0;
+            margin-bottom: 1.5em;
+            min-height: 250px;
+            justify-content: center;
+        }
+        margin: 0 .5em;
+        &:last-child{
+            .col{
+                text-align: center;
+            }
+            
+        }
+    }
+    .pers-text{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: .5em 0 1.5em 0;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 1.5em;
+        .btn{
+            background-color: #4cb30b;
+            border: 0px;
+            padding: .4em 1.5em;
+            &:hover{
+                background-color: #3f8f0d;
+            }
+        }
+    }
+    .pers-img{
+        text-align: start;
+        .form-file-label{
+            background-color: #4cb30b;
+            color: white;            
+            cursor: pointer;
+            padding: .6em 2em;
+            width: 100%;
+            border: 0px;
+            border-radius: .5em;
+            text-align: center;
+            &:hover{
+                background-color: #3f8f0d;
+            }
+            margin-bottom: 1.5em;
+        }
+        margin-bottom: 1.5em;
+    }
+    .card-body>.canvas-container{
+        background-color: white;
+    }
+    #canvas{
+        border: 1px solid black;
+    }
+    #imafeToAdd{
+        display: none;
+    }
+    .list-group > p{
+        text-align: start;
+        font-weight: bold;
+    }
+    .list-group-item{
+        border: 0px solid black;
+        display: flex;
+        justify-content: space-between;
+        padding: .5em 0;
+    }
+    .canvas-container{
+        min-height: 250px;
+    }
+    .separation-col{
+        border-right: 1px solid #ccc;
+    }
+    .list-group-flush{
+        margin-bottom: 1.5em;
+        border-bottom: 1px solid #ccc;
+    }
+    .btn-add-cart-container{
+        justify-content: center;
+        display: flex;
+        .btn-add-cart{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            border: 0px;
+            padding: .5em 3em;
+            img{
+                margin-right: 1em;
+                color: white;
+            }
+        }
     }
 }

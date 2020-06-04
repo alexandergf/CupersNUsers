@@ -120,16 +120,4 @@
 .row {
   margin-right: 0;
 }
-
-.taza-personalizada-container {
-  margin-top: 5.5em;
-}
-
-.taza-personalizada-container .card-body > .canvas-container {
-  background-color: white;
-}
-
-.taza-personalizada-container #canvas {
-  border: 1px solid black;
-}
 /*# sourceMappingURL=indexMain.css.map */

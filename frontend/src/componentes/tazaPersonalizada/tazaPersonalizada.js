@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import { Container, Card, Button, Form, Row, Col } from 'react-bootstrap';
+import { Container, Card, Button, Form, Row, Col, ListGroup } from 'react-bootstrap';
 import { fabric } from 'fabric';
 import { SketchPicker } from 'react-color';
 import reactCSS from 'reactcss';
 import '../../assets/css/personalizarTaza.css';
+import CarritoImg from '../../assets/images/carrito.png';
 
 export default class tazaPersonalizada extends Component {
     constructor(props) {
         super(props);
-        this.refs = {
-          canvas: {}
-        };
         this.state = {
-            text: [],
+            listItems: [],
+            itemsText: [],
             displayColorPicker: false,
             color: {
                 r: '0',
@@ -25,6 +24,7 @@ export default class tazaPersonalizada extends Component {
         this.addImageSrc = React.createRef();
         this.fontWeight = React.createRef();
         this.underL = React.createRef();
+        this.rowCanvas = React.createRef();
         this.canvas = null;
     }
 
@@ -45,34 +45,30 @@ export default class tazaPersonalizada extends Component {
     };
 
     montarCanvas = () => {
+        var rowCanvas = this.rowCanvas.current;
+        console.log(rowCanvas);
         this.canvas= new fabric.Canvas('canvas',{
                 backgroundColor: 'rgb(255,255,255)',
                 selectionBorderColor: 'black',
                 selectionLineWidth: 2,
-                width: 500,
-                height: 500
-              });
-        
-        var rect = new fabric.Rect({
-            top : 255,
-            left : 100,
-            width : 60,
-            height : 70,
-            fill : 'red'
+                width: rowCanvas.offsetWidth,
+                height: rowCanvas.offsetHeight
         });
-        this.canvas.add(rect);
     }
 
     añadirTexto = () => {
         var fontW=this.fontWeight.current.checked?'bold':'normal';
-        let texto = new fabric.Text(this.formInput.current.value, {fontSize: 100,underline: this.underL.current.checked, fontWeight: fontW, left: 100, top: 100, fill: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`});
+        let texto = new fabric.Text(this.formInput.current.value, {fontSize: 100,underline: this.underL.current.checked, fontWeight: fontW, left: 0, top: 0, fill: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`});
         this.canvas.add(texto);
+        this.state.listItems.push(texto);
+        this.setState({itemsText: [...this.state.itemsText,texto.text]});
         this.formInput.current.value = "";
     }
 
     addImage = () => {
         var canvas = this.canvas;
         var reader = new FileReader();
+        var este = this;
         reader.onload = function(event) {
             var imgObj = new Image();
             imgObj.src = event.target.result;
@@ -82,10 +78,23 @@ export default class tazaPersonalizada extends Component {
                     left: 10,
                     top: 10,
                 }).scale(0.3);
+                console.log(image);
+                este.state.listItems.push(image);
+                este.setState({itemsText: [...este.state.itemsText,"Imagen"]});
                 canvas.add(image);
+
             };
         };
         reader.readAsDataURL(this.addImageSrc.current.files[0]);
+    }
+
+    removeItem = (i) => {
+        this.canvas.remove(this.state.listItems[i]);
+        let listaTexto = this.state.listItems;
+        listaTexto.splice(i,1);
+        let listaItems = this.state.itemsText;
+        listaItems.splice(i,1);
+        this.setState({listItems: listaTexto, itemsText: listaItems});
     }
 
     render() {
@@ -123,30 +132,47 @@ export default class tazaPersonalizada extends Component {
                 <Card>
                     <Card.Title><h3>Personaliza tu Taza</h3></Card.Title>
                     <Card.Body>
+                        <Row ref={this.rowCanvas}>
+                            <canvas id="canvas"></canvas>
+                        </Row>
                         <Row>
-                            <Col>
-                                <canvas id="canvas"></canvas>
-                            </Col>
-                            <Col>
-                                <Container>
-                                    <Form.Control type="text" name="name" ref={this.formInput} placeholder={'Escriba el texto que quiere añadir...'} />
-                                    <div style={ styles.swatch } onClick={ this.handleClick }>
-                                        <div style={ styles.color } />
-                                    </div>
-                                    { this.state.displayColorPicker ? <div style={ styles.popover }>
-                                    <div style={ styles.cover } onClick={ this.handleClose }/>
-                                        <SketchPicker color={ this.state.color } onChange={ this.handleChange } />
-                                    </div> : null }
-                                    <Form.Group>
-                                        <Form.Check label="Negrita" ref={this.fontWeight} />
-                                        <Form.Check label="Subrayado" ref={this.underL} />
-                                    </Form.Group>
-                                    <Button onClick={() => this.añadirTexto()}>Añadir texto</Button>
-                                    <Form.File id="imafeToAdd" ref={this.addImageSrc}/>
-                                    <Button onClick={this.addImage}>Añadir imagen</Button>
-                                    <Button>Export file</Button>
-                                </Container>
-                            </Col>
+                            <Container>
+                                <Row>
+                                    <Col className="separation-col">
+                                        <Form.Control type="text" name="name" ref={this.formInput} placeholder={'Escriba el texto que quiere añadir...'} />
+                                        <Form.Group className="pers-text">
+                                            <Form.Check label="Negrita" ref={this.fontWeight} />
+                                            <Form.Check label="Subrayado" ref={this.underL} />
+                                            <div style={ styles.swatch } onClick={ this.handleClick }>
+                                                <div style={ styles.color } />
+                                            </div>
+                                            { this.state.displayColorPicker ? <div style={ styles.popover }>
+                                            <div style={ styles.cover } onClick={ this.handleClose }/>
+                                                <SketchPicker color={ this.state.color } onChange={ this.handleChange } />
+                                            </div> : null }
+                                            <Button onClick={() => this.añadirTexto()}>Añadir texto</Button>
+                                        </Form.Group>
+                                        <Form.Group className="pers-img">
+                                            <Form.File id="imafeToAdd" ref={this.addImageSrc} label="Añadir Imagen" onChange={this.addImage}/>
+                                        </Form.Group>
+                                    </Col>
+                                    <Col>
+                                        <ListGroup variant="flush">
+                                            {this.state.itemsText.length !== 0?<p>Elementos:</p>: null}
+                                            {this.state.itemsText.map((item,i)=> 
+                                            item !== null ?
+                                                <ListGroup.Item key={item+" - "+i}>
+                                                    {item}
+                                                    <Button variant="danger" onClick={()=>this.removeItem(i)}>
+                                                        Eliminar
+                                                    </Button>
+                                                </ListGroup.Item> : null
+                                            )}
+                                        </ListGroup>
+                                        <Container className="btn-add-cart-container"><Button className="btn-add-cart"><img src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Button></Container>
+                                    </Col>
+                                </Row>
+                            </Container>
                         </Row>
                     </Card.Body>
                 </Card>
