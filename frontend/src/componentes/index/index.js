@@ -14,6 +14,7 @@ import Perfil from '../perfil/perfil';
 import Detail from '../detalles/detalles';
 import Productos from '../productos/productos';
 import Carrito from '../carrito/carrito';
+import TazaPersonalizada from '../tazaPersonalizada/tazaPersonalizada';
 
 export default class index extends Component {
     constructor(props){
@@ -118,7 +119,8 @@ export default class index extends Component {
                                     logOut={this.functionLogOut.bind(this)} />
                                 } />
                                 <Route path="/" exact render={(props) => 
-                                    <PantallaInicial {...props} />
+                                    /*<PantallaInicial {...props} />*/
+                                    <TazaPersonalizada />
                                 } /> 
                                 <Route path="/:idCat/:nameCat" exact render={(props) => 
                                     <PantallaInicial {...props} />

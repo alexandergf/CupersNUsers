@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACI,6BADyB,CACzB,WAAW,CAAA;EACP,UAAU,EAAE,KAAK;EACjB,aAAa,EAAE,cAAc;EAC7B,OAAO,EAAE,IAAI;CAChB",
+    "sources": [
+        "personalizarTaza.scss"
+    ],
+    "names": [],
+    "file": "personalizarTaza.css"
+}
