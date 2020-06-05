@@ -63,6 +63,7 @@ export default class pedidos extends Component {
                     productos={order.products} 
                     totalCash={order.price}    
                     redirec={this.redireccionarLink.bind(this)}
+                    order={order}
                 />);
     }
 

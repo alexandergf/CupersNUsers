@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import '../../assets/css/indexMain.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { userGetCart, getCateorys } from '../../database/functions';
+import ReactDOM from 'react-dom';
 // Componentes
 import Nav from '../nav/Nav';
 import MenuDesplegable from './menuDesplegable';
@@ -15,6 +16,7 @@ import Detail from '../detalles/detalles';
 import Productos from '../productos/productos';
 import Carrito from '../carrito/carrito';
 import TazaPersonalizada from '../tazaPersonalizada/tazaPersonalizada';
+import Factura from '../pedidos/factura';
 
 export default class index extends Component {
     constructor(props){
@@ -23,7 +25,8 @@ export default class index extends Component {
             categorias: [],
             activeLateralMenu: true,
             logOut: false,
-            productosCarrito: []
+            productosCarrito: [],
+            order: null
         }
         this.lateralMenu = React.createRef();
         this.functionLogOut = this.functionLogOut.bind(this);
@@ -86,6 +89,15 @@ export default class index extends Component {
                         </Col>
                         <Col className="special-background" sm={(!this.state.activeLateralMenu?"12":"10")}>
                             <Switch>
+                                <Route path="/FacturaPDF" render={(props)=>
+                                    ReactDOM.render(
+                                        <React.StrictMode>
+                                            <Factura order={JSON.parse(localStorage.getItem('order'))} />
+                                        </React.StrictMode>
+                                      ,
+                                      document.getElementById('root')
+                                    )
+                                }/>
                                 <Route path="/UsoTazas" render={(props)=>
                                     <UsoTazas {...props} 
                                     log={this.state.logOut} 

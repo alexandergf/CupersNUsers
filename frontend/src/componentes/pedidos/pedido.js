@@ -70,7 +70,8 @@ export default class pedido extends Component {
         super(props);
         this.state = {
             active: false,
-            show: false
+            show: false,
+            factura: false
         }
     }
     despliegue = () => {
@@ -95,7 +96,7 @@ export default class pedido extends Component {
                             numPedido={this.props.numPedido} 
                             nProd={this.props.productos.length}
                         />
-                        <Button className="ver-factura-btn">Ver factura</Button>
+                        <Button className="ver-factura-btn" onClick={()=> this.goToFactura()}>Ver factura</Button>
                     </Col>
                 </Row>
                 <Row className="second-line-pedido">
@@ -117,6 +118,11 @@ export default class pedido extends Component {
 
     redireccionarLink = (id) => {
         this.props.redirec(id);
+    }
+
+    goToFactura = () => {
+        localStorage.setItem('order', JSON.stringify(this.props.order));
+        window.open("/FacturaPDF");
     }
 
     render() {
