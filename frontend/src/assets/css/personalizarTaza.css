@@ -9,6 +9,10 @@
   margin-bottom: 1.5em;
 }
 
+.taza-personalizada-container .card-body {
+  padding-bottom: 1.5em;
+}
+
 .taza-personalizada-container .card-body > .row {
   margin: 0 .5em;
 }
@@ -22,8 +26,17 @@
           justify-content: center;
 }
 
-.taza-personalizada-container .card-body > .row:last-child .col {
-  text-align: center;
+.taza-personalizada-container .card-body > .row:last-child .col:last-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .taza-personalizada-container .pers-text {
@@ -102,6 +115,9 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: .5em 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .taza-personalizada-container .canvas-container {
@@ -114,16 +130,18 @@
 
 .taza-personalizada-container .list-group-flush {
   margin-bottom: 1.5em;
+  padding-bottom: 1.5em;
   border-bottom: 1px solid #ccc;
 }
 
 .taza-personalizada-container .btn-add-cart-container {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding: 0;
 }
 
 .taza-personalizada-container .btn-add-cart-container .btn-add-cart {
@@ -141,6 +159,7 @@
           align-items: center;
   border: 0px;
   padding: .5em 3em;
+  margin: 0;
 }
 
 .taza-personalizada-container .btn-add-cart-container .btn-add-cart img {

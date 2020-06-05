@@ -46,7 +46,6 @@ export default class tazaPersonalizada extends Component {
 
     montarCanvas = () => {
         var rowCanvas = this.rowCanvas.current;
-        console.log(rowCanvas);
         this.canvas= new fabric.Canvas('canvas',{
                 backgroundColor: 'rgb(255,255,255)',
                 selectionBorderColor: 'black',
@@ -95,6 +94,11 @@ export default class tazaPersonalizada extends Component {
         let listaItems = this.state.itemsText;
         listaItems.splice(i,1);
         this.setState({listItems: listaTexto, itemsText: listaItems});
+    }
+
+    addToCart = () => {
+        var json = this.canvas.toJSON();
+        console.log(json);
     }
 
     render() {
@@ -158,7 +162,8 @@ export default class tazaPersonalizada extends Component {
                                     </Col>
                                     <Col>
                                         <ListGroup variant="flush">
-                                            {this.state.itemsText.length !== 0?<p>Elementos:</p>: null}
+                                            <p>Elementos:</p>
+                                            {this.state.itemsText.length === 0?"No se han añadido elementos todavía.": null}
                                             {this.state.itemsText.map((item,i)=> 
                                             item !== null ?
                                                 <ListGroup.Item key={item+" - "+i}>
@@ -169,7 +174,12 @@ export default class tazaPersonalizada extends Component {
                                                 </ListGroup.Item> : null
                                             )}
                                         </ListGroup>
-                                        <Container className="btn-add-cart-container"><Button className="btn-add-cart"><img src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Button></Container>
+                                        <Container className="btn-add-cart-container">
+                                            <Button className="btn-add-cart" onClick={this.addToCart}>
+                                                <img src={CarritoImg} alt="Carrito" width="18px" />
+                                                Añadir al carrito
+                                            </Button>
+                                        </Container>
                                     </Col>
                                 </Row>
                             </Container>
