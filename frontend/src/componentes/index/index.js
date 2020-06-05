@@ -118,9 +118,11 @@ export default class index extends Component {
                                     log={this.state.logOut} 
                                     logOut={this.functionLogOut.bind(this)} />
                                 } />
-                                <Route path="/" exact render={(props) => 
-                                    /*<PantallaInicial {...props} />*/
+                                <Route path="/TazaPersonalizada" render={(props) => 
                                     <TazaPersonalizada />
+                                } /> 
+                                <Route path="/" exact render={(props) => 
+                                    <PantallaInicial {...props} />
                                 } /> 
                                 <Route path="/:idCat/:nameCat" exact render={(props) => 
                                     <PantallaInicial {...props} />
