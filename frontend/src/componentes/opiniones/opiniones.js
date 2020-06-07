@@ -31,11 +31,12 @@ export default class opiniones extends Component {
     render() {
         var opiniones = [];
         if(this.state.opinions !== null && this.state.opinions.length !== 0){
+            console.log(this.state.opinions)
             this.state.opinions.map((opinion,index) => 
                 opiniones.push(
                     <Row className="opinion-row" key={"opinion-row-"+index}>
-                        <Col sm={1}><Image src={opinion.user !== undefined ? opinion.user.pic : ImagenUser} roundedCircle width="20px" /></Col>
-                        <Col sm={11}><Opinion nameUser={opinion.user !== undefined ? opinion.user.name : localStorage.getItem('name')} opinion={opinion.description} fecha={opinion.updated_at} numStars={opinion.rate} /></Col>
+                        <Image src={opinion.user !== undefined ? (opinion.user.pic !== null ? opinion.user.pic : ImagenUser) : ImagenUser} roundedCircle width="40px" height="40px" />
+                        <Opinion nameUser={opinion.user !== undefined ? opinion.user.name : localStorage.getItem('name')} opinion={opinion.description} fecha={opinion.updated_at} numStars={opinion.rate} />
                     </Row>
                 )  
             );
@@ -48,7 +49,14 @@ export default class opiniones extends Component {
         }
         return (
             <Container fluid>
-                <Row className="opiniones-row"><Col sm={2}><h3>Opiniones</h3></Col><Col sm={{span: 2, offset: 8}}><Estrellas numStars={this.state.rate} /></Col></Row>
+                <Row className="opiniones-row">
+                    <Col xl={2} md={3} xs={6}>
+                        <h3>Opiniones</h3>
+                    </Col>
+                    <Col xl={{span: 2, offset: 8}} md={{span: 2, offset: 7}} xs={6}>
+                        <Estrellas numStars={this.state.rate} />
+                    </Col>
+                </Row>
                 {opiniones}
             </Container>
         )

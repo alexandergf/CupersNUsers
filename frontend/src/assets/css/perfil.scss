@@ -1,3 +1,5 @@
+$tablet-min: 768px;
+$tablet-max: 1024px;
 .container-perfil-general{
     margin-top: 5.5em;
 }
@@ -29,10 +31,21 @@
                 padding: 0;
             }
         }
-        
+    }
+    @media screen and (max-width: $tablet-min){
+        .changePasswordCard-container{
+            margin-bottom: 3.5em;
+        }
     }
 }
 .admin-perfil{
+    @media screen and (min-width: $tablet-min) and (max-width: $tablet-max){
+        padding: 0;
+        img{
+            width: 15px;
+            height: 15px;
+        }
+    }
     .card-header{
         background-color: #3fadff;
         color: white;
@@ -133,6 +146,9 @@
             margin-bottom: 0;       
             text-align: start;
             .row-title-pedido{
+                @media screen and (max-width: $tablet-min){
+                    font-size: 12px;
+                }
                 justify-content: space-between; 
                 .col:first-child{
                     text-align: left;
@@ -179,10 +195,16 @@
                 .row{
                     width: 100%;
                     text-align: left;
-                    
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: $tablet-min){
+    .special-button-pedido{
+        padding-right: 0;
+        text-align: end;
     }
 }
 .items-pedidos{
@@ -190,14 +212,25 @@
         padding: .3em;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         .item-pedido{
             text-align: left;
             padding-left: 0;
+            @media screen and (max-width: $tablet-min){
+                padding: 0;  
+            }
         }
         .item-pedido-btn{
             text-align: end;
             padding-right: 0;
+            @media screen and (max-width: $tablet-min){
+                justify-content: center;
+                width: 100%;
+            }
             button{
+                @media screen and (max-width: $tablet-min){
+                    width: 100%;
+                }
                 background-color: #3fadff;
                 &:hover{
                     background-color: #3497e2;
@@ -214,6 +247,9 @@
     }
 }
 .Contacto{
+    @media screen and (max-width: $tablet-min){
+        margin-bottom: 3.5em;
+    }
     .card{
         padding-bottom: 1em;
     }

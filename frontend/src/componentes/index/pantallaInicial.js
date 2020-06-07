@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import Productos from '../productos/contenedorProductos';
 import { getProductByCategory } from '../../database/functions';
 

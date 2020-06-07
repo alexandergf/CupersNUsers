@@ -33,6 +33,22 @@
   padding: 0;
 }
 
+@media screen and (max-width: 768px) {
+  .edit-perfil .changePasswordCard-container {
+    margin-bottom: 3.5em;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .admin-perfil {
+    padding: 0;
+  }
+  .admin-perfil img {
+    width: 15px;
+    height: 15px;
+  }
+}
+
 .admin-perfil .card-header {
   background-color: #3fadff;
   color: white;
@@ -157,6 +173,12 @@
           justify-content: space-between;
 }
 
+@media screen and (max-width: 768px) {
+  .pedidos-perfil .card .card-title .row-title-pedido {
+    font-size: 12px;
+  }
+}
+
 .pedidos-perfil .card .card-title .row-title-pedido .col:first-child {
   text-align: left;
 }
@@ -218,6 +240,13 @@
   text-align: left;
 }
 
+@media screen and (max-width: 768px) {
+  .special-button-pedido {
+    padding-right: 0;
+    text-align: end;
+  }
+}
+
 .items-pedidos .row {
   padding: .3em;
   display: -webkit-box;
@@ -226,6 +255,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .items-pedidos .row .item-pedido {
@@ -233,13 +265,34 @@
   padding-left: 0;
 }
 
+@media screen and (max-width: 768px) {
+  .items-pedidos .row .item-pedido {
+    padding: 0;
+  }
+}
+
 .items-pedidos .row .item-pedido-btn {
   text-align: end;
   padding-right: 0;
 }
 
+@media screen and (max-width: 768px) {
+  .items-pedidos .row .item-pedido-btn {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+  }
+}
+
 .items-pedidos .row .item-pedido-btn button {
   background-color: #3fadff;
+}
+
+@media screen and (max-width: 768px) {
+  .items-pedidos .row .item-pedido-btn button {
+    width: 100%;
+  }
 }
 
 .items-pedidos .row .item-pedido-btn button:hover {
@@ -253,6 +306,12 @@
 
 .items-pedidos .row .item-unidades {
   color: #8b8a8a;
+}
+
+@media screen and (max-width: 768px) {
+  .Contacto {
+    margin-bottom: 3.5em;
+  }
 }
 
 .Contacto .card {

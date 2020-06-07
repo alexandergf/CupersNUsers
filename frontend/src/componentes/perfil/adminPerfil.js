@@ -34,7 +34,12 @@ export default class adminPerfil extends Component {
         return (
             <Container fluid className="admin-perfil">
                 <Card>
-                    <Card.Header><Row><Col xs={1}><Image src={this.state.pic !== null && this.state.pic !== undefined ? this.state.pic : ImagenTest} alt={this.state.pic !== null && this.state.pic !== undefined ? this.state.pic : "ImagenTest"} roundedCircle width="30px" height="30px"/></Col><Col xs={10}>{this.state.name}</Col></Row></Card.Header>
+                    <Card.Header>
+                        <Row>
+                            <Col xl={1} md={1}><Image src={this.state.pic !== null && this.state.pic !== undefined ? this.state.pic : ImagenTest} alt={this.state.pic !== null && this.state.pic !== undefined ? this.state.pic : "ImagenTest"} roundedCircle width="30px" height="30px"/></Col>
+                            <Col xl={10} md={8}>{this.state.name}</Col>
+                        </Row>
+                    </Card.Header>
                     <Card.Body>
                         <ListGroup variant="flush">
                             <Link to="/EditarPerfil"><ListGroup.Item>Editar Perfil</ListGroup.Item></Link>

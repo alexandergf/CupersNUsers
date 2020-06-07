@@ -43,10 +43,10 @@ export default class perfil extends Component {
             <Router>
                 <Container fluid className="container-perfil-general">
                     <Row>
-                        <Col xs={3}>
+                        <Col xl={3} md={3} xs={12}>
                             <AdminPerfil />
                         </Col>
-                        <Col xs={9}>
+                        <Col xl={9} md={9} xs={12}>
                             <Switch>
                                 <Route path="/EditarPerfil" render={(props)=>
                                     <EditarPerfil {...props} />

@@ -9,10 +9,10 @@ export default class opinion extends Component {
         return (
             <Container>
                 <Row>
-                    <Col sm={2}>{this.props.nameUser}</Col>
+                    <Col xl={2} md={3}>{this.props.nameUser}</Col>
                 </Row>
                 <Row>
-                    <Col sm={2}><Estrellas numStars={this.props.numStars} /></Col><Col sm={{span: 2,offset:8}}>{fechaFormatted}</Col>
+                    <Col xl={2} md={3}><Estrellas numStars={this.props.numStars} /></Col><Col xl={{span: 2,offset:8}} md={{span: 2,offset:7}}>{fechaFormatted}</Col>
                 </Row>
                 <Row>
                     <Col>"{this.props.opinion}"</Col>

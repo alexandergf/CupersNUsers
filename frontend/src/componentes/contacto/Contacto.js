@@ -102,7 +102,7 @@ class Contacto extends Component {
                                     <Form.Label>
                                         Asunto:
                                     </Form.Label>
-                                    <Col xs={5}>
+                                    <Col xl={5} md={5} xs={12}>
                                         <Form.Control type="text" name="asunto" onChange={this.handleChange} required />
                                     </Col>
                                 </Form.Group>

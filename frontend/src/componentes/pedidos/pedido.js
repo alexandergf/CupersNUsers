@@ -129,7 +129,12 @@ export default class pedido extends Component {
         return (
             <Container fluid className="pedidos-perfil">
                 <Card className={"card-pedido"}>
-                    <Card.Title><Row className="row-title-pedido "><Col>Realizado: {this.props.fecha} | {this.props.unidades} unidades</Col><Col><Button onClick={this.despliegue}><MdKeyboardArrowDown /></Button></Col></Row></Card.Title>
+                    <Card.Title>
+                        <Row className="row-title-pedido ">
+                            <Col xl={'auto'} md={'auto'} xs={8}>Realizado: {this.props.fecha} | {this.props.unidades} unidades</Col>
+                            <Col xl={'auto'} md={'auto'} xs={4} className="special-button-pedido"><Button onClick={this.despliegue}><MdKeyboardArrowDown /></Button></Col>
+                        </Row>
+                    </Card.Title>
                     {this.facturaCompleta()}
                 </Card>
             </Container>

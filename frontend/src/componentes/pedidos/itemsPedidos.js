@@ -145,7 +145,7 @@ export default class itemsPedidos extends Component {
     render() {
         let productos = this.props.products !== undefined ? this.props.products.map((producto, index) => 
             <Row key={"item-pedido-index-"+producto.product_id+"-"+index}>
-                <Col className="item-pedido">
+                <Col className="item-pedido" xl={'auto'} md={'auto'} xs={'auto'}>
                     <ItemPedido 
                         nombre={producto.product.name} 
                         precio={producto.product.price} 
@@ -155,7 +155,7 @@ export default class itemsPedidos extends Component {
                         id={producto.product_id}
                     />
                 </Col>
-                <Col className="item-pedido-btn">
+                <Col className="item-pedido-btn" xl={'auto'} md={'auto'} xs={'auto'}>
                     <Button onClick={() => this.setState({showOpinion: true, idOpinar: producto.product_id})}>Opinar</Button>
                     <ModalOpinion show={this.state.showOpinion} onHide={() => this.setState({showOpinion:false})} handleValues={this.darTuOpinion.bind(this)} />
                     <Wait show={this.state.show} onHide={() => this.setState({show:false})} animation={false}/>

@@ -129,7 +129,7 @@ export default class editarPerfil extends Component {
                         </Form>
                     </Card.Body>
                 </Card>
-                <Card>
+                <Card className="changePasswordCard-container">
                     <Card.Title><h3 className="password-title">Contraseña</h3></Card.Title>
                     <Card.Body className="changePasswordCard">
                         <Form onSubmit={this.handleSubmitPassword}>
