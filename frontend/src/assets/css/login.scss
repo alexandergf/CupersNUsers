@@ -1,8 +1,18 @@
+$tablet-min: 768px;
+$tablet-max: 1024px; 
 .login-main{
     margin-top: 5.5em;
     justify-content: center;
     .card-columns{
         column-count: 2;
+        @media screen and (min-width: $tablet-min) and (max-width: $tablet-max){
+            column-count: 1;
+            margin-bottom: 2.7em;
+        }
+        @media screen and (max-width: $tablet-min){
+            column-count: 1;
+            margin-bottom: 2.7em;
+        }
     }
     .card-header{
         font-weight: 100;

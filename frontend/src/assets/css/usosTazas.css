@@ -24,3 +24,9 @@
     margin-top: 5.5em;
     margin-bottom: 1.5em;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .card-body-usoTaza{
+        min-height: 71px;
+    }
+}

@@ -37,13 +37,9 @@ export default class pantallaInicial extends Component {
     render() {
         return (
             <Container fluid>
-                <Row>
-                    <Col>
-                        <Row className="contenedor-productos-row">
-                            <Productos categoria={this.state.categoryName} productosBy={this.state.productos} />
-                        </Row>
-                    </Col>
-                </Row>
+                <Row className="contenedor-productos-row">
+                    <Productos categoria={this.state.categoryName} productosBy={this.state.productos} />
+                </Row>                    
             </Container>
         )
     }

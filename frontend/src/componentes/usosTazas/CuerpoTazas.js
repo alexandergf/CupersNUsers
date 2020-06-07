@@ -49,10 +49,10 @@ export default class cuerpoTazas extends Component {
             
             tabla.push(
                 <Row key={i}>
-                    <Col xs={{span:4, offset:1}} className="textoTazas" key={i.toString()+"-col"}>
+                    <Col xl={{span:4, offset:1}} md={6} xs={12} className="textoTazas" key={i.toString()+"-col"}>
                         {usos[i]}  
                     </Col>
-                    <Col xs={{span:4, offset:2}} className="textoTazas" key={i.toString()+"-col2"}>
+                    <Col xl={{span:4, offset:2}} md={6} xs={12} className="textoTazas" key={i.toString()+"-col2"}>
                         {usos[i+1]}  
                     </Col>
                 </Row>
@@ -69,7 +69,7 @@ export default class cuerpoTazas extends Component {
         return (
             <Container fluid className="uso-tazas-container">
                 <Row>
-                    <Col xs={{span:10, offset:1}}>
+                    <Col xl={{span:10, offset:1}} xs={12}>
                         <Card>
                             <Card.Body>
                                 <TituloUsosTazas />

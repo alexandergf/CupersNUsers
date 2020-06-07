@@ -10,7 +10,7 @@ export default class usoTaza extends Component {
                         <h4>N. {this.props.num}</h4>
                     </div>
                 </Card.Title>
-                <Card.Body>
+                <Card.Body className="card-body-usoTaza">
                     <div className="usoTacero">
                         <p>{this.props.texto}</p>
                     </div>

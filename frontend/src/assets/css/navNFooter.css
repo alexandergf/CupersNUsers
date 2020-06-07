@@ -106,3 +106,48 @@
 .carrito-cart > .toast{
     background-color: white;
 }
+
+@media screen and (max-width: 767px){
+    .LogoImagen {
+        display: none;
+    }
+    .col-nav-logo{
+        display: none;
+    }
+    .Botones .btn-row{
+        justify-content: end;
+    }
+    .btn-row > .col-2{
+        
+    }
+    .search-bar{
+        margin: 0;
+        padding-right: 0.1em;
+    }
+    .Botones{
+        padding: 0;
+        margin: 0;
+    }
+    .col-1{
+        padding: 0;
+        margin: 0;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .LogoImagen {
+        padding: 0;
+    }
+    .col-2{
+        padding: 0;
+    }
+    .Botones .btn-row{
+        justify-content: space-around;
+    }
+    .Botones{
+        padding-right: 0;
+    }
+    .col-nav-logo{
+        padding: 0;
+        margin: 0;
+    }
+}
