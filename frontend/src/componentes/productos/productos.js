@@ -168,7 +168,7 @@ export default class productos extends Component {
         } 
         return (
             <Container fluid className="main-productos">
-                <Row>
+                <Row className="row-inverse">
                     <Col xs={3} md={2}>
                         <Panel otraForma={this.changeProducts.bind(this)} />
                     </Col>

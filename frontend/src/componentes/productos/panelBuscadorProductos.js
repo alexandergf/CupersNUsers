@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Col, Row, Card, Form } from 'react-bootstrap';
+import { Container, Row, Card, Form } from 'react-bootstrap';
 import { getCateorys } from '../../database/functions';
 
 export default class panelBuscadorProductos extends Component {
@@ -70,9 +70,7 @@ export default class panelBuscadorProductos extends Component {
         );
         return (
             <Container fluid className="panel-productos">
-                <Col>
-                    {elementosPanel}
-                </Col>
+                {elementosPanel}
             </Container>
         )
     }

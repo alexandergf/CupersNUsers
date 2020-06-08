@@ -59,10 +59,10 @@ export default class carrito extends Component {
         return (
             <Container fluid className="carrito">
                 <Row>
-                    <Col sm={9}>
+                    <Col xl={9} md={8} xs={'auto'}>
                         <Articulos callback={this.actualizarProductos.bind(this)} products={this.state.productos} />
                     </Col>
-                    <Col sm={3}>
+                    <Col xl={3} md={4} xs={'auto'}>
                         <Total totalPrecio={this.state.total.toFixed(2)} products={this.state.productos} />
                     </Col>
                 </Row>
