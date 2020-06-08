@@ -103,7 +103,7 @@ export default class index extends Component {
                                     log={this.state.logOut} 
                                     logOut={this.functionLogOut.bind(this)} />
                                 } />
-                                <Route path="/EditarPerfil" render={(props)=>
+                                <Route path="/EditarPerfil/EditarPerfil" render={(props)=>
                                     <Perfil {...props} 
                                     log={this.state.logOut} 
                                     logOut={this.functionLogOut.bind(this)} 

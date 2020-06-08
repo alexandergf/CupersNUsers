@@ -167,8 +167,8 @@ export default class wishList extends Component {
                                     <h3>Lista de deseos</h3>
                                 </Col>
                                 <Col>
-                                    <Button className="btn-delete-all" onClick={() => this.deleteAllWishItems()}>Borrar todos los productos</Button>
-                                    <Button className="btn-add-all" onClick={() => this.addAllItemsWish()}>Añadir todo al carrito</Button>
+                                    <Button className="btn-delete-all" onClick={() => this.deleteAllWishItems()}>Borrar todo</Button>
+                                    <Button className="btn-add-all" onClick={() => this.addAllItemsWish()}>Añadir al carrito</Button>
                                 </Col>
                             </Row>
                         </Container>

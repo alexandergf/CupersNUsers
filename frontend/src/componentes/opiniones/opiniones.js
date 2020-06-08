@@ -31,7 +31,6 @@ export default class opiniones extends Component {
     render() {
         var opiniones = [];
         if(this.state.opinions !== null && this.state.opinions.length !== 0){
-            console.log(this.state.opinions)
             this.state.opinions.map((opinion,index) => 
                 opiniones.push(
                     <Row className="opinion-row" key={"opinion-row-"+index}>

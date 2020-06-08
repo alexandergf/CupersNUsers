@@ -69,24 +69,56 @@ $tablet-max: 1024px;
         border-bottom: 1px solid black;
         margin-top: 0.5em;
         padding: 0.2em;
+        align-items: center;
         .col{
             &:first-of-type{
                 text-align: start;
+                @media screen and (max-width: 400px){
+                    flex-basis: auto;
+                }
             }
             text-align: end;
+            &:last-of-type{
+                padding-right: 0;
+            }
             .btn-add-all{
+                @media screen and (min-width: $tablet-min) and (max-width: $tablet-max){
+                    padding: 0.3em 1em;
+                    font-size: 14px;
+                    margin-left: .2em;
+                }
+                @media screen and (max-width: 400px){
+                    font-size: 14px;
+                    width: 100%;
+                }
+                @media screen and (min-width: 400px) and (max-width: $tablet-min){
+                    font-size: 14px;
+                    padding: 0.3em .5em;
+                }
                 padding: 0.3em 2.5em;
                 background-color: #4cb30b;
                 border-color: #4cb30b;
             }
             .btn-delete-all{
+                @media screen and (min-width: $tablet-min) and (max-width: $tablet-max){
+                    padding: 0.3em 1em;
+                    margin: 0;
+                    font-size: 14px;
+                }
+                @media screen and (min-width: 400px) and (max-width: $tablet-min){
+                    font-size: 14px;
+                    padding: 0.3em .5em;
+                }
+                @media screen and (max-width: 400px){
+                    font-size: 14px;
+                    width: 100%;
+                }
                 padding: 0.3em 2.5em;
                 background-color: rgb(253, 57, 57);
                 border-color: rgb(253, 57, 57);
                 margin-right: .5em;
             }
-        }
-        
+        }        
     }
     .toast-title{
         position: absolute;
@@ -133,6 +165,12 @@ $tablet-max: 1024px;
     }
     .col-sm-1{
         text-align: center;
+    }
+    .fecha-opinion-row{
+        text-align: end;
+    }
+    .card{
+        margin-bottom: 3.5em;
     }
 }
 .pedidos-perfil{
@@ -223,12 +261,12 @@ $tablet-max: 1024px;
         .item-pedido-btn{
             text-align: end;
             padding-right: 0;
-            @media screen and (max-width: $tablet-min){
+            @media screen and (max-width: 400px){
                 justify-content: center;
                 width: 100%;
             }
             button{
-                @media screen and (max-width: $tablet-min){
+                @media screen and (max-width: 400px){
                     width: 100%;
                 }
                 background-color: #3fadff;

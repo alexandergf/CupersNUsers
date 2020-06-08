@@ -14,7 +14,7 @@ export default class wishItems extends Component {
 
     render() {
         var productosList = this.props.productos !== undefined && this.props.productos !== null ? this.props.productos.map((producto,index) =>
-            <Col sm={3} key={producto.id+"-col-product-wish"}>
+            <Col xl={'auto'} md={6} xs={12} key={producto.id+"-col-product-wish"}>
                 <Row className="x-wish-item"><Button onClick={() => this.deleteItemWish(producto.id)}><GrClose /></Button></Row>
                 <Container onClick={()=>this.redireccionar(producto.id)} className="container-item-wish"><WishItem title={producto.name} precio={producto.price+" €"} id={producto.id} unidades={producto.stock} img={producto.pics} estrellas={producto.average} /></Container>
             </Col>

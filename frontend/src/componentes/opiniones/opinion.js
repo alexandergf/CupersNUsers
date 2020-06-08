@@ -12,7 +12,12 @@ export default class opinion extends Component {
                     <Col xl={2} md={3}>{this.props.nameUser}</Col>
                 </Row>
                 <Row>
-                    <Col xl={2} md={3}><Estrellas numStars={this.props.numStars} /></Col><Col xl={{span: 2,offset:8}} md={{span: 2,offset:7}}>{fechaFormatted}</Col>
+                    <Col xl={2} md={5} xs={'auto'}>
+                        <Estrellas numStars={this.props.numStars} />
+                    </Col>
+                    <Col xl={{span: 2,offset:8}} md={{span: 4,offset:3}} xs={'auto'} className="fecha-opinion-row">
+                        {fechaFormatted}
+                    </Col>
                 </Row>
                 <Row>
                     <Col>"{this.props.opinion}"</Col>

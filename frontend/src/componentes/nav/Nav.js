@@ -146,7 +146,7 @@ export default class Nav extends Component {
                                     </Link>
                                 </Col>
                                 <Col xl={2} md={4} xs={4}>
-                                    <Link to={this.state.logIn ? "/EditarPerfil" : "/Login"}>
+                                    <Link to={this.state.logIn ? "/EditarPerfil/EditarPerfil" : "/Login"}>
                                         <Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}>
                                             <AiOutlineUser />
                                         </Button>

@@ -117,9 +117,6 @@
     .Botones .btn-row{
         justify-content: end;
     }
-    .btn-row > .col-2{
-        
-    }
     .search-bar{
         margin: 0;
         padding-right: 0.1em;

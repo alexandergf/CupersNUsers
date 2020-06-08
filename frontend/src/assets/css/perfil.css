@@ -75,6 +75,9 @@
   border-bottom: 1px solid black;
   margin-top: 0.5em;
   padding: 0.2em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .wish-perfil .wish-title .col {
@@ -85,10 +88,43 @@
   text-align: start;
 }
 
+@media screen and (max-width: 400px) {
+  .wish-perfil .wish-title .col:first-of-type {
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+  }
+}
+
+.wish-perfil .wish-title .col:last-of-type {
+  padding-right: 0;
+}
+
 .wish-perfil .wish-title .col .btn-add-all {
   padding: 0.3em 2.5em;
   background-color: #4cb30b;
   border-color: #4cb30b;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .wish-perfil .wish-title .col .btn-add-all {
+    padding: 0.3em 1em;
+    font-size: 14px;
+    margin-left: .2em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wish-perfil .wish-title .col .btn-add-all {
+    font-size: 14px;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 768px) {
+  .wish-perfil .wish-title .col .btn-add-all {
+    font-size: 14px;
+    padding: 0.3em .5em;
+  }
 }
 
 .wish-perfil .wish-title .col .btn-delete-all {
@@ -96,6 +132,28 @@
   background-color: #fd3939;
   border-color: #fd3939;
   margin-right: .5em;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .wish-perfil .wish-title .col .btn-delete-all {
+    padding: 0.3em 1em;
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 768px) {
+  .wish-perfil .wish-title .col .btn-delete-all {
+    font-size: 14px;
+    padding: 0.3em .5em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wish-perfil .wish-title .col .btn-delete-all {
+    font-size: 14px;
+    width: 100%;
+  }
 }
 
 .wish-perfil .toast-title {
@@ -154,6 +212,14 @@
 
 .opinion-perfil .col-sm-1 {
   text-align: center;
+}
+
+.opinion-perfil .fecha-opinion-row {
+  text-align: end;
+}
+
+.opinion-perfil .card {
+  margin-bottom: 3.5em;
 }
 
 .pedidos-perfil .pedidos-title {
@@ -276,7 +342,7 @@
   padding-right: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 400px) {
   .items-pedidos .row .item-pedido-btn {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -289,7 +355,7 @@
   background-color: #3fadff;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 400px) {
   .items-pedidos .row .item-pedido-btn button {
     width: 100%;
   }

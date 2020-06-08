@@ -42,11 +42,11 @@ export default class adminPerfil extends Component {
                     </Card.Header>
                     <Card.Body>
                         <ListGroup variant="flush">
-                            <Link to="/EditarPerfil"><ListGroup.Item>Editar Perfil</ListGroup.Item></Link>
-                            <Link to="/Pedidos"><ListGroup.Item>Mis Pedidos</ListGroup.Item></Link>
-                            <Link to="/WishList"><ListGroup.Item>Lista de Deseos</ListGroup.Item></Link>
-                            <Link to="/Opinion"><ListGroup.Item>Opiniones</ListGroup.Item></Link>
-                            <Link to="/Contacto"><ListGroup.Item>Contacto</ListGroup.Item></Link>
+                            <Link to="/EditarPerfil/EditarPerfil"><ListGroup.Item>Editar Perfil</ListGroup.Item></Link>
+                            <Link to="/EditarPerfil/Pedidos"><ListGroup.Item>Mis Pedidos</ListGroup.Item></Link>
+                            <Link to="/EditarPerfil/WishList"><ListGroup.Item>Lista de Deseos</ListGroup.Item></Link>
+                            <Link to="/EditarPerfil/Opinion"><ListGroup.Item>Opiniones</ListGroup.Item></Link>
+                            <Link to="/EditarPerfil/Contacto"><ListGroup.Item>Contacto</ListGroup.Item></Link>
                         </ListGroup>
                     </Card.Body>
                 </Card>
