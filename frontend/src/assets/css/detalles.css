@@ -23,6 +23,9 @@
 .title-detail .toast-title {
   position: fixed;
   right: 1em;
+  top: 4.5em;
+  z-index: 3;
+  background-color: white;
 }
 
 .title-detail .heartToBasket {
@@ -268,6 +271,11 @@
 }
 
 @media screen and (min-width: 767px) and (max-width: 1024px) {
+  .toast-title {
+    top: 4.5em;
+    z-index: 3;
+    background-color: white;
+  }
   .opiniones-col {
     padding-right: 0;
     padding-left: 0;
@@ -379,6 +387,11 @@
 }
 
 @media screen and (min-width: 450px) and (max-width: 750px) {
+  .toast-title {
+    top: 4.5em;
+    z-index: 3;
+    background-color: white;
+  }
   .detalle-text-card {
     padding-inline: 0;
     margin-top: .5em;
@@ -421,6 +434,11 @@
 }
 
 @media screen and (max-width: 450px) {
+  .toast-title {
+    top: 4.5em;
+    z-index: 3;
+    background-color: white;
+  }
   .general-container {
     margin-top: 4.5em;
   }

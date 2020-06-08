@@ -71,9 +71,11 @@
 }
 
 .carrito-cart{
+    display: flex;
+    justify-content: flex-end;
     position: fixed;
     min-height: 200px;
-    width: 20%;
+    width: 30%;
     top: 4.5em;
     right: 0em;
     z-index: 1;

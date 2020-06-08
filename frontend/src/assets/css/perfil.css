@@ -158,6 +158,26 @@
 
 .wish-perfil .toast-title {
   position: absolute;
+  right: 0;
+  z-index: 3;
+  background-color: white;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .toast-title {
+    top: -2em !important;
+    z-index: 3;
+    background-color: white;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .toast-title {
+    position: fixed !important;
+    top: 4em !important;
+    z-index: 3;
+    background-color: white;
+  }
 }
 
 .items-wish a:link, .items-wish a:visited, .items-wish a:hover, .items-wish a:active {

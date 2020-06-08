@@ -125,6 +125,12 @@
   .col-menu-desplegable {
     display: none;
   }
+  .special-background {
+    max-width: 100%;
+    -webkit-box-flex: 100%;
+        -ms-flex: 100%;
+            flex: 100%;
+  }
 }
 
 @media screen and (min-width: 767px) and (max-width: 1024px) {

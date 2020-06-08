@@ -99,6 +99,10 @@ $tablet-max: 1024px;
     .col-menu-desplegable{
         display: none;
     }
+    .special-background{
+        max-width: 100%;
+        flex: 100%;
+    }
 }
 @media screen and (min-width: $tablet-min) and (max-width: $tablet-max){
     .special-background{
