@@ -1,3 +1,5 @@
+$tablet-min: 767px;
+$tablet-max: 1024px;
 .main-app{
     padding: 0;
     height: 100%;
@@ -92,4 +94,27 @@
 }
 .row{
     margin-right: 0;
+}
+@media screen and (max-width: 767px){
+    .col-menu-desplegable{
+        display: none;
+    }
+}
+@media screen and (min-width: $tablet-min) and (max-width: $tablet-max){
+    .special-background{
+        width: 100%;
+        max-width: 100%;
+        flex: 100%;
+    }
+    .col-menu-desplegable{
+        z-index: 1;
+    }
+    .main-app .menu-desplegable{
+        top: 3.5em;
+        width: 100%;
+        background-color: rgba(0,0,0,0.3);
+        .card{
+            width: 30%;
+        }
+    }
 }

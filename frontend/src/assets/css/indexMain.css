@@ -120,4 +120,31 @@
 .row {
   margin-right: 0;
 }
+
+@media screen and (max-width: 767px) {
+  .col-menu-desplegable {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1024px) {
+  .special-background {
+    width: 100%;
+    max-width: 100%;
+    -webkit-box-flex: 100%;
+        -ms-flex: 100%;
+            flex: 100%;
+  }
+  .col-menu-desplegable {
+    z-index: 1;
+  }
+  .main-app .menu-desplegable {
+    top: 3.5em;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .main-app .menu-desplegable .card {
+    width: 30%;
+  }
+}
 /*# sourceMappingURL=indexMain.css.map */

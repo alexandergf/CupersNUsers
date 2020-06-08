@@ -121,13 +121,13 @@ export default class Nav extends Component {
             <div className="Nav">
                 <Container className="Contenedor" fluid>
                     <Row>
-                        <Col xl={2} md={2} xs={0} className="col-nav-logo">
+                        <Col xl={2} md={2} xs={2} className="col-nav-logo">
                             <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" /></Link>
                         </Col>
                         <Col xl={1} md={1} xs={1} >
                             <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)} ><BsList className="btn-menu-desplegable-icono" /></Button>
                         </Col>
-                        <Col xl={6} md={5} xs={5} className="search-bar">
+                        <Col xl={6} md={5} xs={2} className="search-bar">
                             <InputGroup>
                                 <FormControl type="text" placeholder="¿Que estas buscando?" className="mr-sm-2" onChange={this.handleOnChange} onKeyDown={this.handleKeyPress} ref={this.formInput} />
                                 <InputGroup.Append>
@@ -135,24 +135,24 @@ export default class Nav extends Component {
                                 </InputGroup.Append>
                             </InputGroup>
                         </Col>
-                        <Col xl={3} className="Botones" md={4} xs={4} >
+                        <Col xl={3} className="Botones" md={4} xs={7} >
                             <Row className="btn-row">
                                 {this.state.admin ? <EnlaceAdmin /> : null}
-                                <Col xl={2} md={2} xs={2}>
+                                <Col xl={2} md={2} xs={3}>
                                     <Link to="/UsoTazas">
                                         <Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}>
                                             <BsBook />
                                         </Button>
                                     </Link>
                                 </Col>
-                                <Col xl={2} md={2} xs={2}>
+                                <Col xl={2} md={2} xs={3}>
                                     <Link to={this.state.logIn ? "/EditarPerfil/EditarPerfil" : "/Login"}>
                                         <Button variant="light" className="fa fa-bars" onClick={() => this.sendResponseLateralMenu(false,false)}>
                                             <AiOutlineUser />
                                         </Button>
                                     </Link>
                                 </Col>
-                                <Col xl={2} md={2} xs={2}>
+                                <Col xl={2} md={2} xs={3}>
                                     <Link to="/Carrito">
                                         <Button variant="light" className="fa fa-bars" onMouseEnter={() => this.setState({cart_show: true})} onClick={() => this.sendResponseLateralMenu(false,false)}>
                                             <AiOutlineShoppingCart />

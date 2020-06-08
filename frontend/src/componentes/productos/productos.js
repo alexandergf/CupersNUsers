@@ -173,7 +173,7 @@ export default class productos extends Component {
                         <Panel otraForma={this.changeProducts.bind(this)} />
                     </Col>
                     <Col xs={9} md={10}>
-                        <CProductos productosBy={this.state.products} change={this.state.changeTitle} categoria={"Busqueda: "+(this.state.search !== "" ? this.state.search : "Todos los productos")} />
+                        <CProductos productosBy={this.state.products} change={this.state.changeTitle} categoria={"Busqueda: "+(this.state.search !== "" && this.state.search !== undefined ? this.state.search : "Todos los productos")} />
                     </Col>
                 </Row>
             </Container>
