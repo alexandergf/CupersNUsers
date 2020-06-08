@@ -138,10 +138,10 @@
         padding: 0;
     }
     .Botones .btn-row{
-        justify-content: space-around;
+        justify-content: end;
     }
     .Botones{
-        padding-right: 0;
+        padding-right: 1.5em;
     }
     .col-nav-logo{
         padding: 0;

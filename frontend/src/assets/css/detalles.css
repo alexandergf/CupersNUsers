@@ -68,6 +68,28 @@
   margin: 0;
 }
 
+.opiniones-col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.comprar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 .carrito-col-btn button {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -93,7 +115,7 @@
 .comprar button {
   background-color: #59FF96;
   color: white;
-  padding: .5em 3em;
+  padding: .5em 2em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -126,9 +148,36 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.bottom-detail .opiniones {
+  padding: 0;
 }
 
 .bottom-detail .Opiniones {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.bottom-detail .star-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.bottom-detail .carrito-col-btn {
+  padding: 0;
+  max-width: 45%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -191,7 +240,7 @@
   text-align: left;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .opiniones-row .col-xl-2 h3 {
     font-size: 1.35rem;
   }
@@ -206,13 +255,13 @@
   width: 95%;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 767px) and (max-width: 1024px) {
   .opinion-row .container {
     width: 90%;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .opinion-row .container {
     width: 80%;
   }
@@ -224,5 +273,209 @@
 
 .stars {
   margin-left: -15px;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1024px) {
+  .opiniones-col {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .detalleImg-second-line {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+  .detalleImg-second-line img {
+    cursor: pointer;
+  }
+  .detalle-text-card {
+    margin-top: 1em;
+    padding-inline: 0;
+  }
+  .title-detail .title-title {
+    text-align: left;
+  }
+  .title-detail .toast-title {
+    position: fixed;
+    right: 1em;
+  }
+  .title-detail .heartToBasket {
+    text-align: end;
+    padding-right: 0;
+  }
+  .title-detail .heartToBasket .btn:hover {
+    background-color: #3fadff;
+  }
+  .detail-first-line {
+    margin-bottom: 2em;
+  }
+  .detail-first-line .card {
+    height: 25em;
+  }
+  .detail-first-line .foto-taza {
+    margin-top: 2em;
+  }
+  .detail-first-line .foto-taza img {
+    max-width: 15em;
+    max-height: 15em;
+  }
+  .detail-first-line .img-thumbnail {
+    max-width: 5em;
+  }
+  .detail-first-line .card-deck {
+    width: 100%;
+    margin: 0;
+  }
+  .bottom-detail {
+    margin-top: 2em;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .bottom-detail .Opiniones {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding-right: .2em;
+  }
+  .carrito-col-btn {
+    font-size: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .carrito-col-btn button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border: 0px;
+    padding: .5em .5em;
+  }
+  .carrito-col-btn button img {
+    margin-right: 1em;
+    color: white;
+  }
+  .cash {
+    padding-left: 1.2em;
+  }
+  .comprar {
+    padding-inline: 0;
+  }
+  .comprar button {
+    background-color: #59FF96;
+    color: white;
+    padding: .5em .5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 0px;
+  }
+  .colors {
+    padding: 5px 0;
+  }
+}
+
+@media screen and (min-width: 450px) and (max-width: 750px) {
+  .detalle-text-card {
+    padding-inline: 0;
+    margin-top: .5em;
+  }
+  .description-list {
+    margin-top: 0;
+  }
+  .colors {
+    margin: 0;
+    padding: 10px 0;
+  }
+  .bottom-detail {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-top: 0;
+  }
+  .bottom-detail .col-6 {
+    margin-bottom: .5em;
+    max-width: 100%;
+  }
+  .bottom-detail .col-6 button {
+    width: 100%;
+  }
+  .bottom-detail .col-3 {
+    max-width: 100%;
+    padding: 0;
+  }
+  .bottom-detail .col-3 button {
+    width: 100%;
+  }
+  .bottom-detail .opiniones-col {
+    max-width: 100%;
+    margin-bottom: .5em;
+  }
+  .bottom-detail .opiniones-col button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .general-container {
+    margin-top: 4.5em;
+  }
+  .detail-first-line {
+    margin-bottom: 0;
+  }
+  .detalle-text-card {
+    padding-inline: 0;
+    margin-top: .5em;
+  }
+  .card-opinion-row {
+    margin: 0 !important;
+  }
+  .description-list {
+    margin-top: 0;
+  }
+  .colors {
+    margin: 0;
+    padding: 10px 0;
+  }
+  .bottom-detail {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-top: 0;
+  }
+  .bottom-detail .col-6 {
+    margin-bottom: .5em;
+    max-width: 100%;
+  }
+  .bottom-detail .col-6 button {
+    width: 100%;
+  }
+  .bottom-detail .col-3 {
+    max-width: 100%;
+    padding: 0;
+  }
+  .bottom-detail .col-3 button {
+    width: 100%;
+  }
+  .bottom-detail .opiniones-col {
+    max-width: 100%;
+    margin-bottom: .5em;
+  }
+  .bottom-detail .opiniones-col button {
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=detalles.css.map */

@@ -91,9 +91,9 @@ export default class bottomDetail extends Component {
                     errorMessage={this.state.errorMessage} 
                     redirect={() => this.setState({redirectLogin: true})}
                 />
-                <Col md={3} sm={3}><Row className="Opiniones"><span>{this.state.nOpinions} Opiniones</span></Row><Row className="star-row"><Estrellas numStars={this.props.estrellas} /></Row></Col>
-                <Col className="carrito-col-btn" xl={{span: 5, offset: 1}} lg={6} md={6} sm={6}><Button className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Button></Col>
-                <Col className="comprar" sm={3}><Button className="btn-comprar" variant="success" onClick={() => this.buyItem()} >Comprar</Button></Col>
+                <Col md={3} sm={3} className="opiniones-col"><Row className="Opiniones"><span>{this.state.nOpinions} Opiniones</span></Row><Row className="star-row"><Estrellas numStars={this.props.estrellas} /></Row></Col>
+                <Col className="carrito-col-btn" xl={6} md={6} xs={6}><Button className="btn-carrito" onClick={() => this.addCart()}><Image src={CarritoImg} alt="Carrito" width="18px" />Añadir al carrito</Button></Col>
+                <Col className="comprar" md={3} xs={3}><Button className="btn-comprar" variant="success" onClick={() => this.buyItem()} >Comprar</Button></Col>
             </Row>
         )
     }
