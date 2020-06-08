@@ -107,10 +107,10 @@
 
 .carrito-cart > .toast{
     background-color: white;
+    width: 100%;
 }
 
 @media screen and (max-width: 767px){
-    
     .input-group{
         justify-content: center;
     }
@@ -149,6 +149,7 @@
     .carrito-cart{
         width: 50%!important;
         right: 0em;
+        top: 3.7em!important;
     }
     .LogoImagen {
         padding: 0;

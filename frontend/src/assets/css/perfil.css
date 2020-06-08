@@ -49,6 +49,10 @@
   }
 }
 
+.admin-perfil .nombre-perfil {
+  max-width: 75%;
+}
+
 .admin-perfil .card-header {
   background-color: #3fadff;
   color: white;
@@ -100,7 +104,7 @@
 }
 
 .wish-perfil .wish-title .col .btn-add-all {
-  padding: 0.3em 2.5em;
+  padding: 0.3em 1.5em;
   background-color: #4cb30b;
   border-color: #4cb30b;
 }
@@ -128,7 +132,7 @@
 }
 
 .wish-perfil .wish-title .col .btn-delete-all {
-  padding: 0.3em 2.5em;
+  padding: 0.3em 1.5em;
   background-color: #fd3939;
   border-color: #fd3939;
   margin-right: .5em;
@@ -217,6 +221,10 @@
 
 .items-wish .container-item-wish {
   cursor: pointer;
+}
+
+.opinion-perfil .opinion-col-star {
+  padding-right: 0;
 }
 
 .opinion-perfil .opiniones-row {

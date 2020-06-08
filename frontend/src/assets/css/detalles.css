@@ -14,6 +14,7 @@
 
 .detalle-text-card {
   margin-top: 2em;
+  padding-inline: 0;
 }
 
 .title-detail .title-title {
@@ -99,7 +100,7 @@
       -ms-flex-align: center;
           align-items: center;
   border: 0px;
-  padding: .5em 3em;
+  padding: .5em 2em;
 }
 
 .carrito-col-btn button img {
@@ -168,7 +169,6 @@
 }
 
 .bottom-detail .carrito-col-btn {
-  padding: 0;
   max-width: 45%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -190,6 +190,7 @@
 }
 
 .cash-line .cont-btns {
+  padding-inline: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -247,7 +248,8 @@
 }
 
 .opinion-row .container {
-  width: 95%;
+  width: 90%;
+  padding: 0;
 }
 
 @media screen and (min-width: 767px) and (max-width: 1024px) {

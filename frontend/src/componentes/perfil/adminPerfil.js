@@ -37,7 +37,7 @@ export default class adminPerfil extends Component {
                     <Card.Header>
                         <Row>
                             <Col xl={1} md={1}><Image src={this.state.pic !== null && this.state.pic !== undefined ? this.state.pic : ImagenTest} alt={this.state.pic !== null && this.state.pic !== undefined ? this.state.pic : "ImagenTest"} roundedCircle width="30px" height="30px"/></Col>
-                            <Col xl={10} md={8}>{this.state.name}</Col>
+                            <Col xl={10} md={8} className="nombre-perfil">{this.state.name}</Col>
                         </Row>
                     </Card.Header>
                     <Card.Body>

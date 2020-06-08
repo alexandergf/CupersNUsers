@@ -13,6 +13,7 @@ $tablet-max: 1024px;
 }
 .detalle-text-card{
     margin-top: 2em;
+    padding-inline: 0;
 }
 .title-detail{
     .title-title{
@@ -71,7 +72,7 @@ $tablet-max: 1024px;
         justify-content: space-around;
         align-items: center;
         border: 0px;
-        padding: .5em 3em;
+        padding: .5em 2em;
         img{
             margin-right: 1em;
             color: white;
@@ -123,7 +124,6 @@ $tablet-max: 1024px;
         justify-content: flex-start;
     }
     .carrito-col-btn{
-        padding: 0;
         max-width: 45%;
         display: flex;
         justify-content: center;
@@ -136,6 +136,7 @@ $tablet-max: 1024px;
         text-align: left;
     }
     .cont-btns{
+        padding-inline: 0;
         display: flex;
         flex-direction: row;
         align-items: baseline;
@@ -179,7 +180,8 @@ $tablet-max: 1024px;
         @media screen and (max-width: $tablet-min){
             width: 80%;
         }
-        width: 95%;
+        width: 90%;
+        padding: 0;
     }
     margin-bottom: 2em;
     text-align: left;

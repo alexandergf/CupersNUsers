@@ -46,6 +46,9 @@ $tablet-max: 1024px;
             height: 15px;
         }
     }
+    .nombre-perfil{
+        max-width: 75%;
+    }
     .card-header{
         background-color: #3fadff;
         color: white;
@@ -95,7 +98,7 @@ $tablet-max: 1024px;
                     font-size: 14px;
                     padding: 0.3em .5em;
                 }
-                padding: 0.3em 2.5em;
+                padding: 0.3em 1.5em;
                 background-color: #4cb30b;
                 border-color: #4cb30b;
             }
@@ -113,7 +116,7 @@ $tablet-max: 1024px;
                     font-size: 14px;
                     width: 100%;
                 }
-                padding: 0.3em 2.5em;
+                padding: 0.3em 1.5em;
                 background-color: rgb(253, 57, 57);
                 border-color: rgb(253, 57, 57);
                 margin-right: .5em;
@@ -173,6 +176,9 @@ $tablet-max: 1024px;
     }
 }
 .opinion-perfil{
+    .opinion-col-star{
+        padding-right: 0;
+    }
     .opiniones-row{
         display: none;
     }
