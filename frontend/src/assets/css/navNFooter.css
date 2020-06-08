@@ -106,6 +106,7 @@
 }
 
 .carrito-cart > .toast{
+    max-width: 100%;
     background-color: white;
     width: 100%;
 }

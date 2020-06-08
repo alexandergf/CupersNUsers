@@ -109,6 +109,30 @@ export default class index extends Component {
                                     logOut={this.functionLogOut.bind(this)} 
                                     callback={this.actualizarCarrito.bind(this)} />
                                 } /> 
+                                <Route path="/EditarPerfil/Opinion" render={(props)=>
+                                    <Perfil {...props} 
+                                    log={this.state.logOut} 
+                                    logOut={this.functionLogOut.bind(this)} 
+                                    callback={this.actualizarCarrito.bind(this)} />
+                                } /> 
+                                <Route path="/EditarPerfil/WishList" render={(props)=>
+                                    <Perfil {...props} 
+                                    log={this.state.logOut} 
+                                    logOut={this.functionLogOut.bind(this)} 
+                                    callback={this.actualizarCarrito.bind(this)} />
+                                } /> 
+                                <Route path="/EditarPerfil/Pedidos" render={(props)=>
+                                    <Perfil {...props} 
+                                    log={this.state.logOut} 
+                                    logOut={this.functionLogOut.bind(this)} 
+                                    callback={this.actualizarCarrito.bind(this)} />
+                                } /> 
+                                <Route path="/EditarPerfil/Contacto" render={(props)=>
+                                    <Perfil {...props} 
+                                    log={this.state.logOut} 
+                                    logOut={this.functionLogOut.bind(this)} 
+                                    callback={this.actualizarCarrito.bind(this)} />
+                                } /> 
                                 <Route path="/Login" render={(props) =>
                                     <Login {...props} 
                                     callback={this.refreshCarrito}/>
@@ -136,7 +160,8 @@ export default class index extends Component {
                                     logOut={this.functionLogOut.bind(this)} />
                                 } />
                                 <Route path="/TazaPersonalizada" render={(props) => 
-                                    <TazaPersonalizada />
+                                    <TazaPersonalizada
+                                    callback={this.actualizarCarrito.bind(this)} />
                                 } /> 
                                 <Route path="/" exact render={(props) => 
                                     <PantallaInicial {...props} />

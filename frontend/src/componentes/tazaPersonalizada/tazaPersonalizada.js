@@ -1,10 +1,33 @@
 import React, { Component } from 'react';
-import { Container, Card, Button, Form, Row, Col, ListGroup } from 'react-bootstrap';
+import { Container, Card, Button, Form, Row, Col, ListGroup, Modal, InputGroup } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 import { fabric } from 'fabric';
 import { SketchPicker } from 'react-color';
 import reactCSS from 'reactcss';
 import '../../assets/css/personalizarTaza.css';
 import CarritoImg from '../../assets/images/carrito.png';
+import { cartItem } from '../../database/functions';
+
+function LogIn(props){
+    return (
+        <>
+            <Modal show={props.showLogin} onHide={() => props.onHide()} animation={false}>
+                <Modal.Header closeButton>
+                <Modal.Title>Ups</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{props.errorMessage}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={() => props.onHide()}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={() => props.redirect}>
+                        Logearse
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
 
 export default class tazaPersonalizada extends Component {
     constructor(props) {
@@ -18,7 +41,12 @@ export default class tazaPersonalizada extends Component {
                 g: '0',
                 b: '0',
                 a: '1',
-            }
+            },
+            showLogin: false,
+            redirectLogin: false,
+            errorMessage: "",
+            cont: 1,
+            desabilitarResta: true
         }
         this.formInput = React.createRef();
         this.addImageSrc = React.createRef();
@@ -26,10 +54,31 @@ export default class tazaPersonalizada extends Component {
         this.underL = React.createRef();
         this.rowCanvas = React.createRef();
         this.canvas = null;
+        this.sumar = this.sumar.bind(this);
+        this.restar = this.restar.bind(this);
     }
 
     componentDidMount = () => {
         this.montarCanvas();
+    }
+
+    sumar = () =>{
+        this.setState(() => ({
+            cont: this.state.cont+1,
+            desabilitarResta: false
+        }));
+    }
+
+    restar = () =>{
+        if(this.state.cont !== 1){
+            this.setState(() => ({
+                cont: this.state.cont-1
+            }));
+        }else{
+            this.setState(() => ({
+                desabilitarResta: true
+            }));
+        }
     }
 
     handleClick = () => {
@@ -96,9 +145,18 @@ export default class tazaPersonalizada extends Component {
         this.setState({listItems: listaTexto, itemsText: listaItems});
     }
 
-    addToCart = () => {
+    addToCart = async() => {
         var json = this.canvas.toJSON();
-        console.log(json);
+        let result = await cartItem(36, this.state.cont);
+        if(result[1] === false){
+            this.props.callback(result[0]);
+        }else{
+            this.setState({
+                errorMessage: "Para añadir a la lista de deseos tienes que estar logeado.",
+                showLogin: result[1]
+            })
+        }
+        //console.log(json);
     }
 
     render() {
@@ -130,7 +188,10 @@ export default class tazaPersonalizada extends Component {
                 left: '0px',
               },
             },
-          });
+        });
+        if(this.state.redirectLogin === true){
+            return <Redirect to="/Login" />
+        }
         return (
             <Container className="taza-personalizada-container">
                 <Card>
@@ -175,10 +236,25 @@ export default class tazaPersonalizada extends Component {
                                             )}
                                         </ListGroup>
                                         <Container className="btn-add-cart-container">
+                                            <InputGroup size="sm">
+                                                <InputGroup.Prepend>
+                                                    <Button variant="outline-secondary" onClick={this.restar} disabled={this.state.desabilitarResta}>-</Button>
+                                                </InputGroup.Prepend>
+                                                <InputGroup.Text>{this.state.cont}</InputGroup.Text>
+                                                <InputGroup.Append>
+                                                    <Button variant="outline-secondary" onClick={this.sumar}>+</Button>
+                                                </InputGroup.Append>
+                                            </InputGroup>
                                             <Button className="btn-add-cart" onClick={this.addToCart}>
                                                 <img src={CarritoImg} alt="Carrito" width="18px" />
                                                 Añadir al carrito
                                             </Button>
+                                            <LogIn 
+                                                showLogin={this.state.showLogin} 
+                                                onHide={() => this.setState({showLogin: false})} 
+                                                errorMessage={this.state.errorMessage} 
+                                                redirect={() => this.setState({redirectLogin: true})}
+                                            />
                                         </Container>
                                     </Col>
                                 </Row>

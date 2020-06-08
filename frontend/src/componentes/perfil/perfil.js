@@ -48,22 +48,22 @@ export default class perfil extends Component {
                         </Col>
                         <Col xl={9} md={9} xs={12}>
                             <Switch>
-                                <Route path="/EditarPerfil/EditarPerfil" render={(props)=>
+                                <Route path="/EditarPerfil/EditarPerfil" exact render={(props)=>
                                     <EditarPerfil {...props} />
                                 } />
-                                <Route path="/EditarPerfil/WishList" render={(props) => 
+                                <Route path="/EditarPerfil/WishList" exact render={(props) => 
                                     <WishList {...props}
                                     red={this.redireccionar.bind(this)} 
                                     callback={this.actualizarCarrito.bind(this)} />
                                 } />
-                                <Route path="/EditarPerfil/Pedidos" render={(props) => 
+                                <Route path="/EditarPerfil/Pedidos" exact render={(props) => 
                                     <Pedidos {...props}
                                     red={this.redireccionar.bind(this)} />
                                 } />
-                                <Route path="/EditarPerfil/Opinion" render={(props) => 
+                                <Route path="/EditarPerfil/Opinion" exact render={(props) => 
                                     <Opinion {...props} />
                                 } />
-                                <Route path="/EditarPerfil/Contacto" render={(props) => 
+                                <Route path="/EditarPerfil/Contacto" exact render={(props) => 
                                     <Contacto {...props} />
                                 } />
                             </Switch>
