@@ -17,7 +17,7 @@ function LogIn(props){
                     <Button variant="danger" onClick={() => props.onHide()}>
                         Cancelar
                     </Button>
-                    <Button variant="primary" onClick={() => props.redirect}>
+                    <Button variant="primary" onClick={() => props.redirect()}>
                         Logearse
                     </Button>
                 </Modal.Footer>
