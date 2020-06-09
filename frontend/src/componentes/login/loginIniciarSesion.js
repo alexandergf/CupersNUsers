@@ -82,30 +82,20 @@ export default class loginIniciarSesion extends Component {
     constructor(props){
         super(props);
         this.state = {
-            email: null,
-            password: null,
             show: false,
             showConfirmation: false,
             showError: false,
             showCharge: false
         }
-        this.handleChange = this.handleChange.bind(this);
+        this.email = React.createRef();
+        this.password = React.createRef();
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    handleChange = (event) => {   
-        const target = event.target;
-        const value = target.value; 
-        const name = target.name;
-        this.setState({
-            [name]: value
-        });  
-    }
-
     handleSubmit = async (event) => {
         event.preventDefault();
         this.setState({showCharge: true});
-        let result = await userLog(this.state.email, this.state.password);
+        let result = await userLog(this.email.current.value, this.password.current.value);
         result[1] === true ? this.setState({showError: result[1], showCharge: false}) : this.sendResponseData(result[0]);
     }
 
@@ -128,12 +118,12 @@ export default class loginIniciarSesion extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="logInEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" name="email" onChange={this.handleChange} required />
+                        <Form.Control type="email" name="email" ref={this.email} required />
                     </Form.Group>
 
                     <Form.Group controlId="logInPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" name="password" onChange={this.handleChange} required />
+                        <Form.Control type="password" name="password" ref={this.password} required />
                     </Form.Group>
                     <Button variant="success" type="submit">
                         Iniciar Sesión

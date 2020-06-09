@@ -60,40 +60,30 @@ export default class signUp extends Component {
     constructor(props){
         super(props);
         this.state = {
-            name: null,
-            surnames: null,
-            phone: null,
-            direction: null,
-            email: null,
-            password: null,
             failCreate: false,
             create: false,
             log: false,
             show: false
         }
-        this.handleChange = this.handleChange.bind(this);
+        this.name = React.createRef();
+        this.surnames = React.createRef();
+        this.phone = React.createRef();
+        this.direction = React.createRef();
+        this.email = React.createRef();
+        this.password = React.createRef();
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    handleChange = (event) => {   
-        const target = event.target;
-        const value = target.value; 
-        const name = target.name;
-        this.setState({
-            [name]: value
-        });  
-    }
-
     handleSubmit = async (event) => {
         event.preventDefault();
         this.setState({show: false});
         let dataUser = {};
-        if(this.state.nombre !== null && this.state.nombre !== "") dataUser.name = this.state.nombre;
-        if(this.state.apellidos !== null && this.state.nombre !== "") dataUser.surnames = this.state.apellidos;
-        if(this.state.telefono !== null && this.state.nombre !== "") dataUser.phone = this.state.telefono;
-        if(this.state.direction !== null && this.state.nombre !== "") dataUser.direction = this.state.direction;
-        dataUser.direction = this.state.email;
-        dataUser.direction = this.state.password;
+        if(this.name.current.value !== null && this.name.current.value !== "") dataUser.name = this.name.current.value;
+        if(this.surnames.current.value !== null && this.surnames.current.value !== "") dataUser.surnames = this.surnames.current.value;
+        if(this.phone.current.value !== null && this.phone.current.value !== "") dataUser.phone = this.phone.current.value;
+        if(this.direction.current.value !== null && this.direction.current.value !== "") dataUser.direction = this.direction.current.value;
+        dataUser.email = this.email.current.value;
+        dataUser.password = this.password.current.value;
         this.responseCreateCount(await createAccount(dataUser));
     }
 
@@ -115,32 +105,32 @@ export default class signUp extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="signUpNombre">
                         <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="text" name="name" onChange={this.handleChange} required />
+                        <Form.Control type="text" name="name" ref={this.name} required />
                     </Form.Group>
 
                     <Form.Group controlId="signUpApellidos">
                         <Form.Label>Apellidos</Form.Label>
-                        <Form.Control type="text" name="surnames" onChange={this.handleChange} />
+                        <Form.Control type="text" name="surnames" ref={this.surnames} />
                     </Form.Group>
 
                     <Form.Group controlId="signUpTlf">
                         <Form.Label>Teléfono</Form.Label>
-                        <Form.Control type="tel" name="phone" onChange={this.handleChange} />
+                        <Form.Control type="tel" name="phone" ref={this.phone} />
                     </Form.Group>
 
                     <Form.Group controlId="signUpDireccion">
                         <Form.Label>Dirección</Form.Label>
-                        <Form.Control type="text" name="direction" onChange={this.handleChange} />
+                        <Form.Control type="text" name="direction" ref={this.direction} />
                     </Form.Group>
 
                     <Form.Group controlId="signUpEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" name="email" onChange={this.handleChange} required />
+                        <Form.Control type="email" name="email" ref={this.email} required />
                     </Form.Group>
 
                     <Form.Group controlId="SignUpPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" name="password" onChange={this.handleChange} required />
+                        <Form.Control type="password" name="password" ref={this.password} required />
                     </Form.Group>
 
                     <Button variant="primary" type="submit">
