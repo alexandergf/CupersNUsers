@@ -59,6 +59,7 @@ export default class tarjetaCarrito extends Component {
 
     aux = (product) => {
         this.setState({products: product})
+        console.log(this.state.products);
         this.props.deleteFromCartCard(product);
     }
 

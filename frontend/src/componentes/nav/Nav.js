@@ -10,6 +10,7 @@ import '../../assets/css/navNFooter.css';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import Cart from './tarjetaCarrito';
+import { logOutFunctionDB } from '../../database/functions';
 
 function EnlaceAdmin(){
     return (
@@ -104,6 +105,7 @@ export default class Nav extends Component {
 
     logOutFunction = () => {
         this.setState({show: false, logIn: false, auxLogIn: false});
+        logOutFunctionDB();
         sessionStorage.removeItem('token');
         this.props.logOut(true);
     }
@@ -125,7 +127,7 @@ export default class Nav extends Component {
                             <Link to="/"><Image src={Logo} alt="Logo" className="LogoImagen" /></Link>
                         </Col>
                         <Col xl={1} md={1} xs={1} >
-                            <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)} ><BsList className="btn-menu-desplegable-icono" /></Button>
+                            <Button variant="light" className="btn-menu-desplegable" onClick={() => this.sendResponseLateralMenu(true, true)}><BsList className="btn-menu-desplegable-icono" /></Button>
                         </Col>
                         <Col xl={6} md={5} xs={2} className="search-bar">
                             <InputGroup>

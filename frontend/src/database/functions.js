@@ -334,3 +334,7 @@ export const setReview = async (id,puntuacion,descripcion) => {
 
     return [result, err];
 }
+
+export const logOutFunctionDB = () => {
+    instance.headers.Authorization = "Bearer ";
+}

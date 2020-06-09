@@ -146,7 +146,8 @@ export default class tazaPersonalizada extends Component {
     }
 
     addToCart = async() => {
-        var json = this.canvas.toJSON();
+        //var json = this.canvas.toJSON();
+        //console.log(json);
         let result = await cartItem(36, this.state.cont);
         if(result[1] === false){
             this.props.callback(result[0]);
@@ -156,7 +157,6 @@ export default class tazaPersonalizada extends Component {
                 showLogin: result[1]
             })
         }
-        //console.log(json);
     }
 
     render() {
@@ -192,6 +192,9 @@ export default class tazaPersonalizada extends Component {
         if(this.state.redirectLogin === true){
             return <Redirect to="/Login" />
         }
+        if(this.props.log){
+            return(<Redirect to="/" />)
+        } 
         return (
             <Container className="taza-personalizada-container">
                 <Card>

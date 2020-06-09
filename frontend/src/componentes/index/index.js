@@ -32,9 +32,12 @@ export default class index extends Component {
         this.functionLogOut = this.functionLogOut.bind(this);
         this.actualizarCarrito = this.actualizarCarrito.bind(this);
         this.refreshCarrito = this.refreshCarrito.bind(this);
+        this.timerID = null;
+        this._mount = false;
     }
 
     componentDidMount = () => {
+        this._mount = true;
         this.refreshCarrito();
         this.iniCategorias();
     }
@@ -65,12 +68,30 @@ export default class index extends Component {
             logOut: value,
             productosCarrito: []
         })
+        this.useEffect();
     }
 
     actualizarCarrito = (productos) => {
         this.setState({
             productosCarrito: productos
         })
+    }
+
+    useEffect = () => {
+        this.timerID = setTimeout(
+            function() {
+                if(this._mount){
+                    this.setState({logOut: false});
+                }
+            }
+            .bind(this),
+            1000
+        );
+    }
+
+    componentWillUnmount = () => {
+        this._mount = false;
+        clearTimeout(this.timerID);
     }
     
     render() {
@@ -97,7 +118,7 @@ export default class index extends Component {
                                       ,
                                       document.getElementById('root')
                                     )
-                                }/>
+                                } />
                                 <Route path="/UsoTazas" render={(props)=>
                                     <UsoTazas {...props} 
                                     log={this.state.logOut} 
@@ -161,7 +182,8 @@ export default class index extends Component {
                                 } />
                                 <Route path="/TazaPersonalizada" render={(props) => 
                                     <TazaPersonalizada
-                                    callback={this.actualizarCarrito.bind(this)} />
+                                    callback={this.actualizarCarrito.bind(this)}
+                                    logOut={this.functionLogOut.bind(this)} />
                                 } /> 
                                 <Route path="/" exact render={(props) => 
                                     <PantallaInicial {...props} />
