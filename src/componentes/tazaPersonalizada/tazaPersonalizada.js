@@ -95,7 +95,7 @@ export default class tazaPersonalizada extends Component {
 
     montarCanvas = () => {
         var rowCanvas = this.rowCanvas.current;
-        this.canvas= new fabric.Canvas('canvas',{
+        this.canvas = new fabric.Canvas('canvas',{
                 backgroundColor: 'rgb(255,255,255)',
                 selectionBorderColor: 'black',
                 selectionLineWidth: 2,
