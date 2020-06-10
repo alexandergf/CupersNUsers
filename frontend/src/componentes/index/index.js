@@ -42,7 +42,7 @@ export default class index extends Component {
         this.iniCategorias();
     }
 
-    getStateLaterañMenu = (activo, mode) => {
+    getStateLateralMenu = (activo, mode) => {
         if(mode){
             this.setState({
                 activeLateralMenu: !this.state.activeLateralMenu
@@ -101,7 +101,7 @@ export default class index extends Component {
                     <Row>
                         <Nav deleteFromCartCard={this.actualizarCarrito.bind(this)} 
                             productosCarrito={this.state.productosCarrito} 
-                            callback={this.getStateLaterañMenu.bind(this)} 
+                            callback={this.getStateLateralMenu.bind(this)} 
                             logOut={this.functionLogOut.bind(this)} />
                     </Row>
                     <Row className={"row-second-line " + (!this.state.activeLateralMenu?"active":"")}>
