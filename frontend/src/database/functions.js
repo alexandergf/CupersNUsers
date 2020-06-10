@@ -194,7 +194,7 @@ export const createAccount = async (dataUser) => {
     let result = false;
     await axios.post('/user/register', dataUser, instance)
       .then(function (response) {
-        if(response.data.data.email !== null && response.data.data.email !== undefined){
+        if(response.data.data.user.email !== null && response.data.data.user.email !== undefined){
             result = true;
         }else{
             result = false;
