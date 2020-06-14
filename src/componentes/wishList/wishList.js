@@ -146,19 +146,21 @@ export default class wishList extends Component {
     addAllItemsWish = () => {
         let props = this.props;
         let result = false;
+        var products = [];
         this.state.productos.map(async(product,index)=>
             {
                 result = await cartItem(product.id,1);
-                result[1] === true ? props.callback(result[0]) : console.log(result[1]);
+                result[1] === true ? products = (result[0]) : console.log(result[1]);
             }
         )
+        props.callback(products);
         this.setState({showCart: true})
     }
 
     render() {
         return (
             <Container fluid className="wish-perfil">
-                <CartProductToast onClose={() => this.setState({showCart:false})} show={this.state.showCart} delay={3000} autohide />
+                {this.state.showCart?<CartProductToast onClose={() => this.setState({showCart:false})} show={this.state.showCart} delay={3000} autohide />:null}
                 <Card>
                     <Card.Title>
                         <Container fluid>
